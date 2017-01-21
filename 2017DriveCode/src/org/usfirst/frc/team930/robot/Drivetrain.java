@@ -4,8 +4,11 @@ import com.ctre.CANTalon;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -17,24 +20,44 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * directory.
  */
 public class Drivetrain extends IterativeRobot {
-	final String defaultAuto = "Default";
+	/*final String defaultAuto = "Default";
 	final String customAuto = "My Auto";
 	String autoSelected;
-	SendableChooser<String> chooser = new SendableChooser<>();
+	SendableChooser<String> chooser = new SendableChooser<>();*/
+	
+	RobotDrive myRobot = new RobotDrive(0, 1);
 	
 	Joystick stick = new Joystick(1);
-	CANTalon talon = new CANTalon(0);
+	Button driver4 = new JoystickButton(stick, 4);
+	Button driver1 = new JoystickButton(stick, 1);
+	
 	AHRS gyro = new AHRS(SerialPort.Port.kUSB);
+	
+	CANTalon L1 = new CANTalon(0);
+	CANTalon L2 = new CANTalon(1);
+	CANTalon L3 = new CANTalon(2);
+	CANTalon R1 = new CANTalon(3);
+	CANTalon R2 = new CANTalon(4);
+	CANTalon R3 = new CANTalon(5);
 
+	public Drivetrain() {
+		super();
+		R1.setInverted(true);
+		R2.setInverted(true);
+		R3.setInverted(true);
+		
+		gyro.reset();
+	}
+	
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
 	@Override
 	public void robotInit() {
-		chooser.addDefault("Default Auto", defaultAuto);
+		/*chooser.addDefault("Default Auto", defaultAuto);
 		chooser.addObject("My Auto", customAuto);
-		SmartDashboard.putData("Auto choices", chooser);
+		SmartDashboard.putData("Auto choices", chooser);*/
 	}
 
 	/**
@@ -50,10 +73,10 @@ public class Drivetrain extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		autoSelected = chooser.getSelected();
+		/*autoSelected = chooser.getSelected();
 		// autoSelected = SmartDashboard.getString("Auto Selector",
 		// defaultAuto);
-		System.out.println("Auto selected: " + autoSelected);
+		System.out.println("Auto selected: " + autoSelected);*/
 	}
 
 	/**
@@ -61,7 +84,7 @@ public class Drivetrain extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
-		switch (autoSelected) {
+		/*switch (autoSelected) {
 		case customAuto:
 			// Put custom auto code here
 			break;
@@ -69,7 +92,7 @@ public class Drivetrain extends IterativeRobot {
 		default:
 			// Put default auto code here
 			break;
-		}
+		}*/
 	}
 
 	/**
@@ -77,14 +100,39 @@ public class Drivetrain extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
+		myRobot.arcadeDrive(stick);
 		
+		double wheel = stick.getRawAxis(0);
+		double throttle = stick.getRawAxis(1);
+		
+		double wheelNonLinearity = 0.5;
+
+		wheel = handleDeadband(wheel, 0.1);
+		throttle = handleDeadband(throttle, 0.085);
+		
+		wheel = Math.sin(Math.PI / 2.0 * wheelNonLinearity * wheel) / Math.sin(Math.PI / 2.0 * wheelNonLinearity);
+		wheel = Math.sin(Math.PI / 2.0 * wheelNonLinearity * wheel) / Math.sin(Math.PI / 2.0 * wheelNonLinearity);
+		wheel = Math.sin(Math.PI / 2.0 * wheelNonLinearity * wheel) / Math.sin(Math.PI / 2.0 * wheelNonLinearity);
+		
+		L1.set(throttle + wheel);
+		L2.set(throttle + wheel);
+		L3.set(throttle + wheel);
+		R1.set(throttle - wheel);
+		R2.set(throttle - wheel);
+		R3.set(throttle - wheel);
+		
+		/* Joystick values to gyro values
 		double angleGyro = gyro.getAngle()%360;
 		System.out.println(angleGyro);
 		
 		double angleStick = Math.toDegrees(Math.atan2((stick.getRawAxis(1)), (stick.getRawAxis(0))));
-		System.out.println(angleStick);
+		System.out.println(angleStick);*/
 		
 		Timer.delay(0.005);
+	}
+
+	private double handleDeadband(double val, double deadband) {
+		return (Math.abs(val) > Math.abs(deadband)) ? val : 0.0;		// boolean statement ? true result : false result
 	}
 
 	/**

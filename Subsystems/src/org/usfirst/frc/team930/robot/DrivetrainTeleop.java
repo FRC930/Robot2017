@@ -1,15 +1,9 @@
 package org.usfirst.frc.team930.robot;
+
 import edu.wpi.first.wpilibj.Timer;
 
-public class Drive implements Runnable {
-	
-    double targetX;
-    double targetY;
-    boolean useJoysticks;
-    
-	public void run(){
-		
-		/*myRobot.arcadeDrive(stick);
+public class DrivetrainTeleop {
+		myRobot.arcadeDrive(stick);
 		
 		double wheel = stick.getRawAxis(0);
 		double throttle = stick.getRawAxis(1);
@@ -38,23 +32,9 @@ public class Drive implements Runnable {
 		System.out.println(angleStick);*/
 		
 		Timer.delay(0.005);
-		
-	}
 	
-	public void setTarget(double x, double y){
-		
-	}
-	
-	public void setUseJoysticks( boolean b){
-		
-	}
-	
-	public void drive(){
-		
-	}
-	
+
 	private double handleDeadband(double val, double deadband) {
 		return (Math.abs(val) > Math.abs(deadband)) ? val : 0.0;		// boolean statement ? true result : false result
 	}
-	
 }
