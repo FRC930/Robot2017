@@ -30,7 +30,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 			CANTalon Motor1 = new CANTalon(5);
 			CANTalon Motor2 = new CANTalon(6);
 			PowerDistributionPanel PDP = new PowerDistributionPanel();
-
+			
 	double speed2 = 50;
 	boolean Apressed = false;  //Sets variables necessary to operate the buttons.
 	boolean Bpressed = false;
@@ -38,6 +38,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 	boolean onoff = false;
 	double clamppos = 1;
 	double clampneg = -1;
+	
 
 
 	public Robot() {
@@ -48,7 +49,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 	public void robotInit() {
 	chooser.addDefault("Default Auto", defaultAuto);
 	chooser.addObject("My Auto", customAuto);
-	SmartDashboard.putData("Auto modes", chooser);
 	Motor1.changeControlMode(TalonControlMode.PercentVbus);
 	Motor2.changeControlMode(TalonControlMode.PercentVbus); 
 }  //changes the control mode of the motors to PercentVbus
@@ -89,11 +89,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 		  if (onoff){
 			  Motor1.set(speed2);       // actually turns on the motors 
 			  Motor2.set(speed2*-1.0);
+			  SmartDashboard.putNumber("Channel 14's Current is", PDP.getCurrent(14));
 		  } else {
 			  Motor1.set(0);
 			  Motor2.set(0);
-			  System.out.print("system is off");
-			  SmartDashboard.putNumber("Channel Current's", PDP.getCurrent(14));
+			  System.out.print("system is off"); 
 		  }
 		  if(speed2 >= clamppos){ //if the speed is too high it will clamp it and the controller will rumble
 			  speed2 = 1;
