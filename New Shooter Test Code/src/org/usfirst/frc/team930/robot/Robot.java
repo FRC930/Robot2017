@@ -3,15 +3,11 @@ package org.usfirst.frc.team930.robot;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SampleRobot;
 import edu.wpi.first.wpilibj.Spark;
-import edu.wpi.first.wpilibj.Talon;
-import edu.wpi.first.wpilibj.TalonSRX;
 
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.TalonControlMode;
-
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Joystick.AxisType;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -30,6 +26,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 			CANTalon Motor1 = new CANTalon(5);
 			CANTalon Motor2 = new CANTalon(6);
 			PowerDistributionPanel PDP = new PowerDistributionPanel();
+			SmartDashboard SD = new SmartDashboard();
 			
 	double speed2 = 50;
 	boolean Apressed = false;  //Sets variables necessary to operate the buttons.
@@ -87,12 +84,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 		  }
 
 		  if (onoff){
-			  Motor1.set(speed2);       // actually turns on the motors 
-			  Motor2.set(speed2*-1.0);
-			  SmartDashboard.putNumber("Channel 14's Current is", PDP.getCurrent(14));
+			  hello.set(speed2);       // actually turns on the motors 
+			  hello1.set(speed2*-1.0);
+			  SmartDashboard.putNumber("Channel 14's Current is", PDP.getCurrent(11));
 		  } else {
-			  Motor1.set(0);
-			  Motor2.set(0);
+			  hello.set(0);
+			  hello1.set(0);
 			  System.out.print("system is off"); 
 		  }
 		  if(speed2 >= clamppos){ //if the speed is too high it will clamp it and the controller will rumble
