@@ -1,0 +1,1816 @@
+\hypertarget{class_c_a_n_talon}{}\section{C\+A\+N\+Talon Class Reference}
+\label{class_c_a_n_talon}\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+
+
+{\ttfamily \#include $<$C\+A\+N\+Talon.\+h$>$}
+
+
+
+Inherits Motor\+Safety, C\+A\+N\+Speed\+Controller, Error\+Base, Live\+Window\+Sendable, I\+Table\+Listener, P\+I\+D\+Source, P\+I\+D\+Interface, and I\+Gadgeteer\+Uart\+Client.
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_c_a_n_talon_1_1_motion_profile_status}{Motion\+Profile\+Status}
+\item 
+struct \hyperlink{struct_c_a_n_talon_1_1_trajectory_point}{Trajectory\+Point}
+\end{DoxyCompactItemize}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{class_c_a_n_talon_a4a8af675a7712f305d17be2b825005e3}{Feedback\+Device} \{ \newline
+\hyperlink{class_c_a_n_talon_a4a8af675a7712f305d17be2b825005e3a15db9f634456daa0a0c93c18f89d7c81}{Quad\+Encoder} = 0, 
+\hyperlink{class_c_a_n_talon_a4a8af675a7712f305d17be2b825005e3a2ffe85e116d15d0dddc50af5eaeda029}{Analog\+Pot} = 2, 
+\hyperlink{class_c_a_n_talon_a4a8af675a7712f305d17be2b825005e3a31609bd752259f185659410cf8ba6efe}{Analog\+Encoder} = 3, 
+\hyperlink{class_c_a_n_talon_a4a8af675a7712f305d17be2b825005e3a70d369d5922f4b58276a8a330c4ead65}{Enc\+Rising} = 4, 
+\newline
+\hyperlink{class_c_a_n_talon_a4a8af675a7712f305d17be2b825005e3ab14fd60617efe78151e3a1bc3d8e3837}{Enc\+Falling} = 5, 
+\hyperlink{class_c_a_n_talon_a4a8af675a7712f305d17be2b825005e3a511c44c86d7be64f6341f8adcc7dee48}{Ctre\+Mag\+Encoder\+\_\+\+Relative} = 6, 
+\hyperlink{class_c_a_n_talon_a4a8af675a7712f305d17be2b825005e3a88835b1b6ee233e85e09849df4230d2e}{Ctre\+Mag\+Encoder\+\_\+\+Absolute} = 7, 
+\hyperlink{class_c_a_n_talon_a4a8af675a7712f305d17be2b825005e3a1717411276d5e151cc7ae18a86e41974}{Pulse\+Width} = 8
+ \}
+\item 
+enum \hyperlink{class_c_a_n_talon_a9df2b5d336c09be76604dcb39da32172}{Feedback\+Device\+Status} \{ \hyperlink{class_c_a_n_talon_a9df2b5d336c09be76604dcb39da32172a47e3f89bbea0ab6ffe506974ad17db9c}{Feedback\+Status\+Unknown} = 0, 
+\hyperlink{class_c_a_n_talon_a9df2b5d336c09be76604dcb39da32172ac0e6a9f85db060f8d5f8d502868d029b}{Feedback\+Status\+Present} = 1, 
+\hyperlink{class_c_a_n_talon_a9df2b5d336c09be76604dcb39da32172a65bcccdfeddf56f37ae8ffcf0d7da169}{Feedback\+Status\+Not\+Present}
+ \}
+\item 
+enum \hyperlink{class_c_a_n_talon_acac4ef6508d842a8fe4301284149720e}{Status\+Frame\+Rate} \{ \newline
+\hyperlink{class_c_a_n_talon_acac4ef6508d842a8fe4301284149720ea4792db904d36bb3a8c0ef5fa4bed2d6e}{Status\+Frame\+Rate\+General} = 0, 
+\hyperlink{class_c_a_n_talon_acac4ef6508d842a8fe4301284149720eaab55baf6c3f2e2db70a5ab0635a51ba5}{Status\+Frame\+Rate\+Feedback} = 1, 
+\hyperlink{class_c_a_n_talon_acac4ef6508d842a8fe4301284149720eaaa037e28354a570a7221414a4c1eb4c7}{Status\+Frame\+Rate\+Quad\+Encoder} = 2, 
+\hyperlink{class_c_a_n_talon_acac4ef6508d842a8fe4301284149720eac2207be4cbdba8a6e51a4fd6e2be730c}{Status\+Frame\+Rate\+Analog\+Temp\+Vbat} = 3, 
+\newline
+\hyperlink{class_c_a_n_talon_acac4ef6508d842a8fe4301284149720ea133a871ca8b5d4dbd5e82b2df495949a}{Status\+Frame\+Rate\+Pulse\+Width\+Meas} = 4
+ \}
+\item 
+enum \hyperlink{class_c_a_n_talon_a3a5aa35beed1f5d9145dbd658b119b90}{Set\+Value\+Motion\+Profile} \{ \hyperlink{class_c_a_n_talon_a3a5aa35beed1f5d9145dbd658b119b90a814702d1ec75045f92e22c32ed1c431c}{Set\+Value\+Motion\+Profile\+Disable} = 0, 
+\hyperlink{class_c_a_n_talon_a3a5aa35beed1f5d9145dbd658b119b90a3edc0f79499be58eceb87a8f4badf0f5}{Set\+Value\+Motion\+Profile\+Enable} = 1, 
+\hyperlink{class_c_a_n_talon_a3a5aa35beed1f5d9145dbd658b119b90a7d505a096088c8b9561f7bdcf1c549a2}{Set\+Value\+Motion\+Profile\+Hold} = 2
+ \}
+\item 
+enum \hyperlink{class_c_a_n_talon_a0e4915b95f71a7091e3a1323f3ec9e1f}{Talon\+Control\+Mode} \{ \newline
+\hyperlink{class_c_a_n_talon_a0e4915b95f71a7091e3a1323f3ec9e1fa334746ba8c1b19f4ea518a3a3e5776f5}{k\+Throttle\+Mode} = 0, 
+\hyperlink{class_c_a_n_talon_a0e4915b95f71a7091e3a1323f3ec9e1fa3a132624a8ab15b252a50b00f755a454}{k\+Follower\+Mode} = 5, 
+\hyperlink{class_c_a_n_talon_a0e4915b95f71a7091e3a1323f3ec9e1fada862ec4eddcbb8ea5ef4486ff2b5e07}{k\+Voltage\+Mode} = 4, 
+\hyperlink{class_c_a_n_talon_a0e4915b95f71a7091e3a1323f3ec9e1fa769708fed4affe2105dddaecf83253aa}{k\+Position\+Mode} = 1, 
+\newline
+\hyperlink{class_c_a_n_talon_a0e4915b95f71a7091e3a1323f3ec9e1faef97b75b5268a05b65f4229285593b37}{k\+Speed\+Mode} = 2, 
+\hyperlink{class_c_a_n_talon_a0e4915b95f71a7091e3a1323f3ec9e1fac12d9b7970360092826ad06ad6e169c0}{k\+Current\+Mode} = 3, 
+\hyperlink{class_c_a_n_talon_a0e4915b95f71a7091e3a1323f3ec9e1fab33ae42b8c47d9db69316a3cafcf3383}{k\+Motion\+Profile\+Mode} = 6, 
+\hyperlink{class_c_a_n_talon_a0e4915b95f71a7091e3a1323f3ec9e1fa105b167f91781e45ce7ef6a59f01f88d}{k\+Motion\+Magic\+Mode} = 7, 
+\newline
+\hyperlink{class_c_a_n_talon_a0e4915b95f71a7091e3a1323f3ec9e1fa4673563d2ffa0a5e74bcb8b5bfadd491}{k\+Disabled} = 15
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_c_a_n_talon_ab22fe4f31e8d2e21011610833f96de58}{C\+A\+N\+Talon} (int device\+Number)
+\item 
+\hyperlink{class_c_a_n_talon_afe5efd7f2c7b1fb3c6b818eb3d4617d7}{C\+A\+N\+Talon} (int device\+Number, int control\+Period\+Ms)
+\item 
+\hyperlink{class_c_a_n_talon_a31581c5215ebe60fe89dbce78468627a}{D\+E\+F\+A\+U\+L\+T\+\_\+\+M\+O\+V\+E\+\_\+\+C\+O\+N\+S\+T\+R\+U\+C\+T\+OR} (\hyperlink{class_c_a_n_talon}{C\+A\+N\+Talon})
+\item 
+virtual \hyperlink{class_c_a_n_talon_a1f2577ad1683495db9ada33f71968df0}{$\sim$\+C\+A\+N\+Talon} ()
+\item 
+int \hyperlink{class_c_a_n_talon_a68641c5f1b7ae5ca4683d8ad3521c275}{Get\+Device\+ID} ()
+\item 
+void \hyperlink{class_c_a_n_talon_a544ae037c202cb4e97c2ef8fd68b005b}{P\+I\+D\+Write} (double output) override
+\item 
+double \hyperlink{class_c_a_n_talon_affb8fef48a657c5a4d60ef5b76664091}{P\+I\+D\+Get} () override
+\item 
+void \hyperlink{class_c_a_n_talon_ae1f3bf6c3bfa5ebc2ef95367d995bd0d}{Set\+Expiration} (double timeout) override
+\item 
+double \hyperlink{class_c_a_n_talon_ae81697fca7c681183e25dceee64c6c26}{Get\+Expiration} () const override
+\item 
+bool \hyperlink{class_c_a_n_talon_a4d26bc07e4d13a3292be1b9152439182}{Is\+Alive} () const override
+\item 
+void \hyperlink{class_c_a_n_talon_ac4dab826cbcb67e04ba7c734dfb088bb}{Stop\+Motor} () override
+\item 
+void \hyperlink{class_c_a_n_talon_a1259a78f4e90554be7227a77030aad12}{Set\+Safety\+Enabled} (bool enabled) override
+\item 
+bool \hyperlink{class_c_a_n_talon_a4305b1c9d5f9459702bfa68c44b0887f}{Is\+Safety\+Enabled} () const override
+\item 
+void \hyperlink{class_c_a_n_talon_af5fcf549829342563fc9bcb60760fafd}{Get\+Description} (std\+::ostringstream \&desc) const override
+\item 
+double \hyperlink{class_c_a_n_talon_a6819f1eae4eefb39c441a3b8e973613d}{Get} () const override
+\item 
+void \hyperlink{class_c_a_n_talon_a4562f7fb454693a0b19e6eba955a0c71}{Set} (double value) override
+\item 
+void \hyperlink{class_c_a_n_talon_acb83bdcca65d305472d1f7c23ae6d2ee}{Reset} () override
+\item 
+void \hyperlink{class_c_a_n_talon_abad2c78d5a46552d7e0eac171214083d}{Set\+Setpoint} (double value) override
+\item 
+void \hyperlink{class_c_a_n_talon_a8bd799926d0efa4e4cf99d0f64e94371}{Disable} () override
+\item 
+virtual void \hyperlink{class_c_a_n_talon_a174cae574f8c73a4d211d7484fddd7ef}{Enable\+Control} ()
+\item 
+void \hyperlink{class_c_a_n_talon_a564c64c730580b6f80cf6c5f9eb42032}{Enable} () override
+\item 
+void \hyperlink{class_c_a_n_talon_a6a8c44252d104634d6a0c580088cbf98}{SetP} (double p) override
+\item 
+void \hyperlink{class_c_a_n_talon_ac72349fb7837dff1a27c5288416eb1ac}{SetI} (double i) override
+\item 
+void \hyperlink{class_c_a_n_talon_ad1d9dc5cb06e4efbf57ed10d91f2ee80}{SetD} (double d) override
+\item 
+void \hyperlink{class_c_a_n_talon_ac147cdb9096848beac85a25d04489d60}{SetF} (double f)
+\item 
+void \hyperlink{class_c_a_n_talon_a232b637087900eac7272450015c2be04}{Set\+Izone} (unsigned iz)
+\item 
+void \hyperlink{class_c_a_n_talon_ae6454fc74fcdf5b8afa8da07d08f0290}{Set\+P\+ID} (double p, double i, double d) override
+\item 
+virtual void \hyperlink{class_c_a_n_talon_a416e51c661eb35c05b594fa19793eb09}{Set\+P\+ID} (double p, double i, double d, double f)
+\item 
+double \hyperlink{class_c_a_n_talon_a701df7e254b4e6731bff57e7ae19d330}{GetP} () const override
+\item 
+double \hyperlink{class_c_a_n_talon_a29c00b36b915c21c5ae10c3cf64ce244}{GetI} () const override
+\item 
+double \hyperlink{class_c_a_n_talon_aeae71b2de2e9c711f46a9a2e3ce08282}{GetD} () const override
+\item 
+virtual double \hyperlink{class_c_a_n_talon_a568bfe876c2915efde9662976107365e}{GetF} () const
+\item 
+bool \hyperlink{class_c_a_n_talon_a21e75c3f26191a40c3ed9daa4fc0eacd}{Is\+Mode\+P\+ID} (C\+A\+N\+Speed\+Controller\+::\+Control\+Mode mode) const override
+\item 
+double \hyperlink{class_c_a_n_talon_a54bf29776c50598a1a9686651f6fadd0}{Get\+Bus\+Voltage} () const override
+\item 
+double \hyperlink{class_c_a_n_talon_a47899fde5026631d18cdfa6fdce29b1d}{Get\+Output\+Voltage} () const override
+\item 
+double \hyperlink{class_c_a_n_talon_af24e57fe1d6a7ec64ab1a836d4d9c5ce}{Get\+Output\+Current} () const override
+\item 
+double \hyperlink{class_c_a_n_talon_aab26bf049aa996de5fab27455ed956da}{Get\+Temperature} () const override
+\item 
+void \hyperlink{class_c_a_n_talon_a9e30edc8e7240e17abce7125a2a6c72c}{Set\+Position} (double pos)
+\item 
+double \hyperlink{class_c_a_n_talon_aedc47efb529bd41b55849e628363e661}{Get\+Position} () const override
+\item 
+double \hyperlink{class_c_a_n_talon_a36e486b58bc5ce1b218d36468900bb1b}{Get\+Speed} () const override
+\item 
+virtual int \hyperlink{class_c_a_n_talon_ae96f0f4eda41e611866453636382780b}{Get\+Closed\+Loop\+Error} () const
+\item 
+virtual void \hyperlink{class_c_a_n_talon_ab497835f7003788c3a25b2f8b9e4db55}{Set\+Allowable\+Closed\+Loop\+Err} (uint32\+\_\+t allowable\+Close\+Loop\+Error)
+\item 
+virtual int \hyperlink{class_c_a_n_talon_a8dbf7974dc2877b4b32c1462e16fb9f1}{Get\+Analog\+In} () const
+\item 
+virtual void \hyperlink{class_c_a_n_talon_a2893e5777fc2904d9aeab91c283d19df}{Set\+Analog\+Position} (int new\+Position)
+\item 
+virtual int \hyperlink{class_c_a_n_talon_aaf2d5a3f142d57b8a5f17be332d57b58}{Get\+Analog\+In\+Raw} () const
+\item 
+virtual int \hyperlink{class_c_a_n_talon_a2191c4ae935c1bdb33fb622402d0676f}{Get\+Analog\+In\+Vel} () const
+\item 
+virtual int \hyperlink{class_c_a_n_talon_a9ccad36fcf60791617bae9bb0f1443b4}{Get\+Enc\+Position} () const
+\item 
+virtual void \hyperlink{class_c_a_n_talon_a00b16233647cf4ae540d14236d8ee01d}{Set\+Enc\+Position} (int)
+\item 
+virtual int \hyperlink{class_c_a_n_talon_a1ecf556f18bc6a61278e2d27408f25af}{Get\+Enc\+Vel} () const
+\item 
+int \hyperlink{class_c_a_n_talon_ac591175f87e34f153118cb507c132c8f}{Get\+Pin\+State\+QuadA} () const
+\item 
+int \hyperlink{class_c_a_n_talon_a27ae4c2fc57e43d717fb0a38119b3106}{Get\+Pin\+State\+QuadB} () const
+\item 
+int \hyperlink{class_c_a_n_talon_ae532dd6728f896c9366e373853886760}{Get\+Pin\+State\+Quad\+Idx} () const
+\item 
+int \hyperlink{class_c_a_n_talon_a892bcfbb4a6dacf4c4597703dffaf976}{Is\+Fwd\+Limit\+Switch\+Closed} () const
+\item 
+int \hyperlink{class_c_a_n_talon_a2c77ae2f1cfa966edbcd7c2bc30d36fc}{Is\+Rev\+Limit\+Switch\+Closed} () const
+\item 
+int \hyperlink{class_c_a_n_talon_ab612b5009dc905b6a5df4968cbbcfbb9}{Is\+Zero\+Sensor\+Position\+On\+Forward\+Limit\+Enabled} () const
+\item 
+int \hyperlink{class_c_a_n_talon_ab6d2a2143d143984be5ad72e6bf49e00}{Is\+Zero\+Sensor\+Position\+On\+Reverse\+Limit\+Enabled} () const
+\item 
+int \hyperlink{class_c_a_n_talon_a6408b0db20903b98d7e27082fc5df59e}{Is\+Zero\+Sensor\+Position\+On\+Index\+Enabled} () const
+\item 
+int \hyperlink{class_c_a_n_talon_a5f1fab77ecc45fc719a2a0886e0b3a4e}{Get\+Number\+Of\+Quad\+Idx\+Rises} () const
+\item 
+void \hyperlink{class_c_a_n_talon_a3d886b434c2e8c99415bd798f9ec1dc4}{Set\+Number\+Of\+Quad\+Idx\+Rises} (int rises)
+\item 
+virtual int \hyperlink{class_c_a_n_talon_adf3c68d62c6b246540518de56d7f1d21}{Get\+Pulse\+Width\+Position} () const
+\item 
+virtual void \hyperlink{class_c_a_n_talon_afab6a73cc6c8c22ac503b247f9cea0f2}{Set\+Pulse\+Width\+Position} (int newpos)
+\item 
+virtual int \hyperlink{class_c_a_n_talon_ac7566c2bae26a00cf161aeb257cc34e9}{Get\+Pulse\+Width\+Velocity} () const
+\item 
+virtual int \hyperlink{class_c_a_n_talon_a101348a9f09af22d54806c49e9346979}{Get\+Pulse\+Width\+Rise\+To\+Fall\+Us} () const
+\item 
+virtual int \hyperlink{class_c_a_n_talon_a8a007d31edef41225ddc4d7106d5cf42}{Get\+Pulse\+Width\+Rise\+To\+Rise\+Us} () const
+\item 
+virtual \hyperlink{class_c_a_n_talon_a9df2b5d336c09be76604dcb39da32172}{Feedback\+Device\+Status} \hyperlink{class_c_a_n_talon_a2fcdeff79b199573b81b9bc68b98443d}{Is\+Sensor\+Present} (\hyperlink{class_c_a_n_talon_a4a8af675a7712f305d17be2b825005e3}{Feedback\+Device} feedback\+Device) const
+\item 
+bool \hyperlink{class_c_a_n_talon_af9f50de12a090b0b70edb2dc57e48f61}{Get\+Forward\+Limit\+OK} () const override
+\item 
+bool \hyperlink{class_c_a_n_talon_a70234020208d2e49600868e959eb640f}{Get\+Reverse\+Limit\+OK} () const override
+\item 
+uint16\+\_\+t \hyperlink{class_c_a_n_talon_aeee8ab02812ca4f4fac0baefff57bfbc}{Get\+Faults} () const override
+\item 
+uint16\+\_\+t \hyperlink{class_c_a_n_talon_a994239a9436868e2fee189ce87b7c9be}{Get\+Sticky\+Faults} () const
+\item 
+void \hyperlink{class_c_a_n_talon_ab4a9db0ef97b04adb93d2e200a9b9573}{Clear\+Sticky\+Faults} ()
+\item 
+void \hyperlink{class_c_a_n_talon_abb4db45c90b0fe66c595c73880d4f67d}{Set\+Voltage\+Ramp\+Rate} (double ramp\+Rate) override
+\item 
+virtual void \hyperlink{class_c_a_n_talon_a3608afbdaa6a0c4e9c63c70bbcae38ed}{Set\+Voltage\+Compensation\+Ramp\+Rate} (double ramp\+Rate)
+\item 
+int \hyperlink{class_c_a_n_talon_a16f7d01201fe09094a76fdd192307b2a}{Get\+Firmware\+Version} () const override
+\item 
+void \hyperlink{class_c_a_n_talon_a7a6a2ce755982ff35031664736927026}{Config\+Neutral\+Mode} (Neutral\+Mode mode) override
+\item 
+void \hyperlink{class_c_a_n_talon_ad7dce04cbc276a76ca6ea8048da13908}{Config\+Encoder\+Codes\+Per\+Rev} (uint16\+\_\+t codes\+Per\+Rev) override
+\item 
+void \hyperlink{class_c_a_n_talon_a83b286995d244b8d9e7530c190ab8eca}{Config\+Potentiometer\+Turns} (uint16\+\_\+t turns) override
+\item 
+void \hyperlink{class_c_a_n_talon_a3e5d464de61b9005f33edd0b9db714ec}{Config\+Soft\+Position\+Limits} (double forward\+Limit\+Position, double reverse\+Limit\+Position) override
+\item 
+void \hyperlink{class_c_a_n_talon_a5fda4cb5db6d3b4b400222f549d91621}{Disable\+Soft\+Position\+Limits} () override
+\item 
+void \hyperlink{class_c_a_n_talon_a6720f4720939dd590b1db6a33d09aef2}{Config\+Limit\+Mode} (Limit\+Mode mode) override
+\item 
+void \hyperlink{class_c_a_n_talon_a21f11e090b3cd0c04e1bd65a6f3db6ae}{Config\+Forward\+Limit} (double forward\+Limit\+Position) override
+\item 
+void \hyperlink{class_c_a_n_talon_ac582a9df1a7224feb27de1c8dbda5ddf}{Config\+Reverse\+Limit} (double reverse\+Limit\+Position) override
+\item 
+void \hyperlink{class_c_a_n_talon_a2b70b503b3ea36373884d218be87a5d0}{Config\+Limit\+Switch\+Overrides} (bool b\+Forward\+Limit\+Switch\+En, bool b\+Reverse\+Limit\+Switch\+En)
+\item 
+void \hyperlink{class_c_a_n_talon_abd712f1d6f0a2be509e590437532141a}{Config\+Forward\+Soft\+Limit\+Enable} (bool b\+Forward\+Soft\+Limit\+En)
+\item 
+void \hyperlink{class_c_a_n_talon_ad0292230bcd7e6431dd0637b1e130a70}{Config\+Reverse\+Soft\+Limit\+Enable} (bool b\+Reverse\+Soft\+Limit\+En)
+\item 
+void \hyperlink{class_c_a_n_talon_a5da34dc5d266817f0a666868f20429d8}{Config\+Fwd\+Limit\+Switch\+Normally\+Open} (bool normally\+Open)
+\item 
+void \hyperlink{class_c_a_n_talon_a247a8434375eb32171058d61f366e7be}{Config\+Rev\+Limit\+Switch\+Normally\+Open} (bool normally\+Open)
+\item 
+void \hyperlink{class_c_a_n_talon_a6096b39afee6f6c6595d1fed5369a15b}{Config\+Max\+Output\+Voltage} (double voltage) override
+\item 
+void \hyperlink{class_c_a_n_talon_a123f54ab4a1c1c741349de9f5db675fe}{Config\+Peak\+Output\+Voltage} (double forward\+Voltage, double reverse\+Voltage)
+\item 
+void \hyperlink{class_c_a_n_talon_a1d35425facbcfd512003c545dfe81861}{Config\+Nominal\+Output\+Voltage} (double forward\+Voltage, double reverse\+Voltage)
+\item 
+void \hyperlink{class_c_a_n_talon_a9a7de9cdd37714741fe25c30ed53e071}{Enable\+Zero\+Sensor\+Position\+On\+Index} (bool enable, bool rising\+Edge)
+\item 
+void \hyperlink{class_c_a_n_talon_a2ab734332c2c8f1ff2a1db635058cfe4}{Enable\+Zero\+Sensor\+Position\+On\+Forward\+Limit} (bool enable)
+\item 
+void \hyperlink{class_c_a_n_talon_af21066f2a72e47bcce1640f22ed419f0}{Enable\+Zero\+Sensor\+Position\+On\+Reverse\+Limit} (bool enable)
+\item 
+int \hyperlink{class_c_a_n_talon_a3b5993220e40d12ebf6d755434783496}{Config\+Set\+Parameter} (uint32\+\_\+t param\+Enum, double value)
+\item 
+bool \hyperlink{class_c_a_n_talon_ac3fc867de74a9174eab5c1aaa3ddb3b5}{Get\+Parameter} (uint32\+\_\+t param\+Enum, double \&dvalue) const
+\item 
+void \hyperlink{class_c_a_n_talon_a16100a8dc3b54d7ffc842833cef8f3f1}{Config\+Fault\+Time} (double fault\+Time) override
+\item 
+virtual void \hyperlink{class_c_a_n_talon_a2b962ea4bd8e67c0d25886d8d81000b5}{Set\+Control\+Mode} (Control\+Mode mode)
+\item 
+void \hyperlink{class_c_a_n_talon_a08d03dbd23a98e7af25fee772f680f43}{Set\+Talon\+Control\+Mode} (\hyperlink{class_c_a_n_talon_a0e4915b95f71a7091e3a1323f3ec9e1f}{Talon\+Control\+Mode} talon\+Control\+Mode)
+\begin{DoxyCompactList}\small\item\em Provides caller a means of specifying the Talon Control mode. Because C\+AN Talon has been pulled out of wpilib, caller may need to specify Talon specific control modes not easily represented by C\+A\+N\+Speed\+Motor\+Controller\+::\+Control\+Mode. This routine is essentially the same as Set\+Control\+Mode, but uses Talon\textquotesingle{}s native control mode definitons. \end{DoxyCompactList}\item 
+\hyperlink{class_c_a_n_talon_a0e4915b95f71a7091e3a1323f3ec9e1f}{Talon\+Control\+Mode} \hyperlink{class_c_a_n_talon_ad598ba3f77946f1f09d1e3ed5eb8fe75}{Get\+Talon\+Control\+Mode} () const
+\item 
+void \hyperlink{class_c_a_n_talon_a11950b306536c639e2a33b61f5916178}{Set\+Feedback\+Device} (\hyperlink{class_c_a_n_talon_a4a8af675a7712f305d17be2b825005e3}{Feedback\+Device} device)
+\item 
+void \hyperlink{class_c_a_n_talon_a7c0071642dbc8c690f7a4d5520f7a8a2}{Set\+Status\+Frame\+Rate\+Ms} (\hyperlink{class_c_a_n_talon_acac4ef6508d842a8fe4301284149720e}{Status\+Frame\+Rate} state\+Frame, int period\+Ms)
+\item 
+virtual Control\+Mode \hyperlink{class_c_a_n_talon_a3ef9f9053e55afd0bfb5a5fd85359743}{Get\+Control\+Mode} () const
+\item 
+void \hyperlink{class_c_a_n_talon_a11381d58bbcd47c3fb2235fd76161ff2}{Set\+Sensor\+Direction} (bool reverse\+Sensor)
+\item 
+void \hyperlink{class_c_a_n_talon_a17842e8f2d2fbcf8cc14558ebc83c48b}{Set\+Closed\+Loop\+Output\+Direction} (bool reverse\+Output)
+\item 
+void \hyperlink{class_c_a_n_talon_a1390fed0cb26b604fe3b97e732a6630d}{Set\+Close\+Loop\+Ramp\+Rate} (double ramp\+Rate)
+\item 
+void \hyperlink{class_c_a_n_talon_a0f478462884ed5e541179821c44b724f}{Select\+Profile\+Slot} (int slot\+Idx)
+\item 
+int \hyperlink{class_c_a_n_talon_a492373ce8d2553d185ed56f2627e9f4c}{Get\+Izone} () const
+\item 
+int \hyperlink{class_c_a_n_talon_ad675d77fe044d57525b02b3b01219557}{Get\+Iaccum} () const
+\item 
+void \hyperlink{class_c_a_n_talon_aee51ab1fb48c625361d77e73d3c158a0}{Clear\+Iaccum} ()
+\item 
+int \hyperlink{class_c_a_n_talon_ab29ed3beec31e98ce66ce66a5552fed3}{Get\+Brake\+Enable\+During\+Neutral} () const
+\item 
+bool \hyperlink{class_c_a_n_talon_a6369d85290e29a12b6521f6f6f04cbf0}{Is\+Control\+Enabled} () const
+\item 
+bool \hyperlink{class_c_a_n_talon_a33ae2a0684d9655145fdff51dc57a032}{Is\+Enabled} () const override
+\item 
+double \hyperlink{class_c_a_n_talon_a4a96f9770af682f3462442a1bb2a0581}{Get\+Setpoint} () const override
+\item 
+void \hyperlink{class_c_a_n_talon_a2800e203e1e13587acb2b94df2fc4260}{Change\+Motion\+Control\+Frame\+Period} (int period\+Ms)
+\item 
+void \hyperlink{class_c_a_n_talon_accccf75c371c510174a91b350d57135c}{Clear\+Motion\+Profile\+Trajectories} ()
+\item 
+int \hyperlink{class_c_a_n_talon_a228e78ebfb9d4947fcf2e075791fac21}{Get\+Motion\+Profile\+Top\+Level\+Buffer\+Count} ()
+\item 
+bool \hyperlink{class_c_a_n_talon_ad1a6d30f15c781574dd9e621938003c1}{Push\+Motion\+Profile\+Trajectory} (const \hyperlink{struct_c_a_n_talon_1_1_trajectory_point}{Trajectory\+Point} \&traj\+Pt)
+\item 
+bool \hyperlink{class_c_a_n_talon_a9f75a483beea0902e1e6595ab15489ab}{Is\+Motion\+Profile\+Top\+Level\+Buffer\+Full} ()
+\item 
+void \hyperlink{class_c_a_n_talon_acae568b6fd2f765dfd0c40d2533a3274}{Process\+Motion\+Profile\+Buffer} ()
+\item 
+void \hyperlink{class_c_a_n_talon_a67e151009a27f9ce3317fc040fb85d2a}{Get\+Motion\+Profile\+Status} (\hyperlink{struct_c_a_n_talon_1_1_motion_profile_status}{Motion\+Profile\+Status} \&motion\+Profile\+Status)
+\item 
+void \hyperlink{class_c_a_n_talon_a0a5798f899e2e112500eabdeccfde8fa}{Clear\+Motion\+Profile\+Has\+Underrun} ()
+\item 
+int \hyperlink{class_c_a_n_talon_aa7cb01a5984ae5e93384792f46be21f8}{Set\+Motion\+Magic\+Cruise\+Velocity} (double mot\+Magic\+Cruise\+Veloc)
+\item 
+int \hyperlink{class_c_a_n_talon_afefd0924fb061af16b59219ee9f71b21}{Set\+Motion\+Magic\+Acceleration} (double mot\+Magic\+Accel)
+\item 
+double \hyperlink{class_c_a_n_talon_ac1f45ea28e5b53838ed645aa1fbaf30c}{Get\+Motion\+Magic\+Cruise\+Velocity} ()
+\item 
+double \hyperlink{class_c_a_n_talon_a43efe1fbbf9fb127d73fe4cfb3e805a2}{Get\+Motion\+Magic\+Acceleration} ()
+\item 
+int \hyperlink{class_c_a_n_talon_abcaf3c6b5250af12b2ca411cc86e2ccc}{Set\+Current\+Limit} (uint32\+\_\+t amps)
+\item 
+int \hyperlink{class_c_a_n_talon_a7a69f5ce972fe26739c918ef3ba37dd3}{Enable\+Current\+Limit} (bool enable)
+\item 
+bool \hyperlink{class_c_a_n_talon_a654c075c7d29bb9f2dcf91cc8a8f23fa}{Has\+Reset\+Occured} ()
+\item 
+int \hyperlink{class_c_a_n_talon_a4c91d3575d4a94a26286f83e8b3efa0a}{Get\+Custom\+Param0} (int32\+\_\+t \&value)
+\item 
+int \hyperlink{class_c_a_n_talon_a0cf96267919f28e4c58037637d3832b2}{Get\+Custom\+Param1} (int32\+\_\+t \&value)
+\item 
+int \hyperlink{class_c_a_n_talon_ab6a65ae89c861059aaae4c399b1f1521}{Is\+Pers\+Storage\+Saving} (bool \&is\+Saving)
+\item 
+int \hyperlink{class_c_a_n_talon_ab038dcd862b9a130ce6b0c12748e82c5}{Set\+Custom\+Param0} (int32\+\_\+t value)
+\item 
+int \hyperlink{class_c_a_n_talon_af311f483988bfb13d4b5675d13a5c44a}{Set\+Custom\+Param1} (int32\+\_\+t value)
+\item 
+int \hyperlink{class_c_a_n_talon_a228bf58fd2926e5d9596ffde3b1fad8f}{Get\+Gadgeteer\+Status} (I\+Gadgeteer\+Uart\+Client\+::\+Gadgeteer\+Uart\+Status \&status)
+\item 
+void \hyperlink{class_c_a_n_talon_a818d5dc06bb866af9f52ccbed9d040ae}{Value\+Changed} (I\+Table $\ast$source, llvm\+::\+String\+Ref key, std\+::shared\+\_\+ptr$<$ nt\+::\+Value $>$ value, bool is\+New) override
+\item 
+void \hyperlink{class_c_a_n_talon_adfe03538ebb9ec97392ae306af5c22e6}{Update\+Table} () override
+\item 
+void \hyperlink{class_c_a_n_talon_afa5e6f90b8a5cbd570c4db4f67a84cb4}{Start\+Live\+Window\+Mode} () override
+\item 
+void \hyperlink{class_c_a_n_talon_ad21cbacaf3293535193c7c17a6fefac5}{Stop\+Live\+Window\+Mode} () override
+\item 
+std\+::string \hyperlink{class_c_a_n_talon_adedfa57e6f2ef854ec07c0587a37a436}{Get\+Smart\+Dashboard\+Type} () const override
+\item 
+void \hyperlink{class_c_a_n_talon_ae0a828862cd614d2fa372911205bd0ca}{Init\+Table} (std\+::shared\+\_\+ptr$<$ I\+Table $>$ sub\+Table) override
+\item 
+std\+::shared\+\_\+ptr$<$ I\+Table $>$ \hyperlink{class_c_a_n_talon_ab02a755b0e649792fd50eadeb6868ff5}{Get\+Table} () const override
+\item 
+void \hyperlink{class_c_a_n_talon_ab153d39a2a439189af4667ce0364e846}{Set\+Inverted} (bool is\+Inverted) override
+\item 
+bool \hyperlink{class_c_a_n_talon_aa85609e0aadcd710012b912591bd65d8}{Get\+Inverted} () const override
+\item 
+Can\+Talon\+S\+RX \& \hyperlink{class_c_a_n_talon_ad8a7985b0adfe2a10a379254efe28193}{Get\+Low\+Level\+Object} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+C\+T\+RE Talon S\+RX Speed Controller with C\+AN Control 
+
+\subsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{class_c_a_n_talon_a4a8af675a7712f305d17be2b825005e3}\label{class_c_a_n_talon_a4a8af675a7712f305d17be2b825005e3}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Feedback\+Device@{Feedback\+Device}}
+\index{Feedback\+Device@{Feedback\+Device}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Feedback\+Device}{FeedbackDevice}}
+{\footnotesize\ttfamily enum \hyperlink{class_c_a_n_talon_a4a8af675a7712f305d17be2b825005e3}{C\+A\+N\+Talon\+::\+Feedback\+Device}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Quad\+Encoder@{Quad\+Encoder}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Quad\+Encoder@{Quad\+Encoder}}}\mbox{\Hypertarget{class_c_a_n_talon_a4a8af675a7712f305d17be2b825005e3a15db9f634456daa0a0c93c18f89d7c81}\label{class_c_a_n_talon_a4a8af675a7712f305d17be2b825005e3a15db9f634456daa0a0c93c18f89d7c81}} 
+Quad\+Encoder&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Analog\+Pot@{Analog\+Pot}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Analog\+Pot@{Analog\+Pot}}}\mbox{\Hypertarget{class_c_a_n_talon_a4a8af675a7712f305d17be2b825005e3a2ffe85e116d15d0dddc50af5eaeda029}\label{class_c_a_n_talon_a4a8af675a7712f305d17be2b825005e3a2ffe85e116d15d0dddc50af5eaeda029}} 
+Analog\+Pot&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Analog\+Encoder@{Analog\+Encoder}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Analog\+Encoder@{Analog\+Encoder}}}\mbox{\Hypertarget{class_c_a_n_talon_a4a8af675a7712f305d17be2b825005e3a31609bd752259f185659410cf8ba6efe}\label{class_c_a_n_talon_a4a8af675a7712f305d17be2b825005e3a31609bd752259f185659410cf8ba6efe}} 
+Analog\+Encoder&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Enc\+Rising@{Enc\+Rising}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Enc\+Rising@{Enc\+Rising}}}\mbox{\Hypertarget{class_c_a_n_talon_a4a8af675a7712f305d17be2b825005e3a70d369d5922f4b58276a8a330c4ead65}\label{class_c_a_n_talon_a4a8af675a7712f305d17be2b825005e3a70d369d5922f4b58276a8a330c4ead65}} 
+Enc\+Rising&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Enc\+Falling@{Enc\+Falling}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Enc\+Falling@{Enc\+Falling}}}\mbox{\Hypertarget{class_c_a_n_talon_a4a8af675a7712f305d17be2b825005e3ab14fd60617efe78151e3a1bc3d8e3837}\label{class_c_a_n_talon_a4a8af675a7712f305d17be2b825005e3ab14fd60617efe78151e3a1bc3d8e3837}} 
+Enc\+Falling&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Ctre\+Mag\+Encoder\+\_\+\+Relative@{Ctre\+Mag\+Encoder\+\_\+\+Relative}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Ctre\+Mag\+Encoder\+\_\+\+Relative@{Ctre\+Mag\+Encoder\+\_\+\+Relative}}}\mbox{\Hypertarget{class_c_a_n_talon_a4a8af675a7712f305d17be2b825005e3a511c44c86d7be64f6341f8adcc7dee48}\label{class_c_a_n_talon_a4a8af675a7712f305d17be2b825005e3a511c44c86d7be64f6341f8adcc7dee48}} 
+Ctre\+Mag\+Encoder\+\_\+\+Relative&Cross The Road Electronics Magnetic Encoder in Absolute/\+Pulse\+Width Mode \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Ctre\+Mag\+Encoder\+\_\+\+Absolute@{Ctre\+Mag\+Encoder\+\_\+\+Absolute}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Ctre\+Mag\+Encoder\+\_\+\+Absolute@{Ctre\+Mag\+Encoder\+\_\+\+Absolute}}}\mbox{\Hypertarget{class_c_a_n_talon_a4a8af675a7712f305d17be2b825005e3a88835b1b6ee233e85e09849df4230d2e}\label{class_c_a_n_talon_a4a8af675a7712f305d17be2b825005e3a88835b1b6ee233e85e09849df4230d2e}} 
+Ctre\+Mag\+Encoder\+\_\+\+Absolute&Cross The Road Electronics Magnetic Encoder in Relative/\+Quadrature Mode \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Pulse\+Width@{Pulse\+Width}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Pulse\+Width@{Pulse\+Width}}}\mbox{\Hypertarget{class_c_a_n_talon_a4a8af675a7712f305d17be2b825005e3a1717411276d5e151cc7ae18a86e41974}\label{class_c_a_n_talon_a4a8af675a7712f305d17be2b825005e3a1717411276d5e151cc7ae18a86e41974}} 
+Pulse\+Width&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{class_c_a_n_talon_a9df2b5d336c09be76604dcb39da32172}\label{class_c_a_n_talon_a9df2b5d336c09be76604dcb39da32172}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Feedback\+Device\+Status@{Feedback\+Device\+Status}}
+\index{Feedback\+Device\+Status@{Feedback\+Device\+Status}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Feedback\+Device\+Status}{FeedbackDeviceStatus}}
+{\footnotesize\ttfamily enum \hyperlink{class_c_a_n_talon_a9df2b5d336c09be76604dcb39da32172}{C\+A\+N\+Talon\+::\+Feedback\+Device\+Status}}
+
+Depending on the sensor type, Talon can determine if sensor is plugged in ot not. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Feedback\+Status\+Unknown@{Feedback\+Status\+Unknown}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Feedback\+Status\+Unknown@{Feedback\+Status\+Unknown}}}\mbox{\Hypertarget{class_c_a_n_talon_a9df2b5d336c09be76604dcb39da32172a47e3f89bbea0ab6ffe506974ad17db9c}\label{class_c_a_n_talon_a9df2b5d336c09be76604dcb39da32172a47e3f89bbea0ab6ffe506974ad17db9c}} 
+Feedback\+Status\+Unknown&Sensor status could not be determined. Not all sensors can do this. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Feedback\+Status\+Present@{Feedback\+Status\+Present}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Feedback\+Status\+Present@{Feedback\+Status\+Present}}}\mbox{\Hypertarget{class_c_a_n_talon_a9df2b5d336c09be76604dcb39da32172ac0e6a9f85db060f8d5f8d502868d029b}\label{class_c_a_n_talon_a9df2b5d336c09be76604dcb39da32172ac0e6a9f85db060f8d5f8d502868d029b}} 
+Feedback\+Status\+Present&Sensor is present and working okay. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Feedback\+Status\+Not\+Present@{Feedback\+Status\+Not\+Present}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Feedback\+Status\+Not\+Present@{Feedback\+Status\+Not\+Present}}}\mbox{\Hypertarget{class_c_a_n_talon_a9df2b5d336c09be76604dcb39da32172a65bcccdfeddf56f37ae8ffcf0d7da169}\label{class_c_a_n_talon_a9df2b5d336c09be76604dcb39da32172a65bcccdfeddf56f37ae8ffcf0d7da169}} 
+Feedback\+Status\+Not\+Present&Sensor is not present, not plugged in, not powered, etc... \\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{class_c_a_n_talon_a3a5aa35beed1f5d9145dbd658b119b90}\label{class_c_a_n_talon_a3a5aa35beed1f5d9145dbd658b119b90}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Set\+Value\+Motion\+Profile@{Set\+Value\+Motion\+Profile}}
+\index{Set\+Value\+Motion\+Profile@{Set\+Value\+Motion\+Profile}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Set\+Value\+Motion\+Profile}{SetValueMotionProfile}}
+{\footnotesize\ttfamily enum \hyperlink{class_c_a_n_talon_a3a5aa35beed1f5d9145dbd658b119b90}{C\+A\+N\+Talon\+::\+Set\+Value\+Motion\+Profile}}
+
+Enumerated types for Motion Control Set Values. When in Motion Profile control mode, these constants are paseed into set() to manipulate the motion profile executer. When changing modes, be sure to read the value back using get\+Motion\+Profile\+Status() to ensure changes in output take effect before performing buffering actions. Disable will signal Talon to put motor output into neutral drive. Talon will stop processing motion profile points. This means the buffer is effectively disconnected from the executer, allowing the robot to gracefully clear and push new traj points. is\+Underrun will get cleared. The active trajectory is also cleared. Enable will signal Talon to pop a trajectory point from it\textquotesingle{}s buffer and process it. If the active trajectory is empty, Talon will shift in the next point. If the active traj is empty, and so is the buffer, the motor drive is neutral and is\+Underrun is set. When active traj times out, and buffer has at least one point, Talon shifts in next one, and is\+Underrun is cleared. When active traj times out, and buffer is empty, Talon keeps processing active traj and sets Is\+Underrun. Hold will signal Talon keep processing the active trajectory indefinitely. If the active traj is cleared, Talon will neutral motor drive. Otherwise Talon will keep processing the active traj but it will not shift in points from the buffer. This means the buffer is effectively disconnected from the executer, allowing the robot to gracefully clear and push new traj points. is\+Underrun is set if active traj is empty, otherwise it is cleared. is\+Last signal is also cleared.
+
+Typical workflow\+: set(\+Disable), Confirm Disable takes effect, clear buffer and push buffer points, set(\+Enable) when enough points have been pushed to ensure no underruns, wait for MP to finish or decide abort, If MP finished gracefully set(\+Hold) to hold position servo and disconnect buffer, If MP is being aborted set(\+Disable) to neutral the motor and disconnect buffer, Confirm mode takes effect, clear buffer and push buffer points, and rinse-\/repeat. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Set\+Value\+Motion\+Profile\+Disable@{Set\+Value\+Motion\+Profile\+Disable}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Set\+Value\+Motion\+Profile\+Disable@{Set\+Value\+Motion\+Profile\+Disable}}}\mbox{\Hypertarget{class_c_a_n_talon_a3a5aa35beed1f5d9145dbd658b119b90a814702d1ec75045f92e22c32ed1c431c}\label{class_c_a_n_talon_a3a5aa35beed1f5d9145dbd658b119b90a814702d1ec75045f92e22c32ed1c431c}} 
+Set\+Value\+Motion\+Profile\+Disable&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Set\+Value\+Motion\+Profile\+Enable@{Set\+Value\+Motion\+Profile\+Enable}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Set\+Value\+Motion\+Profile\+Enable@{Set\+Value\+Motion\+Profile\+Enable}}}\mbox{\Hypertarget{class_c_a_n_talon_a3a5aa35beed1f5d9145dbd658b119b90a3edc0f79499be58eceb87a8f4badf0f5}\label{class_c_a_n_talon_a3a5aa35beed1f5d9145dbd658b119b90a3edc0f79499be58eceb87a8f4badf0f5}} 
+Set\+Value\+Motion\+Profile\+Enable&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Set\+Value\+Motion\+Profile\+Hold@{Set\+Value\+Motion\+Profile\+Hold}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Set\+Value\+Motion\+Profile\+Hold@{Set\+Value\+Motion\+Profile\+Hold}}}\mbox{\Hypertarget{class_c_a_n_talon_a3a5aa35beed1f5d9145dbd658b119b90a7d505a096088c8b9561f7bdcf1c549a2}\label{class_c_a_n_talon_a3a5aa35beed1f5d9145dbd658b119b90a7d505a096088c8b9561f7bdcf1c549a2}} 
+Set\+Value\+Motion\+Profile\+Hold&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{class_c_a_n_talon_acac4ef6508d842a8fe4301284149720e}\label{class_c_a_n_talon_acac4ef6508d842a8fe4301284149720e}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Status\+Frame\+Rate@{Status\+Frame\+Rate}}
+\index{Status\+Frame\+Rate@{Status\+Frame\+Rate}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Status\+Frame\+Rate}{StatusFrameRate}}
+{\footnotesize\ttfamily enum \hyperlink{class_c_a_n_talon_acac4ef6508d842a8fe4301284149720e}{C\+A\+N\+Talon\+::\+Status\+Frame\+Rate}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Status\+Frame\+Rate\+General@{Status\+Frame\+Rate\+General}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Status\+Frame\+Rate\+General@{Status\+Frame\+Rate\+General}}}\mbox{\Hypertarget{class_c_a_n_talon_acac4ef6508d842a8fe4301284149720ea4792db904d36bb3a8c0ef5fa4bed2d6e}\label{class_c_a_n_talon_acac4ef6508d842a8fe4301284149720ea4792db904d36bb3a8c0ef5fa4bed2d6e}} 
+Status\+Frame\+Rate\+General&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Status\+Frame\+Rate\+Feedback@{Status\+Frame\+Rate\+Feedback}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Status\+Frame\+Rate\+Feedback@{Status\+Frame\+Rate\+Feedback}}}\mbox{\Hypertarget{class_c_a_n_talon_acac4ef6508d842a8fe4301284149720eaab55baf6c3f2e2db70a5ab0635a51ba5}\label{class_c_a_n_talon_acac4ef6508d842a8fe4301284149720eaab55baf6c3f2e2db70a5ab0635a51ba5}} 
+Status\+Frame\+Rate\+Feedback&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Status\+Frame\+Rate\+Quad\+Encoder@{Status\+Frame\+Rate\+Quad\+Encoder}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Status\+Frame\+Rate\+Quad\+Encoder@{Status\+Frame\+Rate\+Quad\+Encoder}}}\mbox{\Hypertarget{class_c_a_n_talon_acac4ef6508d842a8fe4301284149720eaaa037e28354a570a7221414a4c1eb4c7}\label{class_c_a_n_talon_acac4ef6508d842a8fe4301284149720eaaa037e28354a570a7221414a4c1eb4c7}} 
+Status\+Frame\+Rate\+Quad\+Encoder&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Status\+Frame\+Rate\+Analog\+Temp\+Vbat@{Status\+Frame\+Rate\+Analog\+Temp\+Vbat}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Status\+Frame\+Rate\+Analog\+Temp\+Vbat@{Status\+Frame\+Rate\+Analog\+Temp\+Vbat}}}\mbox{\Hypertarget{class_c_a_n_talon_acac4ef6508d842a8fe4301284149720eac2207be4cbdba8a6e51a4fd6e2be730c}\label{class_c_a_n_talon_acac4ef6508d842a8fe4301284149720eac2207be4cbdba8a6e51a4fd6e2be730c}} 
+Status\+Frame\+Rate\+Analog\+Temp\+Vbat&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Status\+Frame\+Rate\+Pulse\+Width\+Meas@{Status\+Frame\+Rate\+Pulse\+Width\+Meas}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Status\+Frame\+Rate\+Pulse\+Width\+Meas@{Status\+Frame\+Rate\+Pulse\+Width\+Meas}}}\mbox{\Hypertarget{class_c_a_n_talon_acac4ef6508d842a8fe4301284149720ea133a871ca8b5d4dbd5e82b2df495949a}\label{class_c_a_n_talon_acac4ef6508d842a8fe4301284149720ea133a871ca8b5d4dbd5e82b2df495949a}} 
+Status\+Frame\+Rate\+Pulse\+Width\+Meas&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{class_c_a_n_talon_a0e4915b95f71a7091e3a1323f3ec9e1f}\label{class_c_a_n_talon_a0e4915b95f71a7091e3a1323f3ec9e1f}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Talon\+Control\+Mode@{Talon\+Control\+Mode}}
+\index{Talon\+Control\+Mode@{Talon\+Control\+Mode}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Talon\+Control\+Mode}{TalonControlMode}}
+{\footnotesize\ttfamily enum \hyperlink{class_c_a_n_talon_a0e4915b95f71a7091e3a1323f3ec9e1f}{C\+A\+N\+Talon\+::\+Talon\+Control\+Mode}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{k\+Throttle\+Mode@{k\+Throttle\+Mode}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!k\+Throttle\+Mode@{k\+Throttle\+Mode}}}\mbox{\Hypertarget{class_c_a_n_talon_a0e4915b95f71a7091e3a1323f3ec9e1fa334746ba8c1b19f4ea518a3a3e5776f5}\label{class_c_a_n_talon_a0e4915b95f71a7091e3a1323f3ec9e1fa334746ba8c1b19f4ea518a3a3e5776f5}} 
+k\+Throttle\+Mode&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{k\+Follower\+Mode@{k\+Follower\+Mode}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!k\+Follower\+Mode@{k\+Follower\+Mode}}}\mbox{\Hypertarget{class_c_a_n_talon_a0e4915b95f71a7091e3a1323f3ec9e1fa3a132624a8ab15b252a50b00f755a454}\label{class_c_a_n_talon_a0e4915b95f71a7091e3a1323f3ec9e1fa3a132624a8ab15b252a50b00f755a454}} 
+k\+Follower\+Mode&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{k\+Voltage\+Mode@{k\+Voltage\+Mode}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!k\+Voltage\+Mode@{k\+Voltage\+Mode}}}\mbox{\Hypertarget{class_c_a_n_talon_a0e4915b95f71a7091e3a1323f3ec9e1fada862ec4eddcbb8ea5ef4486ff2b5e07}\label{class_c_a_n_talon_a0e4915b95f71a7091e3a1323f3ec9e1fada862ec4eddcbb8ea5ef4486ff2b5e07}} 
+k\+Voltage\+Mode&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{k\+Position\+Mode@{k\+Position\+Mode}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!k\+Position\+Mode@{k\+Position\+Mode}}}\mbox{\Hypertarget{class_c_a_n_talon_a0e4915b95f71a7091e3a1323f3ec9e1fa769708fed4affe2105dddaecf83253aa}\label{class_c_a_n_talon_a0e4915b95f71a7091e3a1323f3ec9e1fa769708fed4affe2105dddaecf83253aa}} 
+k\+Position\+Mode&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{k\+Speed\+Mode@{k\+Speed\+Mode}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!k\+Speed\+Mode@{k\+Speed\+Mode}}}\mbox{\Hypertarget{class_c_a_n_talon_a0e4915b95f71a7091e3a1323f3ec9e1faef97b75b5268a05b65f4229285593b37}\label{class_c_a_n_talon_a0e4915b95f71a7091e3a1323f3ec9e1faef97b75b5268a05b65f4229285593b37}} 
+k\+Speed\+Mode&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{k\+Current\+Mode@{k\+Current\+Mode}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!k\+Current\+Mode@{k\+Current\+Mode}}}\mbox{\Hypertarget{class_c_a_n_talon_a0e4915b95f71a7091e3a1323f3ec9e1fac12d9b7970360092826ad06ad6e169c0}\label{class_c_a_n_talon_a0e4915b95f71a7091e3a1323f3ec9e1fac12d9b7970360092826ad06ad6e169c0}} 
+k\+Current\+Mode&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{k\+Motion\+Profile\+Mode@{k\+Motion\+Profile\+Mode}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!k\+Motion\+Profile\+Mode@{k\+Motion\+Profile\+Mode}}}\mbox{\Hypertarget{class_c_a_n_talon_a0e4915b95f71a7091e3a1323f3ec9e1fab33ae42b8c47d9db69316a3cafcf3383}\label{class_c_a_n_talon_a0e4915b95f71a7091e3a1323f3ec9e1fab33ae42b8c47d9db69316a3cafcf3383}} 
+k\+Motion\+Profile\+Mode&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{k\+Motion\+Magic\+Mode@{k\+Motion\+Magic\+Mode}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!k\+Motion\+Magic\+Mode@{k\+Motion\+Magic\+Mode}}}\mbox{\Hypertarget{class_c_a_n_talon_a0e4915b95f71a7091e3a1323f3ec9e1fa105b167f91781e45ce7ef6a59f01f88d}\label{class_c_a_n_talon_a0e4915b95f71a7091e3a1323f3ec9e1fa105b167f91781e45ce7ef6a59f01f88d}} 
+k\+Motion\+Magic\+Mode&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{k\+Disabled@{k\+Disabled}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!k\+Disabled@{k\+Disabled}}}\mbox{\Hypertarget{class_c_a_n_talon_a0e4915b95f71a7091e3a1323f3ec9e1fa4673563d2ffa0a5e74bcb8b5bfadd491}\label{class_c_a_n_talon_a0e4915b95f71a7091e3a1323f3ec9e1fa4673563d2ffa0a5e74bcb8b5bfadd491}} 
+k\+Disabled&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_c_a_n_talon_ab22fe4f31e8d2e21011610833f96de58}\label{class_c_a_n_talon_ab22fe4f31e8d2e21011610833f96de58}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{C\+A\+N\+Talon()}{CANTalon()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily C\+A\+N\+Talon\+::\+C\+A\+N\+Talon (\begin{DoxyParamCaption}\item[{int}]{device\+Number }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+Constructor for the \hyperlink{class_c_a_n_talon}{C\+A\+N\+Talon} device.
+
+
+\begin{DoxyParams}{Parameters}
+{\em device\+Number} & The C\+AN ID of the Talon S\+RX \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_c_a_n_talon_afe5efd7f2c7b1fb3c6b818eb3d4617d7}\label{class_c_a_n_talon_afe5efd7f2c7b1fb3c6b818eb3d4617d7}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{C\+A\+N\+Talon()}{CANTalon()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily C\+A\+N\+Talon\+::\+C\+A\+N\+Talon (\begin{DoxyParamCaption}\item[{int}]{device\+Number,  }\item[{int}]{control\+Period\+Ms }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+Constructor for the \hyperlink{class_c_a_n_talon}{C\+A\+N\+Talon} device.
+
+
+\begin{DoxyParams}{Parameters}
+{\em device\+Number} & The C\+AN ID of the Talon S\+RX \\
+\hline
+{\em control\+Period\+Ms} & The period in ms to send the C\+AN control frame. Period is bounded to \mbox{[}1ms,95ms\mbox{]}. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_c_a_n_talon_a1f2577ad1683495db9ada33f71968df0}\label{class_c_a_n_talon_a1f2577ad1683495db9ada33f71968df0}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!````~C\+A\+N\+Talon@{$\sim$\+C\+A\+N\+Talon}}
+\index{````~C\+A\+N\+Talon@{$\sim$\+C\+A\+N\+Talon}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{$\sim$\+C\+A\+N\+Talon()}{~CANTalon()}}
+{\footnotesize\ttfamily C\+A\+N\+Talon\+::$\sim$\+C\+A\+N\+Talon (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_c_a_n_talon_a2800e203e1e13587acb2b94df2fc4260}\label{class_c_a_n_talon_a2800e203e1e13587acb2b94df2fc4260}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Change\+Motion\+Control\+Frame\+Period@{Change\+Motion\+Control\+Frame\+Period}}
+\index{Change\+Motion\+Control\+Frame\+Period@{Change\+Motion\+Control\+Frame\+Period}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Change\+Motion\+Control\+Frame\+Period()}{ChangeMotionControlFramePeriod()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Change\+Motion\+Control\+Frame\+Period (\begin{DoxyParamCaption}\item[{int}]{period\+Ms }\end{DoxyParamCaption})}
+
+Calling application can opt to speed up the handshaking between the robot A\+PI and the Talon to increase the download rate of the Talon\textquotesingle{}s Motion Profile. Ideally the period should be no more than half the period of a trajectory point. \mbox{\Hypertarget{class_c_a_n_talon_aee51ab1fb48c625361d77e73d3c158a0}\label{class_c_a_n_talon_aee51ab1fb48c625361d77e73d3c158a0}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Clear\+Iaccum@{Clear\+Iaccum}}
+\index{Clear\+Iaccum@{Clear\+Iaccum}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Clear\+Iaccum()}{ClearIaccum()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Clear\+Iaccum (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Clear the accumulator for I gain. \mbox{\Hypertarget{class_c_a_n_talon_a0a5798f899e2e112500eabdeccfde8fa}\label{class_c_a_n_talon_a0a5798f899e2e112500eabdeccfde8fa}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Clear\+Motion\+Profile\+Has\+Underrun@{Clear\+Motion\+Profile\+Has\+Underrun}}
+\index{Clear\+Motion\+Profile\+Has\+Underrun@{Clear\+Motion\+Profile\+Has\+Underrun}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Clear\+Motion\+Profile\+Has\+Underrun()}{ClearMotionProfileHasUnderrun()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Clear\+Motion\+Profile\+Has\+Underrun (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Clear the has\+Underrun flag in Talon\textquotesingle{}s Motion Profile Executer when M\+PE is ready for another point, but the low level buffer is empty.
+
+Once the Motion Profile Executer sets the has\+Underrun flag, it stays set until Robot Application clears it with this routine, which ensures Robot Application gets a chance to instrument or react. Caller could also check the is\+Underrun flag which automatically clears when fault condition is removed. \mbox{\Hypertarget{class_c_a_n_talon_accccf75c371c510174a91b350d57135c}\label{class_c_a_n_talon_accccf75c371c510174a91b350d57135c}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Clear\+Motion\+Profile\+Trajectories@{Clear\+Motion\+Profile\+Trajectories}}
+\index{Clear\+Motion\+Profile\+Trajectories@{Clear\+Motion\+Profile\+Trajectories}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Clear\+Motion\+Profile\+Trajectories()}{ClearMotionProfileTrajectories()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Clear\+Motion\+Profile\+Trajectories (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Clear the buffered motion profile in both Talon R\+AM (bottom), and in the A\+PI (top). Be sure to check \hyperlink{class_c_a_n_talon_a67e151009a27f9ce3317fc040fb85d2a}{Get\+Motion\+Profile\+Status()} to know when the buffer is actually cleared. \mbox{\Hypertarget{class_c_a_n_talon_ab4a9db0ef97b04adb93d2e200a9b9573}\label{class_c_a_n_talon_ab4a9db0ef97b04adb93d2e200a9b9573}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Clear\+Sticky\+Faults@{Clear\+Sticky\+Faults}}
+\index{Clear\+Sticky\+Faults@{Clear\+Sticky\+Faults}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Clear\+Sticky\+Faults()}{ClearStickyFaults()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Clear\+Sticky\+Faults (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_c_a_n_talon_ad7dce04cbc276a76ca6ea8048da13908}\label{class_c_a_n_talon_ad7dce04cbc276a76ca6ea8048da13908}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Config\+Encoder\+Codes\+Per\+Rev@{Config\+Encoder\+Codes\+Per\+Rev}}
+\index{Config\+Encoder\+Codes\+Per\+Rev@{Config\+Encoder\+Codes\+Per\+Rev}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Config\+Encoder\+Codes\+Per\+Rev()}{ConfigEncoderCodesPerRev()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Config\+Encoder\+Codes\+Per\+Rev (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{codes\+Per\+Rev }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+Configure how many codes per revolution are generated by your encoder.
+
+
+\begin{DoxyParams}{Parameters}
+{\em codes\+Per\+Rev} & The number of counts per revolution. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_c_a_n_talon_a16100a8dc3b54d7ffc842833cef8f3f1}\label{class_c_a_n_talon_a16100a8dc3b54d7ffc842833cef8f3f1}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Config\+Fault\+Time@{Config\+Fault\+Time}}
+\index{Config\+Fault\+Time@{Config\+Fault\+Time}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Config\+Fault\+Time()}{ConfigFaultTime()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Config\+Fault\+Time (\begin{DoxyParamCaption}\item[{double}]{fault\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+T\+O\+DO documentation (see C\+A\+N\+Jaguar.\+cpp) \mbox{\Hypertarget{class_c_a_n_talon_a21f11e090b3cd0c04e1bd65a6f3db6ae}\label{class_c_a_n_talon_a21f11e090b3cd0c04e1bd65a6f3db6ae}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Config\+Forward\+Limit@{Config\+Forward\+Limit}}
+\index{Config\+Forward\+Limit@{Config\+Forward\+Limit}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Config\+Forward\+Limit()}{ConfigForwardLimit()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Config\+Forward\+Limit (\begin{DoxyParamCaption}\item[{double}]{forward\+Limit\+Position }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+T\+O\+DO documentation (see C\+A\+N\+Jaguar.\+cpp) \mbox{\Hypertarget{class_c_a_n_talon_abd712f1d6f0a2be509e590437532141a}\label{class_c_a_n_talon_abd712f1d6f0a2be509e590437532141a}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Config\+Forward\+Soft\+Limit\+Enable@{Config\+Forward\+Soft\+Limit\+Enable}}
+\index{Config\+Forward\+Soft\+Limit\+Enable@{Config\+Forward\+Soft\+Limit\+Enable}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Config\+Forward\+Soft\+Limit\+Enable()}{ConfigForwardSoftLimitEnable()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Config\+Forward\+Soft\+Limit\+Enable (\begin{DoxyParamCaption}\item[{bool}]{b\+Forward\+Soft\+Limit\+En }\end{DoxyParamCaption})}
+
+Set the Forward Soft Limit Enable.
+
+This is the same setting that is in the Web-\/\+Based Configuration.
+
+
+\begin{DoxyParams}{Parameters}
+{\em b\+Forward\+Soft\+Limit\+En} & true to enable Soft limit, false to disable. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_c_a_n_talon_a5da34dc5d266817f0a666868f20429d8}\label{class_c_a_n_talon_a5da34dc5d266817f0a666868f20429d8}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Config\+Fwd\+Limit\+Switch\+Normally\+Open@{Config\+Fwd\+Limit\+Switch\+Normally\+Open}}
+\index{Config\+Fwd\+Limit\+Switch\+Normally\+Open@{Config\+Fwd\+Limit\+Switch\+Normally\+Open}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Config\+Fwd\+Limit\+Switch\+Normally\+Open()}{ConfigFwdLimitSwitchNormallyOpen()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Config\+Fwd\+Limit\+Switch\+Normally\+Open (\begin{DoxyParamCaption}\item[{bool}]{normally\+Open }\end{DoxyParamCaption})}
+
+Change the fwd limit switch setting to normally open or closed. Talon will disable momentarilly if the Talon\textquotesingle{}s current setting is dissimilar to the caller\textquotesingle{}s requested setting.
+
+Since Talon saves setting to flash this should only affect a given Talon initially during robot install.
+
+
+\begin{DoxyParams}{Parameters}
+{\em normally\+Open} & true for normally open. false for normally closed. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_c_a_n_talon_a6720f4720939dd590b1db6a33d09aef2}\label{class_c_a_n_talon_a6720f4720939dd590b1db6a33d09aef2}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Config\+Limit\+Mode@{Config\+Limit\+Mode}}
+\index{Config\+Limit\+Mode@{Config\+Limit\+Mode}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Config\+Limit\+Mode()}{ConfigLimitMode()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Config\+Limit\+Mode (\begin{DoxyParamCaption}\item[{Limit\+Mode}]{mode }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+Configures the soft limit enable (wear leveled persistent memory). Also sets the limit switch overrides. Only use switches for limits
+
+Use both switches and soft limits \mbox{\Hypertarget{class_c_a_n_talon_a2b70b503b3ea36373884d218be87a5d0}\label{class_c_a_n_talon_a2b70b503b3ea36373884d218be87a5d0}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Config\+Limit\+Switch\+Overrides@{Config\+Limit\+Switch\+Overrides}}
+\index{Config\+Limit\+Switch\+Overrides@{Config\+Limit\+Switch\+Overrides}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Config\+Limit\+Switch\+Overrides()}{ConfigLimitSwitchOverrides()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Config\+Limit\+Switch\+Overrides (\begin{DoxyParamCaption}\item[{bool}]{b\+Forward\+Limit\+Switch\+En,  }\item[{bool}]{b\+Reverse\+Limit\+Switch\+En }\end{DoxyParamCaption})}
+
+Overrides the forward and reverse limit switch enables.
+
+Unlike Config\+Limit\+Mode, this function allows individual control of forward and reverse limit switch enables. Unlike Config\+Limit\+Mode, this function does not affect the soft-\/limit features of Talon S\+RX. \begin{DoxySeeAlso}{See also}
+\hyperlink{class_c_a_n_talon_a6720f4720939dd590b1db6a33d09aef2}{Config\+Limit\+Mode()} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_c_a_n_talon_a6096b39afee6f6c6595d1fed5369a15b}\label{class_c_a_n_talon_a6096b39afee6f6c6595d1fed5369a15b}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Config\+Max\+Output\+Voltage@{Config\+Max\+Output\+Voltage}}
+\index{Config\+Max\+Output\+Voltage@{Config\+Max\+Output\+Voltage}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Config\+Max\+Output\+Voltage()}{ConfigMaxOutputVoltage()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Config\+Max\+Output\+Voltage (\begin{DoxyParamCaption}\item[{double}]{voltage }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+T\+O\+DO documentation (see C\+A\+N\+Jaguar.\+cpp) \mbox{\Hypertarget{class_c_a_n_talon_a7a6a2ce755982ff35031664736927026}\label{class_c_a_n_talon_a7a6a2ce755982ff35031664736927026}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Config\+Neutral\+Mode@{Config\+Neutral\+Mode}}
+\index{Config\+Neutral\+Mode@{Config\+Neutral\+Mode}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Config\+Neutral\+Mode()}{ConfigNeutralMode()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Config\+Neutral\+Mode (\begin{DoxyParamCaption}\item[{Neutral\+Mode}]{mode }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+T\+O\+DO documentation (see C\+A\+N\+Jaguar.\+cpp) \mbox{\Hypertarget{class_c_a_n_talon_a1d35425facbcfd512003c545dfe81861}\label{class_c_a_n_talon_a1d35425facbcfd512003c545dfe81861}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Config\+Nominal\+Output\+Voltage@{Config\+Nominal\+Output\+Voltage}}
+\index{Config\+Nominal\+Output\+Voltage@{Config\+Nominal\+Output\+Voltage}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Config\+Nominal\+Output\+Voltage()}{ConfigNominalOutputVoltage()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Config\+Nominal\+Output\+Voltage (\begin{DoxyParamCaption}\item[{double}]{forward\+Voltage,  }\item[{double}]{reverse\+Voltage }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_c_a_n_talon_a123f54ab4a1c1c741349de9f5db675fe}\label{class_c_a_n_talon_a123f54ab4a1c1c741349de9f5db675fe}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Config\+Peak\+Output\+Voltage@{Config\+Peak\+Output\+Voltage}}
+\index{Config\+Peak\+Output\+Voltage@{Config\+Peak\+Output\+Voltage}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Config\+Peak\+Output\+Voltage()}{ConfigPeakOutputVoltage()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Config\+Peak\+Output\+Voltage (\begin{DoxyParamCaption}\item[{double}]{forward\+Voltage,  }\item[{double}]{reverse\+Voltage }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_c_a_n_talon_a83b286995d244b8d9e7530c190ab8eca}\label{class_c_a_n_talon_a83b286995d244b8d9e7530c190ab8eca}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Config\+Potentiometer\+Turns@{Config\+Potentiometer\+Turns}}
+\index{Config\+Potentiometer\+Turns@{Config\+Potentiometer\+Turns}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Config\+Potentiometer\+Turns()}{ConfigPotentiometerTurns()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Config\+Potentiometer\+Turns (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{turns }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+Configure the number of turns on the potentiometer.
+
+
+\begin{DoxyParams}{Parameters}
+{\em turns} & The number of turns of the potentiometer. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_c_a_n_talon_ac582a9df1a7224feb27de1c8dbda5ddf}\label{class_c_a_n_talon_ac582a9df1a7224feb27de1c8dbda5ddf}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Config\+Reverse\+Limit@{Config\+Reverse\+Limit}}
+\index{Config\+Reverse\+Limit@{Config\+Reverse\+Limit}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Config\+Reverse\+Limit()}{ConfigReverseLimit()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Config\+Reverse\+Limit (\begin{DoxyParamCaption}\item[{double}]{reverse\+Limit\+Position }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+T\+O\+DO documentation (see C\+A\+N\+Jaguar.\+cpp) \mbox{\Hypertarget{class_c_a_n_talon_ad0292230bcd7e6431dd0637b1e130a70}\label{class_c_a_n_talon_ad0292230bcd7e6431dd0637b1e130a70}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Config\+Reverse\+Soft\+Limit\+Enable@{Config\+Reverse\+Soft\+Limit\+Enable}}
+\index{Config\+Reverse\+Soft\+Limit\+Enable@{Config\+Reverse\+Soft\+Limit\+Enable}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Config\+Reverse\+Soft\+Limit\+Enable()}{ConfigReverseSoftLimitEnable()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Config\+Reverse\+Soft\+Limit\+Enable (\begin{DoxyParamCaption}\item[{bool}]{b\+Reverse\+Soft\+Limit\+En }\end{DoxyParamCaption})}
+
+Set the Reverse Soft Limit Enable.
+
+This is the same setting that is in the Web-\/\+Based Configuration.
+
+
+\begin{DoxyParams}{Parameters}
+{\em b\+Reverse\+Soft\+Limit\+En} & true to enable Soft limit, false to disable. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_c_a_n_talon_a247a8434375eb32171058d61f366e7be}\label{class_c_a_n_talon_a247a8434375eb32171058d61f366e7be}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Config\+Rev\+Limit\+Switch\+Normally\+Open@{Config\+Rev\+Limit\+Switch\+Normally\+Open}}
+\index{Config\+Rev\+Limit\+Switch\+Normally\+Open@{Config\+Rev\+Limit\+Switch\+Normally\+Open}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Config\+Rev\+Limit\+Switch\+Normally\+Open()}{ConfigRevLimitSwitchNormallyOpen()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Config\+Rev\+Limit\+Switch\+Normally\+Open (\begin{DoxyParamCaption}\item[{bool}]{normally\+Open }\end{DoxyParamCaption})}
+
+Change the rev limit switch setting to normally open or closed. Talon will disable momentarilly if the Talon\textquotesingle{}s current setting is dissimilar to the caller\textquotesingle{}s requested setting.
+
+Since Talon saves setting to flash this should only affect a given Talon initially during robot install.
+
+
+\begin{DoxyParams}{Parameters}
+{\em normally\+Open} & true for normally open. false for normally closed. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_c_a_n_talon_a3b5993220e40d12ebf6d755434783496}\label{class_c_a_n_talon_a3b5993220e40d12ebf6d755434783496}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Config\+Set\+Parameter@{Config\+Set\+Parameter}}
+\index{Config\+Set\+Parameter@{Config\+Set\+Parameter}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Config\+Set\+Parameter()}{ConfigSetParameter()}}
+{\footnotesize\ttfamily int C\+A\+N\+Talon\+::\+Config\+Set\+Parameter (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{param\+Enum,  }\item[{double}]{value }\end{DoxyParamCaption})}
+
+General set frame. Since the parameter is a general integral type, this can be used for testing future features. \mbox{\Hypertarget{class_c_a_n_talon_a3e5d464de61b9005f33edd0b9db714ec}\label{class_c_a_n_talon_a3e5d464de61b9005f33edd0b9db714ec}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Config\+Soft\+Position\+Limits@{Config\+Soft\+Position\+Limits}}
+\index{Config\+Soft\+Position\+Limits@{Config\+Soft\+Position\+Limits}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Config\+Soft\+Position\+Limits()}{ConfigSoftPositionLimits()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Config\+Soft\+Position\+Limits (\begin{DoxyParamCaption}\item[{double}]{forward\+Limit\+Position,  }\item[{double}]{reverse\+Limit\+Position }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+\begin{DoxyRefDesc}{Deprecated}
+\item[\hyperlink{deprecated__deprecated000002}{Deprecated}]not implemented \end{DoxyRefDesc}
+\mbox{\Hypertarget{class_c_a_n_talon_a31581c5215ebe60fe89dbce78468627a}\label{class_c_a_n_talon_a31581c5215ebe60fe89dbce78468627a}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!D\+E\+F\+A\+U\+L\+T\+\_\+\+M\+O\+V\+E\+\_\+\+C\+O\+N\+S\+T\+R\+U\+C\+T\+OR@{D\+E\+F\+A\+U\+L\+T\+\_\+\+M\+O\+V\+E\+\_\+\+C\+O\+N\+S\+T\+R\+U\+C\+T\+OR}}
+\index{D\+E\+F\+A\+U\+L\+T\+\_\+\+M\+O\+V\+E\+\_\+\+C\+O\+N\+S\+T\+R\+U\+C\+T\+OR@{D\+E\+F\+A\+U\+L\+T\+\_\+\+M\+O\+V\+E\+\_\+\+C\+O\+N\+S\+T\+R\+U\+C\+T\+OR}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{D\+E\+F\+A\+U\+L\+T\+\_\+\+M\+O\+V\+E\+\_\+\+C\+O\+N\+S\+T\+R\+U\+C\+T\+O\+R()}{DEFAULT\_MOVE\_CONSTRUCTOR()}}
+{\footnotesize\ttfamily C\+A\+N\+Talon\+::\+D\+E\+F\+A\+U\+L\+T\+\_\+\+M\+O\+V\+E\+\_\+\+C\+O\+N\+S\+T\+R\+U\+C\+T\+OR (\begin{DoxyParamCaption}\item[{\hyperlink{class_c_a_n_talon}{C\+A\+N\+Talon}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_c_a_n_talon_a8bd799926d0efa4e4cf99d0f64e94371}\label{class_c_a_n_talon_a8bd799926d0efa4e4cf99d0f64e94371}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Disable@{Disable}}
+\index{Disable@{Disable}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Disable()}{Disable()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Disable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+Disables control of the talon, causing the motor to brake or coast depending on its mode (see the Talon S\+RX Software Reference manual for more information). \mbox{\Hypertarget{class_c_a_n_talon_a5fda4cb5db6d3b4b400222f549d91621}\label{class_c_a_n_talon_a5fda4cb5db6d3b4b400222f549d91621}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Disable\+Soft\+Position\+Limits@{Disable\+Soft\+Position\+Limits}}
+\index{Disable\+Soft\+Position\+Limits@{Disable\+Soft\+Position\+Limits}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Disable\+Soft\+Position\+Limits()}{DisableSoftPositionLimits()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Disable\+Soft\+Position\+Limits (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+T\+O\+DO documentation (see C\+A\+N\+Jaguar.\+cpp) \mbox{\Hypertarget{class_c_a_n_talon_a564c64c730580b6f80cf6c5f9eb42032}\label{class_c_a_n_talon_a564c64c730580b6f80cf6c5f9eb42032}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Enable@{Enable}}
+\index{Enable@{Enable}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Enable()}{Enable()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Enable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+Enables control of the Talon, allowing the motor to move. \mbox{\Hypertarget{class_c_a_n_talon_a174cae574f8c73a4d211d7484fddd7ef}\label{class_c_a_n_talon_a174cae574f8c73a4d211d7484fddd7ef}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Enable\+Control@{Enable\+Control}}
+\index{Enable\+Control@{Enable\+Control}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Enable\+Control()}{EnableControl()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Enable\+Control (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Enables control of the Talon, allowing the motor to move. \mbox{\Hypertarget{class_c_a_n_talon_a7a69f5ce972fe26739c918ef3ba37dd3}\label{class_c_a_n_talon_a7a69f5ce972fe26739c918ef3ba37dd3}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Enable\+Current\+Limit@{Enable\+Current\+Limit}}
+\index{Enable\+Current\+Limit@{Enable\+Current\+Limit}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Enable\+Current\+Limit()}{EnableCurrentLimit()}}
+{\footnotesize\ttfamily int C\+A\+N\+Talon\+::\+Enable\+Current\+Limit (\begin{DoxyParamCaption}\item[{bool}]{enable }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_c_a_n_talon_a2ab734332c2c8f1ff2a1db635058cfe4}\label{class_c_a_n_talon_a2ab734332c2c8f1ff2a1db635058cfe4}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Enable\+Zero\+Sensor\+Position\+On\+Forward\+Limit@{Enable\+Zero\+Sensor\+Position\+On\+Forward\+Limit}}
+\index{Enable\+Zero\+Sensor\+Position\+On\+Forward\+Limit@{Enable\+Zero\+Sensor\+Position\+On\+Forward\+Limit}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Enable\+Zero\+Sensor\+Position\+On\+Forward\+Limit()}{EnableZeroSensorPositionOnForwardLimit()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Enable\+Zero\+Sensor\+Position\+On\+Forward\+Limit (\begin{DoxyParamCaption}\item[{bool}]{enable }\end{DoxyParamCaption})}
+
+Enables Talon S\+RX to automatically zero the Sensor Position whenever an edge is detected on the Forward Limit Switch signal.
+
+
+\begin{DoxyParams}{Parameters}
+{\em enable} & boolean input, pass true to enable feature or false to disable. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_c_a_n_talon_a9a7de9cdd37714741fe25c30ed53e071}\label{class_c_a_n_talon_a9a7de9cdd37714741fe25c30ed53e071}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Enable\+Zero\+Sensor\+Position\+On\+Index@{Enable\+Zero\+Sensor\+Position\+On\+Index}}
+\index{Enable\+Zero\+Sensor\+Position\+On\+Index@{Enable\+Zero\+Sensor\+Position\+On\+Index}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Enable\+Zero\+Sensor\+Position\+On\+Index()}{EnableZeroSensorPositionOnIndex()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Enable\+Zero\+Sensor\+Position\+On\+Index (\begin{DoxyParamCaption}\item[{bool}]{enable,  }\item[{bool}]{rising\+Edge }\end{DoxyParamCaption})}
+
+Enables Talon S\+RX to automatically zero the Sensor Position whenever an edge is detected on the index signal.
+
+
+\begin{DoxyParams}{Parameters}
+{\em enable} & boolean input, pass true to enable feature or false to disable. \\
+\hline
+{\em rising\+Edge} & boolean input, pass true to clear the position on rising edge, pass false to clear the position on falling edge. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_c_a_n_talon_af21066f2a72e47bcce1640f22ed419f0}\label{class_c_a_n_talon_af21066f2a72e47bcce1640f22ed419f0}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Enable\+Zero\+Sensor\+Position\+On\+Reverse\+Limit@{Enable\+Zero\+Sensor\+Position\+On\+Reverse\+Limit}}
+\index{Enable\+Zero\+Sensor\+Position\+On\+Reverse\+Limit@{Enable\+Zero\+Sensor\+Position\+On\+Reverse\+Limit}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Enable\+Zero\+Sensor\+Position\+On\+Reverse\+Limit()}{EnableZeroSensorPositionOnReverseLimit()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Enable\+Zero\+Sensor\+Position\+On\+Reverse\+Limit (\begin{DoxyParamCaption}\item[{bool}]{enable }\end{DoxyParamCaption})}
+
+Enables Talon S\+RX to automatically zero the Sensor Position whenever an edge is detected on the Reverse Limit Switch signal.
+
+
+\begin{DoxyParams}{Parameters}
+{\em enable} & boolean input, pass true to enable feature or false to disable. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_c_a_n_talon_a6819f1eae4eefb39c441a3b8e973613d}\label{class_c_a_n_talon_a6819f1eae4eefb39c441a3b8e973613d}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Get@{Get}}
+\index{Get@{Get}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get()}{Get()}}
+{\footnotesize\ttfamily double C\+A\+N\+Talon\+::\+Get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
+
+Gets the current status of the Talon (usually a sensor value).
+
+In Current mode\+: returns output current. In Speed mode\+: returns current speed. In Position mode\+: returns current sensor position. In Percent\+Vbus and Follower modes\+: returns current applied throttle.
+
+\begin{DoxyReturn}{Returns}
+The current sensor value of the Talon. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_a_n_talon_a8dbf7974dc2877b4b32c1462e16fb9f1}\label{class_c_a_n_talon_a8dbf7974dc2877b4b32c1462e16fb9f1}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Get\+Analog\+In@{Get\+Analog\+In}}
+\index{Get\+Analog\+In@{Get\+Analog\+In}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+Analog\+In()}{GetAnalogIn()}}
+{\footnotesize\ttfamily int C\+A\+N\+Talon\+::\+Get\+Analog\+In (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Get the position of whatever is in the analog pin of the Talon, regardless of whether it is actually being used for feedback.
+
+\begin{DoxyReturn}{Returns}
+The 24bit analog value. The bottom ten bits is the A\+DC (0 -\/ 1023) on the analog pin of the Talon. The upper 14 bits tracks the overflows and underflows (continuous sensor). 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_a_n_talon_aaf2d5a3f142d57b8a5f17be332d57b58}\label{class_c_a_n_talon_aaf2d5a3f142d57b8a5f17be332d57b58}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Get\+Analog\+In\+Raw@{Get\+Analog\+In\+Raw}}
+\index{Get\+Analog\+In\+Raw@{Get\+Analog\+In\+Raw}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+Analog\+In\+Raw()}{GetAnalogInRaw()}}
+{\footnotesize\ttfamily int C\+A\+N\+Talon\+::\+Get\+Analog\+In\+Raw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Get the position of whatever is in the analog pin of the Talon, regardless of whether it is actually being used for feedback.
+
+\begin{DoxyReturn}{Returns}
+The A\+DC (0 -\/ 1023) on analog pin of the Talon. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_a_n_talon_a2191c4ae935c1bdb33fb622402d0676f}\label{class_c_a_n_talon_a2191c4ae935c1bdb33fb622402d0676f}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Get\+Analog\+In\+Vel@{Get\+Analog\+In\+Vel}}
+\index{Get\+Analog\+In\+Vel@{Get\+Analog\+In\+Vel}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+Analog\+In\+Vel()}{GetAnalogInVel()}}
+{\footnotesize\ttfamily int C\+A\+N\+Talon\+::\+Get\+Analog\+In\+Vel (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Get the position of whatever is in the analog pin of the Talon, regardless of whether it is actually being used for feedback.
+
+\begin{DoxyReturn}{Returns}
+The value (0 -\/ 1023) on the analog pin of the Talon. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_a_n_talon_ab29ed3beec31e98ce66ce66a5552fed3}\label{class_c_a_n_talon_ab29ed3beec31e98ce66ce66a5552fed3}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Get\+Brake\+Enable\+During\+Neutral@{Get\+Brake\+Enable\+During\+Neutral}}
+\index{Get\+Brake\+Enable\+During\+Neutral@{Get\+Brake\+Enable\+During\+Neutral}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+Brake\+Enable\+During\+Neutral()}{GetBrakeEnableDuringNeutral()}}
+{\footnotesize\ttfamily int C\+A\+N\+Talon\+::\+Get\+Brake\+Enable\+During\+Neutral (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+nonzero if brake is enabled during neutral. Zero if coast is enabled during neutral. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_a_n_talon_a54bf29776c50598a1a9686651f6fadd0}\label{class_c_a_n_talon_a54bf29776c50598a1a9686651f6fadd0}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Get\+Bus\+Voltage@{Get\+Bus\+Voltage}}
+\index{Get\+Bus\+Voltage@{Get\+Bus\+Voltage}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+Bus\+Voltage()}{GetBusVoltage()}}
+{\footnotesize\ttfamily double C\+A\+N\+Talon\+::\+Get\+Bus\+Voltage (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
+
+Returns the voltage coming in from the battery.
+
+\begin{DoxyReturn}{Returns}
+The input voltage in volts. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_a_n_talon_ae96f0f4eda41e611866453636382780b}\label{class_c_a_n_talon_ae96f0f4eda41e611866453636382780b}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Get\+Closed\+Loop\+Error@{Get\+Closed\+Loop\+Error}}
+\index{Get\+Closed\+Loop\+Error@{Get\+Closed\+Loop\+Error}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+Closed\+Loop\+Error()}{GetClosedLoopError()}}
+{\footnotesize\ttfamily int C\+A\+N\+Talon\+::\+Get\+Closed\+Loop\+Error (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Returns the current error in the controller.
+
+\begin{DoxyReturn}{Returns}
+the difference between the setpoint and the sensor value. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_a_n_talon_a3ef9f9053e55afd0bfb5a5fd85359743}\label{class_c_a_n_talon_a3ef9f9053e55afd0bfb5a5fd85359743}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Get\+Control\+Mode@{Get\+Control\+Mode}}
+\index{Get\+Control\+Mode@{Get\+Control\+Mode}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+Control\+Mode()}{GetControlMode()}}
+{\footnotesize\ttfamily frc\+::\+C\+A\+N\+Speed\+Controller\+::\+Control\+Mode C\+A\+N\+Talon\+::\+Get\+Control\+Mode (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+T\+O\+DO documentation (see C\+A\+N\+Jaguar.\+cpp) \mbox{\Hypertarget{class_c_a_n_talon_a4c91d3575d4a94a26286f83e8b3efa0a}\label{class_c_a_n_talon_a4c91d3575d4a94a26286f83e8b3efa0a}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Get\+Custom\+Param0@{Get\+Custom\+Param0}}
+\index{Get\+Custom\+Param0@{Get\+Custom\+Param0}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+Custom\+Param0()}{GetCustomParam0()}}
+{\footnotesize\ttfamily int C\+A\+N\+Talon\+::\+Get\+Custom\+Param0 (\begin{DoxyParamCaption}\item[{int32\+\_\+t \&}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_c_a_n_talon_a0cf96267919f28e4c58037637d3832b2}\label{class_c_a_n_talon_a0cf96267919f28e4c58037637d3832b2}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Get\+Custom\+Param1@{Get\+Custom\+Param1}}
+\index{Get\+Custom\+Param1@{Get\+Custom\+Param1}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+Custom\+Param1()}{GetCustomParam1()}}
+{\footnotesize\ttfamily int C\+A\+N\+Talon\+::\+Get\+Custom\+Param1 (\begin{DoxyParamCaption}\item[{int32\+\_\+t \&}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_c_a_n_talon_aeae71b2de2e9c711f46a9a2e3ce08282}\label{class_c_a_n_talon_aeae71b2de2e9c711f46a9a2e3ce08282}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!GetD@{GetD}}
+\index{GetD@{GetD}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+D()}{GetD()}}
+{\footnotesize\ttfamily double C\+A\+N\+Talon\+::\+GetD (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
+
+T\+O\+DO documentation (see C\+A\+N\+Jaguar.\+cpp) \begin{DoxySeeAlso}{See also}
+\hyperlink{class_c_a_n_talon_a0f478462884ed5e541179821c44b724f}{Select\+Profile\+Slot} to choose between the two sets of gains. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_c_a_n_talon_af5fcf549829342563fc9bcb60760fafd}\label{class_c_a_n_talon_af5fcf549829342563fc9bcb60760fafd}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Get\+Description@{Get\+Description}}
+\index{Get\+Description@{Get\+Description}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+Description()}{GetDescription()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Get\+Description (\begin{DoxyParamCaption}\item[{std\+::ostringstream \&}]{desc }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
+
+\mbox{\Hypertarget{class_c_a_n_talon_a68641c5f1b7ae5ca4683d8ad3521c275}\label{class_c_a_n_talon_a68641c5f1b7ae5ca4683d8ad3521c275}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Get\+Device\+ID@{Get\+Device\+ID}}
+\index{Get\+Device\+ID@{Get\+Device\+ID}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+Device\+I\+D()}{GetDeviceID()}}
+{\footnotesize\ttfamily int C\+A\+N\+Talon\+::\+Get\+Device\+ID (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_c_a_n_talon_a9ccad36fcf60791617bae9bb0f1443b4}\label{class_c_a_n_talon_a9ccad36fcf60791617bae9bb0f1443b4}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Get\+Enc\+Position@{Get\+Enc\+Position}}
+\index{Get\+Enc\+Position@{Get\+Enc\+Position}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+Enc\+Position()}{GetEncPosition()}}
+{\footnotesize\ttfamily int C\+A\+N\+Talon\+::\+Get\+Enc\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Get the position of whatever is in the analog pin of the Talon, regardless of whether it is actually being used for feedback.
+
+\begin{DoxyReturn}{Returns}
+The value (0 -\/ 1023) on the analog pin of the Talon. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_a_n_talon_a1ecf556f18bc6a61278e2d27408f25af}\label{class_c_a_n_talon_a1ecf556f18bc6a61278e2d27408f25af}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Get\+Enc\+Vel@{Get\+Enc\+Vel}}
+\index{Get\+Enc\+Vel@{Get\+Enc\+Vel}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+Enc\+Vel()}{GetEncVel()}}
+{\footnotesize\ttfamily int C\+A\+N\+Talon\+::\+Get\+Enc\+Vel (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Get the position of whatever is in the analog pin of the Talon, regardless of whether it is actually being used for feedback.
+
+\begin{DoxyReturn}{Returns}
+The value (0 -\/ 1023) on the analog pin of the Talon. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_a_n_talon_ae81697fca7c681183e25dceee64c6c26}\label{class_c_a_n_talon_ae81697fca7c681183e25dceee64c6c26}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Get\+Expiration@{Get\+Expiration}}
+\index{Get\+Expiration@{Get\+Expiration}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+Expiration()}{GetExpiration()}}
+{\footnotesize\ttfamily double C\+A\+N\+Talon\+::\+Get\+Expiration (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
+
+\mbox{\Hypertarget{class_c_a_n_talon_a568bfe876c2915efde9662976107365e}\label{class_c_a_n_talon_a568bfe876c2915efde9662976107365e}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!GetF@{GetF}}
+\index{GetF@{GetF}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+F()}{GetF()}}
+{\footnotesize\ttfamily double C\+A\+N\+Talon\+::\+GetF (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_c_a_n_talon_a0f478462884ed5e541179821c44b724f}{Select\+Profile\+Slot} to choose between the two sets of gains. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_c_a_n_talon_aeee8ab02812ca4f4fac0baefff57bfbc}\label{class_c_a_n_talon_aeee8ab02812ca4f4fac0baefff57bfbc}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Get\+Faults@{Get\+Faults}}
+\index{Get\+Faults@{Get\+Faults}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+Faults()}{GetFaults()}}
+{\footnotesize\ttfamily uint16\+\_\+t C\+A\+N\+Talon\+::\+Get\+Faults (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
+
+T\+O\+DO documentation (see C\+A\+N\+Jaguar.\+cpp) \mbox{\Hypertarget{class_c_a_n_talon_a16f7d01201fe09094a76fdd192307b2a}\label{class_c_a_n_talon_a16f7d01201fe09094a76fdd192307b2a}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Get\+Firmware\+Version@{Get\+Firmware\+Version}}
+\index{Get\+Firmware\+Version@{Get\+Firmware\+Version}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+Firmware\+Version()}{GetFirmwareVersion()}}
+{\footnotesize\ttfamily int C\+A\+N\+Talon\+::\+Get\+Firmware\+Version (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
+
+\begin{DoxyReturn}{Returns}
+The version of the firmware running on the Talon 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_a_n_talon_af9f50de12a090b0b70edb2dc57e48f61}\label{class_c_a_n_talon_af9f50de12a090b0b70edb2dc57e48f61}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Get\+Forward\+Limit\+OK@{Get\+Forward\+Limit\+OK}}
+\index{Get\+Forward\+Limit\+OK@{Get\+Forward\+Limit\+OK}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+Forward\+Limit\+O\+K()}{GetForwardLimitOK()}}
+{\footnotesize\ttfamily bool C\+A\+N\+Talon\+::\+Get\+Forward\+Limit\+OK (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
+
+T\+O\+DO documentation (see C\+A\+N\+Jaguar.\+cpp) \mbox{\Hypertarget{class_c_a_n_talon_a228bf58fd2926e5d9596ffde3b1fad8f}\label{class_c_a_n_talon_a228bf58fd2926e5d9596ffde3b1fad8f}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Get\+Gadgeteer\+Status@{Get\+Gadgeteer\+Status}}
+\index{Get\+Gadgeteer\+Status@{Get\+Gadgeteer\+Status}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+Gadgeteer\+Status()}{GetGadgeteerStatus()}}
+{\footnotesize\ttfamily int C\+A\+N\+Talon\+::\+Get\+Gadgeteer\+Status (\begin{DoxyParamCaption}\item[{I\+Gadgeteer\+Uart\+Client\+::\+Gadgeteer\+Uart\+Status \&}]{status }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_c_a_n_talon_a29c00b36b915c21c5ae10c3cf64ce244}\label{class_c_a_n_talon_a29c00b36b915c21c5ae10c3cf64ce244}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!GetI@{GetI}}
+\index{GetI@{GetI}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+I()}{GetI()}}
+{\footnotesize\ttfamily double C\+A\+N\+Talon\+::\+GetI (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
+
+T\+O\+DO documentation (see C\+A\+N\+Jaguar.\+cpp) \begin{DoxySeeAlso}{See also}
+\hyperlink{class_c_a_n_talon_a0f478462884ed5e541179821c44b724f}{Select\+Profile\+Slot} to choose between the two sets of gains. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_c_a_n_talon_ad675d77fe044d57525b02b3b01219557}\label{class_c_a_n_talon_ad675d77fe044d57525b02b3b01219557}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Get\+Iaccum@{Get\+Iaccum}}
+\index{Get\+Iaccum@{Get\+Iaccum}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+Iaccum()}{GetIaccum()}}
+{\footnotesize\ttfamily int C\+A\+N\+Talon\+::\+Get\+Iaccum (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+The accumulator for I gain. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_a_n_talon_aa85609e0aadcd710012b912591bd65d8}\label{class_c_a_n_talon_aa85609e0aadcd710012b912591bd65d8}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Get\+Inverted@{Get\+Inverted}}
+\index{Get\+Inverted@{Get\+Inverted}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+Inverted()}{GetInverted()}}
+{\footnotesize\ttfamily bool C\+A\+N\+Talon\+::\+Get\+Inverted (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
+
+Common interface for the inverting direction of a speed controller.
+
+\begin{DoxyReturn}{Returns}
+is\+Inverted The state of inversion, true is inverted. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_a_n_talon_a492373ce8d2553d185ed56f2627e9f4c}\label{class_c_a_n_talon_a492373ce8d2553d185ed56f2627e9f4c}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Get\+Izone@{Get\+Izone}}
+\index{Get\+Izone@{Get\+Izone}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+Izone()}{GetIzone()}}
+{\footnotesize\ttfamily int C\+A\+N\+Talon\+::\+Get\+Izone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_c_a_n_talon_a0f478462884ed5e541179821c44b724f}{Select\+Profile\+Slot} to choose between the two sets of gains. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_c_a_n_talon_ad8a7985b0adfe2a10a379254efe28193}\label{class_c_a_n_talon_ad8a7985b0adfe2a10a379254efe28193}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Get\+Low\+Level\+Object@{Get\+Low\+Level\+Object}}
+\index{Get\+Low\+Level\+Object@{Get\+Low\+Level\+Object}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+Low\+Level\+Object()}{GetLowLevelObject()}}
+{\footnotesize\ttfamily Can\+Talon\+S\+RX\& C\+A\+N\+Talon\+::\+Get\+Low\+Level\+Object (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+low level object for advanced control. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_a_n_talon_a43efe1fbbf9fb127d73fe4cfb3e805a2}\label{class_c_a_n_talon_a43efe1fbbf9fb127d73fe4cfb3e805a2}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Get\+Motion\+Magic\+Acceleration@{Get\+Motion\+Magic\+Acceleration}}
+\index{Get\+Motion\+Magic\+Acceleration@{Get\+Motion\+Magic\+Acceleration}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+Motion\+Magic\+Acceleration()}{GetMotionMagicAcceleration()}}
+{\footnotesize\ttfamily double C\+A\+N\+Talon\+::\+Get\+Motion\+Magic\+Acceleration (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+polled motion magic acceleration setting from Talon. R\+PM per second if units are configured, velocity native units per second otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_a_n_talon_ac1f45ea28e5b53838ed645aa1fbaf30c}\label{class_c_a_n_talon_ac1f45ea28e5b53838ed645aa1fbaf30c}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Get\+Motion\+Magic\+Cruise\+Velocity@{Get\+Motion\+Magic\+Cruise\+Velocity}}
+\index{Get\+Motion\+Magic\+Cruise\+Velocity@{Get\+Motion\+Magic\+Cruise\+Velocity}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+Motion\+Magic\+Cruise\+Velocity()}{GetMotionMagicCruiseVelocity()}}
+{\footnotesize\ttfamily double C\+A\+N\+Talon\+::\+Get\+Motion\+Magic\+Cruise\+Velocity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+polled motion magic cruise velocity setting from Talon. R\+PM if units are configured, velocity native units otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_a_n_talon_a67e151009a27f9ce3317fc040fb85d2a}\label{class_c_a_n_talon_a67e151009a27f9ce3317fc040fb85d2a}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Get\+Motion\+Profile\+Status@{Get\+Motion\+Profile\+Status}}
+\index{Get\+Motion\+Profile\+Status@{Get\+Motion\+Profile\+Status}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+Motion\+Profile\+Status()}{GetMotionProfileStatus()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Get\+Motion\+Profile\+Status (\begin{DoxyParamCaption}\item[{\hyperlink{struct_c_a_n_talon_1_1_motion_profile_status}{Motion\+Profile\+Status} \&}]{motion\+Profile\+Status }\end{DoxyParamCaption})}
+
+Retrieve all status information. Since this all comes from one C\+AN frame, its ideal to have one routine to retrieve the frame once and decode everything. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em motion\+Profile\+Status} & contains all progress information on the currently running MP. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_c_a_n_talon_a228e78ebfb9d4947fcf2e075791fac21}\label{class_c_a_n_talon_a228e78ebfb9d4947fcf2e075791fac21}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Get\+Motion\+Profile\+Top\+Level\+Buffer\+Count@{Get\+Motion\+Profile\+Top\+Level\+Buffer\+Count}}
+\index{Get\+Motion\+Profile\+Top\+Level\+Buffer\+Count@{Get\+Motion\+Profile\+Top\+Level\+Buffer\+Count}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+Motion\+Profile\+Top\+Level\+Buffer\+Count()}{GetMotionProfileTopLevelBufferCount()}}
+{\footnotesize\ttfamily int C\+A\+N\+Talon\+::\+Get\+Motion\+Profile\+Top\+Level\+Buffer\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Retrieve just the buffer count for the api-\/level (top) buffer. This routine performs no C\+AN or data structure lookups, so its fast and ideal if caller needs to quickly poll the progress of trajectory points being emptied into Talon\textquotesingle{}s R\+AM. Otherwise just use Get\+Motion\+Profile\+Status. \begin{DoxyReturn}{Returns}
+number of trajectory points in the top buffer. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_a_n_talon_a5f1fab77ecc45fc719a2a0886e0b3a4e}\label{class_c_a_n_talon_a5f1fab77ecc45fc719a2a0886e0b3a4e}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Get\+Number\+Of\+Quad\+Idx\+Rises@{Get\+Number\+Of\+Quad\+Idx\+Rises}}
+\index{Get\+Number\+Of\+Quad\+Idx\+Rises@{Get\+Number\+Of\+Quad\+Idx\+Rises}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+Number\+Of\+Quad\+Idx\+Rises()}{GetNumberOfQuadIdxRises()}}
+{\footnotesize\ttfamily int C\+A\+N\+Talon\+::\+Get\+Number\+Of\+Quad\+Idx\+Rises (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{class_c_a_n_talon_af24e57fe1d6a7ec64ab1a836d4d9c5ce}\label{class_c_a_n_talon_af24e57fe1d6a7ec64ab1a836d4d9c5ce}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Get\+Output\+Current@{Get\+Output\+Current}}
+\index{Get\+Output\+Current@{Get\+Output\+Current}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+Output\+Current()}{GetOutputCurrent()}}
+{\footnotesize\ttfamily double C\+A\+N\+Talon\+::\+Get\+Output\+Current (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
+
+Returns the current going through the Talon, in Amperes. \mbox{\Hypertarget{class_c_a_n_talon_a47899fde5026631d18cdfa6fdce29b1d}\label{class_c_a_n_talon_a47899fde5026631d18cdfa6fdce29b1d}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Get\+Output\+Voltage@{Get\+Output\+Voltage}}
+\index{Get\+Output\+Voltage@{Get\+Output\+Voltage}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+Output\+Voltage()}{GetOutputVoltage()}}
+{\footnotesize\ttfamily double C\+A\+N\+Talon\+::\+Get\+Output\+Voltage (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
+
+\begin{DoxyReturn}{Returns}
+The voltage being output by the Talon, in Volts. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_a_n_talon_a701df7e254b4e6731bff57e7ae19d330}\label{class_c_a_n_talon_a701df7e254b4e6731bff57e7ae19d330}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!GetP@{GetP}}
+\index{GetP@{GetP}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+P()}{GetP()}}
+{\footnotesize\ttfamily double C\+A\+N\+Talon\+::\+GetP (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
+
+Get the current proportional constant.
+
+\begin{DoxyReturn}{Returns}
+double proportional constant for current profile. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_c_a_n_talon_a0f478462884ed5e541179821c44b724f}{Select\+Profile\+Slot} to choose between the two sets of gains. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_c_a_n_talon_ac3fc867de74a9174eab5c1aaa3ddb3b5}\label{class_c_a_n_talon_ac3fc867de74a9174eab5c1aaa3ddb3b5}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Get\+Parameter@{Get\+Parameter}}
+\index{Get\+Parameter@{Get\+Parameter}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+Parameter()}{GetParameter()}}
+{\footnotesize\ttfamily bool C\+A\+N\+Talon\+::\+Get\+Parameter (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{param\+Enum,  }\item[{double \&}]{dvalue }\end{DoxyParamCaption}) const}
+
+General get frame. Since the parameter is a general integral type, this can be used for testing future features. \mbox{\Hypertarget{class_c_a_n_talon_ac591175f87e34f153118cb507c132c8f}\label{class_c_a_n_talon_ac591175f87e34f153118cb507c132c8f}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Get\+Pin\+State\+QuadA@{Get\+Pin\+State\+QuadA}}
+\index{Get\+Pin\+State\+QuadA@{Get\+Pin\+State\+QuadA}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+Pin\+State\+Quad\+A()}{GetPinStateQuadA()}}
+{\footnotesize\ttfamily int C\+A\+N\+Talon\+::\+Get\+Pin\+State\+QuadA (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+IO level of Q\+U\+A\+DA pin. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_a_n_talon_a27ae4c2fc57e43d717fb0a38119b3106}\label{class_c_a_n_talon_a27ae4c2fc57e43d717fb0a38119b3106}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Get\+Pin\+State\+QuadB@{Get\+Pin\+State\+QuadB}}
+\index{Get\+Pin\+State\+QuadB@{Get\+Pin\+State\+QuadB}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+Pin\+State\+Quad\+B()}{GetPinStateQuadB()}}
+{\footnotesize\ttfamily int C\+A\+N\+Talon\+::\+Get\+Pin\+State\+QuadB (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+IO level of Q\+U\+A\+DB pin. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_a_n_talon_ae532dd6728f896c9366e373853886760}\label{class_c_a_n_talon_ae532dd6728f896c9366e373853886760}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Get\+Pin\+State\+Quad\+Idx@{Get\+Pin\+State\+Quad\+Idx}}
+\index{Get\+Pin\+State\+Quad\+Idx@{Get\+Pin\+State\+Quad\+Idx}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+Pin\+State\+Quad\+Idx()}{GetPinStateQuadIdx()}}
+{\footnotesize\ttfamily int C\+A\+N\+Talon\+::\+Get\+Pin\+State\+Quad\+Idx (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+IO level of Q\+U\+AD Index pin. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_a_n_talon_aedc47efb529bd41b55849e628363e661}\label{class_c_a_n_talon_aedc47efb529bd41b55849e628363e661}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Get\+Position@{Get\+Position}}
+\index{Get\+Position@{Get\+Position}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+Position()}{GetPosition()}}
+{\footnotesize\ttfamily double C\+A\+N\+Talon\+::\+Get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
+
+T\+O\+DO documentation (see C\+A\+N\+Jaguar.\+cpp)
+
+\begin{DoxyReturn}{Returns}
+The position of the sensor currently providing feedback. When using analog sensors, 0 units corresponds to 0V, 1023 units corresponds to 3.\+3V. When using an analog encoder (wrapping around 1023 =$>$ 0 is possible) the units are still 3.\+3V per 1023 units. When using quadrature, each unit is a quadrature edge (4X) mode. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_a_n_talon_adf3c68d62c6b246540518de56d7f1d21}\label{class_c_a_n_talon_adf3c68d62c6b246540518de56d7f1d21}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Get\+Pulse\+Width\+Position@{Get\+Pulse\+Width\+Position}}
+\index{Get\+Pulse\+Width\+Position@{Get\+Pulse\+Width\+Position}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+Pulse\+Width\+Position()}{GetPulseWidthPosition()}}
+{\footnotesize\ttfamily int C\+A\+N\+Talon\+::\+Get\+Pulse\+Width\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{class_c_a_n_talon_a101348a9f09af22d54806c49e9346979}\label{class_c_a_n_talon_a101348a9f09af22d54806c49e9346979}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Get\+Pulse\+Width\+Rise\+To\+Fall\+Us@{Get\+Pulse\+Width\+Rise\+To\+Fall\+Us}}
+\index{Get\+Pulse\+Width\+Rise\+To\+Fall\+Us@{Get\+Pulse\+Width\+Rise\+To\+Fall\+Us}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+Pulse\+Width\+Rise\+To\+Fall\+Us()}{GetPulseWidthRiseToFallUs()}}
+{\footnotesize\ttfamily int C\+A\+N\+Talon\+::\+Get\+Pulse\+Width\+Rise\+To\+Fall\+Us (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{class_c_a_n_talon_a8a007d31edef41225ddc4d7106d5cf42}\label{class_c_a_n_talon_a8a007d31edef41225ddc4d7106d5cf42}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Get\+Pulse\+Width\+Rise\+To\+Rise\+Us@{Get\+Pulse\+Width\+Rise\+To\+Rise\+Us}}
+\index{Get\+Pulse\+Width\+Rise\+To\+Rise\+Us@{Get\+Pulse\+Width\+Rise\+To\+Rise\+Us}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+Pulse\+Width\+Rise\+To\+Rise\+Us()}{GetPulseWidthRiseToRiseUs()}}
+{\footnotesize\ttfamily int C\+A\+N\+Talon\+::\+Get\+Pulse\+Width\+Rise\+To\+Rise\+Us (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{class_c_a_n_talon_ac7566c2bae26a00cf161aeb257cc34e9}\label{class_c_a_n_talon_ac7566c2bae26a00cf161aeb257cc34e9}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Get\+Pulse\+Width\+Velocity@{Get\+Pulse\+Width\+Velocity}}
+\index{Get\+Pulse\+Width\+Velocity@{Get\+Pulse\+Width\+Velocity}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+Pulse\+Width\+Velocity()}{GetPulseWidthVelocity()}}
+{\footnotesize\ttfamily int C\+A\+N\+Talon\+::\+Get\+Pulse\+Width\+Velocity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{class_c_a_n_talon_a70234020208d2e49600868e959eb640f}\label{class_c_a_n_talon_a70234020208d2e49600868e959eb640f}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Get\+Reverse\+Limit\+OK@{Get\+Reverse\+Limit\+OK}}
+\index{Get\+Reverse\+Limit\+OK@{Get\+Reverse\+Limit\+OK}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+Reverse\+Limit\+O\+K()}{GetReverseLimitOK()}}
+{\footnotesize\ttfamily bool C\+A\+N\+Talon\+::\+Get\+Reverse\+Limit\+OK (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
+
+T\+O\+DO documentation (see C\+A\+N\+Jaguar.\+cpp) \mbox{\Hypertarget{class_c_a_n_talon_a4a96f9770af682f3462442a1bb2a0581}\label{class_c_a_n_talon_a4a96f9770af682f3462442a1bb2a0581}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Get\+Setpoint@{Get\+Setpoint}}
+\index{Get\+Setpoint@{Get\+Setpoint}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+Setpoint()}{GetSetpoint()}}
+{\footnotesize\ttfamily double C\+A\+N\+Talon\+::\+Get\+Setpoint (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
+
+\begin{DoxyReturn}{Returns}
+the current setpoint; ie, whatever was last passed to \hyperlink{class_c_a_n_talon_a4562f7fb454693a0b19e6eba955a0c71}{Set()}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_a_n_talon_adedfa57e6f2ef854ec07c0587a37a436}\label{class_c_a_n_talon_adedfa57e6f2ef854ec07c0587a37a436}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Get\+Smart\+Dashboard\+Type@{Get\+Smart\+Dashboard\+Type}}
+\index{Get\+Smart\+Dashboard\+Type@{Get\+Smart\+Dashboard\+Type}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+Smart\+Dashboard\+Type()}{GetSmartDashboardType()}}
+{\footnotesize\ttfamily std\+::string C\+A\+N\+Talon\+::\+Get\+Smart\+Dashboard\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
+
+\mbox{\Hypertarget{class_c_a_n_talon_a36e486b58bc5ce1b218d36468900bb1b}\label{class_c_a_n_talon_a36e486b58bc5ce1b218d36468900bb1b}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Get\+Speed@{Get\+Speed}}
+\index{Get\+Speed@{Get\+Speed}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+Speed()}{GetSpeed()}}
+{\footnotesize\ttfamily double C\+A\+N\+Talon\+::\+Get\+Speed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
+
+T\+O\+DO documentation (see C\+A\+N\+Jaguar.\+cpp)
+
+\begin{DoxyReturn}{Returns}
+The speed of the sensor currently providing feedback.
+\end{DoxyReturn}
+The speed units will be in the sensor\textquotesingle{}s native ticks per 100ms.
+
+For analog sensors, 3.\+3V corresponds to 1023 units. So a speed of 200 equates to $\sim$0.645 dV per 100ms or 6.\+451 dV per second. If this is an analog encoder, that likely means 1.\+9548 rotations per sec. For quadrature encoders, each unit corresponds a quadrature edge (4X). So a 250 count encoder will produce 1000 edge events per rotation. An example speed of 200 would then equate to 20\% of a rotation per 100ms, or 10 rotations per second. \mbox{\Hypertarget{class_c_a_n_talon_a994239a9436868e2fee189ce87b7c9be}\label{class_c_a_n_talon_a994239a9436868e2fee189ce87b7c9be}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Get\+Sticky\+Faults@{Get\+Sticky\+Faults}}
+\index{Get\+Sticky\+Faults@{Get\+Sticky\+Faults}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+Sticky\+Faults()}{GetStickyFaults()}}
+{\footnotesize\ttfamily uint16\+\_\+t C\+A\+N\+Talon\+::\+Get\+Sticky\+Faults (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{class_c_a_n_talon_ab02a755b0e649792fd50eadeb6868ff5}\label{class_c_a_n_talon_ab02a755b0e649792fd50eadeb6868ff5}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Get\+Table@{Get\+Table}}
+\index{Get\+Table@{Get\+Table}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+Table()}{GetTable()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ I\+Table $>$ C\+A\+N\+Talon\+::\+Get\+Table (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
+
+\mbox{\Hypertarget{class_c_a_n_talon_ad598ba3f77946f1f09d1e3ed5eb8fe75}\label{class_c_a_n_talon_ad598ba3f77946f1f09d1e3ed5eb8fe75}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Get\+Talon\+Control\+Mode@{Get\+Talon\+Control\+Mode}}
+\index{Get\+Talon\+Control\+Mode@{Get\+Talon\+Control\+Mode}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+Talon\+Control\+Mode()}{GetTalonControlMode()}}
+{\footnotesize\ttfamily \hyperlink{class_c_a_n_talon_a0e4915b95f71a7091e3a1323f3ec9e1f}{C\+A\+N\+Talon\+::\+Talon\+Control\+Mode} C\+A\+N\+Talon\+::\+Get\+Talon\+Control\+Mode (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{class_c_a_n_talon_aab26bf049aa996de5fab27455ed956da}\label{class_c_a_n_talon_aab26bf049aa996de5fab27455ed956da}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Get\+Temperature@{Get\+Temperature}}
+\index{Get\+Temperature@{Get\+Temperature}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Get\+Temperature()}{GetTemperature()}}
+{\footnotesize\ttfamily double C\+A\+N\+Talon\+::\+Get\+Temperature (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
+
+Returns temperature of Talon, in degrees Celsius. \mbox{\Hypertarget{class_c_a_n_talon_a654c075c7d29bb9f2dcf91cc8a8f23fa}\label{class_c_a_n_talon_a654c075c7d29bb9f2dcf91cc8a8f23fa}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Has\+Reset\+Occured@{Has\+Reset\+Occured}}
+\index{Has\+Reset\+Occured@{Has\+Reset\+Occured}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Has\+Reset\+Occured()}{HasResetOccured()}}
+{\footnotesize\ttfamily bool C\+A\+N\+Talon\+::\+Has\+Reset\+Occured (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+true iff a reset has occured since last call. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_a_n_talon_ae0a828862cd614d2fa372911205bd0ca}\label{class_c_a_n_talon_ae0a828862cd614d2fa372911205bd0ca}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Init\+Table@{Init\+Table}}
+\index{Init\+Table@{Init\+Table}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Init\+Table()}{InitTable()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Init\+Table (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ I\+Table $>$}]{sub\+Table }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+\mbox{\Hypertarget{class_c_a_n_talon_a4d26bc07e4d13a3292be1b9152439182}\label{class_c_a_n_talon_a4d26bc07e4d13a3292be1b9152439182}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Is\+Alive@{Is\+Alive}}
+\index{Is\+Alive@{Is\+Alive}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Is\+Alive()}{IsAlive()}}
+{\footnotesize\ttfamily bool C\+A\+N\+Talon\+::\+Is\+Alive (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
+
+\mbox{\Hypertarget{class_c_a_n_talon_a6369d85290e29a12b6521f6f6f04cbf0}\label{class_c_a_n_talon_a6369d85290e29a12b6521f6f6f04cbf0}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Is\+Control\+Enabled@{Is\+Control\+Enabled}}
+\index{Is\+Control\+Enabled@{Is\+Control\+Enabled}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Is\+Control\+Enabled()}{IsControlEnabled()}}
+{\footnotesize\ttfamily bool C\+A\+N\+Talon\+::\+Is\+Control\+Enabled (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+Whether the Talon is currently enabled. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_a_n_talon_a33ae2a0684d9655145fdff51dc57a032}\label{class_c_a_n_talon_a33ae2a0684d9655145fdff51dc57a032}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Is\+Enabled@{Is\+Enabled}}
+\index{Is\+Enabled@{Is\+Enabled}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Is\+Enabled()}{IsEnabled()}}
+{\footnotesize\ttfamily bool C\+A\+N\+Talon\+::\+Is\+Enabled (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
+
+\begin{DoxyReturn}{Returns}
+Whether the Talon is currently enabled. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_a_n_talon_a892bcfbb4a6dacf4c4597703dffaf976}\label{class_c_a_n_talon_a892bcfbb4a6dacf4c4597703dffaf976}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Is\+Fwd\+Limit\+Switch\+Closed@{Is\+Fwd\+Limit\+Switch\+Closed}}
+\index{Is\+Fwd\+Limit\+Switch\+Closed@{Is\+Fwd\+Limit\+Switch\+Closed}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Is\+Fwd\+Limit\+Switch\+Closed()}{IsFwdLimitSwitchClosed()}}
+{\footnotesize\ttfamily int C\+A\+N\+Talon\+::\+Is\+Fwd\+Limit\+Switch\+Closed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+\textquotesingle{}1\textquotesingle{} iff forward limit switch is closed, 0 iff switch is open. This function works regardless if limit switch feature is enabled. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_a_n_talon_a21e75c3f26191a40c3ed9daa4fc0eacd}\label{class_c_a_n_talon_a21e75c3f26191a40c3ed9daa4fc0eacd}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Is\+Mode\+P\+ID@{Is\+Mode\+P\+ID}}
+\index{Is\+Mode\+P\+ID@{Is\+Mode\+P\+ID}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Is\+Mode\+P\+I\+D()}{IsModePID()}}
+{\footnotesize\ttfamily bool C\+A\+N\+Talon\+::\+Is\+Mode\+P\+ID (\begin{DoxyParamCaption}\item[{C\+A\+N\+Speed\+Controller\+::\+Control\+Mode}]{mode }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
+
+\mbox{\Hypertarget{class_c_a_n_talon_a9f75a483beea0902e1e6595ab15489ab}\label{class_c_a_n_talon_a9f75a483beea0902e1e6595ab15489ab}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Is\+Motion\+Profile\+Top\+Level\+Buffer\+Full@{Is\+Motion\+Profile\+Top\+Level\+Buffer\+Full}}
+\index{Is\+Motion\+Profile\+Top\+Level\+Buffer\+Full@{Is\+Motion\+Profile\+Top\+Level\+Buffer\+Full}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Is\+Motion\+Profile\+Top\+Level\+Buffer\+Full()}{IsMotionProfileTopLevelBufferFull()}}
+{\footnotesize\ttfamily bool C\+A\+N\+Talon\+::\+Is\+Motion\+Profile\+Top\+Level\+Buffer\+Full (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+true if api-\/level (top) buffer is full. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_a_n_talon_ab6a65ae89c861059aaae4c399b1f1521}\label{class_c_a_n_talon_ab6a65ae89c861059aaae4c399b1f1521}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Is\+Pers\+Storage\+Saving@{Is\+Pers\+Storage\+Saving}}
+\index{Is\+Pers\+Storage\+Saving@{Is\+Pers\+Storage\+Saving}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Is\+Pers\+Storage\+Saving()}{IsPersStorageSaving()}}
+{\footnotesize\ttfamily int C\+A\+N\+Talon\+::\+Is\+Pers\+Storage\+Saving (\begin{DoxyParamCaption}\item[{bool \&}]{is\+Saving }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_c_a_n_talon_a2c77ae2f1cfa966edbcd7c2bc30d36fc}\label{class_c_a_n_talon_a2c77ae2f1cfa966edbcd7c2bc30d36fc}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Is\+Rev\+Limit\+Switch\+Closed@{Is\+Rev\+Limit\+Switch\+Closed}}
+\index{Is\+Rev\+Limit\+Switch\+Closed@{Is\+Rev\+Limit\+Switch\+Closed}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Is\+Rev\+Limit\+Switch\+Closed()}{IsRevLimitSwitchClosed()}}
+{\footnotesize\ttfamily int C\+A\+N\+Talon\+::\+Is\+Rev\+Limit\+Switch\+Closed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+\textquotesingle{}1\textquotesingle{} iff reverse limit switch is closed, 0 iff switch is open. This function works regardless if limit switch feature is enabled. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_a_n_talon_a4305b1c9d5f9459702bfa68c44b0887f}\label{class_c_a_n_talon_a4305b1c9d5f9459702bfa68c44b0887f}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Is\+Safety\+Enabled@{Is\+Safety\+Enabled}}
+\index{Is\+Safety\+Enabled@{Is\+Safety\+Enabled}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Is\+Safety\+Enabled()}{IsSafetyEnabled()}}
+{\footnotesize\ttfamily bool C\+A\+N\+Talon\+::\+Is\+Safety\+Enabled (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
+
+\mbox{\Hypertarget{class_c_a_n_talon_a2fcdeff79b199573b81b9bc68b98443d}\label{class_c_a_n_talon_a2fcdeff79b199573b81b9bc68b98443d}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Is\+Sensor\+Present@{Is\+Sensor\+Present}}
+\index{Is\+Sensor\+Present@{Is\+Sensor\+Present}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Is\+Sensor\+Present()}{IsSensorPresent()}}
+{\footnotesize\ttfamily \hyperlink{class_c_a_n_talon_a9df2b5d336c09be76604dcb39da32172}{C\+A\+N\+Talon\+::\+Feedback\+Device\+Status} C\+A\+N\+Talon\+::\+Is\+Sensor\+Present (\begin{DoxyParamCaption}\item[{\hyperlink{class_c_a_n_talon_a4a8af675a7712f305d17be2b825005e3}{Feedback\+Device}}]{feedback\+Device }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em which} & feedback sensor to check it if is connected. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+status of caller\textquotesingle{}s specified sensor type. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_a_n_talon_ab612b5009dc905b6a5df4968cbbcfbb9}\label{class_c_a_n_talon_ab612b5009dc905b6a5df4968cbbcfbb9}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Is\+Zero\+Sensor\+Position\+On\+Forward\+Limit\+Enabled@{Is\+Zero\+Sensor\+Position\+On\+Forward\+Limit\+Enabled}}
+\index{Is\+Zero\+Sensor\+Position\+On\+Forward\+Limit\+Enabled@{Is\+Zero\+Sensor\+Position\+On\+Forward\+Limit\+Enabled}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Is\+Zero\+Sensor\+Position\+On\+Forward\+Limit\+Enabled()}{IsZeroSensorPositionOnForwardLimitEnabled()}}
+{\footnotesize\ttfamily int C\+A\+N\+Talon\+::\+Is\+Zero\+Sensor\+Position\+On\+Forward\+Limit\+Enabled (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+\textquotesingle{}1\textquotesingle{} if Clear\+Pos\+On\+LimF is enabled. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_a_n_talon_a6408b0db20903b98d7e27082fc5df59e}\label{class_c_a_n_talon_a6408b0db20903b98d7e27082fc5df59e}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Is\+Zero\+Sensor\+Position\+On\+Index\+Enabled@{Is\+Zero\+Sensor\+Position\+On\+Index\+Enabled}}
+\index{Is\+Zero\+Sensor\+Position\+On\+Index\+Enabled@{Is\+Zero\+Sensor\+Position\+On\+Index\+Enabled}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Is\+Zero\+Sensor\+Position\+On\+Index\+Enabled()}{IsZeroSensorPositionOnIndexEnabled()}}
+{\footnotesize\ttfamily int C\+A\+N\+Talon\+::\+Is\+Zero\+Sensor\+Position\+On\+Index\+Enabled (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+\textquotesingle{}1\textquotesingle{} if Clear\+Pos\+On\+Lim\+Idx is enabled. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_a_n_talon_ab6d2a2143d143984be5ad72e6bf49e00}\label{class_c_a_n_talon_ab6d2a2143d143984be5ad72e6bf49e00}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Is\+Zero\+Sensor\+Position\+On\+Reverse\+Limit\+Enabled@{Is\+Zero\+Sensor\+Position\+On\+Reverse\+Limit\+Enabled}}
+\index{Is\+Zero\+Sensor\+Position\+On\+Reverse\+Limit\+Enabled@{Is\+Zero\+Sensor\+Position\+On\+Reverse\+Limit\+Enabled}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Is\+Zero\+Sensor\+Position\+On\+Reverse\+Limit\+Enabled()}{IsZeroSensorPositionOnReverseLimitEnabled()}}
+{\footnotesize\ttfamily int C\+A\+N\+Talon\+::\+Is\+Zero\+Sensor\+Position\+On\+Reverse\+Limit\+Enabled (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+\textquotesingle{}1\textquotesingle{} if Clear\+Pos\+On\+LimR is enabled. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_a_n_talon_affb8fef48a657c5a4d60ef5b76664091}\label{class_c_a_n_talon_affb8fef48a657c5a4d60ef5b76664091}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!P\+I\+D\+Get@{P\+I\+D\+Get}}
+\index{P\+I\+D\+Get@{P\+I\+D\+Get}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{P\+I\+D\+Get()}{PIDGet()}}
+{\footnotesize\ttfamily double C\+A\+N\+Talon\+::\+P\+I\+D\+Get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+Retrieve the current sensor value. Equivalent to \hyperlink{class_c_a_n_talon_a6819f1eae4eefb39c441a3b8e973613d}{Get()}.
+
+\begin{DoxyReturn}{Returns}
+The current sensor value of the Talon. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_a_n_talon_a544ae037c202cb4e97c2ef8fd68b005b}\label{class_c_a_n_talon_a544ae037c202cb4e97c2ef8fd68b005b}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!P\+I\+D\+Write@{P\+I\+D\+Write}}
+\index{P\+I\+D\+Write@{P\+I\+D\+Write}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{P\+I\+D\+Write()}{PIDWrite()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+P\+I\+D\+Write (\begin{DoxyParamCaption}\item[{double}]{output }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+Write out the P\+ID value as seen in the P\+I\+D\+Output base object.
+
+\begin{DoxyRefDesc}{Deprecated}
+\item[\hyperlink{deprecated__deprecated000001}{Deprecated}]Call Set instead.\end{DoxyRefDesc}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em output} & Write out the Percent\+Vbus value as was computed by the P\+I\+D\+Controller \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_c_a_n_talon_acae568b6fd2f765dfd0c40d2533a3274}\label{class_c_a_n_talon_acae568b6fd2f765dfd0c40d2533a3274}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Process\+Motion\+Profile\+Buffer@{Process\+Motion\+Profile\+Buffer}}
+\index{Process\+Motion\+Profile\+Buffer@{Process\+Motion\+Profile\+Buffer}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Process\+Motion\+Profile\+Buffer()}{ProcessMotionProfileBuffer()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Process\+Motion\+Profile\+Buffer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This must be called periodically to funnel the trajectory points from the A\+PI\textquotesingle{}s top level buffer to the Talon\textquotesingle{}s bottom level buffer. Recommendation is to call this twice as fast as the executation rate of the motion profile. So if MP is running with 20ms trajectory points, try calling this routine every 10ms. All motion profile functions are thread-\/safe through the use of a mutex, so there is no harm in having the caller utilize threading. \mbox{\Hypertarget{class_c_a_n_talon_ad1a6d30f15c781574dd9e621938003c1}\label{class_c_a_n_talon_ad1a6d30f15c781574dd9e621938003c1}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Push\+Motion\+Profile\+Trajectory@{Push\+Motion\+Profile\+Trajectory}}
+\index{Push\+Motion\+Profile\+Trajectory@{Push\+Motion\+Profile\+Trajectory}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Push\+Motion\+Profile\+Trajectory()}{PushMotionProfileTrajectory()}}
+{\footnotesize\ttfamily bool C\+A\+N\+Talon\+::\+Push\+Motion\+Profile\+Trajectory (\begin{DoxyParamCaption}\item[{const \hyperlink{struct_c_a_n_talon_1_1_trajectory_point}{Trajectory\+Point} \&}]{traj\+Pt }\end{DoxyParamCaption})}
+
+Push another trajectory point into the top level buffer (which is emptied into the Talon\textquotesingle{}s bottom buffer as room allows).
+
+
+\begin{DoxyParams}{Parameters}
+{\em traj\+Pt} & the trajectory point to insert into buffer. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if trajectory point push ok. C\+T\+R\+\_\+\+Buffer\+Full if buffer is full due to k\+Motion\+Profile\+Top\+Buffer\+Capacity. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_a_n_talon_acb83bdcca65d305472d1f7c23ae6d2ee}\label{class_c_a_n_talon_acb83bdcca65d305472d1f7c23ae6d2ee}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Reset@{Reset}}
+\index{Reset@{Reset}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Reset()}{Reset()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+Resets the integral term and disables the controller. \mbox{\Hypertarget{class_c_a_n_talon_a0f478462884ed5e541179821c44b724f}\label{class_c_a_n_talon_a0f478462884ed5e541179821c44b724f}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Select\+Profile\+Slot@{Select\+Profile\+Slot}}
+\index{Select\+Profile\+Slot@{Select\+Profile\+Slot}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Select\+Profile\+Slot()}{SelectProfileSlot()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Select\+Profile\+Slot (\begin{DoxyParamCaption}\item[{int}]{slot\+Idx }\end{DoxyParamCaption})}
+
+S\+RX has two available slots for P\+ID. 
+\begin{DoxyParams}{Parameters}
+{\em slot\+Idx} & one or zero depending on which slot caller wants. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_c_a_n_talon_a4562f7fb454693a0b19e6eba955a0c71}\label{class_c_a_n_talon_a4562f7fb454693a0b19e6eba955a0c71}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Set@{Set}}
+\index{Set@{Set}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Set()}{Set()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Set (\begin{DoxyParamCaption}\item[{double}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+Sets the appropriate output on the talon, depending on the mode.
+
+In Percent\+Vbus, the output is between -\/1.\+0 and 1.\+0, with 0.\+0 as stopped. In Voltage mode, output value is in volts. In Current mode, output value is in amperes. In Speed mode, output value is in position change / 10ms. In Position mode, output value is in encoder ticks or an analog value, depending on the sensor. In Follower mode, the output value is the integer device ID of the talon to duplicate.
+
+
+\begin{DoxyParams}{Parameters}
+{\em output\+Value} & The setpoint value, as described above. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_c_a_n_talon_a0f478462884ed5e541179821c44b724f}{Select\+Profile\+Slot} to choose between the two sets of gains. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_c_a_n_talon_ab497835f7003788c3a25b2f8b9e4db55}\label{class_c_a_n_talon_ab497835f7003788c3a25b2f8b9e4db55}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Set\+Allowable\+Closed\+Loop\+Err@{Set\+Allowable\+Closed\+Loop\+Err}}
+\index{Set\+Allowable\+Closed\+Loop\+Err@{Set\+Allowable\+Closed\+Loop\+Err}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Set\+Allowable\+Closed\+Loop\+Err()}{SetAllowableClosedLoopErr()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Set\+Allowable\+Closed\+Loop\+Err (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{allowable\+Close\+Loop\+Error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Set the allowable closed loop error.
+
+
+\begin{DoxyParams}{Parameters}
+{\em allowable\+Close\+Loop\+Error} & allowable closed loop error for selected profile.\\
+\hline
+\end{DoxyParams}
+Units\+: mA for Curent closed loop. Talon Native Units for position and velocity. \mbox{\Hypertarget{class_c_a_n_talon_a2893e5777fc2904d9aeab91c283d19df}\label{class_c_a_n_talon_a2893e5777fc2904d9aeab91c283d19df}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Set\+Analog\+Position@{Set\+Analog\+Position}}
+\index{Set\+Analog\+Position@{Set\+Analog\+Position}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Set\+Analog\+Position()}{SetAnalogPosition()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Set\+Analog\+Position (\begin{DoxyParamCaption}\item[{int}]{new\+Position }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{class_c_a_n_talon_a17842e8f2d2fbcf8cc14558ebc83c48b}\label{class_c_a_n_talon_a17842e8f2d2fbcf8cc14558ebc83c48b}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Set\+Closed\+Loop\+Output\+Direction@{Set\+Closed\+Loop\+Output\+Direction}}
+\index{Set\+Closed\+Loop\+Output\+Direction@{Set\+Closed\+Loop\+Output\+Direction}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Set\+Closed\+Loop\+Output\+Direction()}{SetClosedLoopOutputDirection()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Set\+Closed\+Loop\+Output\+Direction (\begin{DoxyParamCaption}\item[{bool}]{reverse\+Output }\end{DoxyParamCaption})}
+
+Flips the sign (multiplies by negative one) the throttle values going into the motor on the talon in closed loop modes. Typically the application should use Set\+Sensor\+Direction to keep sensor and motor in phase. \begin{DoxySeeAlso}{See also}
+\hyperlink{class_c_a_n_talon_a11381d58bbcd47c3fb2235fd76161ff2}{Set\+Sensor\+Direction} However this routine is helpful for reversing the motor direction when Talon is in slave mode, or when using a single-\/direction position sensor in a closed-\/loop mode.
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em reverse\+Output} & True if motor output should be flipped; False if not. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_c_a_n_talon_a1390fed0cb26b604fe3b97e732a6630d}\label{class_c_a_n_talon_a1390fed0cb26b604fe3b97e732a6630d}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Set\+Close\+Loop\+Ramp\+Rate@{Set\+Close\+Loop\+Ramp\+Rate}}
+\index{Set\+Close\+Loop\+Ramp\+Rate@{Set\+Close\+Loop\+Ramp\+Rate}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Set\+Close\+Loop\+Ramp\+Rate()}{SetCloseLoopRampRate()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Set\+Close\+Loop\+Ramp\+Rate (\begin{DoxyParamCaption}\item[{double}]{ramp\+Rate }\end{DoxyParamCaption})}
+
+Sets a voltage change rate that applies only when a close loop control mode is enabled. This allows close loop specific ramp behavior.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ramp\+Rate} & The maximum rate of voltage change in Percent Voltage mode in V/s. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_c_a_n_talon_a2b962ea4bd8e67c0d25886d8d81000b5}\label{class_c_a_n_talon_a2b962ea4bd8e67c0d25886d8d81000b5}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Set\+Control\+Mode@{Set\+Control\+Mode}}
+\index{Set\+Control\+Mode@{Set\+Control\+Mode}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Set\+Control\+Mode()}{SetControlMode()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Set\+Control\+Mode (\begin{DoxyParamCaption}\item[{Control\+Mode}]{mode }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+T\+O\+DO documentation (see C\+A\+N\+Jaguar.\+cpp) \mbox{\Hypertarget{class_c_a_n_talon_abcaf3c6b5250af12b2ca411cc86e2ccc}\label{class_c_a_n_talon_abcaf3c6b5250af12b2ca411cc86e2ccc}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Set\+Current\+Limit@{Set\+Current\+Limit}}
+\index{Set\+Current\+Limit@{Set\+Current\+Limit}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Set\+Current\+Limit()}{SetCurrentLimit()}}
+{\footnotesize\ttfamily int C\+A\+N\+Talon\+::\+Set\+Current\+Limit (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{amps }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_c_a_n_talon_ab038dcd862b9a130ce6b0c12748e82c5}\label{class_c_a_n_talon_ab038dcd862b9a130ce6b0c12748e82c5}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Set\+Custom\+Param0@{Set\+Custom\+Param0}}
+\index{Set\+Custom\+Param0@{Set\+Custom\+Param0}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Set\+Custom\+Param0()}{SetCustomParam0()}}
+{\footnotesize\ttfamily int C\+A\+N\+Talon\+::\+Set\+Custom\+Param0 (\begin{DoxyParamCaption}\item[{int32\+\_\+t}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_c_a_n_talon_af311f483988bfb13d4b5675d13a5c44a}\label{class_c_a_n_talon_af311f483988bfb13d4b5675d13a5c44a}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Set\+Custom\+Param1@{Set\+Custom\+Param1}}
+\index{Set\+Custom\+Param1@{Set\+Custom\+Param1}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Set\+Custom\+Param1()}{SetCustomParam1()}}
+{\footnotesize\ttfamily int C\+A\+N\+Talon\+::\+Set\+Custom\+Param1 (\begin{DoxyParamCaption}\item[{int32\+\_\+t}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_c_a_n_talon_ad1d9dc5cb06e4efbf57ed10d91f2ee80}\label{class_c_a_n_talon_ad1d9dc5cb06e4efbf57ed10d91f2ee80}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!SetD@{SetD}}
+\index{SetD@{SetD}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Set\+D()}{SetD()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+SetD (\begin{DoxyParamCaption}\item[{double}]{d }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+Set the derivative constant of the currently selected profile.
+
+
+\begin{DoxyParams}{Parameters}
+{\em d} & Derivative constant for the currently selected P\+ID profile. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_c_a_n_talon_a0f478462884ed5e541179821c44b724f}{Select\+Profile\+Slot} to choose between the two sets of gains. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_c_a_n_talon_a00b16233647cf4ae540d14236d8ee01d}\label{class_c_a_n_talon_a00b16233647cf4ae540d14236d8ee01d}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Set\+Enc\+Position@{Set\+Enc\+Position}}
+\index{Set\+Enc\+Position@{Set\+Enc\+Position}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Set\+Enc\+Position()}{SetEncPosition()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Set\+Enc\+Position (\begin{DoxyParamCaption}\item[{int}]{new\+Position }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{class_c_a_n_talon_ae1f3bf6c3bfa5ebc2ef95367d995bd0d}\label{class_c_a_n_talon_ae1f3bf6c3bfa5ebc2ef95367d995bd0d}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Set\+Expiration@{Set\+Expiration}}
+\index{Set\+Expiration@{Set\+Expiration}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Set\+Expiration()}{SetExpiration()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Set\+Expiration (\begin{DoxyParamCaption}\item[{double}]{timeout }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+\mbox{\Hypertarget{class_c_a_n_talon_ac147cdb9096848beac85a25d04489d60}\label{class_c_a_n_talon_ac147cdb9096848beac85a25d04489d60}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!SetF@{SetF}}
+\index{SetF@{SetF}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Set\+F()}{SetF()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+SetF (\begin{DoxyParamCaption}\item[{double}]{f }\end{DoxyParamCaption})}
+
+Set the feedforward value of the currently selected profile.
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & Feedforward constant for the currently selected P\+ID profile. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_c_a_n_talon_a0f478462884ed5e541179821c44b724f}{Select\+Profile\+Slot} to choose between the two sets of gains. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_c_a_n_talon_a11950b306536c639e2a33b61f5916178}\label{class_c_a_n_talon_a11950b306536c639e2a33b61f5916178}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Set\+Feedback\+Device@{Set\+Feedback\+Device}}
+\index{Set\+Feedback\+Device@{Set\+Feedback\+Device}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Set\+Feedback\+Device()}{SetFeedbackDevice()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Set\+Feedback\+Device (\begin{DoxyParamCaption}\item[{\hyperlink{class_c_a_n_talon_a4a8af675a7712f305d17be2b825005e3}{Feedback\+Device}}]{feedback\+Device }\end{DoxyParamCaption})}
+
+Select the feedback device to use in closed-\/loop \mbox{\Hypertarget{class_c_a_n_talon_ac72349fb7837dff1a27c5288416eb1ac}\label{class_c_a_n_talon_ac72349fb7837dff1a27c5288416eb1ac}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!SetI@{SetI}}
+\index{SetI@{SetI}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Set\+I()}{SetI()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+SetI (\begin{DoxyParamCaption}\item[{double}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+Set the integration constant of the currently selected profile.
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Integration constant for the currently selected P\+ID profile. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_c_a_n_talon_a0f478462884ed5e541179821c44b724f}{Select\+Profile\+Slot} to choose between the two sets of gains. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_c_a_n_talon_ab153d39a2a439189af4667ce0364e846}\label{class_c_a_n_talon_ab153d39a2a439189af4667ce0364e846}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Set\+Inverted@{Set\+Inverted}}
+\index{Set\+Inverted@{Set\+Inverted}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Set\+Inverted()}{SetInverted()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Set\+Inverted (\begin{DoxyParamCaption}\item[{bool}]{is\+Inverted }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+Common interface for inverting direction of a speed controller.
+
+Only works in Percent\+Vbus, speed, and Voltage modes.
+
+
+\begin{DoxyParams}{Parameters}
+{\em is\+Inverted} & The state of inversion, true is inverted. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_c_a_n_talon_a232b637087900eac7272450015c2be04}\label{class_c_a_n_talon_a232b637087900eac7272450015c2be04}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Set\+Izone@{Set\+Izone}}
+\index{Set\+Izone@{Set\+Izone}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Set\+Izone()}{SetIzone()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Set\+Izone (\begin{DoxyParamCaption}\item[{unsigned}]{iz }\end{DoxyParamCaption})}
+
+Set the Izone to a nonzero value to auto clear the integral accumulator when the absolute value of Close\+Loop\+Error exceeds Izone.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_c_a_n_talon_a0f478462884ed5e541179821c44b724f}{Select\+Profile\+Slot} to choose between the two sets of gains. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_c_a_n_talon_afefd0924fb061af16b59219ee9f71b21}\label{class_c_a_n_talon_afefd0924fb061af16b59219ee9f71b21}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Set\+Motion\+Magic\+Acceleration@{Set\+Motion\+Magic\+Acceleration}}
+\index{Set\+Motion\+Magic\+Acceleration@{Set\+Motion\+Magic\+Acceleration}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Set\+Motion\+Magic\+Acceleration()}{SetMotionMagicAcceleration()}}
+{\footnotesize\ttfamily int C\+A\+N\+Talon\+::\+Set\+Motion\+Magic\+Acceleration (\begin{DoxyParamCaption}\item[{double}]{mot\+Magic\+Accel }\end{DoxyParamCaption})}
+
+Set the Acceleration used in Motion Magic Control Mode. 
+\begin{DoxyParams}{Parameters}
+{\em mot\+Magic\+Accel} & Accerleration in R\+PM per second. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_c_a_n_talon_aa7cb01a5984ae5e93384792f46be21f8}\label{class_c_a_n_talon_aa7cb01a5984ae5e93384792f46be21f8}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Set\+Motion\+Magic\+Cruise\+Velocity@{Set\+Motion\+Magic\+Cruise\+Velocity}}
+\index{Set\+Motion\+Magic\+Cruise\+Velocity@{Set\+Motion\+Magic\+Cruise\+Velocity}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Set\+Motion\+Magic\+Cruise\+Velocity()}{SetMotionMagicCruiseVelocity()}}
+{\footnotesize\ttfamily int C\+A\+N\+Talon\+::\+Set\+Motion\+Magic\+Cruise\+Velocity (\begin{DoxyParamCaption}\item[{double}]{mot\+Magic\+Cruise\+Veloc }\end{DoxyParamCaption})}
+
+Set the Cruise Velocity used in Motion Magic Control Mode. 
+\begin{DoxyParams}{Parameters}
+{\em motmagic\+Cruise\+Veloc} & Cruise(peak) velocity in R\+PM. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_c_a_n_talon_a3d886b434c2e8c99415bd798f9ec1dc4}\label{class_c_a_n_talon_a3d886b434c2e8c99415bd798f9ec1dc4}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Set\+Number\+Of\+Quad\+Idx\+Rises@{Set\+Number\+Of\+Quad\+Idx\+Rises}}
+\index{Set\+Number\+Of\+Quad\+Idx\+Rises@{Set\+Number\+Of\+Quad\+Idx\+Rises}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Set\+Number\+Of\+Quad\+Idx\+Rises()}{SetNumberOfQuadIdxRises()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Set\+Number\+Of\+Quad\+Idx\+Rises (\begin{DoxyParamCaption}\item[{int}]{rises }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_c_a_n_talon_a6a8c44252d104634d6a0c580088cbf98}\label{class_c_a_n_talon_a6a8c44252d104634d6a0c580088cbf98}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!SetP@{SetP}}
+\index{SetP@{SetP}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Set\+P()}{SetP()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+SetP (\begin{DoxyParamCaption}\item[{double}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & Proportional constant to use in P\+ID loop. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_c_a_n_talon_a0f478462884ed5e541179821c44b724f}{Select\+Profile\+Slot} to choose between the two sets of gains. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_c_a_n_talon_ae6454fc74fcdf5b8afa8da07d08f0290}\label{class_c_a_n_talon_ae6454fc74fcdf5b8afa8da07d08f0290}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Set\+P\+ID@{Set\+P\+ID}}
+\index{Set\+P\+ID@{Set\+P\+ID}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Set\+P\+I\+D()}{SetPID()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Set\+P\+ID (\begin{DoxyParamCaption}\item[{double}]{p,  }\item[{double}]{i,  }\item[{double}]{d }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+Sets control values for closed loop control.
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & Proportional constant. \\
+\hline
+{\em i} & Integration constant. \\
+\hline
+{\em d} & Differential constant.\\
+\hline
+\end{DoxyParams}
+This function does not modify F-\/gain. Considerable passing a zero for f using the four-\/parameter function. \mbox{\Hypertarget{class_c_a_n_talon_a416e51c661eb35c05b594fa19793eb09}\label{class_c_a_n_talon_a416e51c661eb35c05b594fa19793eb09}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Set\+P\+ID@{Set\+P\+ID}}
+\index{Set\+P\+ID@{Set\+P\+ID}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Set\+P\+I\+D()}{SetPID()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Set\+P\+ID (\begin{DoxyParamCaption}\item[{double}]{p,  }\item[{double}]{i,  }\item[{double}]{d,  }\item[{double}]{f }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Sets control values for closed loop control.
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & Proportional constant. \\
+\hline
+{\em i} & Integration constant. \\
+\hline
+{\em d} & Differential constant. \\
+\hline
+{\em f} & Feedforward constant. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_c_a_n_talon_a9e30edc8e7240e17abce7125a2a6c72c}\label{class_c_a_n_talon_a9e30edc8e7240e17abce7125a2a6c72c}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Set\+Position@{Set\+Position}}
+\index{Set\+Position@{Set\+Position}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Set\+Position()}{SetPosition()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Set\+Position (\begin{DoxyParamCaption}\item[{double}]{pos }\end{DoxyParamCaption})}
+
+Set the position value of the selected sensor. This is useful for zero-\/ing quadrature encoders.
+
+Continuous sensors (like analog encoderes) can also partially be set (the portion of the postion based on overflows). \mbox{\Hypertarget{class_c_a_n_talon_afab6a73cc6c8c22ac503b247f9cea0f2}\label{class_c_a_n_talon_afab6a73cc6c8c22ac503b247f9cea0f2}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Set\+Pulse\+Width\+Position@{Set\+Pulse\+Width\+Position}}
+\index{Set\+Pulse\+Width\+Position@{Set\+Pulse\+Width\+Position}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Set\+Pulse\+Width\+Position()}{SetPulseWidthPosition()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Set\+Pulse\+Width\+Position (\begin{DoxyParamCaption}\item[{int}]{newpos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{class_c_a_n_talon_a1259a78f4e90554be7227a77030aad12}\label{class_c_a_n_talon_a1259a78f4e90554be7227a77030aad12}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Set\+Safety\+Enabled@{Set\+Safety\+Enabled}}
+\index{Set\+Safety\+Enabled@{Set\+Safety\+Enabled}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Set\+Safety\+Enabled()}{SetSafetyEnabled()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Set\+Safety\+Enabled (\begin{DoxyParamCaption}\item[{bool}]{enabled }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+\mbox{\Hypertarget{class_c_a_n_talon_a11381d58bbcd47c3fb2235fd76161ff2}\label{class_c_a_n_talon_a11381d58bbcd47c3fb2235fd76161ff2}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Set\+Sensor\+Direction@{Set\+Sensor\+Direction}}
+\index{Set\+Sensor\+Direction@{Set\+Sensor\+Direction}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Set\+Sensor\+Direction()}{SetSensorDirection()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Set\+Sensor\+Direction (\begin{DoxyParamCaption}\item[{bool}]{reverse\+Sensor }\end{DoxyParamCaption})}
+
+If sensor and motor are out of phase, sensor can be inverted (position and velocity multiplied by -\/1). \begin{DoxySeeAlso}{See also}
+\hyperlink{class_c_a_n_talon_aedc47efb529bd41b55849e628363e661}{Get\+Position} and 
+
+\hyperlink{class_c_a_n_talon_a36e486b58bc5ce1b218d36468900bb1b}{Get\+Speed}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_c_a_n_talon_abad2c78d5a46552d7e0eac171214083d}\label{class_c_a_n_talon_abad2c78d5a46552d7e0eac171214083d}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Set\+Setpoint@{Set\+Setpoint}}
+\index{Set\+Setpoint@{Set\+Setpoint}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Set\+Setpoint()}{SetSetpoint()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Set\+Setpoint (\begin{DoxyParamCaption}\item[{double}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+Sets the setpoint to value. Equivalent to \hyperlink{class_c_a_n_talon_a4562f7fb454693a0b19e6eba955a0c71}{Set()}. \mbox{\Hypertarget{class_c_a_n_talon_a7c0071642dbc8c690f7a4d5520f7a8a2}\label{class_c_a_n_talon_a7c0071642dbc8c690f7a4d5520f7a8a2}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Set\+Status\+Frame\+Rate\+Ms@{Set\+Status\+Frame\+Rate\+Ms}}
+\index{Set\+Status\+Frame\+Rate\+Ms@{Set\+Status\+Frame\+Rate\+Ms}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Set\+Status\+Frame\+Rate\+Ms()}{SetStatusFrameRateMs()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Set\+Status\+Frame\+Rate\+Ms (\begin{DoxyParamCaption}\item[{\hyperlink{class_c_a_n_talon_acac4ef6508d842a8fe4301284149720e}{Status\+Frame\+Rate}}]{state\+Frame,  }\item[{int}]{period\+Ms }\end{DoxyParamCaption})}
+
+Select the feedback device to use in closed-\/loop \mbox{\Hypertarget{class_c_a_n_talon_a08d03dbd23a98e7af25fee772f680f43}\label{class_c_a_n_talon_a08d03dbd23a98e7af25fee772f680f43}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Set\+Talon\+Control\+Mode@{Set\+Talon\+Control\+Mode}}
+\index{Set\+Talon\+Control\+Mode@{Set\+Talon\+Control\+Mode}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Set\+Talon\+Control\+Mode()}{SetTalonControlMode()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Set\+Talon\+Control\+Mode (\begin{DoxyParamCaption}\item[{\hyperlink{class_c_a_n_talon_a0e4915b95f71a7091e3a1323f3ec9e1f}{Talon\+Control\+Mode}}]{talon\+Control\+Mode }\end{DoxyParamCaption})}
+
+
+
+Provides caller a means of specifying the Talon Control mode. Because C\+AN Talon has been pulled out of wpilib, caller may need to specify Talon specific control modes not easily represented by C\+A\+N\+Speed\+Motor\+Controller\+::\+Control\+Mode. This routine is essentially the same as Set\+Control\+Mode, but uses Talon\textquotesingle{}s native control mode definitons. 
+
+\mbox{\Hypertarget{class_c_a_n_talon_a3608afbdaa6a0c4e9c63c70bbcae38ed}\label{class_c_a_n_talon_a3608afbdaa6a0c4e9c63c70bbcae38ed}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Set\+Voltage\+Compensation\+Ramp\+Rate@{Set\+Voltage\+Compensation\+Ramp\+Rate}}
+\index{Set\+Voltage\+Compensation\+Ramp\+Rate@{Set\+Voltage\+Compensation\+Ramp\+Rate}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Set\+Voltage\+Compensation\+Ramp\+Rate()}{SetVoltageCompensationRampRate()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Set\+Voltage\+Compensation\+Ramp\+Rate (\begin{DoxyParamCaption}\item[{double}]{ramp\+Rate }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{class_c_a_n_talon_abb4db45c90b0fe66c595c73880d4f67d}\label{class_c_a_n_talon_abb4db45c90b0fe66c595c73880d4f67d}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Set\+Voltage\+Ramp\+Rate@{Set\+Voltage\+Ramp\+Rate}}
+\index{Set\+Voltage\+Ramp\+Rate@{Set\+Voltage\+Ramp\+Rate}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Set\+Voltage\+Ramp\+Rate()}{SetVoltageRampRate()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Set\+Voltage\+Ramp\+Rate (\begin{DoxyParamCaption}\item[{double}]{ramp\+Rate }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+Set the maximum voltage change rate. This ramp rate is in affect regardless of which control mode the T\+A\+L\+ON is in.
+
+When in Percent\+Vbus or Voltage output mode, the rate at which the voltage changes can be limited to reduce current spikes. Set this to 0.\+0 to disable rate limiting.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ramp\+Rate} & The maximum rate of voltage change in Percent Voltage mode in V/s. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_c_a_n_talon_afa5e6f90b8a5cbd570c4db4f67a84cb4}\label{class_c_a_n_talon_afa5e6f90b8a5cbd570c4db4f67a84cb4}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Start\+Live\+Window\+Mode@{Start\+Live\+Window\+Mode}}
+\index{Start\+Live\+Window\+Mode@{Start\+Live\+Window\+Mode}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Start\+Live\+Window\+Mode()}{StartLiveWindowMode()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Start\+Live\+Window\+Mode (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+\mbox{\Hypertarget{class_c_a_n_talon_ad21cbacaf3293535193c7c17a6fefac5}\label{class_c_a_n_talon_ad21cbacaf3293535193c7c17a6fefac5}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Stop\+Live\+Window\+Mode@{Stop\+Live\+Window\+Mode}}
+\index{Stop\+Live\+Window\+Mode@{Stop\+Live\+Window\+Mode}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Stop\+Live\+Window\+Mode()}{StopLiveWindowMode()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Stop\+Live\+Window\+Mode (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+\mbox{\Hypertarget{class_c_a_n_talon_ac4dab826cbcb67e04ba7c734dfb088bb}\label{class_c_a_n_talon_ac4dab826cbcb67e04ba7c734dfb088bb}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Stop\+Motor@{Stop\+Motor}}
+\index{Stop\+Motor@{Stop\+Motor}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Stop\+Motor()}{StopMotor()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Stop\+Motor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+Common interface for stopping the motor until the next \hyperlink{class_c_a_n_talon_a4562f7fb454693a0b19e6eba955a0c71}{Set()} call.
+
+Part of the Motor\+Safety interface.
+
+\begin{DoxyRefDesc}{Deprecated}
+\item[\hyperlink{deprecated__deprecated000003}{Deprecated}]Call Disable instead. \end{DoxyRefDesc}
+\mbox{\Hypertarget{class_c_a_n_talon_adfe03538ebb9ec97392ae306af5c22e6}\label{class_c_a_n_talon_adfe03538ebb9ec97392ae306af5c22e6}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Update\+Table@{Update\+Table}}
+\index{Update\+Table@{Update\+Table}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Update\+Table()}{UpdateTable()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Update\+Table (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+\mbox{\Hypertarget{class_c_a_n_talon_a818d5dc06bb866af9f52ccbed9d040ae}\label{class_c_a_n_talon_a818d5dc06bb866af9f52ccbed9d040ae}} 
+\index{C\+A\+N\+Talon@{C\+A\+N\+Talon}!Value\+Changed@{Value\+Changed}}
+\index{Value\+Changed@{Value\+Changed}!C\+A\+N\+Talon@{C\+A\+N\+Talon}}
+\subsubsection{\texorpdfstring{Value\+Changed()}{ValueChanged()}}
+{\footnotesize\ttfamily void C\+A\+N\+Talon\+::\+Value\+Changed (\begin{DoxyParamCaption}\item[{I\+Table $\ast$}]{source,  }\item[{llvm\+::\+String\+Ref}]{key,  }\item[{std\+::shared\+\_\+ptr$<$ nt\+::\+Value $>$}]{value,  }\item[{bool}]{is\+New }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\hyperlink{_c_a_n_talon_8h}{C\+A\+N\+Talon.\+h}\item 
+src/\hyperlink{_c_a_n_talon_8cpp}{C\+A\+N\+Talon.\+cpp}\end{DoxyCompactItemize}
