@@ -58,6 +58,13 @@ public class Drivetrain extends IterativeRobot {
 		/*chooser.addDefault("Default Auto", defaultAuto);
 		chooser.addObject("My Auto", customAuto);
 		SmartDashboard.putData("Auto choices", chooser);*/
+
+		L1.changeControlMode(CANTalon.TalonControlMode.Speed);
+		L2.changeControlMode(CANTalon.TalonControlMode.Follower);
+		L3.changeControlMode(CANTalon.TalonControlMode.Follower);
+		R1.changeControlMode(CANTalon.TalonControlMode.Speed);
+		R2.changeControlMode(CANTalon.TalonControlMode.Follower);
+		R3.changeControlMode(CANTalon.TalonControlMode.Follower);
 	}
 
 	/**
@@ -102,7 +109,7 @@ public class Drivetrain extends IterativeRobot {
 	public void teleopPeriodic() {
 		myRobot.arcadeDrive(stick);
 		
-		double wheel = stick.getRawAxis(0);
+		/*double wheel = stick.getRawAxis(0);
 		double throttle = stick.getRawAxis(1);
 		
 		double wheelNonLinearity = 0.5;
@@ -119,7 +126,25 @@ public class Drivetrain extends IterativeRobot {
 		L3.set(throttle + wheel);
 		R1.set(throttle - wheel);
 		R2.set(throttle - wheel);
-		R3.set(throttle - wheel);
+		R3.set(throttle - wheel);*/
+		
+		// Adjusting joystick sensitivity
+		double xValue = Math.pow(stick.getRawAxis(0), 3);
+		double yValue = Math.pow(stick.getRawAxis(1), 3);
+		
+		// Deadband
+		if (Math.abs(xValue) < 0.1 && Math.abs(yValue) < 0.1) {
+			xValue = 0;
+			yValue = 0;
+		}
+		
+		// Setting talons
+		L1.set(yValue + xValue);
+		L2.set(yValue + xValue);
+		L3.set(yValue + xValue);
+		R1.set(yValue - xValue);
+		R2.set(yValue - xValue);
+		R3.set(yValue - xValue);
 		
 		/* Joystick values to gyro values
 		double angleGyro = gyro.getAngle()%360;
@@ -131,9 +156,9 @@ public class Drivetrain extends IterativeRobot {
 		Timer.delay(0.005);
 	}
 
-	private double handleDeadband(double val, double deadband) {
+	/*private double handleDeadband(double val, double deadband) {
 		return (Math.abs(val) > Math.abs(deadband)) ? val : 0.0;		// boolean statement ? true result : false result
-	}
+	}*/
 
 	/**
 	 * This function is called periodically during test mode
