@@ -4,6 +4,7 @@ package org.usfirst.frc.team930.robot;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 
@@ -14,5 +15,6 @@ public class Robot extends IterativeRobot {
 	
 	public void teleopPeriodic() {
 		climb1.set(stick.getRawAxis(5));
-	}
+		SmartDashboard.putNumber("Rope Climb Motor Power %", climb1.get()*100);
+		}
 }
