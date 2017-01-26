@@ -12,24 +12,24 @@ public class OuputManager {
 	
 	// Declaring robot motors
 	// 6 Drivetrain motor declarations
-	private CANTalon frontLeftMotor; 	
-	private CANTalon rearLeftMotor;
-	private CANTalon frontRightMotor;
-	private CANTalon rearRightMotor; 
-	private CANTalon leftSlave;
-	private CANTalon rightSlave;
+	public static CANTalon frontLeftMotor; 	
+	public static CANTalon rearLeftMotor;
+	public static CANTalon frontRightMotor;
+	public static CANTalon rearRightMotor; 
+	public static CANTalon leftSlave;
+	public static CANTalon rightSlave;
 	
 	// 1 Shooter Talon declaration
-	private CANTalon shooterMotor;
+	public static CANTalon shooterMotor;
 	
 	// 1 Intake  Spark Motor controller declaration
-	private Spark intakeSpark;
+	public static Spark intakeSpark;
 	
 	// 1 Climber  Spark Motor controller declaration
-	private Spark climberSpark;
+	public static Spark climberSpark;
 	
 	// Feeder 1 Spark, either combine with shooter or make own subsystem
-	private Spark feederSpark;
+	public static Spark feederSpark;
 	
 	public void init(){
 		
@@ -45,6 +45,7 @@ public class OuputManager {
 		
 		shooterMotor = new CANTalon (7);
 		
+		// Spark Range is 2.003 ms Full Forward - .999 ms Full Reverse
 		intakeSpark = new Spark (8);
 		
 		climberSpark = new Spark (9);
@@ -54,7 +55,7 @@ public class OuputManager {
 	}
 	
 	// Sets the speed for the motors on the right side of the robot drivetrain.
-	public void setSpeedR( double speed){
+	public static void setSpeedR(double speed){
 		
 		frontRightMotor.set(speed);
 		rearRightMotor.set(speed);
@@ -63,7 +64,7 @@ public class OuputManager {
 	}
 	
 	// Sets the speed for the motors on the left side of the robot drivetrain.
-	public void setSpeedL( double speed){
+	public static void setSpeedL(double speed){
 		
 		frontLeftMotor.set(speed);
 		rearLeftMotor.set(speed);
@@ -72,7 +73,7 @@ public class OuputManager {
 	}
 	
 	// Sets the Drivetrain motors to Speed Mode.
-	public void setDrivetrainSpeedMode(){
+	public static void setDrivetrainSpeedMode(){
 		
 		frontRightMotor.changeControlMode(CANTalon.TalonControlMode.Speed);
 		rearRightMotor.changeControlMode(CANTalon.TalonControlMode.Follower);
@@ -85,7 +86,7 @@ public class OuputManager {
 	}
 	
 	// Sets the Drivetrain motors to Disabled Mode.
-	public void setDrivetrainDisabledMode(){
+	public static void setDrivetrainDisabledMode(){
 		
 		frontRightMotor.changeControlMode(CANTalon.TalonControlMode.Disabled);
 		rearRightMotor.changeControlMode(CANTalon.TalonControlMode.Disabled);
@@ -98,7 +99,7 @@ public class OuputManager {
 	}
 	
 	// Sets the Drivetrain motors to PercentVbus Mode.
-	public void setDrivetrainPercentVbusMode(){
+	public static void setDrivetrainPercentVbusMode(){
 		
 		frontRightMotor.changeControlMode(CANTalon.TalonControlMode.PercentVbus );
 		rearRightMotor.changeControlMode(CANTalon.TalonControlMode.PercentVbus );
@@ -110,5 +111,40 @@ public class OuputManager {
 		
 	}
 	
+	public static void setShooterSpeed( double speed ){
+		
+		shooterMotor.set(speed);
+		
+	}
+	
+	public static void setShooterSpeedMode(){
+		
+		shooterMotor.changeControlMode(CANTalon.TalonControlMode.Speed);
+		
+	}
+	
+	public static void setShooterDisabledMode(){
+		
+		shooterMotor.changeControlMode(CANTalon.TalonControlMode.Disabled);
+		
+	}
+	
+	public static void setShooterPercentVbusMode(){
+		
+		shooterMotor.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+		
+	}
+
+	public static void setIntakeSpeed( double speed ){
+		
+		intakeSpark.set(speed);
+		
+	}
+	
+	public static void setClimberSpeed( double speed ){
+		
+		climberSpark.set(speed);
+		
+	}
 	
 }
