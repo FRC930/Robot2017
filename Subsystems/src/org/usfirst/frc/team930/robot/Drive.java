@@ -13,33 +13,16 @@ public class Drive implements Runnable {
     boolean useJoysticks;
     
     RobotDrive myRobot = new RobotDrive(0, 1);
-	Joystick stick = new Joystick(1);
 	
-	AHRS gyro = new AHRS(SerialPort.Port.kUSB);
-	
-	CANTalon L1 = new CANTalon(0);
-	CANTalon L2 = new CANTalon(1);
-	CANTalon L3 = new CANTalon(2);
-	CANTalon R1 = new CANTalon(3);
-	CANTalon R2 = new CANTalon(4);
-	CANTalon R3 = new CANTalon(5);
-	
-	// Reverses talons on right side
-	public void Drivetrain() {
-		
-		R1.setInverted(true);
-		R2.setInverted(true);
-		R3.setInverted(true);
-		
-	}
+	//AHRS gyro = new AHRS(SerialPort.Port.kUSB);
     
 	public void run(){
 		
-		myRobot.arcadeDrive(stick);
+		myRobot.arcadeDrive(DSManager.stick);
 		
 		// Adjusting joystick sensitivity
-		double xValue = Math.pow(stick.getRawAxis(0), 3);
-		double yValue = Math.pow(stick.getRawAxis(1), 3);
+		double xValue = Math.pow(DSManager.stick.getRawAxis(0), 3);
+		double yValue = Math.pow(DSManager.stick.getRawAxis(1), 3);
 				
 		// Deadband
 		if (Math.abs(xValue) < 0.1 && Math.abs(yValue) < 0.1) {
@@ -48,12 +31,8 @@ public class Drive implements Runnable {
 		}
 				
 		// Setting talons
-		L1.set(yValue + xValue);
-		L2.set(yValue + xValue);
-		L3.set(yValue + xValue);
-		R1.set(yValue - xValue);
-		R2.set(yValue - xValue);
-		R3.set(yValue - xValue);
+		OuputManager.setSpeedL(yValue + xValue);
+		OuputManager.setSpeedR(yValue - xValue);
 		
 	}
 	
