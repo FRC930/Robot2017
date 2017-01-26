@@ -65,6 +65,11 @@ public class Drivetrain extends IterativeRobot {
 		R1.changeControlMode(CANTalon.TalonControlMode.Speed);
 		R2.changeControlMode(CANTalon.TalonControlMode.Follower);
 		R3.changeControlMode(CANTalon.TalonControlMode.Follower);
+		
+		L2.set(L1.getDeviceID());
+		L3.set(L1.getDeviceID());
+		R2.set(R1.getDeviceID());
+		R3.set(R1.getDeviceID());
 	}
 
 	/**
