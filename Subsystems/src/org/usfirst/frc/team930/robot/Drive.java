@@ -18,6 +18,8 @@ public class Drive implements Runnable {
     
 	public void run(){
 		
+		OuputManager.setDrivetrainPercentVbusMode();
+		
 		myRobot.arcadeDrive(DSManager.stick);
 		
 		// Adjusting joystick sensitivity
