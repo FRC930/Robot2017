@@ -102,12 +102,12 @@ public class OuputManager {
 	public static void setDrivetrainPercentVbusMode(){
 		
 		frontRightMotor.changeControlMode(CANTalon.TalonControlMode.PercentVbus );
-		rearRightMotor.changeControlMode(CANTalon.TalonControlMode.Follower );
-		rightSlave.changeControlMode(CANTalon.TalonControlMode.Follower );
+		rearRightMotor.changeControlMode(CANTalon.TalonControlMode.PercentVbus );
+		rightSlave.changeControlMode(CANTalon.TalonControlMode.PercentVbus );
 		
 		frontLeftMotor.changeControlMode(CANTalon.TalonControlMode.PercentVbus );
-		rearLeftMotor.changeControlMode(CANTalon.TalonControlMode.Follower );
-		leftSlave.changeControlMode(CANTalon.TalonControlMode.Follower );
+		rearLeftMotor.changeControlMode(CANTalon.TalonControlMode.PercentVbus );
+		leftSlave.changeControlMode(CANTalon.TalonControlMode.PercentVbus );
 		
 	}
 	
