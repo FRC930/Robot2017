@@ -1,0 +1,624 @@
+\hypertarget{class_pigeon_imu}{}\section{Pigeon\+Imu Class Reference}
+\label{class_pigeon_imu}\index{Pigeon\+Imu@{Pigeon\+Imu}}
+
+
+{\ttfamily \#include $<$Pigeon\+Imu.\+h$>$}
+
+
+
+Inherits Ctre\+Can\+Map, and Error\+Base.
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_pigeon_imu_1_1_fusion_status}{Fusion\+Status}
+\item 
+struct \hyperlink{struct_pigeon_imu_1_1_general_status}{General\+Status}
+\end{DoxyCompactItemize}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{class_pigeon_imu_a1d73ea84ad5c812e809698fab0b9b490}{Calibration\+Mode} \{ \newline
+\hyperlink{class_pigeon_imu_a1d73ea84ad5c812e809698fab0b9b490ac5ffb1e16d3c2da1382893006c47a221}{Boot\+Tare\+Gyro\+Accel} = 0, 
+\hyperlink{class_pigeon_imu_a1d73ea84ad5c812e809698fab0b9b490ab260acfa510c149de1fe49c57ca2c385}{Temperature} = 1, 
+\hyperlink{class_pigeon_imu_a1d73ea84ad5c812e809698fab0b9b490a932992752b63b5ecdb211a8c3fc7a192}{Magnetometer12\+Pt} = 2, 
+\hyperlink{class_pigeon_imu_a1d73ea84ad5c812e809698fab0b9b490a5aa27d4ad1f20b83bbb4cac41a6ff0e8}{Magnetometer360} = 3, 
+\newline
+\hyperlink{class_pigeon_imu_a1d73ea84ad5c812e809698fab0b9b490aebadc4039d5e375074112f6d794560e0}{Accelerometer} = 5
+ \}
+\item 
+enum \hyperlink{class_pigeon_imu_af08e19459beb068e840719205fa46c39}{Pigeon\+State} \{ \hyperlink{class_pigeon_imu_af08e19459beb068e840719205fa46c39ad32b9d7b5aec41d5fdd51cfc0183e405}{No\+Comm}, 
+\hyperlink{class_pigeon_imu_af08e19459beb068e840719205fa46c39ae5cd0de261606b3ab91bb4a8371a299e}{Initializing}, 
+\hyperlink{class_pigeon_imu_af08e19459beb068e840719205fa46c39a35c07ceb7f4219956413aa7d6cceb8f1}{Ready}, 
+\hyperlink{class_pigeon_imu_af08e19459beb068e840719205fa46c39addee10c2e3805fdac94099e3e8d01482}{User\+Calibration}
+ \}
+\item 
+enum \hyperlink{class_pigeon_imu_a9c6cc7a5797d5fce467e31040e1dbb2a}{Param\+Enum} \{ \newline
+\hyperlink{class_pigeon_imu_a9c6cc7a5797d5fce467e31040e1dbb2aa617ba603e2c524df65537a387b9df996}{Param\+Enum\+\_\+\+Yaw\+Offset} = 160, 
+\hyperlink{class_pigeon_imu_a9c6cc7a5797d5fce467e31040e1dbb2aa6484c987fdc60e1a96da87aab43331c7}{Param\+Enum\+\_\+\+Compass\+Offset} = 161, 
+\hyperlink{class_pigeon_imu_a9c6cc7a5797d5fce467e31040e1dbb2aa91ede93ba38c0248b9a7f1df558e2cbc}{Param\+Enum\+\_\+\+Beta\+Gain} = 162, 
+\hyperlink{class_pigeon_imu_a9c6cc7a5797d5fce467e31040e1dbb2aa15b2d14f45bb5cbb40b25ec36fdd9ef9}{Param\+Enum\+\_\+\+Reserved163} = 163, 
+\newline
+\hyperlink{class_pigeon_imu_a9c6cc7a5797d5fce467e31040e1dbb2aa930775eccc1957452c05dfb79d39da32}{Param\+Enum\+\_\+\+Gyro\+No\+Motion\+Cal} = 164, 
+\hyperlink{class_pigeon_imu_a9c6cc7a5797d5fce467e31040e1dbb2aa64806559f5fd161359f016f6fdb617cf}{Param\+Enum\+\_\+\+Enter\+Calibration} = 165, 
+\hyperlink{class_pigeon_imu_a9c6cc7a5797d5fce467e31040e1dbb2aad58ef8e6394929c1c37f4cfab8456d04}{Param\+Enum\+\_\+\+Fused\+Heading\+Offset} = 166, 
+\hyperlink{class_pigeon_imu_a9c6cc7a5797d5fce467e31040e1dbb2aa3c00ec12073702b7247942196e053e28}{Param\+Enum\+\_\+\+Status\+Frame\+Rate} = 169, 
+\newline
+\hyperlink{class_pigeon_imu_a9c6cc7a5797d5fce467e31040e1dbb2aaf36f77682c0d9c3f0cf057dfc17d0b93}{Param\+Enum\+\_\+\+AccumZ} = 170, 
+\hyperlink{class_pigeon_imu_a9c6cc7a5797d5fce467e31040e1dbb2aa8953bc67c4e9686d9e251b71d1e44ae7}{Param\+Enum\+\_\+\+Temp\+Comp\+Disable} = 171
+ \}
+\item 
+enum \hyperlink{class_pigeon_imu_a655b831f9be6c185f1cc553679776b31}{Status\+Frame\+Rate} \{ \newline
+\hyperlink{class_pigeon_imu_a655b831f9be6c185f1cc553679776b31a09296f972dd7f21cc4f22245c5e5b835}{Status\+Frame\+Rate\+\_\+\+Cond\+Status\+\_\+1\+\_\+\+General} = 2, 
+\hyperlink{class_pigeon_imu_a655b831f9be6c185f1cc553679776b31aec4077fb57859b40deac23b066f45312}{Status\+Frame\+Rate\+\_\+\+Cond\+Status\+\_\+9\+\_\+\+Six\+Deg\+\_\+\+Y\+PR} = 3, 
+\hyperlink{class_pigeon_imu_a655b831f9be6c185f1cc553679776b31a970e28c94828d06b925d9bd3eaf02fed}{Status\+Frame\+Rate\+\_\+\+Cond\+Status\+\_\+6\+\_\+\+Sensor\+Fusion} = 4, 
+\hyperlink{class_pigeon_imu_a655b831f9be6c185f1cc553679776b31a557e9194253f229507d6dabeb62b9975}{Status\+Frame\+Rate\+\_\+\+Cond\+Status\+\_\+11\+\_\+\+Gyro\+Accum} = 5, 
+\newline
+\hyperlink{class_pigeon_imu_a655b831f9be6c185f1cc553679776b31ad9dc98daa45788b2e2a7547b56ed7a1e}{Status\+Frame\+Rate\+\_\+\+Cond\+Status\+\_\+2\+\_\+\+General\+Compass} = 11, 
+\hyperlink{class_pigeon_imu_a655b831f9be6c185f1cc553679776b31a47da97decd9600d8917fabecf0051b9a}{Status\+Frame\+Rate\+\_\+\+Cond\+Status\+\_\+3\+\_\+\+General\+Accel} = 12, 
+\hyperlink{class_pigeon_imu_a655b831f9be6c185f1cc553679776b31a90e6315b7550712faacec9b924a4c57a}{Status\+Frame\+Rate\+\_\+\+Cond\+Status\+\_\+10\+\_\+\+Six\+Deg\+\_\+\+Quat} = 14, 
+\hyperlink{class_pigeon_imu_a655b831f9be6c185f1cc553679776b31aec813504d64ac11b40f1d6416d169a24}{Status\+Frame\+Rate\+\_\+\+Raw\+Status\+\_\+4\+\_\+\+Mag} = 6, 
+\newline
+\hyperlink{class_pigeon_imu_a655b831f9be6c185f1cc553679776b31a6a3806c0e335af403c1c9d35d438c6f3}{Status\+Frame\+Rate\+\_\+\+Biased\+Status\+\_\+2\+\_\+\+Gyro} = 8, 
+\hyperlink{class_pigeon_imu_a655b831f9be6c185f1cc553679776b31a82d556e30f04a6a9a082df7b8717a7a9}{Status\+Frame\+Rate\+\_\+\+Biased\+Status\+\_\+4\+\_\+\+Mag} = 9, 
+\hyperlink{class_pigeon_imu_a655b831f9be6c185f1cc553679776b31ad31ba65806915d6f6ba96b328e0036d7}{Status\+Frame\+Rate\+\_\+\+Biased\+Status\+\_\+6\+\_\+\+Accel} = 10
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_pigeon_imu_a17124934b892249efa8006536d3e777e}{Pigeon\+Imu} (int device\+Number)
+\item 
+\hyperlink{class_pigeon_imu_ac8622c6a54ac5763d80a662b82826aa1}{Pigeon\+Imu} (\hyperlink{class_c_a_n_talon}{C\+A\+N\+Talon} $\ast$talon\+Srx)
+\item 
+int \hyperlink{class_pigeon_imu_a8a7869d0848c65ab241f2592771c4341}{Config\+Set\+Parameter} (\hyperlink{class_pigeon_imu_a9c6cc7a5797d5fce467e31040e1dbb2a}{Param\+Enum} param\+Enum, double param\+Value)
+\item 
+void \hyperlink{class_pigeon_imu_a44dd2494ea4902480eaab3e9bfe01168}{Set\+Status\+Frame\+Rate\+Ms} (\hyperlink{class_pigeon_imu_a655b831f9be6c185f1cc553679776b31}{Status\+Frame\+Rate} status\+Frame\+Rate, int period\+Ms)
+\item 
+int \hyperlink{class_pigeon_imu_aeebdd0e34a7542d5155e72fe673f97f2}{Set\+Yaw} (double angle\+Deg)
+\item 
+int \hyperlink{class_pigeon_imu_af2a22a05165f430d3ab312ac5691cb86}{Add\+Yaw} (double angle\+Deg)
+\item 
+int \hyperlink{class_pigeon_imu_a29650649072af38bf838846f8d961828}{Set\+Yaw\+To\+Compass} ()
+\item 
+int \hyperlink{class_pigeon_imu_a32a7f752dd5b912289de592df53f6c84}{Set\+Fused\+Heading} (double angle\+Deg)
+\item 
+int \hyperlink{class_pigeon_imu_aa83b1c10badcc495e5a29b520b0a6ac7}{Add\+Fused\+Heading} (double angle\+Deg)
+\item 
+int \hyperlink{class_pigeon_imu_a1c26ba00bce3ddddf3b15b464048debf}{Set\+Fused\+Heading\+To\+Compass} ()
+\item 
+int \hyperlink{class_pigeon_imu_ab1c1a0f830c12f3c84c181ca9970033a}{Set\+Accum\+Z\+Angle} (double angle\+Deg)
+\item 
+int \hyperlink{class_pigeon_imu_a5454ebd8ff7820e18119422749f1401a}{Enable\+Temperature\+Compensation} (bool b\+Temp\+Comp\+Enable)
+\item 
+int \hyperlink{class_pigeon_imu_a92246bd9e20249a1bf91402ad2477587}{Set\+Compass\+Declination} (double angle\+Deg\+Offset)
+\item 
+int \hyperlink{class_pigeon_imu_a12dbe41e1e7bbcd6bd84d3294a5f82eb}{Set\+Compass\+Angle} (double angle\+Deg)
+\item 
+int \hyperlink{class_pigeon_imu_a5fbb5eb21a0d6788813a669ba57cf9a3}{Enter\+Calibration\+Mode} (\hyperlink{class_pigeon_imu_a1d73ea84ad5c812e809698fab0b9b490}{Calibration\+Mode} cal\+Mode)
+\item 
+int \hyperlink{class_pigeon_imu_aa27a78789526123878a66cccf426b904}{Get\+General\+Status} (\hyperlink{struct_pigeon_imu_1_1_general_status}{Pigeon\+Imu\+::\+General\+Status} \&gen\+Status\+To\+Fill)
+\item 
+int \hyperlink{class_pigeon_imu_acde1b893859cea0b5b2661f503f804ee}{Get\+Last\+Error} ()
+\item 
+int \hyperlink{class_pigeon_imu_a11a9f6bd0c9816cc0dae30db8f54e248}{Get6d\+Quaternion} (double wxyz\mbox{[}4\mbox{]})
+\item 
+int \hyperlink{class_pigeon_imu_a56f727c87eebb80d0c3803f95137d72d}{Get\+Yaw\+Pitch\+Roll} (double ypr\mbox{[}3\mbox{]})
+\item 
+int \hyperlink{class_pigeon_imu_aafa8dc4f3e5e9e913e1baa46b68cba4e}{Get\+Accum\+Gyro} (double xyz\+\_\+deg\mbox{[}3\mbox{]})
+\item 
+double \hyperlink{class_pigeon_imu_a04fa177dcd2e2cdd2ca3632ee6d8e844}{Get\+Absolute\+Compass\+Heading} ()
+\item 
+double \hyperlink{class_pigeon_imu_ae867b4c973dd80f987da8b99c2d22a34}{Get\+Compass\+Heading} ()
+\item 
+double \hyperlink{class_pigeon_imu_a4bc8fe4ec2588f34057f10f0964eb103}{Get\+Compass\+Field\+Strength} ()
+\item 
+double \hyperlink{class_pigeon_imu_a3645bd88a064fec619e01b90e0f525d7}{Get\+Temp} ()
+\item 
+\hyperlink{class_pigeon_imu_af08e19459beb068e840719205fa46c39}{Pigeon\+State} \hyperlink{class_pigeon_imu_aba2f25e640cd9bd4fcf543c3ab3a5781}{Get\+State} ()
+\item 
+uint32\+\_\+t \hyperlink{class_pigeon_imu_a97595383793dcf68a68ed22c17a39301}{Get\+Up\+Time} ()
+\begin{DoxyCompactList}\small\item\em How long has Pigeon been running \end{DoxyCompactList}\item 
+int \hyperlink{class_pigeon_imu_a32d122b8d60a864feaac7e755ab7b70b}{Get\+Raw\+Magnetometer} (int16\+\_\+t rm\+\_\+xyz\mbox{[}3\mbox{]})
+\item 
+int \hyperlink{class_pigeon_imu_aea56b7ed6eba44a7426209c718ae5c69}{Get\+Biased\+Magnetometer} (int16\+\_\+t bm\+\_\+xyz\mbox{[}3\mbox{]})
+\item 
+int \hyperlink{class_pigeon_imu_a23e6b7c92da8fd31604c238bd204abd0}{Get\+Biased\+Accelerometer} (int16\+\_\+t ba\+\_\+xyz\mbox{[}3\mbox{]})
+\item 
+int \hyperlink{class_pigeon_imu_a2b55d63b3aedea9a9adb4a407e590b8b}{Get\+Raw\+Gyro} (double xyz\+\_\+dps\mbox{[}3\mbox{]})
+\item 
+int \hyperlink{class_pigeon_imu_a6602abacdfbbebe812355fc0798d51ea}{Get\+Accelerometer\+Angles} (double tilt\+Angles\mbox{[}3\mbox{]})
+\item 
+double \hyperlink{class_pigeon_imu_a4d1264230776fa2be5e9a63f1ae0a41d}{Get\+Fused\+Heading} (\hyperlink{struct_pigeon_imu_1_1_fusion_status}{Fusion\+Status} \&status)
+\item 
+double \hyperlink{class_pigeon_imu_ab74361f2d6deab870df7b5eb41309380}{Get\+Fused\+Heading} ()
+\item 
+uint32\+\_\+t \hyperlink{class_pigeon_imu_abf5fe406769d034b5e58ffb8d1438b4e}{Get\+Reset\+Count} ()
+\item 
+uint32\+\_\+t \hyperlink{class_pigeon_imu_aac22214226d6cd5b286136fa080f8dfa}{Get\+Reset\+Flags} ()
+\item 
+uint32\+\_\+t \hyperlink{class_pigeon_imu_ad5954805f7a9cc1f6fe2465b9da9a0e4}{Get\+Firm\+Vers} ()
+\item 
+bool \hyperlink{class_pigeon_imu_a0cd34c3c78fe5032c9daa80b0f56f307}{Has\+Reset\+Occured} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::string \hyperlink{class_pigeon_imu_aeb52c61b481d04d783b195bdaa5299b1}{To\+String} (\hyperlink{class_pigeon_imu_af08e19459beb068e840719205fa46c39}{Pigeon\+Imu\+::\+Pigeon\+State} state)
+\item 
+static std\+::string \hyperlink{class_pigeon_imu_a234d994be6361c91cd58cbd754ad52c6}{To\+String} (\hyperlink{class_pigeon_imu_a1d73ea84ad5c812e809698fab0b9b490}{Calibration\+Mode} cm)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Pigeon I\+MU Class. Class supports communicating over C\+A\+Nbus and over ribbon-\/cable (C\+AN Talon S\+RX). 
+
+\subsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{class_pigeon_imu_a1d73ea84ad5c812e809698fab0b9b490}\label{class_pigeon_imu_a1d73ea84ad5c812e809698fab0b9b490}} 
+\index{Pigeon\+Imu@{Pigeon\+Imu}!Calibration\+Mode@{Calibration\+Mode}}
+\index{Calibration\+Mode@{Calibration\+Mode}!Pigeon\+Imu@{Pigeon\+Imu}}
+\subsubsection{\texorpdfstring{Calibration\+Mode}{CalibrationMode}}
+{\footnotesize\ttfamily enum \hyperlink{class_pigeon_imu_a1d73ea84ad5c812e809698fab0b9b490}{Pigeon\+Imu\+::\+Calibration\+Mode}}
+
+Various calibration modes supported by Pigeon. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Boot\+Tare\+Gyro\+Accel@{Boot\+Tare\+Gyro\+Accel}!Pigeon\+Imu@{Pigeon\+Imu}}\index{Pigeon\+Imu@{Pigeon\+Imu}!Boot\+Tare\+Gyro\+Accel@{Boot\+Tare\+Gyro\+Accel}}}\mbox{\Hypertarget{class_pigeon_imu_a1d73ea84ad5c812e809698fab0b9b490ac5ffb1e16d3c2da1382893006c47a221}\label{class_pigeon_imu_a1d73ea84ad5c812e809698fab0b9b490ac5ffb1e16d3c2da1382893006c47a221}} 
+Boot\+Tare\+Gyro\+Accel&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Temperature@{Temperature}!Pigeon\+Imu@{Pigeon\+Imu}}\index{Pigeon\+Imu@{Pigeon\+Imu}!Temperature@{Temperature}}}\mbox{\Hypertarget{class_pigeon_imu_a1d73ea84ad5c812e809698fab0b9b490ab260acfa510c149de1fe49c57ca2c385}\label{class_pigeon_imu_a1d73ea84ad5c812e809698fab0b9b490ab260acfa510c149de1fe49c57ca2c385}} 
+Temperature&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Magnetometer12\+Pt@{Magnetometer12\+Pt}!Pigeon\+Imu@{Pigeon\+Imu}}\index{Pigeon\+Imu@{Pigeon\+Imu}!Magnetometer12\+Pt@{Magnetometer12\+Pt}}}\mbox{\Hypertarget{class_pigeon_imu_a1d73ea84ad5c812e809698fab0b9b490a932992752b63b5ecdb211a8c3fc7a192}\label{class_pigeon_imu_a1d73ea84ad5c812e809698fab0b9b490a932992752b63b5ecdb211a8c3fc7a192}} 
+Magnetometer12\+Pt&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Magnetometer360@{Magnetometer360}!Pigeon\+Imu@{Pigeon\+Imu}}\index{Pigeon\+Imu@{Pigeon\+Imu}!Magnetometer360@{Magnetometer360}}}\mbox{\Hypertarget{class_pigeon_imu_a1d73ea84ad5c812e809698fab0b9b490a5aa27d4ad1f20b83bbb4cac41a6ff0e8}\label{class_pigeon_imu_a1d73ea84ad5c812e809698fab0b9b490a5aa27d4ad1f20b83bbb4cac41a6ff0e8}} 
+Magnetometer360&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Accelerometer@{Accelerometer}!Pigeon\+Imu@{Pigeon\+Imu}}\index{Pigeon\+Imu@{Pigeon\+Imu}!Accelerometer@{Accelerometer}}}\mbox{\Hypertarget{class_pigeon_imu_a1d73ea84ad5c812e809698fab0b9b490aebadc4039d5e375074112f6d794560e0}\label{class_pigeon_imu_a1d73ea84ad5c812e809698fab0b9b490aebadc4039d5e375074112f6d794560e0}} 
+Accelerometer&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{class_pigeon_imu_a9c6cc7a5797d5fce467e31040e1dbb2a}\label{class_pigeon_imu_a9c6cc7a5797d5fce467e31040e1dbb2a}} 
+\index{Pigeon\+Imu@{Pigeon\+Imu}!Param\+Enum@{Param\+Enum}}
+\index{Param\+Enum@{Param\+Enum}!Pigeon\+Imu@{Pigeon\+Imu}}
+\subsubsection{\texorpdfstring{Param\+Enum}{ParamEnum}}
+{\footnotesize\ttfamily enum \hyperlink{class_pigeon_imu_a9c6cc7a5797d5fce467e31040e1dbb2a}{Pigeon\+Imu\+::\+Param\+Enum}}
+
+General Parameter Enums \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Param\+Enum\+\_\+\+Yaw\+Offset@{Param\+Enum\+\_\+\+Yaw\+Offset}!Pigeon\+Imu@{Pigeon\+Imu}}\index{Pigeon\+Imu@{Pigeon\+Imu}!Param\+Enum\+\_\+\+Yaw\+Offset@{Param\+Enum\+\_\+\+Yaw\+Offset}}}\mbox{\Hypertarget{class_pigeon_imu_a9c6cc7a5797d5fce467e31040e1dbb2aa617ba603e2c524df65537a387b9df996}\label{class_pigeon_imu_a9c6cc7a5797d5fce467e31040e1dbb2aa617ba603e2c524df65537a387b9df996}} 
+Param\+Enum\+\_\+\+Yaw\+Offset&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Param\+Enum\+\_\+\+Compass\+Offset@{Param\+Enum\+\_\+\+Compass\+Offset}!Pigeon\+Imu@{Pigeon\+Imu}}\index{Pigeon\+Imu@{Pigeon\+Imu}!Param\+Enum\+\_\+\+Compass\+Offset@{Param\+Enum\+\_\+\+Compass\+Offset}}}\mbox{\Hypertarget{class_pigeon_imu_a9c6cc7a5797d5fce467e31040e1dbb2aa6484c987fdc60e1a96da87aab43331c7}\label{class_pigeon_imu_a9c6cc7a5797d5fce467e31040e1dbb2aa6484c987fdc60e1a96da87aab43331c7}} 
+Param\+Enum\+\_\+\+Compass\+Offset&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Param\+Enum\+\_\+\+Beta\+Gain@{Param\+Enum\+\_\+\+Beta\+Gain}!Pigeon\+Imu@{Pigeon\+Imu}}\index{Pigeon\+Imu@{Pigeon\+Imu}!Param\+Enum\+\_\+\+Beta\+Gain@{Param\+Enum\+\_\+\+Beta\+Gain}}}\mbox{\Hypertarget{class_pigeon_imu_a9c6cc7a5797d5fce467e31040e1dbb2aa91ede93ba38c0248b9a7f1df558e2cbc}\label{class_pigeon_imu_a9c6cc7a5797d5fce467e31040e1dbb2aa91ede93ba38c0248b9a7f1df558e2cbc}} 
+Param\+Enum\+\_\+\+Beta\+Gain&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Param\+Enum\+\_\+\+Reserved163@{Param\+Enum\+\_\+\+Reserved163}!Pigeon\+Imu@{Pigeon\+Imu}}\index{Pigeon\+Imu@{Pigeon\+Imu}!Param\+Enum\+\_\+\+Reserved163@{Param\+Enum\+\_\+\+Reserved163}}}\mbox{\Hypertarget{class_pigeon_imu_a9c6cc7a5797d5fce467e31040e1dbb2aa15b2d14f45bb5cbb40b25ec36fdd9ef9}\label{class_pigeon_imu_a9c6cc7a5797d5fce467e31040e1dbb2aa15b2d14f45bb5cbb40b25ec36fdd9ef9}} 
+Param\+Enum\+\_\+\+Reserved163&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Param\+Enum\+\_\+\+Gyro\+No\+Motion\+Cal@{Param\+Enum\+\_\+\+Gyro\+No\+Motion\+Cal}!Pigeon\+Imu@{Pigeon\+Imu}}\index{Pigeon\+Imu@{Pigeon\+Imu}!Param\+Enum\+\_\+\+Gyro\+No\+Motion\+Cal@{Param\+Enum\+\_\+\+Gyro\+No\+Motion\+Cal}}}\mbox{\Hypertarget{class_pigeon_imu_a9c6cc7a5797d5fce467e31040e1dbb2aa930775eccc1957452c05dfb79d39da32}\label{class_pigeon_imu_a9c6cc7a5797d5fce467e31040e1dbb2aa930775eccc1957452c05dfb79d39da32}} 
+Param\+Enum\+\_\+\+Gyro\+No\+Motion\+Cal&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Param\+Enum\+\_\+\+Enter\+Calibration@{Param\+Enum\+\_\+\+Enter\+Calibration}!Pigeon\+Imu@{Pigeon\+Imu}}\index{Pigeon\+Imu@{Pigeon\+Imu}!Param\+Enum\+\_\+\+Enter\+Calibration@{Param\+Enum\+\_\+\+Enter\+Calibration}}}\mbox{\Hypertarget{class_pigeon_imu_a9c6cc7a5797d5fce467e31040e1dbb2aa64806559f5fd161359f016f6fdb617cf}\label{class_pigeon_imu_a9c6cc7a5797d5fce467e31040e1dbb2aa64806559f5fd161359f016f6fdb617cf}} 
+Param\+Enum\+\_\+\+Enter\+Calibration&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Param\+Enum\+\_\+\+Fused\+Heading\+Offset@{Param\+Enum\+\_\+\+Fused\+Heading\+Offset}!Pigeon\+Imu@{Pigeon\+Imu}}\index{Pigeon\+Imu@{Pigeon\+Imu}!Param\+Enum\+\_\+\+Fused\+Heading\+Offset@{Param\+Enum\+\_\+\+Fused\+Heading\+Offset}}}\mbox{\Hypertarget{class_pigeon_imu_a9c6cc7a5797d5fce467e31040e1dbb2aad58ef8e6394929c1c37f4cfab8456d04}\label{class_pigeon_imu_a9c6cc7a5797d5fce467e31040e1dbb2aad58ef8e6394929c1c37f4cfab8456d04}} 
+Param\+Enum\+\_\+\+Fused\+Heading\+Offset&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Param\+Enum\+\_\+\+Status\+Frame\+Rate@{Param\+Enum\+\_\+\+Status\+Frame\+Rate}!Pigeon\+Imu@{Pigeon\+Imu}}\index{Pigeon\+Imu@{Pigeon\+Imu}!Param\+Enum\+\_\+\+Status\+Frame\+Rate@{Param\+Enum\+\_\+\+Status\+Frame\+Rate}}}\mbox{\Hypertarget{class_pigeon_imu_a9c6cc7a5797d5fce467e31040e1dbb2aa3c00ec12073702b7247942196e053e28}\label{class_pigeon_imu_a9c6cc7a5797d5fce467e31040e1dbb2aa3c00ec12073702b7247942196e053e28}} 
+Param\+Enum\+\_\+\+Status\+Frame\+Rate&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Param\+Enum\+\_\+\+AccumZ@{Param\+Enum\+\_\+\+AccumZ}!Pigeon\+Imu@{Pigeon\+Imu}}\index{Pigeon\+Imu@{Pigeon\+Imu}!Param\+Enum\+\_\+\+AccumZ@{Param\+Enum\+\_\+\+AccumZ}}}\mbox{\Hypertarget{class_pigeon_imu_a9c6cc7a5797d5fce467e31040e1dbb2aaf36f77682c0d9c3f0cf057dfc17d0b93}\label{class_pigeon_imu_a9c6cc7a5797d5fce467e31040e1dbb2aaf36f77682c0d9c3f0cf057dfc17d0b93}} 
+Param\+Enum\+\_\+\+AccumZ&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Param\+Enum\+\_\+\+Temp\+Comp\+Disable@{Param\+Enum\+\_\+\+Temp\+Comp\+Disable}!Pigeon\+Imu@{Pigeon\+Imu}}\index{Pigeon\+Imu@{Pigeon\+Imu}!Param\+Enum\+\_\+\+Temp\+Comp\+Disable@{Param\+Enum\+\_\+\+Temp\+Comp\+Disable}}}\mbox{\Hypertarget{class_pigeon_imu_a9c6cc7a5797d5fce467e31040e1dbb2aa8953bc67c4e9686d9e251b71d1e44ae7}\label{class_pigeon_imu_a9c6cc7a5797d5fce467e31040e1dbb2aa8953bc67c4e9686d9e251b71d1e44ae7}} 
+Param\+Enum\+\_\+\+Temp\+Comp\+Disable&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{class_pigeon_imu_af08e19459beb068e840719205fa46c39}\label{class_pigeon_imu_af08e19459beb068e840719205fa46c39}} 
+\index{Pigeon\+Imu@{Pigeon\+Imu}!Pigeon\+State@{Pigeon\+State}}
+\index{Pigeon\+State@{Pigeon\+State}!Pigeon\+Imu@{Pigeon\+Imu}}
+\subsubsection{\texorpdfstring{Pigeon\+State}{PigeonState}}
+{\footnotesize\ttfamily enum \hyperlink{class_pigeon_imu_af08e19459beb068e840719205fa46c39}{Pigeon\+Imu\+::\+Pigeon\+State}}
+
+Overall state of the Pigeon. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{No\+Comm@{No\+Comm}!Pigeon\+Imu@{Pigeon\+Imu}}\index{Pigeon\+Imu@{Pigeon\+Imu}!No\+Comm@{No\+Comm}}}\mbox{\Hypertarget{class_pigeon_imu_af08e19459beb068e840719205fa46c39ad32b9d7b5aec41d5fdd51cfc0183e405}\label{class_pigeon_imu_af08e19459beb068e840719205fa46c39ad32b9d7b5aec41d5fdd51cfc0183e405}} 
+No\+Comm&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Initializing@{Initializing}!Pigeon\+Imu@{Pigeon\+Imu}}\index{Pigeon\+Imu@{Pigeon\+Imu}!Initializing@{Initializing}}}\mbox{\Hypertarget{class_pigeon_imu_af08e19459beb068e840719205fa46c39ae5cd0de261606b3ab91bb4a8371a299e}\label{class_pigeon_imu_af08e19459beb068e840719205fa46c39ae5cd0de261606b3ab91bb4a8371a299e}} 
+Initializing&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Ready@{Ready}!Pigeon\+Imu@{Pigeon\+Imu}}\index{Pigeon\+Imu@{Pigeon\+Imu}!Ready@{Ready}}}\mbox{\Hypertarget{class_pigeon_imu_af08e19459beb068e840719205fa46c39a35c07ceb7f4219956413aa7d6cceb8f1}\label{class_pigeon_imu_af08e19459beb068e840719205fa46c39a35c07ceb7f4219956413aa7d6cceb8f1}} 
+Ready&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{User\+Calibration@{User\+Calibration}!Pigeon\+Imu@{Pigeon\+Imu}}\index{Pigeon\+Imu@{Pigeon\+Imu}!User\+Calibration@{User\+Calibration}}}\mbox{\Hypertarget{class_pigeon_imu_af08e19459beb068e840719205fa46c39addee10c2e3805fdac94099e3e8d01482}\label{class_pigeon_imu_af08e19459beb068e840719205fa46c39addee10c2e3805fdac94099e3e8d01482}} 
+User\+Calibration&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{class_pigeon_imu_a655b831f9be6c185f1cc553679776b31}\label{class_pigeon_imu_a655b831f9be6c185f1cc553679776b31}} 
+\index{Pigeon\+Imu@{Pigeon\+Imu}!Status\+Frame\+Rate@{Status\+Frame\+Rate}}
+\index{Status\+Frame\+Rate@{Status\+Frame\+Rate}!Pigeon\+Imu@{Pigeon\+Imu}}
+\subsubsection{\texorpdfstring{Status\+Frame\+Rate}{StatusFrameRate}}
+{\footnotesize\ttfamily enum \hyperlink{class_pigeon_imu_a655b831f9be6c185f1cc553679776b31}{Pigeon\+Imu\+::\+Status\+Frame\+Rate}}
+
+Enumerated type for status frame types. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Status\+Frame\+Rate\+\_\+\+Cond\+Status\+\_\+1\+\_\+\+General@{Status\+Frame\+Rate\+\_\+\+Cond\+Status\+\_\+1\+\_\+\+General}!Pigeon\+Imu@{Pigeon\+Imu}}\index{Pigeon\+Imu@{Pigeon\+Imu}!Status\+Frame\+Rate\+\_\+\+Cond\+Status\+\_\+1\+\_\+\+General@{Status\+Frame\+Rate\+\_\+\+Cond\+Status\+\_\+1\+\_\+\+General}}}\mbox{\Hypertarget{class_pigeon_imu_a655b831f9be6c185f1cc553679776b31a09296f972dd7f21cc4f22245c5e5b835}\label{class_pigeon_imu_a655b831f9be6c185f1cc553679776b31a09296f972dd7f21cc4f22245c5e5b835}} 
+Status\+Frame\+Rate\+\_\+\+Cond\+Status\+\_\+1\+\_\+\+General&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Status\+Frame\+Rate\+\_\+\+Cond\+Status\+\_\+9\+\_\+\+Six\+Deg\+\_\+\+Y\+PR@{Status\+Frame\+Rate\+\_\+\+Cond\+Status\+\_\+9\+\_\+\+Six\+Deg\+\_\+\+Y\+PR}!Pigeon\+Imu@{Pigeon\+Imu}}\index{Pigeon\+Imu@{Pigeon\+Imu}!Status\+Frame\+Rate\+\_\+\+Cond\+Status\+\_\+9\+\_\+\+Six\+Deg\+\_\+\+Y\+PR@{Status\+Frame\+Rate\+\_\+\+Cond\+Status\+\_\+9\+\_\+\+Six\+Deg\+\_\+\+Y\+PR}}}\mbox{\Hypertarget{class_pigeon_imu_a655b831f9be6c185f1cc553679776b31aec4077fb57859b40deac23b066f45312}\label{class_pigeon_imu_a655b831f9be6c185f1cc553679776b31aec4077fb57859b40deac23b066f45312}} 
+Status\+Frame\+Rate\+\_\+\+Cond\+Status\+\_\+9\+\_\+\+Six\+Deg\+\_\+\+Y\+PR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Status\+Frame\+Rate\+\_\+\+Cond\+Status\+\_\+6\+\_\+\+Sensor\+Fusion@{Status\+Frame\+Rate\+\_\+\+Cond\+Status\+\_\+6\+\_\+\+Sensor\+Fusion}!Pigeon\+Imu@{Pigeon\+Imu}}\index{Pigeon\+Imu@{Pigeon\+Imu}!Status\+Frame\+Rate\+\_\+\+Cond\+Status\+\_\+6\+\_\+\+Sensor\+Fusion@{Status\+Frame\+Rate\+\_\+\+Cond\+Status\+\_\+6\+\_\+\+Sensor\+Fusion}}}\mbox{\Hypertarget{class_pigeon_imu_a655b831f9be6c185f1cc553679776b31a970e28c94828d06b925d9bd3eaf02fed}\label{class_pigeon_imu_a655b831f9be6c185f1cc553679776b31a970e28c94828d06b925d9bd3eaf02fed}} 
+Status\+Frame\+Rate\+\_\+\+Cond\+Status\+\_\+6\+\_\+\+Sensor\+Fusion&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Status\+Frame\+Rate\+\_\+\+Cond\+Status\+\_\+11\+\_\+\+Gyro\+Accum@{Status\+Frame\+Rate\+\_\+\+Cond\+Status\+\_\+11\+\_\+\+Gyro\+Accum}!Pigeon\+Imu@{Pigeon\+Imu}}\index{Pigeon\+Imu@{Pigeon\+Imu}!Status\+Frame\+Rate\+\_\+\+Cond\+Status\+\_\+11\+\_\+\+Gyro\+Accum@{Status\+Frame\+Rate\+\_\+\+Cond\+Status\+\_\+11\+\_\+\+Gyro\+Accum}}}\mbox{\Hypertarget{class_pigeon_imu_a655b831f9be6c185f1cc553679776b31a557e9194253f229507d6dabeb62b9975}\label{class_pigeon_imu_a655b831f9be6c185f1cc553679776b31a557e9194253f229507d6dabeb62b9975}} 
+Status\+Frame\+Rate\+\_\+\+Cond\+Status\+\_\+11\+\_\+\+Gyro\+Accum&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Status\+Frame\+Rate\+\_\+\+Cond\+Status\+\_\+2\+\_\+\+General\+Compass@{Status\+Frame\+Rate\+\_\+\+Cond\+Status\+\_\+2\+\_\+\+General\+Compass}!Pigeon\+Imu@{Pigeon\+Imu}}\index{Pigeon\+Imu@{Pigeon\+Imu}!Status\+Frame\+Rate\+\_\+\+Cond\+Status\+\_\+2\+\_\+\+General\+Compass@{Status\+Frame\+Rate\+\_\+\+Cond\+Status\+\_\+2\+\_\+\+General\+Compass}}}\mbox{\Hypertarget{class_pigeon_imu_a655b831f9be6c185f1cc553679776b31ad9dc98daa45788b2e2a7547b56ed7a1e}\label{class_pigeon_imu_a655b831f9be6c185f1cc553679776b31ad9dc98daa45788b2e2a7547b56ed7a1e}} 
+Status\+Frame\+Rate\+\_\+\+Cond\+Status\+\_\+2\+\_\+\+General\+Compass&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Status\+Frame\+Rate\+\_\+\+Cond\+Status\+\_\+3\+\_\+\+General\+Accel@{Status\+Frame\+Rate\+\_\+\+Cond\+Status\+\_\+3\+\_\+\+General\+Accel}!Pigeon\+Imu@{Pigeon\+Imu}}\index{Pigeon\+Imu@{Pigeon\+Imu}!Status\+Frame\+Rate\+\_\+\+Cond\+Status\+\_\+3\+\_\+\+General\+Accel@{Status\+Frame\+Rate\+\_\+\+Cond\+Status\+\_\+3\+\_\+\+General\+Accel}}}\mbox{\Hypertarget{class_pigeon_imu_a655b831f9be6c185f1cc553679776b31a47da97decd9600d8917fabecf0051b9a}\label{class_pigeon_imu_a655b831f9be6c185f1cc553679776b31a47da97decd9600d8917fabecf0051b9a}} 
+Status\+Frame\+Rate\+\_\+\+Cond\+Status\+\_\+3\+\_\+\+General\+Accel&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Status\+Frame\+Rate\+\_\+\+Cond\+Status\+\_\+10\+\_\+\+Six\+Deg\+\_\+\+Quat@{Status\+Frame\+Rate\+\_\+\+Cond\+Status\+\_\+10\+\_\+\+Six\+Deg\+\_\+\+Quat}!Pigeon\+Imu@{Pigeon\+Imu}}\index{Pigeon\+Imu@{Pigeon\+Imu}!Status\+Frame\+Rate\+\_\+\+Cond\+Status\+\_\+10\+\_\+\+Six\+Deg\+\_\+\+Quat@{Status\+Frame\+Rate\+\_\+\+Cond\+Status\+\_\+10\+\_\+\+Six\+Deg\+\_\+\+Quat}}}\mbox{\Hypertarget{class_pigeon_imu_a655b831f9be6c185f1cc553679776b31a90e6315b7550712faacec9b924a4c57a}\label{class_pigeon_imu_a655b831f9be6c185f1cc553679776b31a90e6315b7550712faacec9b924a4c57a}} 
+Status\+Frame\+Rate\+\_\+\+Cond\+Status\+\_\+10\+\_\+\+Six\+Deg\+\_\+\+Quat&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Status\+Frame\+Rate\+\_\+\+Raw\+Status\+\_\+4\+\_\+\+Mag@{Status\+Frame\+Rate\+\_\+\+Raw\+Status\+\_\+4\+\_\+\+Mag}!Pigeon\+Imu@{Pigeon\+Imu}}\index{Pigeon\+Imu@{Pigeon\+Imu}!Status\+Frame\+Rate\+\_\+\+Raw\+Status\+\_\+4\+\_\+\+Mag@{Status\+Frame\+Rate\+\_\+\+Raw\+Status\+\_\+4\+\_\+\+Mag}}}\mbox{\Hypertarget{class_pigeon_imu_a655b831f9be6c185f1cc553679776b31aec813504d64ac11b40f1d6416d169a24}\label{class_pigeon_imu_a655b831f9be6c185f1cc553679776b31aec813504d64ac11b40f1d6416d169a24}} 
+Status\+Frame\+Rate\+\_\+\+Raw\+Status\+\_\+4\+\_\+\+Mag&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Status\+Frame\+Rate\+\_\+\+Biased\+Status\+\_\+2\+\_\+\+Gyro@{Status\+Frame\+Rate\+\_\+\+Biased\+Status\+\_\+2\+\_\+\+Gyro}!Pigeon\+Imu@{Pigeon\+Imu}}\index{Pigeon\+Imu@{Pigeon\+Imu}!Status\+Frame\+Rate\+\_\+\+Biased\+Status\+\_\+2\+\_\+\+Gyro@{Status\+Frame\+Rate\+\_\+\+Biased\+Status\+\_\+2\+\_\+\+Gyro}}}\mbox{\Hypertarget{class_pigeon_imu_a655b831f9be6c185f1cc553679776b31a6a3806c0e335af403c1c9d35d438c6f3}\label{class_pigeon_imu_a655b831f9be6c185f1cc553679776b31a6a3806c0e335af403c1c9d35d438c6f3}} 
+Status\+Frame\+Rate\+\_\+\+Biased\+Status\+\_\+2\+\_\+\+Gyro&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Status\+Frame\+Rate\+\_\+\+Biased\+Status\+\_\+4\+\_\+\+Mag@{Status\+Frame\+Rate\+\_\+\+Biased\+Status\+\_\+4\+\_\+\+Mag}!Pigeon\+Imu@{Pigeon\+Imu}}\index{Pigeon\+Imu@{Pigeon\+Imu}!Status\+Frame\+Rate\+\_\+\+Biased\+Status\+\_\+4\+\_\+\+Mag@{Status\+Frame\+Rate\+\_\+\+Biased\+Status\+\_\+4\+\_\+\+Mag}}}\mbox{\Hypertarget{class_pigeon_imu_a655b831f9be6c185f1cc553679776b31a82d556e30f04a6a9a082df7b8717a7a9}\label{class_pigeon_imu_a655b831f9be6c185f1cc553679776b31a82d556e30f04a6a9a082df7b8717a7a9}} 
+Status\+Frame\+Rate\+\_\+\+Biased\+Status\+\_\+4\+\_\+\+Mag&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Status\+Frame\+Rate\+\_\+\+Biased\+Status\+\_\+6\+\_\+\+Accel@{Status\+Frame\+Rate\+\_\+\+Biased\+Status\+\_\+6\+\_\+\+Accel}!Pigeon\+Imu@{Pigeon\+Imu}}\index{Pigeon\+Imu@{Pigeon\+Imu}!Status\+Frame\+Rate\+\_\+\+Biased\+Status\+\_\+6\+\_\+\+Accel@{Status\+Frame\+Rate\+\_\+\+Biased\+Status\+\_\+6\+\_\+\+Accel}}}\mbox{\Hypertarget{class_pigeon_imu_a655b831f9be6c185f1cc553679776b31ad31ba65806915d6f6ba96b328e0036d7}\label{class_pigeon_imu_a655b831f9be6c185f1cc553679776b31ad31ba65806915d6f6ba96b328e0036d7}} 
+Status\+Frame\+Rate\+\_\+\+Biased\+Status\+\_\+6\+\_\+\+Accel&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_pigeon_imu_a17124934b892249efa8006536d3e777e}\label{class_pigeon_imu_a17124934b892249efa8006536d3e777e}} 
+\index{Pigeon\+Imu@{Pigeon\+Imu}!Pigeon\+Imu@{Pigeon\+Imu}}
+\index{Pigeon\+Imu@{Pigeon\+Imu}!Pigeon\+Imu@{Pigeon\+Imu}}
+\subsubsection{\texorpdfstring{Pigeon\+Imu()}{PigeonImu()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Pigeon\+Imu\+::\+Pigeon\+Imu (\begin{DoxyParamCaption}\item[{int}]{device\+Number }\end{DoxyParamCaption})}
+
+Create a Pigeon object that communicates with Pigeon on C\+AN Bus. 
+\begin{DoxyParams}{Parameters}
+{\em device\+Number} & C\+AN Device Id of Pigeon \mbox{[}0,62\mbox{]} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_pigeon_imu_ac8622c6a54ac5763d80a662b82826aa1}\label{class_pigeon_imu_ac8622c6a54ac5763d80a662b82826aa1}} 
+\index{Pigeon\+Imu@{Pigeon\+Imu}!Pigeon\+Imu@{Pigeon\+Imu}}
+\index{Pigeon\+Imu@{Pigeon\+Imu}!Pigeon\+Imu@{Pigeon\+Imu}}
+\subsubsection{\texorpdfstring{Pigeon\+Imu()}{PigeonImu()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Pigeon\+Imu\+::\+Pigeon\+Imu (\begin{DoxyParamCaption}\item[{\hyperlink{class_c_a_n_talon}{C\+A\+N\+Talon} $\ast$}]{talon\+Srx }\end{DoxyParamCaption})}
+
+Create a Pigeon object that communciates with Pigeon through the Gadgeteer ribbon 
+\begin{DoxyParams}{Parameters}
+{\em talon\+Srx} & cable connected to a Talon on C\+AN Bus. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_pigeon_imu_aa83b1c10badcc495e5a29b520b0a6ac7}\label{class_pigeon_imu_aa83b1c10badcc495e5a29b520b0a6ac7}} 
+\index{Pigeon\+Imu@{Pigeon\+Imu}!Add\+Fused\+Heading@{Add\+Fused\+Heading}}
+\index{Add\+Fused\+Heading@{Add\+Fused\+Heading}!Pigeon\+Imu@{Pigeon\+Imu}}
+\subsubsection{\texorpdfstring{Add\+Fused\+Heading()}{AddFusedHeading()}}
+{\footnotesize\ttfamily int Pigeon\+Imu\+::\+Add\+Fused\+Heading (\begin{DoxyParamCaption}\item[{double}]{angle\+Deg }\end{DoxyParamCaption})}
+
+Atomically add to the Fused Heading register. \mbox{\Hypertarget{class_pigeon_imu_af2a22a05165f430d3ab312ac5691cb86}\label{class_pigeon_imu_af2a22a05165f430d3ab312ac5691cb86}} 
+\index{Pigeon\+Imu@{Pigeon\+Imu}!Add\+Yaw@{Add\+Yaw}}
+\index{Add\+Yaw@{Add\+Yaw}!Pigeon\+Imu@{Pigeon\+Imu}}
+\subsubsection{\texorpdfstring{Add\+Yaw()}{AddYaw()}}
+{\footnotesize\ttfamily int Pigeon\+Imu\+::\+Add\+Yaw (\begin{DoxyParamCaption}\item[{double}]{angle\+Deg }\end{DoxyParamCaption})}
+
+Atomically add to the Yaw register. \mbox{\Hypertarget{class_pigeon_imu_a8a7869d0848c65ab241f2592771c4341}\label{class_pigeon_imu_a8a7869d0848c65ab241f2592771c4341}} 
+\index{Pigeon\+Imu@{Pigeon\+Imu}!Config\+Set\+Parameter@{Config\+Set\+Parameter}}
+\index{Config\+Set\+Parameter@{Config\+Set\+Parameter}!Pigeon\+Imu@{Pigeon\+Imu}}
+\subsubsection{\texorpdfstring{Config\+Set\+Parameter()}{ConfigSetParameter()}}
+{\footnotesize\ttfamily int Pigeon\+Imu\+::\+Config\+Set\+Parameter (\begin{DoxyParamCaption}\item[{\hyperlink{class_pigeon_imu_a9c6cc7a5797d5fce467e31040e1dbb2a}{Param\+Enum}}]{param\+Enum,  }\item[{double}]{param\+Value }\end{DoxyParamCaption})}
+
+General setter to allow for the use of future features, without having to update A\+PI. 
+\begin{DoxyParams}{Parameters}
+{\em param\+Enum} & Parameter to set \\
+\hline
+{\em param\+Value} & Parameter value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nonzero error code if set fails. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_pigeon_imu_a5454ebd8ff7820e18119422749f1401a}\label{class_pigeon_imu_a5454ebd8ff7820e18119422749f1401a}} 
+\index{Pigeon\+Imu@{Pigeon\+Imu}!Enable\+Temperature\+Compensation@{Enable\+Temperature\+Compensation}}
+\index{Enable\+Temperature\+Compensation@{Enable\+Temperature\+Compensation}!Pigeon\+Imu@{Pigeon\+Imu}}
+\subsubsection{\texorpdfstring{Enable\+Temperature\+Compensation()}{EnableTemperatureCompensation()}}
+{\footnotesize\ttfamily int Pigeon\+Imu\+::\+Enable\+Temperature\+Compensation (\begin{DoxyParamCaption}\item[{bool}]{b\+Temp\+Comp\+Enable }\end{DoxyParamCaption})}
+
+Enable/\+Disable Temp compensation. Pigeon defaults with this on at boot. 
+\begin{DoxyParams}{Parameters}
+{\em temp\+Comp\+Enable} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nonzero for error, zero for success. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_pigeon_imu_a5fbb5eb21a0d6788813a669ba57cf9a3}\label{class_pigeon_imu_a5fbb5eb21a0d6788813a669ba57cf9a3}} 
+\index{Pigeon\+Imu@{Pigeon\+Imu}!Enter\+Calibration\+Mode@{Enter\+Calibration\+Mode}}
+\index{Enter\+Calibration\+Mode@{Enter\+Calibration\+Mode}!Pigeon\+Imu@{Pigeon\+Imu}}
+\subsubsection{\texorpdfstring{Enter\+Calibration\+Mode()}{EnterCalibrationMode()}}
+{\footnotesize\ttfamily int Pigeon\+Imu\+::\+Enter\+Calibration\+Mode (\begin{DoxyParamCaption}\item[{\hyperlink{class_pigeon_imu_a1d73ea84ad5c812e809698fab0b9b490}{Calibration\+Mode}}]{cal\+Mode }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_pigeon_imu_a11a9f6bd0c9816cc0dae30db8f54e248}\label{class_pigeon_imu_a11a9f6bd0c9816cc0dae30db8f54e248}} 
+\index{Pigeon\+Imu@{Pigeon\+Imu}!Get6d\+Quaternion@{Get6d\+Quaternion}}
+\index{Get6d\+Quaternion@{Get6d\+Quaternion}!Pigeon\+Imu@{Pigeon\+Imu}}
+\subsubsection{\texorpdfstring{Get6d\+Quaternion()}{Get6dQuaternion()}}
+{\footnotesize\ttfamily int Pigeon\+Imu\+::\+Get6d\+Quaternion (\begin{DoxyParamCaption}\item[{double}]{wxyz\mbox{[}4\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_pigeon_imu_a04fa177dcd2e2cdd2ca3632ee6d8e844}\label{class_pigeon_imu_a04fa177dcd2e2cdd2ca3632ee6d8e844}} 
+\index{Pigeon\+Imu@{Pigeon\+Imu}!Get\+Absolute\+Compass\+Heading@{Get\+Absolute\+Compass\+Heading}}
+\index{Get\+Absolute\+Compass\+Heading@{Get\+Absolute\+Compass\+Heading}!Pigeon\+Imu@{Pigeon\+Imu}}
+\subsubsection{\texorpdfstring{Get\+Absolute\+Compass\+Heading()}{GetAbsoluteCompassHeading()}}
+{\footnotesize\ttfamily double Pigeon\+Imu\+::\+Get\+Absolute\+Compass\+Heading (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+compass heading \mbox{[}0,360) degrees. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_pigeon_imu_a6602abacdfbbebe812355fc0798d51ea}\label{class_pigeon_imu_a6602abacdfbbebe812355fc0798d51ea}} 
+\index{Pigeon\+Imu@{Pigeon\+Imu}!Get\+Accelerometer\+Angles@{Get\+Accelerometer\+Angles}}
+\index{Get\+Accelerometer\+Angles@{Get\+Accelerometer\+Angles}!Pigeon\+Imu@{Pigeon\+Imu}}
+\subsubsection{\texorpdfstring{Get\+Accelerometer\+Angles()}{GetAccelerometerAngles()}}
+{\footnotesize\ttfamily int Pigeon\+Imu\+::\+Get\+Accelerometer\+Angles (\begin{DoxyParamCaption}\item[{double}]{tilt\+Angles\mbox{[}3\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_pigeon_imu_aafa8dc4f3e5e9e913e1baa46b68cba4e}\label{class_pigeon_imu_aafa8dc4f3e5e9e913e1baa46b68cba4e}} 
+\index{Pigeon\+Imu@{Pigeon\+Imu}!Get\+Accum\+Gyro@{Get\+Accum\+Gyro}}
+\index{Get\+Accum\+Gyro@{Get\+Accum\+Gyro}!Pigeon\+Imu@{Pigeon\+Imu}}
+\subsubsection{\texorpdfstring{Get\+Accum\+Gyro()}{GetAccumGyro()}}
+{\footnotesize\ttfamily int Pigeon\+Imu\+::\+Get\+Accum\+Gyro (\begin{DoxyParamCaption}\item[{double}]{xyz\+\_\+deg\mbox{[}3\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_pigeon_imu_a23e6b7c92da8fd31604c238bd204abd0}\label{class_pigeon_imu_a23e6b7c92da8fd31604c238bd204abd0}} 
+\index{Pigeon\+Imu@{Pigeon\+Imu}!Get\+Biased\+Accelerometer@{Get\+Biased\+Accelerometer}}
+\index{Get\+Biased\+Accelerometer@{Get\+Biased\+Accelerometer}!Pigeon\+Imu@{Pigeon\+Imu}}
+\subsubsection{\texorpdfstring{Get\+Biased\+Accelerometer()}{GetBiasedAccelerometer()}}
+{\footnotesize\ttfamily int Pigeon\+Imu\+::\+Get\+Biased\+Accelerometer (\begin{DoxyParamCaption}\item[{int16\+\_\+t}]{ba\+\_\+xyz\mbox{[}3\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_pigeon_imu_aea56b7ed6eba44a7426209c718ae5c69}\label{class_pigeon_imu_aea56b7ed6eba44a7426209c718ae5c69}} 
+\index{Pigeon\+Imu@{Pigeon\+Imu}!Get\+Biased\+Magnetometer@{Get\+Biased\+Magnetometer}}
+\index{Get\+Biased\+Magnetometer@{Get\+Biased\+Magnetometer}!Pigeon\+Imu@{Pigeon\+Imu}}
+\subsubsection{\texorpdfstring{Get\+Biased\+Magnetometer()}{GetBiasedMagnetometer()}}
+{\footnotesize\ttfamily int Pigeon\+Imu\+::\+Get\+Biased\+Magnetometer (\begin{DoxyParamCaption}\item[{int16\+\_\+t}]{bm\+\_\+xyz\mbox{[}3\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_pigeon_imu_a4bc8fe4ec2588f34057f10f0964eb103}\label{class_pigeon_imu_a4bc8fe4ec2588f34057f10f0964eb103}} 
+\index{Pigeon\+Imu@{Pigeon\+Imu}!Get\+Compass\+Field\+Strength@{Get\+Compass\+Field\+Strength}}
+\index{Get\+Compass\+Field\+Strength@{Get\+Compass\+Field\+Strength}!Pigeon\+Imu@{Pigeon\+Imu}}
+\subsubsection{\texorpdfstring{Get\+Compass\+Field\+Strength()}{GetCompassFieldStrength()}}
+{\footnotesize\ttfamily double Pigeon\+Imu\+::\+Get\+Compass\+Field\+Strength (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+field strength in Microteslas (uT). 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_pigeon_imu_ae867b4c973dd80f987da8b99c2d22a34}\label{class_pigeon_imu_ae867b4c973dd80f987da8b99c2d22a34}} 
+\index{Pigeon\+Imu@{Pigeon\+Imu}!Get\+Compass\+Heading@{Get\+Compass\+Heading}}
+\index{Get\+Compass\+Heading@{Get\+Compass\+Heading}!Pigeon\+Imu@{Pigeon\+Imu}}
+\subsubsection{\texorpdfstring{Get\+Compass\+Heading()}{GetCompassHeading()}}
+{\footnotesize\ttfamily double Pigeon\+Imu\+::\+Get\+Compass\+Heading (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+continuous compass heading \mbox{[}-\/23040, 23040) degrees. Use Set\+Compass\+Heading to modify the wrap-\/around portion. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_pigeon_imu_ad5954805f7a9cc1f6fe2465b9da9a0e4}\label{class_pigeon_imu_ad5954805f7a9cc1f6fe2465b9da9a0e4}} 
+\index{Pigeon\+Imu@{Pigeon\+Imu}!Get\+Firm\+Vers@{Get\+Firm\+Vers}}
+\index{Get\+Firm\+Vers@{Get\+Firm\+Vers}!Pigeon\+Imu@{Pigeon\+Imu}}
+\subsubsection{\texorpdfstring{Get\+Firm\+Vers()}{GetFirmVers()}}
+{\footnotesize\ttfamily uint32\+\_\+t Pigeon\+Imu\+::\+Get\+Firm\+Vers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em param} & holds the version of the Talon. Talon must be powered cycled at least once. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_pigeon_imu_a4d1264230776fa2be5e9a63f1ae0a41d}\label{class_pigeon_imu_a4d1264230776fa2be5e9a63f1ae0a41d}} 
+\index{Pigeon\+Imu@{Pigeon\+Imu}!Get\+Fused\+Heading@{Get\+Fused\+Heading}}
+\index{Get\+Fused\+Heading@{Get\+Fused\+Heading}!Pigeon\+Imu@{Pigeon\+Imu}}
+\subsubsection{\texorpdfstring{Get\+Fused\+Heading()}{GetFusedHeading()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily double Pigeon\+Imu\+::\+Get\+Fused\+Heading (\begin{DoxyParamCaption}\item[{\hyperlink{struct_pigeon_imu_1_1_fusion_status}{Fusion\+Status} \&}]{status }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em status} & object reference to fill with fusion status flags. Caller may omit this parameter if flags are not needed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+fused heading in degrees. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_pigeon_imu_ab74361f2d6deab870df7b5eb41309380}\label{class_pigeon_imu_ab74361f2d6deab870df7b5eb41309380}} 
+\index{Pigeon\+Imu@{Pigeon\+Imu}!Get\+Fused\+Heading@{Get\+Fused\+Heading}}
+\index{Get\+Fused\+Heading@{Get\+Fused\+Heading}!Pigeon\+Imu@{Pigeon\+Imu}}
+\subsubsection{\texorpdfstring{Get\+Fused\+Heading()}{GetFusedHeading()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily double Pigeon\+Imu\+::\+Get\+Fused\+Heading (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_pigeon_imu_aa27a78789526123878a66cccf426b904}\label{class_pigeon_imu_aa27a78789526123878a66cccf426b904}} 
+\index{Pigeon\+Imu@{Pigeon\+Imu}!Get\+General\+Status@{Get\+General\+Status}}
+\index{Get\+General\+Status@{Get\+General\+Status}!Pigeon\+Imu@{Pigeon\+Imu}}
+\subsubsection{\texorpdfstring{Get\+General\+Status()}{GetGeneralStatus()}}
+{\footnotesize\ttfamily int Pigeon\+Imu\+::\+Get\+General\+Status (\begin{DoxyParamCaption}\item[{\hyperlink{struct_pigeon_imu_1_1_general_status}{Pigeon\+Imu\+::\+General\+Status} \&}]{status\+To\+Fill }\end{DoxyParamCaption})}
+
+Get the status of the current (or previousley complete) calibration. 
+\begin{DoxyParams}{Parameters}
+{\em status\+To\+Fill} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_pigeon_imu_acde1b893859cea0b5b2661f503f804ee}\label{class_pigeon_imu_acde1b893859cea0b5b2661f503f804ee}} 
+\index{Pigeon\+Imu@{Pigeon\+Imu}!Get\+Last\+Error@{Get\+Last\+Error}}
+\index{Get\+Last\+Error@{Get\+Last\+Error}!Pigeon\+Imu@{Pigeon\+Imu}}
+\subsubsection{\texorpdfstring{Get\+Last\+Error()}{GetLastError()}}
+{\footnotesize\ttfamily int Pigeon\+Imu\+::\+Get\+Last\+Error (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_pigeon_imu_a2b55d63b3aedea9a9adb4a407e590b8b}\label{class_pigeon_imu_a2b55d63b3aedea9a9adb4a407e590b8b}} 
+\index{Pigeon\+Imu@{Pigeon\+Imu}!Get\+Raw\+Gyro@{Get\+Raw\+Gyro}}
+\index{Get\+Raw\+Gyro@{Get\+Raw\+Gyro}!Pigeon\+Imu@{Pigeon\+Imu}}
+\subsubsection{\texorpdfstring{Get\+Raw\+Gyro()}{GetRawGyro()}}
+{\footnotesize\ttfamily int Pigeon\+Imu\+::\+Get\+Raw\+Gyro (\begin{DoxyParamCaption}\item[{double}]{xyz\+\_\+dps\mbox{[}3\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_pigeon_imu_a32d122b8d60a864feaac7e755ab7b70b}\label{class_pigeon_imu_a32d122b8d60a864feaac7e755ab7b70b}} 
+\index{Pigeon\+Imu@{Pigeon\+Imu}!Get\+Raw\+Magnetometer@{Get\+Raw\+Magnetometer}}
+\index{Get\+Raw\+Magnetometer@{Get\+Raw\+Magnetometer}!Pigeon\+Imu@{Pigeon\+Imu}}
+\subsubsection{\texorpdfstring{Get\+Raw\+Magnetometer()}{GetRawMagnetometer()}}
+{\footnotesize\ttfamily int Pigeon\+Imu\+::\+Get\+Raw\+Magnetometer (\begin{DoxyParamCaption}\item[{int16\+\_\+t}]{rm\+\_\+xyz\mbox{[}3\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_pigeon_imu_abf5fe406769d034b5e58ffb8d1438b4e}\label{class_pigeon_imu_abf5fe406769d034b5e58ffb8d1438b4e}} 
+\index{Pigeon\+Imu@{Pigeon\+Imu}!Get\+Reset\+Count@{Get\+Reset\+Count}}
+\index{Get\+Reset\+Count@{Get\+Reset\+Count}!Pigeon\+Imu@{Pigeon\+Imu}}
+\subsubsection{\texorpdfstring{Get\+Reset\+Count()}{GetResetCount()}}
+{\footnotesize\ttfamily uint32\+\_\+t Pigeon\+Imu\+::\+Get\+Reset\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_pigeon_imu_aac22214226d6cd5b286136fa080f8dfa}\label{class_pigeon_imu_aac22214226d6cd5b286136fa080f8dfa}} 
+\index{Pigeon\+Imu@{Pigeon\+Imu}!Get\+Reset\+Flags@{Get\+Reset\+Flags}}
+\index{Get\+Reset\+Flags@{Get\+Reset\+Flags}!Pigeon\+Imu@{Pigeon\+Imu}}
+\subsubsection{\texorpdfstring{Get\+Reset\+Flags()}{GetResetFlags()}}
+{\footnotesize\ttfamily uint32\+\_\+t Pigeon\+Imu\+::\+Get\+Reset\+Flags (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_pigeon_imu_aba2f25e640cd9bd4fcf543c3ab3a5781}\label{class_pigeon_imu_aba2f25e640cd9bd4fcf543c3ab3a5781}} 
+\index{Pigeon\+Imu@{Pigeon\+Imu}!Get\+State@{Get\+State}}
+\index{Get\+State@{Get\+State}!Pigeon\+Imu@{Pigeon\+Imu}}
+\subsubsection{\texorpdfstring{Get\+State()}{GetState()}}
+{\footnotesize\ttfamily \hyperlink{class_pigeon_imu_af08e19459beb068e840719205fa46c39}{Pigeon\+Imu\+::\+Pigeon\+State} Pigeon\+Imu\+::\+Get\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_pigeon_imu_a3645bd88a064fec619e01b90e0f525d7}\label{class_pigeon_imu_a3645bd88a064fec619e01b90e0f525d7}} 
+\index{Pigeon\+Imu@{Pigeon\+Imu}!Get\+Temp@{Get\+Temp}}
+\index{Get\+Temp@{Get\+Temp}!Pigeon\+Imu@{Pigeon\+Imu}}
+\subsubsection{\texorpdfstring{Get\+Temp()}{GetTemp()}}
+{\footnotesize\ttfamily double Pigeon\+Imu\+::\+Get\+Temp (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_pigeon_imu_a97595383793dcf68a68ed22c17a39301}\label{class_pigeon_imu_a97595383793dcf68a68ed22c17a39301}} 
+\index{Pigeon\+Imu@{Pigeon\+Imu}!Get\+Up\+Time@{Get\+Up\+Time}}
+\index{Get\+Up\+Time@{Get\+Up\+Time}!Pigeon\+Imu@{Pigeon\+Imu}}
+\subsubsection{\texorpdfstring{Get\+Up\+Time()}{GetUpTime()}}
+{\footnotesize\ttfamily uint32\+\_\+t Pigeon\+Imu\+::\+Get\+Up\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+How long has Pigeon been running 
+
+
+\begin{DoxyParams}{Parameters}
+{\em time\+Sec} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_pigeon_imu_a56f727c87eebb80d0c3803f95137d72d}\label{class_pigeon_imu_a56f727c87eebb80d0c3803f95137d72d}} 
+\index{Pigeon\+Imu@{Pigeon\+Imu}!Get\+Yaw\+Pitch\+Roll@{Get\+Yaw\+Pitch\+Roll}}
+\index{Get\+Yaw\+Pitch\+Roll@{Get\+Yaw\+Pitch\+Roll}!Pigeon\+Imu@{Pigeon\+Imu}}
+\subsubsection{\texorpdfstring{Get\+Yaw\+Pitch\+Roll()}{GetYawPitchRoll()}}
+{\footnotesize\ttfamily int Pigeon\+Imu\+::\+Get\+Yaw\+Pitch\+Roll (\begin{DoxyParamCaption}\item[{double}]{ypr\mbox{[}3\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_pigeon_imu_a0cd34c3c78fe5032c9daa80b0f56f307}\label{class_pigeon_imu_a0cd34c3c78fe5032c9daa80b0f56f307}} 
+\index{Pigeon\+Imu@{Pigeon\+Imu}!Has\+Reset\+Occured@{Has\+Reset\+Occured}}
+\index{Has\+Reset\+Occured@{Has\+Reset\+Occured}!Pigeon\+Imu@{Pigeon\+Imu}}
+\subsubsection{\texorpdfstring{Has\+Reset\+Occured()}{HasResetOccured()}}
+{\footnotesize\ttfamily bool Pigeon\+Imu\+::\+Has\+Reset\+Occured (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+true iff a reset has occured since last call. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_pigeon_imu_ab1c1a0f830c12f3c84c181ca9970033a}\label{class_pigeon_imu_ab1c1a0f830c12f3c84c181ca9970033a}} 
+\index{Pigeon\+Imu@{Pigeon\+Imu}!Set\+Accum\+Z\+Angle@{Set\+Accum\+Z\+Angle}}
+\index{Set\+Accum\+Z\+Angle@{Set\+Accum\+Z\+Angle}!Pigeon\+Imu@{Pigeon\+Imu}}
+\subsubsection{\texorpdfstring{Set\+Accum\+Z\+Angle()}{SetAccumZAngle()}}
+{\footnotesize\ttfamily int Pigeon\+Imu\+::\+Set\+Accum\+Z\+Angle (\begin{DoxyParamCaption}\item[{double}]{angle\+Deg }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_pigeon_imu_a12dbe41e1e7bbcd6bd84d3294a5f82eb}\label{class_pigeon_imu_a12dbe41e1e7bbcd6bd84d3294a5f82eb}} 
+\index{Pigeon\+Imu@{Pigeon\+Imu}!Set\+Compass\+Angle@{Set\+Compass\+Angle}}
+\index{Set\+Compass\+Angle@{Set\+Compass\+Angle}!Pigeon\+Imu@{Pigeon\+Imu}}
+\subsubsection{\texorpdfstring{Set\+Compass\+Angle()}{SetCompassAngle()}}
+{\footnotesize\ttfamily int Pigeon\+Imu\+::\+Set\+Compass\+Angle (\begin{DoxyParamCaption}\item[{double}]{angle\+Deg }\end{DoxyParamCaption})}
+
+Sets the compass angle. Although compass is absolute \mbox{[}0,360) degrees, the continuous compass register holds the wrap-\/arounds. \mbox{\Hypertarget{class_pigeon_imu_a92246bd9e20249a1bf91402ad2477587}\label{class_pigeon_imu_a92246bd9e20249a1bf91402ad2477587}} 
+\index{Pigeon\+Imu@{Pigeon\+Imu}!Set\+Compass\+Declination@{Set\+Compass\+Declination}}
+\index{Set\+Compass\+Declination@{Set\+Compass\+Declination}!Pigeon\+Imu@{Pigeon\+Imu}}
+\subsubsection{\texorpdfstring{Set\+Compass\+Declination()}{SetCompassDeclination()}}
+{\footnotesize\ttfamily int Pigeon\+Imu\+::\+Set\+Compass\+Declination (\begin{DoxyParamCaption}\item[{double}]{angle\+Deg\+Offset }\end{DoxyParamCaption})}
+
+Set the declination for compass. Declination is the difference between Earth Magnetic north, and the geographic \char`\"{}\+True North\char`\"{}. \mbox{\Hypertarget{class_pigeon_imu_a32a7f752dd5b912289de592df53f6c84}\label{class_pigeon_imu_a32a7f752dd5b912289de592df53f6c84}} 
+\index{Pigeon\+Imu@{Pigeon\+Imu}!Set\+Fused\+Heading@{Set\+Fused\+Heading}}
+\index{Set\+Fused\+Heading@{Set\+Fused\+Heading}!Pigeon\+Imu@{Pigeon\+Imu}}
+\subsubsection{\texorpdfstring{Set\+Fused\+Heading()}{SetFusedHeading()}}
+{\footnotesize\ttfamily int Pigeon\+Imu\+::\+Set\+Fused\+Heading (\begin{DoxyParamCaption}\item[{double}]{angle\+Deg }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_pigeon_imu_a1c26ba00bce3ddddf3b15b464048debf}\label{class_pigeon_imu_a1c26ba00bce3ddddf3b15b464048debf}} 
+\index{Pigeon\+Imu@{Pigeon\+Imu}!Set\+Fused\+Heading\+To\+Compass@{Set\+Fused\+Heading\+To\+Compass}}
+\index{Set\+Fused\+Heading\+To\+Compass@{Set\+Fused\+Heading\+To\+Compass}!Pigeon\+Imu@{Pigeon\+Imu}}
+\subsubsection{\texorpdfstring{Set\+Fused\+Heading\+To\+Compass()}{SetFusedHeadingToCompass()}}
+{\footnotesize\ttfamily int Pigeon\+Imu\+::\+Set\+Fused\+Heading\+To\+Compass (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_pigeon_imu_a44dd2494ea4902480eaab3e9bfe01168}\label{class_pigeon_imu_a44dd2494ea4902480eaab3e9bfe01168}} 
+\index{Pigeon\+Imu@{Pigeon\+Imu}!Set\+Status\+Frame\+Rate\+Ms@{Set\+Status\+Frame\+Rate\+Ms}}
+\index{Set\+Status\+Frame\+Rate\+Ms@{Set\+Status\+Frame\+Rate\+Ms}!Pigeon\+Imu@{Pigeon\+Imu}}
+\subsubsection{\texorpdfstring{Set\+Status\+Frame\+Rate\+Ms()}{SetStatusFrameRateMs()}}
+{\footnotesize\ttfamily void Pigeon\+Imu\+::\+Set\+Status\+Frame\+Rate\+Ms (\begin{DoxyParamCaption}\item[{\hyperlink{class_pigeon_imu_a655b831f9be6c185f1cc553679776b31}{Status\+Frame\+Rate}}]{status\+Frame\+Rate,  }\item[{int}]{period\+Ms }\end{DoxyParamCaption})}
+
+Change the period\+Ms of a T\+A\+L\+ON\textquotesingle{}s status frame. See k\+Status\+Frame\+\_\+$\ast$ enums for what\textquotesingle{}s available. \mbox{\Hypertarget{class_pigeon_imu_aeebdd0e34a7542d5155e72fe673f97f2}\label{class_pigeon_imu_aeebdd0e34a7542d5155e72fe673f97f2}} 
+\index{Pigeon\+Imu@{Pigeon\+Imu}!Set\+Yaw@{Set\+Yaw}}
+\index{Set\+Yaw@{Set\+Yaw}!Pigeon\+Imu@{Pigeon\+Imu}}
+\subsubsection{\texorpdfstring{Set\+Yaw()}{SetYaw()}}
+{\footnotesize\ttfamily int Pigeon\+Imu\+::\+Set\+Yaw (\begin{DoxyParamCaption}\item[{double}]{angle\+Deg }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_pigeon_imu_a29650649072af38bf838846f8d961828}\label{class_pigeon_imu_a29650649072af38bf838846f8d961828}} 
+\index{Pigeon\+Imu@{Pigeon\+Imu}!Set\+Yaw\+To\+Compass@{Set\+Yaw\+To\+Compass}}
+\index{Set\+Yaw\+To\+Compass@{Set\+Yaw\+To\+Compass}!Pigeon\+Imu@{Pigeon\+Imu}}
+\subsubsection{\texorpdfstring{Set\+Yaw\+To\+Compass()}{SetYawToCompass()}}
+{\footnotesize\ttfamily int Pigeon\+Imu\+::\+Set\+Yaw\+To\+Compass (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_pigeon_imu_aeb52c61b481d04d783b195bdaa5299b1}\label{class_pigeon_imu_aeb52c61b481d04d783b195bdaa5299b1}} 
+\index{Pigeon\+Imu@{Pigeon\+Imu}!To\+String@{To\+String}}
+\index{To\+String@{To\+String}!Pigeon\+Imu@{Pigeon\+Imu}}
+\subsubsection{\texorpdfstring{To\+String()}{ToString()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::string Pigeon\+Imu\+::\+To\+String (\begin{DoxyParamCaption}\item[{\hyperlink{class_pigeon_imu_af08e19459beb068e840719205fa46c39}{Pigeon\+Imu\+::\+Pigeon\+State}}]{state }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_pigeon_imu_a234d994be6361c91cd58cbd754ad52c6}\label{class_pigeon_imu_a234d994be6361c91cd58cbd754ad52c6}} 
+\index{Pigeon\+Imu@{Pigeon\+Imu}!To\+String@{To\+String}}
+\index{To\+String@{To\+String}!Pigeon\+Imu@{Pigeon\+Imu}}
+\subsubsection{\texorpdfstring{To\+String()}{ToString()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily std\+::string Pigeon\+Imu\+::\+To\+String (\begin{DoxyParamCaption}\item[{\hyperlink{class_pigeon_imu_a1d73ea84ad5c812e809698fab0b9b490}{Calibration\+Mode}}]{cm }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\hyperlink{_pigeon_imu_8h}{Pigeon\+Imu.\+h}\item 
+src/\hyperlink{_pigeon_imu_8cpp}{Pigeon\+Imu.\+cpp}\end{DoxyCompactItemize}

@@ -1,6 +1,7 @@
 package org.usfirst.frc.team930.robot;
 import edu.wpi.first.wpilibj.Notifier;
 
+// This class contains the framework for how the subsystems update
 public class SubsystemHandler {
 
 		private final Drive myDrive;
@@ -17,12 +18,12 @@ public class SubsystemHandler {
 		
 		public SubsystemHandler(){
 			
-			myDrive = new Drive();
+			myDrive = new Drive(); // Instantiates runnable subsystem classes
 			myShoot = new Shoot();
 			myClimb = new Climb();
 			myIntake = new Intake();
 			
-			driveNotifier = new Notifier (myDrive);
+			driveNotifier = new Notifier (myDrive); // Instantiates the notifiers for each subsystem
 					
 			shootNotifier = new Notifier (myShoot);
 						
@@ -33,9 +34,9 @@ public class SubsystemHandler {
 		}
 		
 		public void startSubsystems(){
-			System.out.println("Starting Subsystems");
+			//System.out.println("Starting Subsystems");
 			
-			driveNotifier.startPeriodic(.005);
+			driveNotifier.startPeriodic(.005); // Gives the update values in seconds for each subsystem notifier
 			
 			shootNotifier.startPeriodic(.01);
 			

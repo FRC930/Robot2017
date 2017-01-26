@@ -1,0 +1,40 @@
+\hypertarget{_c_a_n_talon_8cpp}{}\section{src/\+C\+A\+N\+Talon.cpp File Reference}
+\label{_c_a_n_talon_8cpp}\index{src/\+C\+A\+N\+Talon.\+cpp@{src/\+C\+A\+N\+Talon.\+cpp}}
+{\ttfamily \#include \char`\"{}C\+A\+N\+Talon.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$chrono$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$thread$>$}\newline
+{\ttfamily \#include \char`\"{}H\+A\+L/\+H\+A\+L.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Live\+Window/\+Live\+Window.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}W\+P\+I\+Errors.\+h\char`\"{}}\newline
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const double \hyperlink{_c_a_n_talon_8cpp_aab130ab9b472d9ebc9e505701b03811a}{k\+Native\+Adc\+Units\+Per\+Rotation} = 1024.\+0
+\item 
+const double \hyperlink{_c_a_n_talon_8cpp_aee362194bbe3acf1e14d83b031fdba8b}{k\+Native\+Pwd\+Units\+Per\+Rotation} = 4096.\+0
+\item 
+const double \hyperlink{_c_a_n_talon_8cpp_a4780f19ef07e3e58a789fcd98edd26c3}{k\+Minutes\+Per100ms\+Unit} = 1.\+0 / 600.\+0
+\end{DoxyCompactItemize}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{_c_a_n_talon_8cpp_a4780f19ef07e3e58a789fcd98edd26c3}\label{_c_a_n_talon_8cpp_a4780f19ef07e3e58a789fcd98edd26c3}} 
+\index{C\+A\+N\+Talon.\+cpp@{C\+A\+N\+Talon.\+cpp}!k\+Minutes\+Per100ms\+Unit@{k\+Minutes\+Per100ms\+Unit}}
+\index{k\+Minutes\+Per100ms\+Unit@{k\+Minutes\+Per100ms\+Unit}!C\+A\+N\+Talon.\+cpp@{C\+A\+N\+Talon.\+cpp}}
+\subsubsection{\texorpdfstring{k\+Minutes\+Per100ms\+Unit}{kMinutesPer100msUnit}}
+{\footnotesize\ttfamily const double k\+Minutes\+Per100ms\+Unit = 1.\+0 / 600.\+0}
+
+Number of minutes per 100ms unit. Useful for scaling velocities measured by Talon\textquotesingle{}s 100ms timebase to rotations per minute. \mbox{\Hypertarget{_c_a_n_talon_8cpp_aab130ab9b472d9ebc9e505701b03811a}\label{_c_a_n_talon_8cpp_aab130ab9b472d9ebc9e505701b03811a}} 
+\index{C\+A\+N\+Talon.\+cpp@{C\+A\+N\+Talon.\+cpp}!k\+Native\+Adc\+Units\+Per\+Rotation@{k\+Native\+Adc\+Units\+Per\+Rotation}}
+\index{k\+Native\+Adc\+Units\+Per\+Rotation@{k\+Native\+Adc\+Units\+Per\+Rotation}!C\+A\+N\+Talon.\+cpp@{C\+A\+N\+Talon.\+cpp}}
+\subsubsection{\texorpdfstring{k\+Native\+Adc\+Units\+Per\+Rotation}{kNativeAdcUnitsPerRotation}}
+{\footnotesize\ttfamily const double k\+Native\+Adc\+Units\+Per\+Rotation = 1024.\+0}
+
+Number of adc engineering units per 0 to 3.\+3V sweep. This is necessary for scaling Analog Position in rotations/\+R\+PM. \mbox{\Hypertarget{_c_a_n_talon_8cpp_aee362194bbe3acf1e14d83b031fdba8b}\label{_c_a_n_talon_8cpp_aee362194bbe3acf1e14d83b031fdba8b}} 
+\index{C\+A\+N\+Talon.\+cpp@{C\+A\+N\+Talon.\+cpp}!k\+Native\+Pwd\+Units\+Per\+Rotation@{k\+Native\+Pwd\+Units\+Per\+Rotation}}
+\index{k\+Native\+Pwd\+Units\+Per\+Rotation@{k\+Native\+Pwd\+Units\+Per\+Rotation}!C\+A\+N\+Talon.\+cpp@{C\+A\+N\+Talon.\+cpp}}
+\subsubsection{\texorpdfstring{k\+Native\+Pwd\+Units\+Per\+Rotation}{kNativePwdUnitsPerRotation}}
+{\footnotesize\ttfamily const double k\+Native\+Pwd\+Units\+Per\+Rotation = 4096.\+0}
+
+Number of pulse width engineering units per full rotation. This is necessary for scaling Pulse Width Decoded Position in rotations/\+R\+PM. 
