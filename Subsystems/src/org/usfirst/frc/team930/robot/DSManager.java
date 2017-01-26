@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.Joystick;
 public class DSManager {
 
 	// Instantiates the Driver Station as ds
-	DriverStation ds = DriverStation.getInstance();
+	public static DriverStation ds = DriverStation.getInstance();
 	
 	// Instantiates the Joystick as stick
-	Joystick stick = new Joystick(1);
+	public static Joystick stick = new Joystick(1);
 	
 }
