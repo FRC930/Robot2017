@@ -1,0 +1,88 @@
+\hypertarget{struct_c_a_n_talon_1_1_trajectory_point}{}\section{C\+A\+N\+Talon\+:\+:Trajectory\+Point Struct Reference}
+\label{struct_c_a_n_talon_1_1_trajectory_point}\index{C\+A\+N\+Talon\+::\+Trajectory\+Point@{C\+A\+N\+Talon\+::\+Trajectory\+Point}}
+
+
+{\ttfamily \#include $<$C\+A\+N\+Talon.\+h$>$}
+
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{struct_c_a_n_talon_1_1_trajectory_point_aea7407e1a0b951cd96f4768001b245c4}{position}
+\begin{DoxyCompactList}\small\item\em The position to servo to. \end{DoxyCompactList}\item 
+double \hyperlink{struct_c_a_n_talon_1_1_trajectory_point_a4be656118b6bd54bc33ceb55ab1aac6b}{velocity}
+\begin{DoxyCompactList}\small\item\em The velocity to feed-\/forward. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{struct_c_a_n_talon_1_1_trajectory_point_ab42e89d7ca0228d874ff2786dd632cb1}{time\+Dur\+Ms}
+\item 
+unsigned int \hyperlink{struct_c_a_n_talon_1_1_trajectory_point_aa6342e0feb7ffd570dafef5f773ca250}{profile\+Slot\+Select}
+\item 
+bool \hyperlink{struct_c_a_n_talon_1_1_trajectory_point_a6d15bfa2f22505ffc2ec14774c2705a0}{velocity\+Only}
+\item 
+bool \hyperlink{struct_c_a_n_talon_1_1_trajectory_point_ab726b1367a77c689128bb4ba8e51eb8c}{is\+Last\+Point}
+\item 
+bool \hyperlink{struct_c_a_n_talon_1_1_trajectory_point_ad0f0243fe8d9eaa28d0eeee1026e235e}{zero\+Pos}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Motion Profile Trajectory Point This is simply a data transer object. 
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{struct_c_a_n_talon_1_1_trajectory_point_ab726b1367a77c689128bb4ba8e51eb8c}\label{struct_c_a_n_talon_1_1_trajectory_point_ab726b1367a77c689128bb4ba8e51eb8c}} 
+\index{C\+A\+N\+Talon\+::\+Trajectory\+Point@{C\+A\+N\+Talon\+::\+Trajectory\+Point}!is\+Last\+Point@{is\+Last\+Point}}
+\index{is\+Last\+Point@{is\+Last\+Point}!C\+A\+N\+Talon\+::\+Trajectory\+Point@{C\+A\+N\+Talon\+::\+Trajectory\+Point}}
+\subsubsection{\texorpdfstring{is\+Last\+Point}{isLastPoint}}
+{\footnotesize\ttfamily bool C\+A\+N\+Talon\+::\+Trajectory\+Point\+::is\+Last\+Point}
+
+Set to true to signal Talon that this is the final point, so do not attempt to pop another trajectory point from out of the Talon buffer. Instead continue processing this way point. Typically the velocity member variable should be zero so that the motor doesn\textquotesingle{}t spin indefinitely. \mbox{\Hypertarget{struct_c_a_n_talon_1_1_trajectory_point_aea7407e1a0b951cd96f4768001b245c4}\label{struct_c_a_n_talon_1_1_trajectory_point_aea7407e1a0b951cd96f4768001b245c4}} 
+\index{C\+A\+N\+Talon\+::\+Trajectory\+Point@{C\+A\+N\+Talon\+::\+Trajectory\+Point}!position@{position}}
+\index{position@{position}!C\+A\+N\+Talon\+::\+Trajectory\+Point@{C\+A\+N\+Talon\+::\+Trajectory\+Point}}
+\subsubsection{\texorpdfstring{position}{position}}
+{\footnotesize\ttfamily double C\+A\+N\+Talon\+::\+Trajectory\+Point\+::position}
+
+
+
+The position to servo to. 
+
+\mbox{\Hypertarget{struct_c_a_n_talon_1_1_trajectory_point_aa6342e0feb7ffd570dafef5f773ca250}\label{struct_c_a_n_talon_1_1_trajectory_point_aa6342e0feb7ffd570dafef5f773ca250}} 
+\index{C\+A\+N\+Talon\+::\+Trajectory\+Point@{C\+A\+N\+Talon\+::\+Trajectory\+Point}!profile\+Slot\+Select@{profile\+Slot\+Select}}
+\index{profile\+Slot\+Select@{profile\+Slot\+Select}!C\+A\+N\+Talon\+::\+Trajectory\+Point@{C\+A\+N\+Talon\+::\+Trajectory\+Point}}
+\subsubsection{\texorpdfstring{profile\+Slot\+Select}{profileSlotSelect}}
+{\footnotesize\ttfamily unsigned int C\+A\+N\+Talon\+::\+Trajectory\+Point\+::profile\+Slot\+Select}
+
+Which slot to get P\+I\+DF gains. P\+ID is used for position servo. F is used as the Kv constant for velocity feed-\/forward. Typically this is hardcoded to the a particular slot, but you are free gain schedule if need be. \mbox{\Hypertarget{struct_c_a_n_talon_1_1_trajectory_point_ab42e89d7ca0228d874ff2786dd632cb1}\label{struct_c_a_n_talon_1_1_trajectory_point_ab42e89d7ca0228d874ff2786dd632cb1}} 
+\index{C\+A\+N\+Talon\+::\+Trajectory\+Point@{C\+A\+N\+Talon\+::\+Trajectory\+Point}!time\+Dur\+Ms@{time\+Dur\+Ms}}
+\index{time\+Dur\+Ms@{time\+Dur\+Ms}!C\+A\+N\+Talon\+::\+Trajectory\+Point@{C\+A\+N\+Talon\+::\+Trajectory\+Point}}
+\subsubsection{\texorpdfstring{time\+Dur\+Ms}{timeDurMs}}
+{\footnotesize\ttfamily unsigned int C\+A\+N\+Talon\+::\+Trajectory\+Point\+::time\+Dur\+Ms}
+
+Time in milliseconds to process this point. Value should be between 1ms and 255ms. If value is zero then Talon will default to 1ms. If value exceeds 255ms A\+PI will cap it. \mbox{\Hypertarget{struct_c_a_n_talon_1_1_trajectory_point_a4be656118b6bd54bc33ceb55ab1aac6b}\label{struct_c_a_n_talon_1_1_trajectory_point_a4be656118b6bd54bc33ceb55ab1aac6b}} 
+\index{C\+A\+N\+Talon\+::\+Trajectory\+Point@{C\+A\+N\+Talon\+::\+Trajectory\+Point}!velocity@{velocity}}
+\index{velocity@{velocity}!C\+A\+N\+Talon\+::\+Trajectory\+Point@{C\+A\+N\+Talon\+::\+Trajectory\+Point}}
+\subsubsection{\texorpdfstring{velocity}{velocity}}
+{\footnotesize\ttfamily double C\+A\+N\+Talon\+::\+Trajectory\+Point\+::velocity}
+
+
+
+The velocity to feed-\/forward. 
+
+\mbox{\Hypertarget{struct_c_a_n_talon_1_1_trajectory_point_a6d15bfa2f22505ffc2ec14774c2705a0}\label{struct_c_a_n_talon_1_1_trajectory_point_a6d15bfa2f22505ffc2ec14774c2705a0}} 
+\index{C\+A\+N\+Talon\+::\+Trajectory\+Point@{C\+A\+N\+Talon\+::\+Trajectory\+Point}!velocity\+Only@{velocity\+Only}}
+\index{velocity\+Only@{velocity\+Only}!C\+A\+N\+Talon\+::\+Trajectory\+Point@{C\+A\+N\+Talon\+::\+Trajectory\+Point}}
+\subsubsection{\texorpdfstring{velocity\+Only}{velocityOnly}}
+{\footnotesize\ttfamily bool C\+A\+N\+Talon\+::\+Trajectory\+Point\+::velocity\+Only}
+
+Set to true to only perform the velocity feed-\/forward and not perform position servo. This is useful when learning how the position servo changes the motor response. The same could be accomplish by clearing the P\+ID gains, however this is synchronous the streaming, and doesn\textquotesingle{}t require restoing gains when finished.
+
+Additionaly setting this basically gives you direct control of the motor output since motor output = target\+Velocity X Kv, where Kv is our Fgain. This means you can also scheduling straight-\/throttle curves without relying on a sensor. \mbox{\Hypertarget{struct_c_a_n_talon_1_1_trajectory_point_ad0f0243fe8d9eaa28d0eeee1026e235e}\label{struct_c_a_n_talon_1_1_trajectory_point_ad0f0243fe8d9eaa28d0eeee1026e235e}} 
+\index{C\+A\+N\+Talon\+::\+Trajectory\+Point@{C\+A\+N\+Talon\+::\+Trajectory\+Point}!zero\+Pos@{zero\+Pos}}
+\index{zero\+Pos@{zero\+Pos}!C\+A\+N\+Talon\+::\+Trajectory\+Point@{C\+A\+N\+Talon\+::\+Trajectory\+Point}}
+\subsubsection{\texorpdfstring{zero\+Pos}{zeroPos}}
+{\footnotesize\ttfamily bool C\+A\+N\+Talon\+::\+Trajectory\+Point\+::zero\+Pos}
+
+Set to true to signal Talon to zero the selected sensor. When generating M\+Ps, one simple method is to make the first target position zero, and the final target position the target distance from the current position. Then when you fire the MP, the current position gets set to zero. If this is the intent, you can set zero\+Pos on the first trajectory point.
+
+Otherwise you can leave this false for all points, and offset the positions of all trajectory points so they are correct. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\hyperlink{_c_a_n_talon_8h}{C\+A\+N\+Talon.\+h}\end{DoxyCompactItemize}

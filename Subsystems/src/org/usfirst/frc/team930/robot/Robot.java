@@ -11,7 +11,7 @@ public class Robot extends IterativeRobot {
 	SubsystemHandler SH;
 
     public void robotInit() {
-        SH = new SubsystemHandler();
+        SH = new SubsystemHandler(); // Begins the SystemHandler, which controls the speeds at which the subsystems are updated.
         SH.startSubsystems();
     }
     

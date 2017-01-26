@@ -1,5 +1,10 @@
 package org.usfirst.frc.team930.robot;
-import edu.wpi.first.wpilibj.Timer;
+import com.ctre.CANTalon;
+import com.kauailabs.navx.frc.AHRS;
+
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.SerialPort;
 
 public class Drive implements Runnable {
 	
@@ -7,37 +12,27 @@ public class Drive implements Runnable {
     double targetY;
     boolean useJoysticks;
     
+    RobotDrive myRobot = new RobotDrive(0, 1);
+	
+	//AHRS gyro = new AHRS(SerialPort.Port.kUSB);
+    
 	public void run(){
 		
-		/*myRobot.arcadeDrive(stick);
+		myRobot.arcadeDrive(DSManager.stick);
 		
-		double wheel = stick.getRawAxis(0);
-		double throttle = stick.getRawAxis(1);
-		
-		double wheelNonLinearity = 0.5;
-
-		wheel = handleDeadband(wheel, 0.1);
-		throttle = handleDeadband(throttle, 0.085);
-		
-		wheel = Math.sin(Math.PI / 2.0 * wheelNonLinearity * wheel) / Math.sin(Math.PI / 2.0 * wheelNonLinearity);
-		wheel = Math.sin(Math.PI / 2.0 * wheelNonLinearity * wheel) / Math.sin(Math.PI / 2.0 * wheelNonLinearity);
-		wheel = Math.sin(Math.PI / 2.0 * wheelNonLinearity * wheel) / Math.sin(Math.PI / 2.0 * wheelNonLinearity);
-		
-		L1.set(throttle + wheel);
-		L2.set(throttle + wheel);
-		L3.set(throttle + wheel);
-		R1.set(throttle - wheel);
-		R2.set(throttle - wheel);
-		R3.set(throttle - wheel);
-		
-		/* Joystick values to gyro values
-		double angleGyro = gyro.getAngle()%360;
-		System.out.println(angleGyro);
-		
-		double angleStick = Math.toDegrees(Math.atan2((stick.getRawAxis(1)), (stick.getRawAxis(0))));
-		System.out.println(angleStick);*/
-		
-		Timer.delay(0.005);
+		// Adjusting joystick sensitivity
+		double xValue = Math.pow(DSManager.stick.getRawAxis(0), 3);
+		double yValue = Math.pow(DSManager.stick.getRawAxis(1), 3);
+				
+		// Deadband
+		if (Math.abs(xValue) < 0.1 && Math.abs(yValue) < 0.1) {
+			xValue = 0;
+			yValue = 0;
+		}
+				
+		// Setting talons
+		OuputManager.setSpeedL(yValue + xValue);
+		OuputManager.setSpeedR(yValue - xValue);
 		
 	}
 	
@@ -51,10 +46,6 @@ public class Drive implements Runnable {
 	
 	public void drive(){
 		
-	}
-	
-	private double handleDeadband(double val, double deadband) {
-		return (Math.abs(val) > Math.abs(deadband)) ? val : 0.0;		// boolean statement ? true result : false result
 	}
 	
 }
