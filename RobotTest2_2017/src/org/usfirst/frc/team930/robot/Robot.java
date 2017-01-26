@@ -30,7 +30,7 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		myTal.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
 		myTal.changeControlMode(CANTalon.TalonControlMode.Speed);
-		myTal.setF(fGain);
+		//myTal.setF(fGain);
 	}
 
 	@Override
@@ -69,7 +69,6 @@ public class Robot extends IterativeRobot {
 			
 			rpmActual = myTal.getEncVelocity() / 4096.0 * 60.0 * 10.0;
 			
-			myTal.set((speed * 4550 * 4096.0 / 60.0 / 10.0));
 			// BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
 			/*if (onBool)
 				if (rpmActual < (speed * 4550)) {
@@ -83,10 +82,9 @@ public class Robot extends IterativeRobot {
 			
 			System.out.print("Target Speed:" + (speed * 4550));
 			System.out.println("   Enc Val Speed: " + (rpmActual));
-			
-			
-			
-			
+			if (onBool) {
+				myTal.set((speed * 4550 * 4096.0 / 60.0 / 10.0));
+			}
 	}
 
 	/**
