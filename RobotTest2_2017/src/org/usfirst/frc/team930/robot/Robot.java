@@ -17,7 +17,7 @@ public class Robot extends IterativeRobot {
 	
 	double speed = 0.50;
 	double rpmActual = 0;
-	double fGain = ((31061.333/1032.0)/4096.0);;
+	double fGain = .0045;
 	double kF = 0.0;
 	
 	boolean Apressed = false; 
@@ -29,8 +29,11 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		myTal.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
-		myTal.changeControlMode(CANTalon.TalonControlMode.Speed);
+		//myTal.changeControlMode(CANTalon.TalonControlMode.Speed);
+		myTal.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 		//myTal.setF(fGain);
+		myTal.configNominalOutputVoltage(+0.0f, -0.0f);
+		myTal.configPeakOutputVoltage(+12.0, 0.0f);
 	}
 
 	@Override
@@ -70,21 +73,23 @@ public class Robot extends IterativeRobot {
 			rpmActual = myTal.getEncVelocity() / 4096.0 * 60.0 * 10.0;
 			
 			// BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
-			/*if (onBool)
-				if (rpmActual < (speed * 4550)) {
+			if (onBool)
+				/*if (rpmActual < (speed * 4550)) {
 					myTal.set(1.0);
 				}
 				else {
 					myTal.set(0.0);
-				}
+				}*/
+				myTal.set(speed*4500);
 			else
-				myTal.set(0.0);*/
+				myTal.set(0.0);
 			
-			System.out.print("Target Speed:" + (speed * 4550));
-			System.out.println("   Enc Val Speed: " + (rpmActual));
-			if (onBool) {
-				myTal.set((speed * 4550 * 4096.0 / 60.0 / 10.0));
-			}
+			System.out.print("TS: " +  (speed * 4500) + "   Volt: " + myTal.getOutputVoltage());
+			System.out.println("   S: " + (myTal.getSpeed()) + "E: " + myTal.getClosedLoopError());
+			//if (onBool) {
+				//myTal.set((speed * 4550 * 4096.0 / 60.0 / 10.0));
+				
+			//}
 	}
 
 	/**
