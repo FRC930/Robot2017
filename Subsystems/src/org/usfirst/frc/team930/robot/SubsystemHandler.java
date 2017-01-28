@@ -22,6 +22,7 @@ public class SubsystemHandler {
 			myShoot = new Shoot();
 			myClimb = new Climb();
 			myIntake = new Intake();
+			myLog = new Loggable();
 			
 			driveNotifier = new Notifier (myDrive); // Instantiates the notifiers for each subsystem
 					
@@ -30,6 +31,8 @@ public class SubsystemHandler {
 			climbNotifier = new Notifier (myClimb);
 				
 			intakeNotifier = new Notifier (myIntake);
+			
+			logNotifier = new Notifier (myLog);
 			
 		}
 		
@@ -43,6 +46,8 @@ public class SubsystemHandler {
 			climbNotifier.startPeriodic(.02);
 			
 			intakeNotifier.startPeriodic(.02);
+			
+			logNotifier.startPeriodic(.005);
 			
 		}
 }

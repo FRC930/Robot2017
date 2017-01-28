@@ -1,6 +1,5 @@
 package org.usfirst.frc.team930.robot;
 
-import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.Spark;
 
@@ -11,7 +10,7 @@ public class SparkSpeedLoggable implements Loggable{
 	}
 	
 	@Override
-	public String log() {
+	public String log(int channel) {
 		return Double.toString(spark.getSpeed());
 	}
 
