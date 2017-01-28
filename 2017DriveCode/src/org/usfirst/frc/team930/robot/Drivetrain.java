@@ -26,33 +26,37 @@ public class Drivetrain extends IterativeRobot {
 	String autoSelected;
 	SendableChooser<String> chooser = new SendableChooser<>();*/
 	
-	RobotDrive myRobot = new RobotDrive(0, 1);
+	// RobotDrive myRobot = new RobotDrive(0, 1);
 	
 	Joystick stick = new Joystick(1);
-	Button driver4 = new JoystickButton(stick, 4);
-	Button driver1 = new JoystickButton(stick, 1);
+	// Button driver4 = new JoystickButton(stick, 4);
+	// Button driver1 = new JoystickButton(stick, 1);
 	
 	AHRS gyro = new AHRS(SerialPort.Port.kUSB);
 	
-	CANTalon L1 = new CANTalon(0);
-	CANTalon L2 = new CANTalon(1);
-	CANTalon L3 = new CANTalon(2);
-	CANTalon R1 = new CANTalon(3);
-	CANTalon R2 = new CANTalon(4);
-	CANTalon R3 = new CANTalon(5);
+	CANTalon L1 = new CANTalon(1);
+	CANTalon L2 = new CANTalon(2);
+	CANTalon L3 = new CANTalon(3);
+	CANTalon R1 = new CANTalon(4);
+	CANTalon R2 = new CANTalon(5);
+	CANTalon R3 = new CANTalon(6);
 
 	// MotionProfileExample example = new MotionProfileExample(_talon);
 
-	boolean[] btnsLast = {false,false,false,false,false,false,false,false,false,false};
+	// boolean[] btnsLast = {false,false,false,false,false,false,false,false,false,false};
 
-	public Drivetrain() {
+	//*public Drivetrain() {
 		super();
 		R1.setInverted(true);
 		R2.setInverted(true);
 		R3.setInverted(true);
 		
 		gyro.reset();
-	}
+	}*//
+	
+	L1.setInverted(true);
+	L2.setInverted(true);
+	L3.setInverted(true);
 	
 	/**
 	 * This function is run when the robot is first started up and should be
