@@ -76,8 +76,8 @@ public class Robot extends IterativeRobot {
 		R3.set(R1.getDeviceID());
 		
 		// At 200 slammed forward and backward no drop outs and driving responsive
-		L1.setVoltageRampRate(200);
-		R1.setVoltageRampRate(200);
+		L1.setVoltageRampRate(1600);
+		R1.setVoltageRampRate(1600);
 
 		/*L1.changeControlMode(CANTalon.TalonControlMode.Speed);
 		L2.changeControlMode(CANTalon.TalonControlMode.Follower);
