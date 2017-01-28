@@ -1,6 +1,7 @@
 package org.usfirst.frc.team930.robot;
 
 import com.ctre.CANTalon;
+import com.ctre.CANTalon.TalonControlMode;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.Timer;
@@ -40,6 +41,10 @@ public class Drivetrain extends IterativeRobot {
 	CANTalon R2 = new CANTalon(4);
 	CANTalon R3 = new CANTalon(5);
 
+	// MotionProfileExample example = new MotionProfileExample(_talon);
+
+	boolean[] btnsLast = {false,false,false,false,false,false,false,false,false,false};
+
 	public Drivetrain() {
 		super();
 		R1.setInverted(true);
@@ -70,6 +75,12 @@ public class Drivetrain extends IterativeRobot {
 		L3.set(L1.getDeviceID());
 		R2.set(R1.getDeviceID());
 		R3.set(R1.getDeviceID());
+		
+		// Motion profiling
+		L1.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Relative);
+		L1.reverseSensor(false);
+		R1.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Relative);
+		R1.reverseSensor(false);
 	}
 
 	/**
@@ -114,25 +125,6 @@ public class Drivetrain extends IterativeRobot {
 	public void teleopPeriodic() {
 		myRobot.arcadeDrive(stick);
 		
-		/*double wheel = stick.getRawAxis(0);
-		double throttle = stick.getRawAxis(1);
-		
-		double wheelNonLinearity = 0.5;
-
-		wheel = handleDeadband(wheel, 0.1);
-		throttle = handleDeadband(throttle, 0.085);
-		
-		wheel = Math.sin(Math.PI / 2.0 * wheelNonLinearity * wheel) / Math.sin(Math.PI / 2.0 * wheelNonLinearity);
-		wheel = Math.sin(Math.PI / 2.0 * wheelNonLinearity * wheel) / Math.sin(Math.PI / 2.0 * wheelNonLinearity);
-		wheel = Math.sin(Math.PI / 2.0 * wheelNonLinearity * wheel) / Math.sin(Math.PI / 2.0 * wheelNonLinearity);
-		
-		L1.set(throttle + wheel);
-		L2.set(throttle + wheel);
-		L3.set(throttle + wheel);
-		R1.set(throttle - wheel);
-		R2.set(throttle - wheel);
-		R3.set(throttle - wheel);*/
-		
 		// Adjusting joystick sensitivity
 		double xValue = Math.pow(stick.getRawAxis(0), 3);
 		double yValue = Math.pow(stick.getRawAxis(1), 3);
@@ -158,12 +150,54 @@ public class Drivetrain extends IterativeRobot {
 		double angleStick = Math.toDegrees(Math.atan2((stick.getRawAxis(1)), (stick.getRawAxis(0))));
 		System.out.println(angleStick);*/
 		
+		// Motion profiling
+		boolean [] btns= new boolean [btnsLast.length];
+		for(int i=1; i<btnsLast.length; ++i)
+			btns[i] = stick.getRawButton(i);
+
+		// get the left joystick axis on Logitech Gampead
+		double leftYjoystick = -1 * stick.getY(); /* multiple by -1 so joystick forward is positive */
+
+		// call this periodically, and catch the output.  Only apply it if user wants to run MP.
+		// example.control();
+		
+		if (btns[5] == false) {
+			
+			// button5 is off so straight drive
+			L1.changeControlMode(TalonControlMode.Voltage);
+			L1.set(12.0 * leftYjoystick);
+			R1.changeControlMode(TalonControlMode.Voltage);
+			R1.set(12.0 * leftYjoystick);
+
+			// example.reset();
+		} 
+		else {
+			
+			// Button5 is held down so switch to motion profile control mode
+			L1.changeControlMode(TalonControlMode.MotionProfile);
+			R1.changeControlMode(TalonControlMode.MotionProfile);
+			
+			// CANTalon.SetValueMotionProfile setOutput = example.getSetValue();
+					
+			// L1.set(setOutput.value);
+			// R1.set(setOutput.value);
+
+			// if btn is pressed and was not pressed last time
+			if( (btns[6] == true) && (btnsLast[6] == false) ) {
+				/* user just tapped button 6 */
+				// example.startMotionProfile();
+			}
+		}
+
+		// save buttons states for on-press detection
+		for(int i=1;i<10;++i) {
+			
+			btnsLast[i] = btns[i];
+		}
+		
+		
 		Timer.delay(0.005);
 	}
-
-	/*private double handleDeadband(double val, double deadband) {
-		return (Math.abs(val) > Math.abs(deadband)) ? val : 0.0;		// boolean statement ? true result : false result
-	}*/
 
 	/**
 	 * This function is called periodically during test mode
