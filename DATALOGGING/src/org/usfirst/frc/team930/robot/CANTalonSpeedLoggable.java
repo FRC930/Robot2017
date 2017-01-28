@@ -2,6 +2,8 @@ package org.usfirst.frc.team930.robot;
 
 import com.ctre.CANTalon;
 
+
+
 public class CANTalonSpeedLoggable implements Loggable{
 	private final CANTalon talon;
 	public CANTalonSpeedLoggable (CANTalon talon) {
@@ -9,7 +11,7 @@ public class CANTalonSpeedLoggable implements Loggable{
 	}
 	
 	@Override
-	public String log() {
+	public String log(int channel) {
 		return Double.toString(talon.getSpeed());
 	}
 

@@ -33,7 +33,7 @@ public class OuputManager {
 	
 	public void init(){
 		
-		// Initializing motors
+		// Initializing motorsbb
 		// Initializes Motors for drivetrain
 		frontLeftMotor = new CANTalon(1);
 		rearLeftMotor = new CANTalon(2);
@@ -145,6 +145,47 @@ public class OuputManager {
 		
 		climberSpark.set(speed);
 		
+	}
+	public static String getTalonSpeedFrontRightMotor(){
+		
+		return Double.toString(frontRightMotor.getSpeed());
+				
+	}
+	
+	public static String getTalonShooterMotor(){
+		
+		return Double.toString(shooterMotor.getSpeed());
+				
+	}
+	
+	public static String getTalonSpeedFrontLefttMotor(){
+		
+		return Double.toString(frontLeftMotor.getSpeed());
+				
+	}
+	
+	public static String getTalonSpeedRearRightMotor(){
+		
+		return Double.toString(rearRightMotor.getSpeed());
+				
+	}
+	
+	public static String getTalonSpeedRearLeftMotor(){
+		
+		return Double.toString(rearLeftMotor.getSpeed());
+				
+	}
+	
+	public static String getTalonSpeedLeftSlave(){
+		
+		return Double.toString(leftSlave.getSpeed());
+				
+	}
+	
+	public static String getTalonSpeedRightSlave(){
+		
+		return Double.toString(rightSlave.getSpeed());
+				
 	}
 	
 }
