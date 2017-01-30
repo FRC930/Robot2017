@@ -13,5 +13,5 @@ public class SparkSpeedLoggable implements Loggable{
 	public String log(int channel) {
 		return Double.toString(spark.getSpeed());
 	}
-
+	
 }

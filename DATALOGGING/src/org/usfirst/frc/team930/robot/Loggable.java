@@ -31,10 +31,7 @@ public class Loggable implements Runnable{
 		rightSlaveMotorSpeed = OutputManager.getTalonSpeedRightSlave();
 		shooterMotorSpeed = OutputManager.getTalonShooterMotor();
 		
-		 bwriter.write(rearLeftMotorSpeed);
-		 bwriter.flush();
-		 bwriter.close();
-		
+	
 		
 			BufferedWriter bwriter;
 			
