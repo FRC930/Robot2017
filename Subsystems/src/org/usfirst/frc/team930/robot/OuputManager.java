@@ -33,7 +33,7 @@ public class OuputManager {
 	
 	public void init(){
 		
-		// Initializing motorsbb
+		// Initializing motors
 		// Initializes Motors for drivetrain
 		frontLeftMotor = new CANTalon(1);
 		rearLeftMotor = new CANTalon(2);
@@ -111,41 +111,49 @@ public class OuputManager {
 		
 	}
 	
+	// Mutator method to set the speed of the shooter [-1,1]
 	public static void setShooterSpeed( double speed ){
 		
 		shooterMotor.set(speed);
 		
 	}
 	
+	// Changes the mode of the shooter to speed
 	public static void setShooterSpeedMode(){
 		
 		shooterMotor.changeControlMode(CANTalon.TalonControlMode.Speed);
 		
 	}
 	
+	// Changes the mode of the shooter to disabled
 	public static void setShooterDisabledMode(){
 		
 		shooterMotor.changeControlMode(CANTalon.TalonControlMode.Disabled);
 		
 	}
 	
+	// Changes the mode of the shooter to PercentVbus
 	public static void setShooterPercentVbusMode(){
 		
 		shooterMotor.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 		
 	}
 
+	// Mutator method to set the speed of the intake motor [-1,1]
 	public static void setIntakeSpeed( double speed ){
 		
 		intakeSpark.set(speed);
 		
 	}
-	
+	// Mutator method to set the speed of the climber motor [-1,1]
 	public static void setClimberSpeed( double speed ){
 		
 		climberSpark.set(speed);
 		
 	}
+	
+	// Series of Talon accessor classes, mainly used in loggable.
+	// Return a string value of the speed units will be in the sensor's native ticks per 100ms.
 	public static String getTalonSpeedFrontRightMotor(){
 		
 		return Double.toString(frontRightMotor.getSpeed());
@@ -188,4 +196,23 @@ public class OuputManager {
 				
 	}
 	
+	// Series of Spark accessors to return speed used in loggable
+	// Return a string value of the set speed value on [-1,1]
+	public static String getSparkSpeedIntake(){
+		
+		return Double.toString(intakeSpark.getSpeed());
+		
+	}
+	
+	public static String getSparkSpeedClimber(){
+		
+		return Double.toString(climberSpark.getSpeed());
+		
+	}
+	
+	public static String getSparkSpeedFeeder(){
+		
+		return Double.toString(feederSpark.getSpeed());
+		
+	}
 }
