@@ -1,11 +1,13 @@
 package org.usfirst.frc.team930.robot;
 
 import com.ctre.CANTalon;
+import com.sun.glass.ui.Timer;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-
+import java.sql.Time;
 
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Spark;
@@ -40,16 +42,20 @@ public class Loggable implements Runnable{
 			public void robotInit() {
 				  //Creates writer, and reports errors.
 				  try {
-					  File file = new File("c" + File.separator + "output.txt");
+					  File file = new File("c" + File.separator + System.currentTimeMillis() + "shooterspeed.txt");
 						bwriter = new BufferedWriter(new FileWriter(file));
 					  if (!file.exists()) {
 						  file.createNewFile();
 					  }
 					  
 					  
-				  } catch (IOException e) {
+				  } 
+				  while (isOperatorControl() && isEnabled()) {
+					  catch (IOException e) {
 					  //e.printStackTrace();
 					  System.err.println(e);	
+					  
+					  
 				  } finally {
 		
 					  try {
@@ -79,4 +85,7 @@ public class Loggable implements Runnable{
 					  } catch (IOException e) {
 						  //e.printStackTrace();
 						  System.err.println(e);
+					  }
+				  }
+				  }
 
