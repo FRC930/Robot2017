@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.SafePWM;
 import edu.wpi.first.wpilibj.PWMSpeedController;
 import edu.wpi.first.wpilibj.Spark;
 
-public class OuputManager {
+public class OutputManager {
 	
 	// Declaring robot motors
 	// 6 Drivetrain motor declarations
