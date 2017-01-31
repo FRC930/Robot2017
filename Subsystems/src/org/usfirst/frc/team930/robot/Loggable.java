@@ -2,7 +2,6 @@ package org.usfirst.frc.team930.robot;
 
 import com.ctre.CANTalon;
 import com.sun.glass.ui.Timer;
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -39,7 +38,7 @@ public class Loggable implements Runnable{
 			
 			File file;
 			@Override
-			public void robotInit() {
+			public void robotInit() {s
 				  //Creates writer, and reports errors.
 				  try {
 					  File file = new File("c" + File.separator + System.currentTimeMillis() + "shooterspeed.txt");
@@ -72,7 +71,7 @@ public class Loggable implements Runnable{
 							 bwriter.flush();
 							 bwriter.close();
 							 bwriter.write(leftSlaveMotorSpeed);
-							 bwriter.flush();
+							 bwriter.lush();
 							 bwriter.close();
 							 bwriter.write(rightSlaveMotorSpeed);
 							 bwriter.flush();
