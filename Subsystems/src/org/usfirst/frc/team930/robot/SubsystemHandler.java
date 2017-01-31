@@ -8,13 +8,13 @@ public class SubsystemHandler {
 		private final Shoot myShoot;
 		private final Climb myClimb;
 		private final Intake myIntake;
-		
+		private final Loggable myLog;
 		
 		private final Notifier driveNotifier;
 		private final Notifier shootNotifier;
 		private final Notifier climbNotifier;
 		private final Notifier intakeNotifier;
-	
+		private final Notifier logNotifier;
 		
 		public SubsystemHandler(){
 			
@@ -51,4 +51,3 @@ public class SubsystemHandler {
 			
 		}
 }
-s
