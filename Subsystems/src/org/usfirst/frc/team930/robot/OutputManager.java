@@ -3,13 +3,24 @@ import com.ctre.CANTalon;
 import com.ctre.CANTalon.TalonControlMode;
 import java.lang.Object;
 import edu.wpi.first.wpilibj.SensorBase;
+import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.PWM;
 import edu.wpi.first.wpilibj.SafePWM;
 import edu.wpi.first.wpilibj.PWMSpeedController;
 import edu.wpi.first.wpilibj.Spark;
 
 public class OutputManager {
-	
+	//Enum for Light Patterns on Arduino
+	 enum LightPatterns {
+		 LIGHTS_AUTO,
+		 LIGHTS_TELE,
+		 LIGHTS_DISABLE,
+		 LIGHTS_SHOOT
+	 }
+	 // Declaring Pins on RoboRio
+	public static	DigitalOutput lightPin0 = new DigitalOutput(0);
+	public static	DigitalOutput lightPin1 = new DigitalOutput(1);
+	public static	DigitalOutput lightPin2 = new DigitalOutput(2);
 	// Declaring robot motors
 	// 6 Drivetrain motor declarations
 	public static CANTalon frontLeftMotor; 	
@@ -214,5 +225,35 @@ public class OutputManager {
 		
 		return Double.toString(feederSpark.getSpeed());
 		
+	}
+	public static void setLights(LightPatterns L){
+		switch(L){
+		case LIGHTS_AUTO:	
+			lightPin0.set(true);
+			lightPin1.set(false);
+			lightPin2.set(false);
+			break;
+		
+		
+		case LIGHTS_TELE:	
+			lightPin0.set(true);
+			lightPin1.set(true);
+			lightPin2.set(true);
+			break;
+		
+		
+		case LIGHTS_DISABLE:	
+			lightPin0.set(false);
+			lightPin1.set(false);
+			lightPin2.set(false);
+			break;
+		
+		
+		case LIGHTS_SHOOT:	
+			lightPin0.set(true);
+			lightPin1.set(false);
+			lightPin2.set(true);
+			break;
+		}
 	}
 }
