@@ -5,6 +5,7 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SerialPort;
+import edu.wpi.first.wpilibj.Timer;
 
 public class Drive implements Runnable {
 	
@@ -18,7 +19,9 @@ public class Drive implements Runnable {
     
 	public void run(){
 		
-		OuputManager.setDrivetrainPercentVbusMode();
+		System.out.println("DRIVE"+ Timer.getFPGATimestamp());
+		
+		OutputManager.setDrivetrainPercentVbusMode();
 		
 		myRobot.arcadeDrive(DSManager.stick);
 		
@@ -33,8 +36,8 @@ public class Drive implements Runnable {
 		}
 				
 		// Setting talons
-		OuputManager.setSpeedL(yValue + xValue);
-		OuputManager.setSpeedR(yValue - xValue);
+		OutputManager.setSpeedL(yValue + xValue);
+		OutputManager.setSpeedR(yValue - xValue);
 		
 	}
 	
