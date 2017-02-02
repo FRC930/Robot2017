@@ -60,10 +60,10 @@ public class Robot extends IterativeRobot {
 		L2.setInverted(true);
 		L3.setInverted(true);
 		
-		L1.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+		L1.changeControlMode(CANTalon.TalonControlMode.Speed);
 		L2.changeControlMode(CANTalon.TalonControlMode.Follower);
 		L3.changeControlMode(CANTalon.TalonControlMode.Follower);
-		R1.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+		R1.changeControlMode(CANTalon.TalonControlMode.Speed);
 		R2.changeControlMode(CANTalon.TalonControlMode.Follower);
 		R3.changeControlMode(CANTalon.TalonControlMode.Follower);
 		
@@ -72,12 +72,17 @@ public class Robot extends IterativeRobot {
 		R2.set(R1.getDeviceID());
 		R3.set(R1.getDeviceID());
 		
-		L1.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
-		R1.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+		L1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		R1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		
+		L1.reverseSensor(true);
+		
+		L1.configEncoderCodesPerRev(250);
+		R1.configEncoderCodesPerRev(250);
 		
 		// At 200 slammed forward and backward no drop outs and driving responsive
-		L1.setVoltageRampRate(1600);
-		R1.setVoltageRampRate(1600);
+		//L1.setVoltageRampRate(1600);
+		//R1.setVoltageRampRate(1600);
 
 	}
 
@@ -137,17 +142,38 @@ public class Robot extends IterativeRobot {
 		}
 		
 		// Setting talons
-		L1.set(yValue + xValue);
+		//L1.set(1.0 * 600);
 		//L2.set(yValue + xValue);
 		//L3.set(yValue + xValue);
-		R1.set(yValue - xValue);
+		//R1.set(yValue - xValue);
 		//R2.set(yValue - xValue);
 		//R3.set(yValue - xValue);
 		
+		if(stick.getRawButton(1) == true) {
+			R1.set(0.25 * 600);
+		}
+		else if(stick.getRawButton(2) == true) {
+			R1.set(0.5 * 600);
+		}
+		else if(stick.getRawButton(3) == true) {
+			R1.set(0.75 * 600);
+		}
+		else if(stick.getRawButton(4) == true) {
+			R1.set(1.0 * 600);
+		}
+		else {
+			R1.set(0);
+		}
+		
+		double leftSpeed = L1.getSpeed();
+		double rightSpeed = R1.getSpeed();
+		System.out.println("Left Speed: " + leftSpeed);
+		System.out.println("Right Speed: " + rightSpeed);
+		
 		double leftEncoder = L1.getEncVelocity();
 		double rightEncoder = R1.getEncVelocity();
-		System.out.println("Left Encoder Value: " + leftEncoder);
-		System.out.println("Right Encoder Value: " + rightEncoder);
+		//System.out.println("Left Encoder Value: " + leftEncoder);
+		//System.out.println("Right Encoder Value: " + rightEncoder);
 		
 		/* Joystick values to gyro values
 		double angleGyro = gyro.getAngle()%360;
