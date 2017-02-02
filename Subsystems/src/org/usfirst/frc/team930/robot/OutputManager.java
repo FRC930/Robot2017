@@ -10,13 +10,18 @@ import edu.wpi.first.wpilibj.PWMSpeedController;
 import edu.wpi.first.wpilibj.Spark;
 
 public class OutputManager {
+	
 	//Enum for Light Patterns on Arduino
 	 enum LightPatterns {
 		 LIGHTS_AUTO,
 		 LIGHTS_TELE,
 		 LIGHTS_DISABLE,
-		 LIGHTS_SHOOT
+		 LIGHTS_SHOOT,
+		 LIGHTS_DRIVE,
+		 LIGHTS_CLIMB,
+		 LIGHTS_INTAKE
 	 }
+	 
 	 // Declaring Pins on RoboRio
 	public static	DigitalOutput lightPin0 = new DigitalOutput(0);
 	public static	DigitalOutput lightPin1 = new DigitalOutput(1);
@@ -253,6 +258,27 @@ public class OutputManager {
 			lightPin0.set(true);
 			lightPin1.set(false);
 			lightPin2.set(true);
+			break;
+			
+			
+		case LIGHTS_CLIMB:	
+			lightPin0.set(false);
+			lightPin1.set(false);
+			lightPin2.set(true);
+			break;
+			
+			
+		case LIGHTS_DRIVE:	
+			lightPin0.set(true);
+			lightPin1.set(true);
+			lightPin2.set(false);
+			break;
+	
+			
+		case LIGHTS_INTAKE:	
+			lightPin0.set(false);
+			lightPin1.set(true);
+			lightPin2.set(false);
 			break;
 		}
 	}
