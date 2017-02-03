@@ -16,11 +16,11 @@ public class Robot extends IterativeRobot {
 	
 	Joystick stick = new Joystick(1);	//Controller
 	
-	CANTalon IntakeMotor = new CANTalon(8);		//Talon
+	CANTalon intakeMotor = new CANTalon(8);		//Talon
 	
 	//Button MotorControlButton = new JoystickButton(stick, 1);		//Button, A button
 	
-	boolean MotorOn = false;	//On-Off Checker
+	boolean motorOn = false;	//On-Off Checker
 	
 	//Initalization
 	@Override
@@ -46,22 +46,9 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		
-		if (stick.getRawButton(1)) {
+		if (stick.getRawButton(1) == true ) {
 			
-			if (!MotorOn) {
-				
-				MotorOn = true;
-				
-				IntakeMotor.set(-1);
-				
-			} else {
-				
-				MotorOn = false;
-				
-				IntakeMotor.set(0);
-				
-			}
-			
+			intakeMotor.set(-1);
 		}
 		
 		
