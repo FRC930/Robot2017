@@ -19,7 +19,8 @@ public class OutputManager {
 		 LIGHTS_SHOOT,
 		 LIGHTS_DRIVE,
 		 LIGHTS_CLIMB,
-		 LIGHTS_INTAKE
+		 LIGHTS_INTAKE,
+		 LIGHTS_FUUN
 	 }
 	 
 	 // Declaring Pins on RoboRio
@@ -279,6 +280,13 @@ public class OutputManager {
 			lightPin0.set(false);
 			lightPin1.set(true);
 			lightPin2.set(false);
+			break;
+			
+			
+		case LIGHTS_FUUN:	
+			lightPin0.set(false);
+			lightPin1.set(true);
+			lightPin2.set(true);
 			break;
 		}
 	}
