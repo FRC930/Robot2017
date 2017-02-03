@@ -28,24 +28,24 @@ public class Loggable implements Runnable {
 		BufferedWriter bwriter;
 
 		// Gets values from output manager to pass to .txt -> .xl
-		rearLeftMotorSpeed = OutputManager.getTalonSpeedRearLeftMotor();
-		rearRightMotorSpeed = OutputManager.getTalonSpeedRearRightMotor();
-		frontRightMotorSpeed = OutputManager.getTalonSpeedFrontRightMotor();
-		frontLeftMotorSpeed = OutputManager.getTalonSpeedFrontLefttMotor();
-		leftSlaveMotorSpeed = OutputManager.getTalonSpeedLeftSlave();
-		rightSlaveMotorSpeed = OutputManager.getTalonSpeedRightSlave();
-		shooterMotorSpeed = OutputManager.getTalonShooterMotor();
-		intakeMotorSpeed = OutputManager.getSparkSpeedIntake();
-		climberMotorSpeed = OutputManager.getSparkSpeedClimber();
-		feederMotorSpeed = OutputManager.getSparkSpeedFeeder();
+		rearLeftMotorSpeed = Double.toString(OutputManager.getTalonSpeedRearLeftMotor());
+		rearRightMotorSpeed = Double.toString(OutputManager.getTalonSpeedRearRightMotor());
+		frontRightMotorSpeed = Double.toString(OutputManager.getTalonSpeedFrontRightMotor());
+		frontLeftMotorSpeed = Double.toString(OutputManager.getTalonSpeedFrontLeftMotor());
+		leftSlaveMotorSpeed = Double.toString(OutputManager.getTalonSpeedLeftSlave());
+		rightSlaveMotorSpeed = Double.toString(OutputManager.getTalonSpeedRightSlave());
+		shooterMotorSpeed = Double.toString(OutputManager.getTalonShooterMotor());
+		intakeMotorSpeed = Double.toString(OutputManager.getSparkSpeedIntake());
+		climberMotorSpeed = Double.toString(OutputManager.getSparkSpeedClimber());
+		feederMotorSpeed = Double.toString(OutputManager.getSparkSpeedFeeder());
 
 		// Creates writer, and reports errors.
 		
 System.out.println("IT GOT HERE BUT NOT THEREEEEEEEEEEEEEEEEEEEEEEEEE" + '\n' + "IT GOT HERE BUT NOT THEREEEEEEEEEEEEEEEEEEEEEEEEE" + '\n' );
 			try {
-				System.out.println("IT WORK WORK WORK WORK WORK");
+				System.out.println("IT WORK WORK WORK WORK WORK WORK");
 				File f;	
-				f = new File("/VISION" + File.separator + "shooterspeed.txt");
+				f = new File("C" + File.separator + "shooterspeed.txt");
 			
 				bwriter = new BufferedWriter(new FileWriter(f));
 			if(f.exists()){

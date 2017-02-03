@@ -22,4 +22,10 @@ public class DSManager {
 	public static boolean getRawButtonOne(){
 		return stick.getRawButton(1);
 	}
+	public static boolean getRawButtonFive(){
+		return stick.getRawButton(5);
+	}
+	public static boolean getRawButtonSix(){
+		return stick.getRawButton(6);
+	}
 }
