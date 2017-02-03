@@ -2,7 +2,9 @@ package org.usfirst.frc.team930.robot;
 import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Intake implements Runnable {
    
@@ -11,20 +13,20 @@ public class Intake implements Runnable {
 		System.out.println("Intake " + Timer.getFPGATimestamp());
 		//Constructors
 		
-		Joystick stick = new Joystick(1);	//Controller
-		
-		CANTalon intakeSpark = new CANTalon(8);		//Talon
+		Spark intakeSpark = new Spark(0);		//Talon
 		
 		boolean toggleOn = false;
-		intakeSpark.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+		
 			
-			if (stick.getRawButton(1) && !toggleOn) {
+			if (DSManager.stick.getRawButton(1) && !toggleOn) {
 					toggleOn = true;
 					intakeSpark.set(-1);
+					System.out.println("On");
 				}
-			else if(!stick.getRawButton(1) && toggleOn) {
+			else if(!DSManager.stick.getRawButton(1) && toggleOn) {
 				toggleOn = false;
 				intakeSpark.set(0);	
+				System.out.println("Off");
 			}	
 		}
 	}

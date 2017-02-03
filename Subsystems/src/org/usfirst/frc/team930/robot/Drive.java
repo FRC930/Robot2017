@@ -26,8 +26,8 @@ public class Drive implements Runnable {
 		myRobot.arcadeDrive(DSManager.stick);
 		
 		// Adjusting joystick sensitivity
-		double xValue = Math.pow(DSManager.stick.getRawAxis(0), 3);
-		double yValue = Math.pow(DSManager.stick.getRawAxis(1), 3);
+		double xValue = Math.pow(DSManager.getRawAxisZero(), 3);
+		double yValue = Math.pow(DSManager.getRawAxisOne(), 3);
 				
 		// Deadband
 		if (Math.abs(xValue) < 0.1 && Math.abs(yValue) < 0.1) {

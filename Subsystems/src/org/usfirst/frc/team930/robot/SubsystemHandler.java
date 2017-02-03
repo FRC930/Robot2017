@@ -4,17 +4,18 @@ import edu.wpi.first.wpilibj.Notifier;
 // This class contains the framework for how the subsystems update
 public class SubsystemHandler {
 
-		private final Drive myDrive;
-		private final Shoot myShoot;
-		private final Climb myClimb;
-		private final Intake myIntake;
-		private final Loggable myLog;
+	// Used to be private final, just changing it up
+		private final  Drive myDrive;
+		private final  Shoot myShoot;
+		private final  Climb myClimb;
+		private final  Intake myIntake;
+		private final  Loggable myLog;
 		
-		private final Notifier driveNotifier;
-		private final Notifier shootNotifier;
-		private final Notifier climbNotifier;
-		private final Notifier intakeNotifier;
-		private final Notifier logNotifier;
+		private final  Notifier driveNotifier;
+		private final  Notifier shootNotifier;
+		private final  Notifier climbNotifier;
+		private final  Notifier intakeNotifier;
+		private final  Notifier logNotifier;
 		
 		public SubsystemHandler(){
 			
