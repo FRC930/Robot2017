@@ -19,4 +19,7 @@ public class DSManager {
 	public static double getRawAxisOne(){
 		return stick.getRawAxis(1);
 	}
+	public static boolean getRawButtonOne(){
+		return stick.getRawButton(1);
+	}
 }

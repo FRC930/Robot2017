@@ -18,12 +18,12 @@ public class Intake implements Runnable {
 		boolean toggleOn = false;
 		
 			
-			if (DSManager.stick.getRawButton(1) && !toggleOn) {
+			if (DSManager.getRawButtonOne() && !toggleOn) {
 					toggleOn = true;
 					intakeSpark.set(-1);
 					System.out.println("On");
 				}
-			else if(!DSManager.stick.getRawButton(1) && toggleOn) {
+			else if(!DSManager.getRawButtonOne() && toggleOn) {
 				toggleOn = false;
 				intakeSpark.set(0);	
 				System.out.println("Off");
