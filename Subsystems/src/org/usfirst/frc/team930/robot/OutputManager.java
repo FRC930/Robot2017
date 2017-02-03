@@ -284,10 +284,18 @@ public class OutputManager {
 			break;
 			
 			
+<<<<<<< HEAD
 		case LIGHTS_FUUN:
 			lightPin0.set(false);
 			lightPin1.set(true);
 			lightPin2.set(true);
+=======
+		case LIGHTS_FUUN:	
+			lightPin0.set(false);
+			lightPin1.set(true);
+			lightPin2.set(true);
+			break;
+>>>>>>> 22e208f0a5e8bd230acd1966b55bd709b41385e9
 		}
 		// Why is there no false true true?
 	}
