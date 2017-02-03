@@ -5,6 +5,7 @@ import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SerialPort;
+import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -22,25 +23,20 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * directory.
  */
 public class Robot extends IterativeRobot {
-	/*final String defaultAuto = "Default";
-	final String customAuto = "My Auto";
-	String autoSelected;
-	SendableChooser<String> chooser = new SendableChooser<>();*/
-	
-	//RobotDrive myRobot = new RobotDrive(0, 1);
 	
 	Joystick stick = new Joystick(1);
-	//Button driver4 = new JoystickButton(stick, 4);
-	//Button driver1 = new JoystickButton(stick, 1);
 	
 	//AHRS gyro = new AHRS(SerialPort.Port.kUSB);
 	
-	CANTalon L1 = new CANTalon(1);
-	CANTalon L2 = new CANTalon(2);
-	CANTalon L3 = new CANTalon(3);
+	CANTalon L1 = new CANTalon(1);		// Right F: 0.945
+	CANTalon L2 = new CANTalon(2);		// Right P: 0.4
+	CANTalon L3 = new CANTalon(3);		// Right I: 0.00025
 	CANTalon R1 = new CANTalon(4);
 	CANTalon R2 = new CANTalon(5);
 	CANTalon R3 = new CANTalon(6);
+	
+	Spark intakeMotor = new Spark(1);
+	boolean motorOn = false;
 	
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -48,13 +44,6 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		/*chooser.addDefault("Default Auto", defaultAuto);
-		chooser.addObject("My Auto", customAuto);
-		SmartDashboard.putData("Auto choices", chooser);*/
-		
-		//R1.setInverted(true);
-		//R2.setInverted(true);
-		//R3.setInverted(true);
 		
 		L1.setInverted(true);
 		L2.setInverted(true);
@@ -99,10 +88,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		/*autoSelected = chooser.getSelected();
-		// autoSelected = SmartDashboard.getString("Auto Selector",
-		// defaultAuto);
-		System.out.println("Auto selected: " + autoSelected);*/
+
 	}
 
 	/**
@@ -110,15 +96,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
-		/*switch (autoSelected) {
-		case customAuto:
-			// Put custom auto code here
-			break;
-		case defaultAuto:
-		default:
-			// Put default auto code here
-			break;
-		}*/
+		
 	}
 
 	/**
@@ -126,7 +104,14 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		//myRobot.arcadeDrive(stick);
+		
+		// Intake
+		if (stick.getRawButton(5) || stick.getRawButton(6) ) {
+			intakeMotor.set(1);
+		}
+		else {
+			intakeMotor.set(0);
+		}
 		
 		// Adjusting joystick sensitivity
 		double xValue = Math.pow(stick.getRawAxis(4), 3);
@@ -142,7 +127,7 @@ public class Robot extends IterativeRobot {
 		}
 		
 		// Setting talons
-		//L1.set(1.0 * 600);
+		//L1.set(yValue + xValue);
 		//L2.set(yValue + xValue);
 		//L3.set(yValue + xValue);
 		//R1.set(yValue - xValue);
@@ -150,18 +135,23 @@ public class Robot extends IterativeRobot {
 		//R3.set(yValue - xValue);
 		
 		if(stick.getRawButton(1) == true) {
+			//L1.set(0.25 * 600);
 			R1.set(0.25 * 600);
 		}
 		else if(stick.getRawButton(2) == true) {
+			//L1.set(0.5 * 600);
 			R1.set(0.5 * 600);
 		}
 		else if(stick.getRawButton(3) == true) {
+			//L1.set(0.75 * 600);
 			R1.set(0.75 * 600);
 		}
 		else if(stick.getRawButton(4) == true) {
+			//L1.set(1.0 * 600);
 			R1.set(1.0 * 600);
 		}
 		else {
+			//L1.set(0);
 			R1.set(0);
 		}
 		
@@ -181,100 +171,6 @@ public class Robot extends IterativeRobot {
 		
 		double angleStick = Math.toDegrees(Math.atan2((stick.getRawAxis(1)), (stick.getRawAxis(0))));
 		System.out.println(angleStick);*/
-		
-		/*
-		double wheel = stick.getRawAxis(0);
-		double throttle = stick.getRawAxis(1);
-
-		double wheelNonLinearity;
-		double oldWheel; 
-		double quickStopAccumulator = 0.0;
-
-		wheel = handleDeadband(wheel, 0.085);
-		throttle = handleDeadband(throttle, 0.1);
-
-		oldWheel = wheel;
-		double negInertia = wheel - oldWheel;
-		wheelNonLinearity = 0.5;
-		
-		// Apply a sin function that's scaled to make it feel better, smoother driving
-		wheel = Math.sin(Math.PI / 2.0 * wheelNonLinearity * wheel) / Math.sin(Math.PI / 2.0 * wheelNonLinearity);
-		wheel = Math.sin(Math.PI / 2.0 * wheelNonLinearity * wheel) / Math.sin(Math.PI / 2.0 * wheelNonLinearity);
-		wheel = Math.sin(Math.PI / 2.0 * wheelNonLinearity * wheel) / Math.sin(Math.PI / 2.0 * wheelNonLinearity);
-
-		double leftPwm;
-		double rightPwm;
-		double overPower;
-		
-		double angularPower;
-		double linearPower;
-
-		// Negative inertia, reducing overturn after joystick values stopped
-		double negInertiaAccumulator = 0.0;
-		double negInertiaScalar;
-		if (wheel * negInertia > 0) {
-			negInertiaScalar = 2.5;
-		} else {
-			if (Math.abs(wheel) > 0.65) {
-				negInertiaScalar = 5.0;
-			} else {
-				negInertiaScalar = 3.0;
-			}
-		}
-		
-		double negInertiaPower = negInertia * negInertiaScalar;
-		negInertiaAccumulator += negInertiaPower;
-
-		wheel = wheel + negInertiaAccumulator;
-		if (negInertiaAccumulator > 1) {
-			negInertiaAccumulator -= 1;
-		} else if (negInertiaAccumulator < -1) {
-			negInertiaAccumulator += 1;
-		} else {
-			negInertiaAccumulator = 0;
-		}
-		
-		linearPower = throttle;
-
-		overPower = 0.0;
-		
-		double alpha = 0.1;
-        quickStopAccumulator = (1 - alpha) * quickStopAccumulator + alpha;
-        
-		angularPower = Math.abs(throttle) * wheel * - quickStopAccumulator;
-		if (quickStopAccumulator > 1) {
-			quickStopAccumulator -= 1;
-		} else if (quickStopAccumulator < -1) {
-			quickStopAccumulator += 1;
-		} else {
-			quickStopAccumulator = 0.0;
-		}
-
-		rightPwm = leftPwm = linearPower;
-		leftPwm += angularPower;
-		rightPwm -= angularPower;
-
-		if (leftPwm > 1.0) {
-			rightPwm -= overPower * (leftPwm - 1.0);
-			leftPwm = 1.0;
-		} else if (rightPwm > 1.0) {
-			leftPwm -= overPower * (rightPwm - 1.0);
-			rightPwm = 1.0;
-		} else if (leftPwm < -1.0) {
-			rightPwm += overPower * (-1.0 - leftPwm);
-			leftPwm = -1.0;
-		} else if (rightPwm < -1.0) {
-			leftPwm += overPower * (-1.0 - rightPwm);
-			rightPwm = -1.0;
-		}
-
-		L1.set(throttle + wheel);
-		L2.set(throttle + wheel);
-		L3.set(throttle + wheel);
-		R1.set(throttle - wheel);
-		R2.set(throttle - wheel);
-		R3.set(throttle - wheel);
-		*/
 
 		Timer.delay(0.005);
 	}

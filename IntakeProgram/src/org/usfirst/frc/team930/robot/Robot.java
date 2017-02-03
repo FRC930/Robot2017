@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Spark;
 
 
 public class Robot extends IterativeRobot {
@@ -16,17 +17,15 @@ public class Robot extends IterativeRobot {
 	
 	Joystick stick = new Joystick(1);	//Controller
 	
-	CANTalon IntakeMotor = new CANTalon(8);		//Talon
+	Spark intakeMotor = new Spark(8);		//Spark
 	
 	//Button MotorControlButton = new JoystickButton(stick, 1);		//Button, A button
 	
-	boolean MotorOn = false;	//On-Off Checker
+	boolean motorOn = false;	//On-Off Checker
 	
 	//Initalization
 	@Override
 	public void robotInit() {
-		
-		IntakeMotor.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 		
 	}
 
@@ -46,22 +45,11 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		
-		if (stick.getRawButton(1)) {
-			
-			if (!MotorOn) {
-				
-				MotorOn = true;
-				
-				IntakeMotor.set(-1);
-				
-			} else {
-				
-				MotorOn = false;
-				
-				IntakeMotor.set(0);
-				
-			}
-			
+		if (stick.getRawButton(5) || stick.getRawButton(6) ) {
+			intakeMotor.set(-1);
+		}
+		else {
+			intakeMotor.set(0);
 		}
 		
 		

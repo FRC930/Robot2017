@@ -48,7 +48,7 @@ public class OutputManager {
 	// Feeder 1 Spark, either combine with shooter or make own subsystem
 	public static Spark feederSpark;
 	
-	public void init(){
+	public static void init(){
 		
 		// Initializing motors
 		// Initializes Motors for drivetrain
@@ -63,7 +63,7 @@ public class OutputManager {
 		shooterMotor = new CANTalon (7);
 		
 		// Spark Range is 2.003 ms Full Forward - .999 ms Full Reverse
-		intakeSpark = new Spark (8);
+		intakeSpark = new Spark (0);
 		
 		climberSpark = new Spark (9);
 		

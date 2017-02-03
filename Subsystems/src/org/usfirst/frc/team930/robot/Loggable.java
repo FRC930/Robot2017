@@ -48,8 +48,10 @@ System.out.println("IT GOT HERE BUT NOT THEREEEEEEEEEEEEEEEEEEEEEEEEE" + '\n' + 
 				f = new File("/VISION" + File.separator + "shooterspeed.txt");
 			
 				bwriter = new BufferedWriter(new FileWriter(f));
-			
+			if(f.exists()){
 				f.createNewFile();
+			} else {
+			}	
 			if(!f.exists())		{
 				System.out.println("it no work :(");
 			}
