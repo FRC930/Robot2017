@@ -1,7 +1,6 @@
 package org.usfirst.frc.team930.robot;
 
 import com.ctre.CANTalon;
-import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SerialPort;
@@ -26,14 +25,14 @@ public class Robot extends IterativeRobot {
 	final String customAuto = "My Auto";
 	String autoSelected;
 	SendableChooser<String> chooser = new SendableChooser<>();*/
-	
-	//RobotDrive myRobot = new RobotDrive(0, 1);
-	
+
+	RobotDrive myRobot = new RobotDrive(0, 1);
+
 	Joystick stick = new Joystick(1);
-	//Button driver4 = new JoystickButton(stick, 4);
-	//Button driver1 = new JoystickButton(stick, 1);
+	Button driver4 = new JoystickButton(stick, 4);
+	Button driver1 = new JoystickButton(stick, 1);
 	
-	//AHRS gyro = new AHRS(SerialPort.Port.kUSB);
+	AHRS gyro = new AHRS(SerialPort.Port.kUSB);
 	
 	CANTalon L1 = new CANTalon(1);
 	CANTalon L2 = new CANTalon(2);
@@ -41,20 +40,25 @@ public class Robot extends IterativeRobot {
 	CANTalon R1 = new CANTalon(4);
 	CANTalon R2 = new CANTalon(5);
 	CANTalon R3 = new CANTalon(6);
+
+	MotionProfileExample example = new MotionProfileExample(_talon);
+
+	boolean[] btnsLast = {false,false,false,false,false,false,false,false,false,false};
 	
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
+
 	@Override
 	public void robotInit() {
 		/*chooser.addDefault("Default Auto", defaultAuto);
 		chooser.addObject("My Auto", customAuto);
 		SmartDashboard.putData("Auto choices", chooser);*/
 		
-		//R1.setInverted(true);
-		//R2.setInverted(true);
-		//R3.setInverted(true);
+		R1.setInverted(true);
+		R2.setInverted(true);
+		R3.setInverted(true);
 		
 		L1.setInverted(true);
 		L2.setInverted(true);
@@ -72,13 +76,27 @@ public class Robot extends IterativeRobot {
 		R2.set(R1.getDeviceID());
 		R3.set(R1.getDeviceID());
 		
-		L1.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
-		R1.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
-		
 		// At 200 slammed forward and backward no drop outs and driving responsive
 		L1.setVoltageRampRate(1600);
 		R1.setVoltageRampRate(1600);
 
+		/*L1.changeControlMode(CANTalon.TalonControlMode.Speed);
+		L2.changeControlMode(CANTalon.TalonControlMode.Follower);
+		L3.changeControlMode(CANTalon.TalonControlMode.Follower);
+		R1.changeControlMode(CANTalon.TalonControlMode.Speed);
+		R2.changeControlMode(CANTalon.TalonControlMode.Follower);
+		R3.changeControlMode(CANTalon.TalonControlMode.Follower);
+		
+		L2.set(L1.getDeviceID());
+		L3.set(L1.getDeviceID());
+		R2.set(R1.getDeviceID());
+		R3.set(R1.getDeviceID());
+		
+		// Motion profiling
+		L1.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Relative);
+		L1.reverseSensor(false);
+		R1.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Relative);
+		R1.reverseSensor(false);*/
 	}
 
 	/**
@@ -144,11 +162,6 @@ public class Robot extends IterativeRobot {
 		//R2.set(yValue - xValue);
 		//R3.set(yValue - xValue);
 		
-		double leftEncoder = L1.getEncVelocity();
-		double rightEncoder = R1.getEncVelocity();
-		System.out.println("Left Encoder Value: " + leftEncoder);
-		System.out.println("Right Encoder Value: " + rightEncoder);
-		
 		/* Joystick values to gyro values
 		double angleGyro = gyro.getAngle()%360;
 		System.out.println(angleGyro);
@@ -195,7 +208,6 @@ public class Robot extends IterativeRobot {
 				negInertiaScalar = 3.0;
 			}
 		}
-		
 		double negInertiaPower = negInertia * negInertiaScalar;
 		negInertiaAccumulator += negInertiaPower;
 
@@ -207,7 +219,6 @@ public class Robot extends IterativeRobot {
 		} else {
 			negInertiaAccumulator = 0;
 		}
-		
 		linearPower = throttle;
 
 		overPower = 0.0;
