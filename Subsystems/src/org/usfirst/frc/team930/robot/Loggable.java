@@ -50,7 +50,6 @@ System.out.println("IT GOT HERE BUT NOT THEREEEEEEEEEEEEEEEEEEEEEEEEE" + '\n' + 
 				bwriter = new BufferedWriter(new FileWriter(f));
 			if(f.exists()){
 				f.createNewFile();
-			} else {
 			}	
 			if(!f.exists())		{
 				System.out.println("it no work :(");
@@ -59,7 +58,7 @@ System.out.println("IT GOT HERE BUT NOT THEREEEEEEEEEEEEEEEEEEEEEEEEE" + '\n' + 
 				System.out.println("IT WORK");
 			}
 				
-				/*bwriter.write(rearLeftMotorSpeed);
+				bwriter.write(rearLeftMotorSpeed);
 				bwriter.flush();
 				bwriter.write(rearRightMotorSpeed);
 				bwriter.flush();			
@@ -80,7 +79,7 @@ System.out.println("IT GOT HERE BUT NOT THEREEEEEEEEEEEEEEEEEEEEEEEEE" + '\n' + 
 				bwriter.write(feederMotorSpeed);
 				bwriter.flush();
 				bwriter.close();
-	*/			
+				
 
 			} catch (IOException e) {
 
