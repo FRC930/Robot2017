@@ -1,0 +1,89 @@
+\hypertarget{struct_c_a_n_talon_1_1_motion_profile_status}{}\section{C\+A\+N\+Talon\+:\+:Motion\+Profile\+Status Struct Reference}
+\label{struct_c_a_n_talon_1_1_motion_profile_status}\index{C\+A\+N\+Talon\+::\+Motion\+Profile\+Status@{C\+A\+N\+Talon\+::\+Motion\+Profile\+Status}}
+
+
+{\ttfamily \#include $<$C\+A\+N\+Talon.\+h$>$}
+
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \hyperlink{struct_c_a_n_talon_1_1_motion_profile_status_a1042c720d455cede10218449f64946fa}{top\+Buffer\+Rem}
+\item 
+unsigned int \hyperlink{struct_c_a_n_talon_1_1_motion_profile_status_a9db6e4d8f570c2dba27269c98418ba41}{top\+Buffer\+Cnt}
+\item 
+unsigned int \hyperlink{struct_c_a_n_talon_1_1_motion_profile_status_a597c83906bfbab8fe0cfbe37146a3741}{btm\+Buffer\+Cnt}
+\item 
+bool \hyperlink{struct_c_a_n_talon_1_1_motion_profile_status_a5ec97fa0ef5505369b81103069fc2784}{has\+Underrun}
+\item 
+bool \hyperlink{struct_c_a_n_talon_1_1_motion_profile_status_a2c55098ce3a4f09150ce4434e799d642}{is\+Underrun}
+\item 
+bool \hyperlink{struct_c_a_n_talon_1_1_motion_profile_status_ad6af70d14a610a0392186f19c52f036b}{active\+Point\+Valid}
+\item 
+\hyperlink{struct_c_a_n_talon_1_1_trajectory_point}{Trajectory\+Point} \hyperlink{struct_c_a_n_talon_1_1_motion_profile_status_aef26cca61965cb71161eb2df52982c80}{active\+Point}
+\item 
+\hyperlink{class_c_a_n_talon_a3a5aa35beed1f5d9145dbd658b119b90}{Set\+Value\+Motion\+Profile} \hyperlink{struct_c_a_n_talon_1_1_motion_profile_status_a561e0e418de46f7ef324496d5e8dc6fc}{output\+Enable}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Motion Profile Status This is simply a data transer object. 
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{struct_c_a_n_talon_1_1_motion_profile_status_aef26cca61965cb71161eb2df52982c80}\label{struct_c_a_n_talon_1_1_motion_profile_status_aef26cca61965cb71161eb2df52982c80}} 
+\index{C\+A\+N\+Talon\+::\+Motion\+Profile\+Status@{C\+A\+N\+Talon\+::\+Motion\+Profile\+Status}!active\+Point@{active\+Point}}
+\index{active\+Point@{active\+Point}!C\+A\+N\+Talon\+::\+Motion\+Profile\+Status@{C\+A\+N\+Talon\+::\+Motion\+Profile\+Status}}
+\subsubsection{\texorpdfstring{active\+Point}{activePoint}}
+{\footnotesize\ttfamily \hyperlink{struct_c_a_n_talon_1_1_trajectory_point}{Trajectory\+Point} C\+A\+N\+Talon\+::\+Motion\+Profile\+Status\+::active\+Point}
+
+The number of points in the low level Talon buffer. \mbox{\Hypertarget{struct_c_a_n_talon_1_1_motion_profile_status_ad6af70d14a610a0392186f19c52f036b}\label{struct_c_a_n_talon_1_1_motion_profile_status_ad6af70d14a610a0392186f19c52f036b}} 
+\index{C\+A\+N\+Talon\+::\+Motion\+Profile\+Status@{C\+A\+N\+Talon\+::\+Motion\+Profile\+Status}!active\+Point\+Valid@{active\+Point\+Valid}}
+\index{active\+Point\+Valid@{active\+Point\+Valid}!C\+A\+N\+Talon\+::\+Motion\+Profile\+Status@{C\+A\+N\+Talon\+::\+Motion\+Profile\+Status}}
+\subsubsection{\texorpdfstring{active\+Point\+Valid}{activePointValid}}
+{\footnotesize\ttfamily bool C\+A\+N\+Talon\+::\+Motion\+Profile\+Status\+::active\+Point\+Valid}
+
+True if the active trajectory point has not empty, false otherwise. The members in active\+Point are only valid if this signal is set. \mbox{\Hypertarget{struct_c_a_n_talon_1_1_motion_profile_status_a597c83906bfbab8fe0cfbe37146a3741}\label{struct_c_a_n_talon_1_1_motion_profile_status_a597c83906bfbab8fe0cfbe37146a3741}} 
+\index{C\+A\+N\+Talon\+::\+Motion\+Profile\+Status@{C\+A\+N\+Talon\+::\+Motion\+Profile\+Status}!btm\+Buffer\+Cnt@{btm\+Buffer\+Cnt}}
+\index{btm\+Buffer\+Cnt@{btm\+Buffer\+Cnt}!C\+A\+N\+Talon\+::\+Motion\+Profile\+Status@{C\+A\+N\+Talon\+::\+Motion\+Profile\+Status}}
+\subsubsection{\texorpdfstring{btm\+Buffer\+Cnt}{btmBufferCnt}}
+{\footnotesize\ttfamily unsigned int C\+A\+N\+Talon\+::\+Motion\+Profile\+Status\+::btm\+Buffer\+Cnt}
+
+The number of points in the low level Talon buffer. \mbox{\Hypertarget{struct_c_a_n_talon_1_1_motion_profile_status_a5ec97fa0ef5505369b81103069fc2784}\label{struct_c_a_n_talon_1_1_motion_profile_status_a5ec97fa0ef5505369b81103069fc2784}} 
+\index{C\+A\+N\+Talon\+::\+Motion\+Profile\+Status@{C\+A\+N\+Talon\+::\+Motion\+Profile\+Status}!has\+Underrun@{has\+Underrun}}
+\index{has\+Underrun@{has\+Underrun}!C\+A\+N\+Talon\+::\+Motion\+Profile\+Status@{C\+A\+N\+Talon\+::\+Motion\+Profile\+Status}}
+\subsubsection{\texorpdfstring{has\+Underrun}{hasUnderrun}}
+{\footnotesize\ttfamily bool C\+A\+N\+Talon\+::\+Motion\+Profile\+Status\+::has\+Underrun}
+
+Set if is\+Underrun ever gets set. Only is cleared by clear\+Motion\+Profile\+Has\+Underrun() to ensure robot logic can react or instrument it. \begin{DoxySeeAlso}{See also}
+clear\+Motion\+Profile\+Has\+Underrun() 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{struct_c_a_n_talon_1_1_motion_profile_status_a2c55098ce3a4f09150ce4434e799d642}\label{struct_c_a_n_talon_1_1_motion_profile_status_a2c55098ce3a4f09150ce4434e799d642}} 
+\index{C\+A\+N\+Talon\+::\+Motion\+Profile\+Status@{C\+A\+N\+Talon\+::\+Motion\+Profile\+Status}!is\+Underrun@{is\+Underrun}}
+\index{is\+Underrun@{is\+Underrun}!C\+A\+N\+Talon\+::\+Motion\+Profile\+Status@{C\+A\+N\+Talon\+::\+Motion\+Profile\+Status}}
+\subsubsection{\texorpdfstring{is\+Underrun}{isUnderrun}}
+{\footnotesize\ttfamily bool C\+A\+N\+Talon\+::\+Motion\+Profile\+Status\+::is\+Underrun}
+
+This is set if Talon needs to shift a point from its buffer into the active trajectory point however the buffer is empty. This gets cleared automatically when is resolved. \mbox{\Hypertarget{struct_c_a_n_talon_1_1_motion_profile_status_a561e0e418de46f7ef324496d5e8dc6fc}\label{struct_c_a_n_talon_1_1_motion_profile_status_a561e0e418de46f7ef324496d5e8dc6fc}} 
+\index{C\+A\+N\+Talon\+::\+Motion\+Profile\+Status@{C\+A\+N\+Talon\+::\+Motion\+Profile\+Status}!output\+Enable@{output\+Enable}}
+\index{output\+Enable@{output\+Enable}!C\+A\+N\+Talon\+::\+Motion\+Profile\+Status@{C\+A\+N\+Talon\+::\+Motion\+Profile\+Status}}
+\subsubsection{\texorpdfstring{output\+Enable}{outputEnable}}
+{\footnotesize\ttfamily \hyperlink{class_c_a_n_talon_a3a5aa35beed1f5d9145dbd658b119b90}{Set\+Value\+Motion\+Profile} C\+A\+N\+Talon\+::\+Motion\+Profile\+Status\+::output\+Enable}
+
+The current output mode of the motion profile executer (disabled, enabled, or hold). When changing the set() value in MP mode, it\textquotesingle{}s important to check this signal to confirm the change takes effect before interacting with the top buffer. \mbox{\Hypertarget{struct_c_a_n_talon_1_1_motion_profile_status_a9db6e4d8f570c2dba27269c98418ba41}\label{struct_c_a_n_talon_1_1_motion_profile_status_a9db6e4d8f570c2dba27269c98418ba41}} 
+\index{C\+A\+N\+Talon\+::\+Motion\+Profile\+Status@{C\+A\+N\+Talon\+::\+Motion\+Profile\+Status}!top\+Buffer\+Cnt@{top\+Buffer\+Cnt}}
+\index{top\+Buffer\+Cnt@{top\+Buffer\+Cnt}!C\+A\+N\+Talon\+::\+Motion\+Profile\+Status@{C\+A\+N\+Talon\+::\+Motion\+Profile\+Status}}
+\subsubsection{\texorpdfstring{top\+Buffer\+Cnt}{topBufferCnt}}
+{\footnotesize\ttfamily unsigned int C\+A\+N\+Talon\+::\+Motion\+Profile\+Status\+::top\+Buffer\+Cnt}
+
+The number of points in the top trajectory buffer. \mbox{\Hypertarget{struct_c_a_n_talon_1_1_motion_profile_status_a1042c720d455cede10218449f64946fa}\label{struct_c_a_n_talon_1_1_motion_profile_status_a1042c720d455cede10218449f64946fa}} 
+\index{C\+A\+N\+Talon\+::\+Motion\+Profile\+Status@{C\+A\+N\+Talon\+::\+Motion\+Profile\+Status}!top\+Buffer\+Rem@{top\+Buffer\+Rem}}
+\index{top\+Buffer\+Rem@{top\+Buffer\+Rem}!C\+A\+N\+Talon\+::\+Motion\+Profile\+Status@{C\+A\+N\+Talon\+::\+Motion\+Profile\+Status}}
+\subsubsection{\texorpdfstring{top\+Buffer\+Rem}{topBufferRem}}
+{\footnotesize\ttfamily unsigned int C\+A\+N\+Talon\+::\+Motion\+Profile\+Status\+::top\+Buffer\+Rem}
+
+The available empty slots in the trajectory buffer.
+
+The robot A\+PI holds a \char`\"{}top buffer\char`\"{} of trajectory points, so your applicaion can dump several points at once. The A\+PI will then stream them into the Talon\textquotesingle{}s low-\/level buffer, allowing the Talon to act on them. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\hyperlink{_c_a_n_talon_8h}{C\+A\+N\+Talon.\+h}\end{DoxyCompactItemize}

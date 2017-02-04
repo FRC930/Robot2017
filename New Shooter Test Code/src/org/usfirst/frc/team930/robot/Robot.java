@@ -60,7 +60,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 	  public void operatorControl() {  //puts the robot into teleop mode.
 	  myRobot.setSafetyEnabled(true);
 	  while (isOperatorControl() && isEnabled()) {
-
+		  	
 
 		  if(stick.getRawButton(4) && (!Bpressed)){
 			  speed2 += 0.025;                      //if the Y button is pressed it increases the speed by 2.5 percent 
@@ -87,6 +87,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 			  hello.set(speed2);       // actually turns on the motors 
 			  hello1.set(speed2*-1.0);
 			  SmartDashboard.putNumber("Channel 11's Current is", PDP.getCurrent(11));
+	  
 		  } else {
 			  hello.set(0);
 			  hello1.set(0);
@@ -97,11 +98,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 			  stick.setRumble(RumbleType.kLeftRumble, Math.abs(stick.getRawAxis(0)));
 			  stick.setRumble(RumbleType.kRightRumble, Math.abs(stick.getRawAxis(0)));
 		  }
-		  if(speed2<= clampneg){  //if the speed is too low it clamps it and the controller rumbles
+		  if(speed2 <= clampneg){ //if the speed is too low it clamps it and the controller rumbles
 			  speed2 = -1;
 			  stick.setRumble(RumbleType.kLeftRumble, Math.abs(stick.getRawAxis(0)));
 			  stick.setRumble(RumbleType.kRightRumble, Math.abs(stick.getRawAxis(0)));
 		  }
+		  SmartDashboard.putNumber("current11", PDP.getCurrent(11));
 		  System.err.println(speed2);
 
 

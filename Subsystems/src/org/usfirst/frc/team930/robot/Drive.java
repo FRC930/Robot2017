@@ -1,4 +1,10 @@
 package org.usfirst.frc.team930.robot;
+import com.ctre.CANTalon;
+import com.kauailabs.navx.frc.AHRS;
+
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.Timer;
 
 public class Drive implements Runnable {
@@ -6,38 +12,70 @@ public class Drive implements Runnable {
     double targetX;
     double targetY;
     boolean useJoysticks;
+	
+	//AHRS gyro = new AHRS(SerialPort.Port.kUSB);
     
 	public void run(){
 		
-		/*myRobot.arcadeDrive(stick);
+		System.out.println("DRIVE"+ Timer.getFPGATimestamp());
 		
-		double wheel = stick.getRawAxis(0);
-		double throttle = stick.getRawAxis(1);
+		OutputManager.setDrivetrainSpeedMode();
 		
-		double wheelNonLinearity = 0.5;
-
-		wheel = handleDeadband(wheel, 0.1);
-		throttle = handleDeadband(throttle, 0.085);
+		// Intake
+		if (DSManager.getRawButtonFive() || DSManager.getRawButtonSix() ) {
+			OutputManager.setIntakeSpeed(1);;
+		}
+		else {
+			OutputManager.setIntakeSpeed(0);;
+		}
 		
-		wheel = Math.sin(Math.PI / 2.0 * wheelNonLinearity * wheel) / Math.sin(Math.PI / 2.0 * wheelNonLinearity);
-		wheel = Math.sin(Math.PI / 2.0 * wheelNonLinearity * wheel) / Math.sin(Math.PI / 2.0 * wheelNonLinearity);
-		wheel = Math.sin(Math.PI / 2.0 * wheelNonLinearity * wheel) / Math.sin(Math.PI / 2.0 * wheelNonLinearity);
+		// Adjusting joystick sensitivity
+		double xValue = Math.pow(DSManager.getRawAxisZero(), 3);
+		double yValue = Math.pow(DSManager.getRawAxisOne(), 3);
+				
+		// Deadband
+		if (Math.abs(xValue) < 0.1 && Math.abs(yValue) < 0.1) {
+			xValue = 0;
+			yValue = 0;
+		}
+				
+		// Setting talons
+		OutputManager.setSpeedL(yValue + xValue);
+		OutputManager.setSpeedR(yValue - xValue);
 		
-		L1.set(throttle + wheel);
-		L2.set(throttle + wheel);
-		L3.set(throttle + wheel);
-		R1.set(throttle - wheel);
-		R2.set(throttle - wheel);
-		R3.set(throttle - wheel);
+		/*
+		// Controlling different speeds with buttons
+		if(stick.getRawButton(1) == true) {
+			//L1.set(0.25 * 600);
+			R1.set(0.25 * 600);
+		}
+		else if(stick.getRawButton(2) == true) {
+			//L1.set(0.5 * 600);
+			R1.set(0.5 * 600);
+		}
+		else if(stick.getRawButton(3) == true) {
+			//L1.set(0.75 * 600);
+			R1.set(0.75 * 600);
+		}
+		else if(stick.getRawButton(4) == true) {
+			//L1.set(1.0 * 600);
+			R1.set(1.0 * 600);
+		}
+		else {
+			//L1.set(0);
+			R1.set(0);
+		}
+		*/
 		
-		/* Joystick values to gyro values
-		double angleGyro = gyro.getAngle()%360;
-		System.out.println(angleGyro);
+		double leftSpeed = OutputManager.getTalonSpeedFrontLeftMotor();
+		double rightSpeed = OutputManager.getTalonSpeedFrontRightMotor();
+		System.out.println("Left Speed: " + leftSpeed);
+		System.out.println("Right Speed: " + rightSpeed);
 		
-		double angleStick = Math.toDegrees(Math.atan2((stick.getRawAxis(1)), (stick.getRawAxis(0))));
-		System.out.println(angleStick);*/
-		
-		Timer.delay(0.005);
+		//double leftEncoder = L1.getEncVelocity();
+		//double rightEncoder = R1.getEncVelocity();
+		//System.out.println("Left Encoder Value: " + leftEncoder);
+		//System.out.println("Right Encoder Value: " + rightEncoder);
 		
 	}
 	
@@ -53,8 +91,6 @@ public class Drive implements Runnable {
 		
 	}
 	
-	private double handleDeadband(double val, double deadband) {
-		return (Math.abs(val) > Math.abs(deadband)) ? val : 0.0;		// boolean statement ? true result : false result
-	}
-	
 }
+
+
