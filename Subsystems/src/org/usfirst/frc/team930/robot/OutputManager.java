@@ -10,39 +10,45 @@ import edu.wpi.first.wpilibj.PWMSpeedController;
 import edu.wpi.first.wpilibj.Spark;
 
 public class OutputManager {
+	
 	//Enum for Light Patterns on Arduino
 	 enum LightPatterns {
 		 LIGHTS_AUTO,
 		 LIGHTS_TELE,
 		 LIGHTS_DISABLE,
-		 LIGHTS_SHOOT
+		 LIGHTS_SHOOT,
+		 LIGHTS_DRIVE,
+		 LIGHTS_CLIMB,
+		 LIGHTS_INTAKE,
+		 LIGHTS_FUUN
 	 }
+	 
 	 // Declaring Pins on RoboRio
-	public static	DigitalOutput lightPin0 = new DigitalOutput(0);
-	public static	DigitalOutput lightPin1 = new DigitalOutput(1);
-	public static	DigitalOutput lightPin2 = new DigitalOutput(2);
+	private static	DigitalOutput lightPin0 = new DigitalOutput(0);
+	private static	DigitalOutput lightPin1 = new DigitalOutput(1);
+	private static	DigitalOutput lightPin2 = new DigitalOutput(2);
 	// Declaring robot motors
 	// 6 Drivetrain motor declarations
-	public static CANTalon frontLeftMotor; 	
-	public static CANTalon rearLeftMotor;
-	public static CANTalon frontRightMotor;
-	public static CANTalon rearRightMotor; 
-	public static CANTalon leftSlave;
-	public static CANTalon rightSlave;
+	private static CANTalon frontLeftMotor; 	
+	private static CANTalon rearLeftMotor;
+	private static CANTalon frontRightMotor;
+	private static CANTalon rearRightMotor; 
+	private static CANTalon leftSlave;
+	private static CANTalon rightSlave;
 	
 	// 1 Shooter Talon declaration
-	public static CANTalon shooterMotor;
+	private static CANTalon shooterMotor;
 	
 	// 1 Intake  Spark Motor controller declaration
-	public static Spark intakeSpark;
+	private static Spark intakeSpark;
 	
 	// 1 Climber  Spark Motor controller declaration
-	public static Spark climberSpark;
+	private static Spark climberSpark;
 	
 	// Feeder 1 Spark, either combine with shooter or make own subsystem
-	public static Spark feederSpark;
+	private static Spark feederSpark;
 	
-	public void init(){
+	public static void init(){
 		
 		// Initializing motors
 		// Initializes Motors for drivetrain
@@ -57,7 +63,7 @@ public class OutputManager {
 		shooterMotor = new CANTalon (7);
 		
 		// Spark Range is 2.003 ms Full Forward - .999 ms Full Reverse
-		intakeSpark = new Spark (8);
+		intakeSpark = new Spark (0);
 		
 		climberSpark = new Spark (9);
 		
@@ -165,69 +171,70 @@ public class OutputManager {
 	
 	// Series of Talon accessor classes, mainly used in loggable.
 	// Return a string value of the speed units will be in the sensor's native ticks per 100ms.
-	public static String getTalonSpeedFrontRightMotor(){
+	public static double getTalonSpeedFrontRightMotor(){
 		
-		return Double.toString(frontRightMotor.getSpeed());
+		return frontRightMotor.getSpeed();
 				
 	}
 	
-	public static String getTalonShooterMotor(){
+	public static double getTalonShooterMotor(){
 		
-		return Double.toString(shooterMotor.getSpeed());
+		return shooterMotor.getSpeed();
 				
 	}
 	
-	public static String getTalonSpeedFrontLefttMotor(){
+	public static double getTalonSpeedFrontLeftMotor(){
 		
-		return Double.toString(frontLeftMotor.getSpeed());
+		return frontLeftMotor.getSpeed();
 				
 	}
 	
-	public static String getTalonSpeedRearRightMotor(){
+	public static double getTalonSpeedRearRightMotor(){
 		
-		return Double.toString(rearRightMotor.getSpeed());
+		return rearRightMotor.getSpeed();
 				
 	}
 	
-	public static String getTalonSpeedRearLeftMotor(){
+	public static double getTalonSpeedRearLeftMotor(){
 		
-		return Double.toString(rearLeftMotor.getSpeed());
+		return rearLeftMotor.getSpeed();
 				
 	}
 	
-	public static String getTalonSpeedLeftSlave(){
+	public static double getTalonSpeedLeftSlave(){
 		
-		return Double.toString(leftSlave.getSpeed());
+		return leftSlave.getSpeed();
 				
 	}
 	
-	public static String getTalonSpeedRightSlave(){
+	public static double getTalonSpeedRightSlave(){
 		
-		return Double.toString(rightSlave.getSpeed());
+		return rightSlave.getSpeed();
 				
 	}
 	
 	// Series of Spark accessors to return speed used in loggable
 	// Return a string value of the set speed value on [-1,1]
-	public static String getSparkSpeedIntake(){
+	public static double getSparkSpeedIntake(){
 		
-		return Double.toString(intakeSpark.getSpeed());
-		
-	}
-	
-	public static String getSparkSpeedClimber(){
-		
-		return Double.toString(climberSpark.getSpeed());
+		return intakeSpark.getSpeed();
 		
 	}
 	
-	public static String getSparkSpeedFeeder(){
+	public static double getSparkSpeedClimber(){
 		
-		return Double.toString(feederSpark.getSpeed());
+		return climberSpark.getSpeed();
+		
+	}
+	
+	public static double getSparkSpeedFeeder(){
+		
+		return feederSpark.getSpeed();
 		
 	}
 	public static void setLights(LightPatterns L){
 		switch(L){
+		
 		case LIGHTS_AUTO:	
 			lightPin0.set(true);
 			lightPin1.set(false);
@@ -254,6 +261,42 @@ public class OutputManager {
 			lightPin1.set(false);
 			lightPin2.set(true);
 			break;
+			
+			
+		case LIGHTS_CLIMB:	
+			lightPin0.set(false);
+			lightPin1.set(false);
+			lightPin2.set(true);
+			break;
+			
+			
+		case LIGHTS_DRIVE:	
+			lightPin0.set(true);
+			lightPin1.set(true);
+			lightPin2.set(false);
+			break;
+	
+			
+		case LIGHTS_INTAKE:	
+			lightPin0.set(false);
+			lightPin1.set(true);
+			lightPin2.set(false);
+			break;
+			
+			
+<<<<<<< HEAD
+		case LIGHTS_FUUN:
+			lightPin0.set(false);
+			lightPin1.set(true);
+			lightPin2.set(true);
+=======
+		case LIGHTS_FUUN:	
+			lightPin0.set(false);
+			lightPin1.set(true);
+			lightPin2.set(true);
+			break;
+>>>>>>> 22e208f0a5e8bd230acd1966b55bd709b41385e9
 		}
+		// Why is there no false true true?
 	}
 }

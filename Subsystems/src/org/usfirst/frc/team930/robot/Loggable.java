@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Spark;
 
 public class Loggable implements Runnable {
-	
+
 	String rearLeftMotorSpeed = "";
 	String rearRightMotorSpeed = "";
 	String frontRightMotorSpeed = "";
@@ -22,85 +22,73 @@ public class Loggable implements Runnable {
 	String intakeMotorSpeed = "";
 	String climberMotorSpeed = "";
 	String feederMotorSpeed = "";
-	
+
 	public void run() {
 
 		BufferedWriter bwriter;
 
 		// Gets values from output manager to pass to .txt -> .xl
-		rearLeftMotorSpeed = OutputManager.getTalonSpeedRearLeftMotor();
-		rearRightMotorSpeed = OutputManager.getTalonSpeedRearRightMotor();
-		frontRightMotorSpeed = OutputManager.getTalonSpeedFrontRightMotor();
-		frontLeftMotorSpeed = OutputManager.getTalonSpeedFrontLefttMotor();
-		leftSlaveMotorSpeed = OutputManager.getTalonSpeedLeftSlave();
-		rightSlaveMotorSpeed = OutputManager.getTalonSpeedRightSlave();
-		shooterMotorSpeed = OutputManager.getTalonShooterMotor();
-		intakeMotorSpeed = OutputManager.getSparkSpeedIntake();
-		climberMotorSpeed = OutputManager.getSparkSpeedClimber();
-		feederMotorSpeed = OutputManager.getSparkSpeedFeeder();
-		
+		rearLeftMotorSpeed = Double.toString(OutputManager.getTalonSpeedRearLeftMotor());
+		rearRightMotorSpeed = Double.toString(OutputManager.getTalonSpeedRearRightMotor());
+		frontRightMotorSpeed = Double.toString(OutputManager.getTalonSpeedFrontRightMotor());
+		frontLeftMotorSpeed = Double.toString(OutputManager.getTalonSpeedFrontLeftMotor());
+		leftSlaveMotorSpeed = Double.toString(OutputManager.getTalonSpeedLeftSlave());
+		rightSlaveMotorSpeed = Double.toString(OutputManager.getTalonSpeedRightSlave());
+		shooterMotorSpeed = Double.toString(OutputManager.getTalonShooterMotor());
+		intakeMotorSpeed = Double.toString(OutputManager.getSparkSpeedIntake());
+		climberMotorSpeed = Double.toString(OutputManager.getSparkSpeedClimber());
+		feederMotorSpeed = Double.toString(OutputManager.getSparkSpeedFeeder());
+
 		// Creates writer, and reports errors.
-		while (true) {
-			
+		
+System.out.println("IT GOT HERE BUT NOT THEREEEEEEEEEEEEEEEEEEEEEEEEE" + '\n' + "IT GOT HERE BUT NOT THEREEEEEEEEEEEEEEEEEEEEEEEEE" + '\n' );
 			try {
-				
-				File f = new File("c" + File.separator + System.currentTimeMillis() + "shooterspeed.txt");
+				System.out.println("IT WORK WORK WORK WORK WORK WORK");
+				File f;	
+				f = new File("C" + File.separator + "shooterspeed.txt");
+			
 				bwriter = new BufferedWriter(new FileWriter(f));
+			if(f.exists()){
+				f.createNewFile();
+			} else {
+			}	
+			if(!f.exists())		{
+				System.out.println("it no work :(");
+			}
+			else{
+				System.out.println("IT WORK");
+			}
 				
-				if (!f.exists()) {
-					
-					f.createNewFile();
-					
-				}
-				
-				break;
-				
+				/*bwriter.write(rearLeftMotorSpeed);
+				bwriter.flush();
+				bwriter.write(rearRightMotorSpeed);
+				bwriter.flush();			
+				bwriter.write(frontRightMotorSpeed);
+				bwriter.flush();
+				bwriter.write(frontLeftMotorSpeed);
+				bwriter.flush();
+				bwriter.write(leftSlaveMotorSpeed);
+				bwriter.flush();
+				bwriter.write(rightSlaveMotorSpeed);
+				bwriter.flush();
+				bwriter.write(shooterMotorSpeed);
+				bwriter.flush();
+				bwriter.write(intakeMotorSpeed);
+				bwriter.flush();
+				bwriter.write(climberMotorSpeed);
+				bwriter.flush();
+				bwriter.write(feederMotorSpeed);
+				bwriter.flush();
+				bwriter.close();
+	*/			
+
 			} catch (IOException e) {
-				
+
 				// e.printStackTrace();
 				System.err.println(e);
-				
+
 			}
-			
-		}
+
 		
-		try {
-			
-			bwriter.write(rearLeftMotorSpeed);
-			bwriter.flush();
-			bwriter.close();
-			bwriter.write(rearRightMotorSpeed);
-			bwriter.flush();
-			bwriter.close();
-			bwriter.write(frontRightMotorSpeed);
-			bwriter.flush();
-			bwriter.close();
-			bwriter.write(frontLeftMotorSpeed);
-			bwriter.flush();
-			bwriter.close();
-			bwriter.write(leftSlaveMotorSpeed);
-			bwriter.flush();
-			bwriter.close();
-			bwriter.write(rightSlaveMotorSpeed);
-			bwriter.flush();
-			bwriter.close();
-			bwriter.write(shooterMotorSpeed);
-			bwriter.flush();
-			bwriter.close();
-			bwriter.write(intakeMotorSpeed);
-			bwriter.flush();
-			bwriter.close();
-			bwriter.write(climberMotorSpeed);
-			bwriter.flush();
-			bwriter.close();
-			bwriter.write(feederMotorSpeed);
-			bwriter.flush();
-			bwriter.close();
-		} catch (IOException e) {
-			
-			// e.printStackTrace();
-			System.err.println(e);
-			
 		}
 	}
-}

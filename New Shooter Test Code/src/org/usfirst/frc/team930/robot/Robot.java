@@ -86,7 +86,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 		  if (onoff){
 			  hello.set(speed2);       // actually turns on the motors 
 			  hello1.set(speed2*-1.0);
-			  
+			  SmartDashboard.putNumber("Channel 11's Current is", PDP.getCurrent(11));
+	  
 		  } else {
 			  hello.set(0);
 			  hello1.set(0);

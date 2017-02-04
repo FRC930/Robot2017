@@ -28,12 +28,13 @@ public class Robot extends IterativeRobot {
 		pin0.set(false);
 		pin1.set(false);
 		pin2.set(false);
-		
+		System.out.println("Button 1");
 	}
 	if( stick.getRawButton(2)){
 		pin0.set(true);
 		pin1.set(false);
 		pin2.set(false);
+		System.out.println("Button 2");
 		
 	}
 	if( stick.getRawButton(3)){
