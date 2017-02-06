@@ -237,20 +237,20 @@ public class OutputManager {
 		
 		case LIGHTS_AUTO:	
 			lightPin0.set(true);
-			lightPin1.set(false);
+			lightPin1.set(true);
 			lightPin2.set(false);
 			break;
 		
 		
 		case LIGHTS_TELE:	
-			lightPin0.set(true);
-			lightPin1.set(true);
-			lightPin2.set(true);
+			lightPin0.set(false);
+			lightPin1.set(false);
+			lightPin2.set(false);
 			break;
 		
 		
 		case LIGHTS_DISABLE:	
-			lightPin0.set(false);
+			lightPin0.set(true);
 			lightPin1.set(false);
 			lightPin2.set(false);
 			break;
@@ -258,22 +258,22 @@ public class OutputManager {
 		
 		case LIGHTS_SHOOT:	
 			lightPin0.set(true);
-			lightPin1.set(false);
+			lightPin1.set(true);
 			lightPin2.set(true);
 			break;
 			
 			
 		case LIGHTS_CLIMB:	
-			lightPin0.set(false);
+			lightPin0.set(true);
 			lightPin1.set(false);
 			lightPin2.set(true);
 			break;
 			
 			
 		case LIGHTS_DRIVE:	
-			lightPin0.set(true);
+			lightPin0.set(false);
 			lightPin1.set(true);
-			lightPin2.set(false);
+			lightPin2.set(true);
 			break;
 	
 			
@@ -286,7 +286,7 @@ public class OutputManager {
 			
 		case LIGHTS_FUUN:	
 			lightPin0.set(false);
-			lightPin1.set(true);
+			lightPin1.set(false);
 			lightPin2.set(true);
 			break;
 		}
