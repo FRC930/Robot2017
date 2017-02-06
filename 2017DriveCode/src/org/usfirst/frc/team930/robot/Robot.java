@@ -28,13 +28,26 @@ public class Robot extends IterativeRobot {
 	
 	//AHRS gyro = new AHRS(SerialPort.Port.kUSB);
 	
+	// Real FPID values
+	/*
+	 * Left:
+	 * F = 0.945
+	 * P = 0.4
+	 * I = 0.00035
+	 * 
+	 * Right:
+	 * F = 0.945
+	 * P = 0.4
+	 * I = 0.00035
+	 */
+	
 	CANTalon L1 = new CANTalon(1);		// Right F: 0.945
 	CANTalon L2 = new CANTalon(2);		// Right P: 0.4
-	CANTalon L3 = new CANTalon(3);		// Right I: 0.00025
+	CANTalon L3 = new CANTalon(3);		// Right I: 0.00035
 	CANTalon R1 = new CANTalon(4);
-	CANTalon R2 = new CANTalon(5);
-	CANTalon R3 = new CANTalon(6);
-	
+	CANTalon R2 = new CANTalon(5);		// Left F: 1
+	CANTalon R3 = new CANTalon(6);		// Left P: 0.1
+										// Left I: 0.0012
 	Spark intakeMotor = new Spark(1);
 	boolean motorOn = false;
 	
@@ -49,10 +62,10 @@ public class Robot extends IterativeRobot {
 		L2.setInverted(true);
 		L3.setInverted(true);
 		
-		L1.changeControlMode(CANTalon.TalonControlMode.Speed);
+		L1.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 		L2.changeControlMode(CANTalon.TalonControlMode.Follower);
 		L3.changeControlMode(CANTalon.TalonControlMode.Follower);
-		R1.changeControlMode(CANTalon.TalonControlMode.Speed);
+		R1.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 		R2.changeControlMode(CANTalon.TalonControlMode.Follower);
 		R3.changeControlMode(CANTalon.TalonControlMode.Follower);
 		
@@ -64,14 +77,17 @@ public class Robot extends IterativeRobot {
 		L1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		R1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		
-		L1.reverseSensor(true);
-		
-		L1.configEncoderCodesPerRev(250);
+		L1.setAllowableClosedLoopErr(0);		// F: 0.97
+		R1.setAllowableClosedLoopErr(0);		// 30, 35, 35, 40
+												// F: 0.975
+		L1.reverseSensor(false);				// 30, 30, 35, 40
+												// F: 0.98
+		L1.configEncoderCodesPerRev(250);		// 30, 30, 30, 40
 		R1.configEncoderCodesPerRev(250);
 		
 		// At 200 slammed forward and backward no drop outs and driving responsive
-		//L1.setVoltageRampRate(1600);
-		//R1.setVoltageRampRate(1600);
+		L1.setVoltageRampRate(6400);
+		R1.setVoltageRampRate(6400);
 
 	}
 
@@ -109,6 +125,9 @@ public class Robot extends IterativeRobot {
 		if (stick.getRawButton(5) || stick.getRawButton(6) ) {
 			intakeMotor.set(1);
 		}
+		else if (stick.getRawButton(1)) {
+			intakeMotor.set(-1);
+		}
 		else {
 			intakeMotor.set(0);
 		}
@@ -126,34 +145,44 @@ public class Robot extends IterativeRobot {
 			yValue = 0;
 		}
 		
-		// Setting talons
-		//L1.set(yValue + xValue);
-		//L2.set(yValue + xValue);
-		//L3.set(yValue + xValue);
-		//R1.set(yValue - xValue);
-		//R2.set(yValue - xValue);
-		//R3.set(yValue - xValue);
+		// Left drive & right drive
+		/*double leftDrive = (yValue + xValue) * 600;
+		double rightDrive = (yValue - xValue) * 600;
 		
-		if(stick.getRawButton(1) == true) {
-			//L1.set(0.25 * 600);
+		if (Math.abs(leftDrive) > 600) {
+			leftDrive = 600 * Math.signum(leftDrive);
+		}
+		
+		if (Math.abs(rightDrive) > 600) {
+			rightDrive = 600 * Math.signum(rightDrive);
+		}*/
+		
+		// Setting talons
+		//L1.set(leftDrive);
+		//R1.set(rightDrive);
+		L1.set(yValue + xValue);
+		R1.set(yValue - xValue);
+		
+		/*if(stick.getRawButton(1) == true) {
+			L1.set(0.25 * 600);
 			R1.set(0.25 * 600);
 		}
 		else if(stick.getRawButton(2) == true) {
-			//L1.set(0.5 * 600);
+			L1.set(0.5 * 600);
 			R1.set(0.5 * 600);
 		}
 		else if(stick.getRawButton(3) == true) {
-			//L1.set(0.75 * 600);
+			L1.set(0.75 * 600);
 			R1.set(0.75 * 600);
 		}
 		else if(stick.getRawButton(4) == true) {
-			//L1.set(1.0 * 600);
+			L1.set(1.0 * 600);
 			R1.set(1.0 * 600);
 		}
 		else {
-			//L1.set(0);
+			L1.set(0);
 			R1.set(0);
-		}
+		}*/
 		
 		double leftSpeed = L1.getSpeed();
 		double rightSpeed = R1.getSpeed();
