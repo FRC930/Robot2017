@@ -22,10 +22,30 @@ public class Loggable implements Runnable {
 	String intakeMotorSpeed = "";
 	String climberMotorSpeed = "";
 	String feederMotorSpeed = "";
+	BufferedWriter bwriter;
+
+	File f = new File("DataLogging" + File.separator + System.currentTimeMillis() + "shooterspeed.txt"){
+		{
+		try {
+			FileWriter fw = new FileWriter(f);
+			
+			 bwriter = new BufferedWriter(fw);
+			
+		} catch (IOException ex) {
+			System.out.println(ex.toString());
+		}
+		if (!f.exists()) {
+
+			try {
+				f.createNewFile();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}};
 
 	public void run() {
-
-		BufferedWriter bwriter;
 
 		// Gets values from output manager to pass to .txt -> .xl
 		rearLeftMotorSpeed = Double.toString(OutputManager.getTalonSpeedRearLeftMotor());
@@ -40,55 +60,48 @@ public class Loggable implements Runnable {
 		feederMotorSpeed = Double.toString(OutputManager.getSparkSpeedFeeder());
 
 		// Creates writer, and reports errors.
-		
-System.out.println("IT GOT HERE BUT NOT THEREEEEEEEEEEEEEEEEEEEEEEEEE" + '\n' + "IT GOT HERE BUT NOT THEREEEEEEEEEEEEEEEEEEEEEEEEE" + '\n' );
-			try {
-				System.out.println("IT WORK WORK WORK WORK WORK WORK");
-				File f;	
-				f = new File("C" + File.separator + "shooterspeed.txt");
-			
-				bwriter = new BufferedWriter(new FileWriter(f));
-			if(f.exists()){
-				f.createNewFile();
-			} else {
-			}	
-			if(!f.exists())		{
-				System.out.println("it no work :(");
-			}
-			else{
-				System.out.println("IT WORK");
-			}
-				
-				/*bwriter.write(rearLeftMotorSpeed);
-				bwriter.flush();
-				bwriter.write(rearRightMotorSpeed);
-				bwriter.flush();			
-				bwriter.write(frontRightMotorSpeed);
-				bwriter.flush();
-				bwriter.write(frontLeftMotorSpeed);
-				bwriter.flush();
-				bwriter.write(leftSlaveMotorSpeed);
-				bwriter.flush();
-				bwriter.write(rightSlaveMotorSpeed);
-				bwriter.flush();
-				bwriter.write(shooterMotorSpeed);
-				bwriter.flush();
-				bwriter.write(intakeMotorSpeed);
-				bwriter.flush();
-				bwriter.write(climberMotorSpeed);
-				bwriter.flush();
-				bwriter.write(feederMotorSpeed);
-				bwriter.flush();
-				bwriter.close();
-	*/			
 
-			} catch (IOException e) {
+		try {
 
-				// e.printStackTrace();
-				System.err.println(e);
+			bwriter.write(rearLeftMotorSpeed);
+			bwriter.flush();
+			bwriter.newLine();
+			bwriter.write(rearRightMotorSpeed);
+			bwriter.flush();
+			bwriter.newLine();
+			bwriter.write(frontRightMotorSpeed);
+			bwriter.flush();
+			bwriter.newLine();
+			bwriter.write(frontLeftMotorSpeed);
+			bwriter.flush();
+			bwriter.newLine();
+			bwriter.write(leftSlaveMotorSpeed);
+			bwriter.flush();
+			bwriter.newLine();
+			bwriter.write(rightSlaveMotorSpeed);
+			bwriter.flush();
+			bwriter.newLine();
+			bwriter.write(shooterMotorSpeed);
+			bwriter.flush();
+			bwriter.newLine();
+			bwriter.write(intakeMotorSpeed);
+			bwriter.flush();
+			bwriter.newLine();
+			bwriter.write(climberMotorSpeed);
+			bwriter.flush();
+			bwriter.newLine();
+			bwriter.write(feederMotorSpeed);
+			bwriter.flush();
+			bwriter.newLine();
+			bwriter.close();
 
-			}
+		} catch (IOException e) {
 
-		
+			// e.printStackTrace();
+			System.err.println(e);
+
 		}
+
 	}
+
+;}

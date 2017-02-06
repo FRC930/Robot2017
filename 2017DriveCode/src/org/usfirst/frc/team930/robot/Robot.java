@@ -1,7 +1,6 @@
 package org.usfirst.frc.team930.robot;
 
 import com.ctre.CANTalon;
-import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SerialPort;
@@ -23,10 +22,19 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * directory.
  */
 public class Robot extends IterativeRobot {
-	
+
+	/*final String defaultAuto = "Default";
+	final String customAuto = "My Auto";
+	String autoSelected;
+	SendableChooser<String> chooser = new SendableChooser<>();*/
+
+	RobotDrive myRobot = new RobotDrive(0, 1);
+
 	Joystick stick = new Joystick(1);
-	
-	//AHRS gyro = new AHRS(SerialPort.Port.kUSB);
+	Button driver4 = new JoystickButton(stick, 4);
+	Button driver1 = new JoystickButton(stick, 1);
+
+	AHRS gyro = new AHRS(SerialPort.Port.kUSB);
 	
 	// Real FPID values
 	/*
@@ -45,9 +53,19 @@ public class Robot extends IterativeRobot {
 	CANTalon L2 = new CANTalon(2);		// Right P: 0.4
 	CANTalon L3 = new CANTalon(3);		// Right I: 0.00035
 	CANTalon R1 = new CANTalon(4);
+<<<<<<< HEAD
 	CANTalon R2 = new CANTalon(5);		// Left F: 1
 	CANTalon R3 = new CANTalon(6);		// Left P: 0.1
 										// Left I: 0.0012
+=======
+	CANTalon R2 = new CANTalon(5);
+	CANTalon R3 = new CANTalon(6);
+
+	MotionProfileExample example = new MotionProfileExample(_talon);
+
+	boolean[] btnsLast = {false,false,false,false,false,false,false,false,false,false};
+	
+>>>>>>> b933486f1132620e5efa7d1e768ec7a093106cd4
 	Spark intakeMotor = new Spark(1);
 	boolean motorOn = false;
 	
@@ -55,8 +73,17 @@ public class Robot extends IterativeRobot {
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
+
 	@Override
 	public void robotInit() {
+
+		/*chooser.addDefault("Default Auto", defaultAuto);
+		chooser.addObject("My Auto", customAuto);
+		SmartDashboard.putData("Auto choices", chooser);*/
+		
+		R1.setInverted(true);
+		R2.setInverted(true);
+		R3.setInverted(true);
 		
 		L1.setInverted(true);
 		L2.setInverted(true);
@@ -73,7 +100,7 @@ public class Robot extends IterativeRobot {
 		L3.set(L1.getDeviceID());
 		R2.set(R1.getDeviceID());
 		R3.set(R1.getDeviceID());
-		
+
 		L1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		R1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		
@@ -89,6 +116,23 @@ public class Robot extends IterativeRobot {
 		L1.setVoltageRampRate(6400);
 		R1.setVoltageRampRate(6400);
 
+		/*L1.changeControlMode(CANTalon.TalonControlMode.Speed);
+		L2.changeControlMode(CANTalon.TalonControlMode.Follower);
+		L3.changeControlMode(CANTalon.TalonControlMode.Follower);
+		R1.changeControlMode(CANTalon.TalonControlMode.Speed);
+		R2.changeControlMode(CANTalon.TalonControlMode.Follower);
+		R3.changeControlMode(CANTalon.TalonControlMode.Follower);
+		
+		L2.set(L1.getDeviceID());
+		L3.set(L1.getDeviceID());
+		R2.set(R1.getDeviceID());
+		R3.set(R1.getDeviceID());
+		
+		// Motion profiling
+		L1.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Relative);
+		L1.reverseSensor(false);
+		R1.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Relative);
+		R1.reverseSensor(false);*/
 	}
 
 	/**
@@ -193,13 +237,107 @@ public class Robot extends IterativeRobot {
 		double rightEncoder = R1.getEncVelocity();
 		//System.out.println("Left Encoder Value: " + leftEncoder);
 		//System.out.println("Right Encoder Value: " + rightEncoder);
-		
+
 		/* Joystick values to gyro values
 		double angleGyro = gyro.getAngle()%360;
 		System.out.println(angleGyro);
 		
 		double angleStick = Math.toDegrees(Math.atan2((stick.getRawAxis(1)), (stick.getRawAxis(0))));
 		System.out.println(angleStick);*/
+
+		
+		/*
+		double wheel = stick.getRawAxis(0);
+		double throttle = stick.getRawAxis(1);
+
+		double wheelNonLinearity;
+		double oldWheel; 
+		double quickStopAccumulator = 0.0;
+
+		wheel = handleDeadband(wheel, 0.085);
+		throttle = handleDeadband(throttle, 0.1);
+
+		oldWheel = wheel;
+		double negInertia = wheel - oldWheel;
+		wheelNonLinearity = 0.5;
+		
+		// Apply a sin function that's scaled to make it feel better, smoother driving
+		wheel = Math.sin(Math.PI / 2.0 * wheelNonLinearity * wheel) / Math.sin(Math.PI / 2.0 * wheelNonLinearity);
+		wheel = Math.sin(Math.PI / 2.0 * wheelNonLinearity * wheel) / Math.sin(Math.PI / 2.0 * wheelNonLinearity);
+		wheel = Math.sin(Math.PI / 2.0 * wheelNonLinearity * wheel) / Math.sin(Math.PI / 2.0 * wheelNonLinearity);
+
+		double leftPwm;
+		double rightPwm;
+		double overPower;
+		
+		double angularPower;
+		double linearPower;
+
+		// Negative inertia, reducing overturn after joystick values stopped
+		double negInertiaAccumulator = 0.0;
+		double negInertiaScalar;
+		if (wheel * negInertia > 0) {
+			negInertiaScalar = 2.5;
+		} else {
+			if (Math.abs(wheel) > 0.65) {
+				negInertiaScalar = 5.0;
+			} else {
+				negInertiaScalar = 3.0;
+			}
+		}
+		double negInertiaPower = negInertia * negInertiaScalar;
+		negInertiaAccumulator += negInertiaPower;
+
+		wheel = wheel + negInertiaAccumulator;
+		if (negInertiaAccumulator > 1) {
+			negInertiaAccumulator -= 1;
+		} else if (negInertiaAccumulator < -1) {
+			negInertiaAccumulator += 1;
+		} else {
+			negInertiaAccumulator = 0;
+		}
+		linearPower = throttle;
+
+		overPower = 0.0;
+		
+		double alpha = 0.1;
+        quickStopAccumulator = (1 - alpha) * quickStopAccumulator + alpha;
+        
+		angularPower = Math.abs(throttle) * wheel * - quickStopAccumulator;
+		if (quickStopAccumulator > 1) {
+			quickStopAccumulator -= 1;
+		} else if (quickStopAccumulator < -1) {
+			quickStopAccumulator += 1;
+		} else {
+			quickStopAccumulator = 0.0;
+		}
+
+		rightPwm = leftPwm = linearPower;
+		leftPwm += angularPower;
+		rightPwm -= angularPower;
+
+		if (leftPwm > 1.0) {
+			rightPwm -= overPower * (leftPwm - 1.0);
+			leftPwm = 1.0;
+		} else if (rightPwm > 1.0) {
+			leftPwm -= overPower * (rightPwm - 1.0);
+			rightPwm = 1.0;
+		} else if (leftPwm < -1.0) {
+			rightPwm += overPower * (-1.0 - leftPwm);
+			leftPwm = -1.0;
+		} else if (rightPwm < -1.0) {
+			leftPwm += overPower * (-1.0 - rightPwm);
+			rightPwm = -1.0;
+		}
+
+		L1.set(throttle + wheel);
+		L2.set(throttle + wheel);
+		L3.set(throttle + wheel);
+		R1.set(throttle - wheel);
+		R2.set(throttle - wheel);
+		R3.set(throttle - wheel);
+		*/
+
 
 		Timer.delay(0.005);
 	}
