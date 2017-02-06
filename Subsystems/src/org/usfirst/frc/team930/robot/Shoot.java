@@ -13,16 +13,6 @@ public class Shoot implements Runnable {
 		
 	}
 	
-	public void setSpeed(double x, double y){
-		
-	}
-	
-	public double getSpeed(){
-		
-		return speed;
-		
-	}
-	
 	public void visionTrack (){
 		
 	}

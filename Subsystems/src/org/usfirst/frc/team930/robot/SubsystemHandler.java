@@ -5,13 +5,13 @@ import edu.wpi.first.wpilibj.Notifier;
 public class SubsystemHandler {
 
 	// Used to be private final, just changing it up
-		//private final  Drive myDrive;
+		private final  Drive myDrive;
 		private final  Shoot myShoot;
 		private final  Climb myClimb;
 		private final  Intake myIntake;
 		private final  Loggable myLog;
 		
-		//private final  Notifier driveNotifier;
+		private final  Notifier driveNotifier;
 		private final  Notifier shootNotifier;
 		private final  Notifier climbNotifier;
 		private final  Notifier intakeNotifier;
@@ -19,13 +19,13 @@ public class SubsystemHandler {
 		
 		public SubsystemHandler(){
 			
-			//myDrive = new Drive(); // Instantiates runnable subsystem classes
+			myDrive = new Drive(); // Instantiates runnable subsystem classes
 			myShoot = new Shoot();
 			myClimb = new Climb();
 			myIntake = new Intake();
 			myLog = new Loggable();
 			
-			//driveNotifier = new Notifier (myDrive); // Instantiates the notifiers for each subsystem
+			driveNotifier = new Notifier (myDrive); // Instantiates the notifiers for each subsystem
 					
 			shootNotifier = new Notifier (myShoot);
 						
@@ -38,9 +38,9 @@ public class SubsystemHandler {
 		}
 		
 		public void startSubsystems(){
-			//System.out.println("Starting Subsystems");
+			System.out.println("Starting Subsystems");
 			
-			//driveNotifier.startPeriodic(.005); // Gives the update values in seconds for each subsystem notifier
+			driveNotifier.startPeriodic(.005); // Gives the update values in seconds for each subsystem notifier
 			
 			shootNotifier.startPeriodic(.01);
 			

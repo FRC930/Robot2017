@@ -78,19 +78,7 @@ public class Drive implements Runnable {
 		//System.out.println("Right Encoder Value: " + rightEncoder);
 		
 	}
-	
-	public void setTarget(double x, double y){
-		
-	}
-	
-	public void setUseJoysticks( boolean b){
-		
-	}
-	
-	public void drive(){
-		
-	}
-	
+
 }
 
 

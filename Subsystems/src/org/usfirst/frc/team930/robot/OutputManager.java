@@ -290,6 +290,7 @@ public class OutputManager {
 			lightPin2.set(true);
 			break;
 		}
-		// Why is there no false true true?
+		
 	}
+	
 }
