@@ -58,9 +58,9 @@ public class OutputManager {
 		
 		// Initializing motors
 		// Initializes Motors for drivetrain
-		frontLeftMotor = new CANTalon(1);
-		rearLeftMotor = new CANTalon(3);
-		leftSlave = new CANTalon(2);
+		frontLeftMotor = new CANTalon(Constants.L1_MOTOR_CHANNEL);
+		rearLeftMotor = new CANTalon(Constants.L3_MOTOR_CHANNEL);
+		leftSlave = new CANTalon(Constants.L2_MOTOR_CHANNEL);
 		
 		frontLeftMotor.setInverted(true);
 		rearLeftMotor.setInverted(true);
@@ -71,22 +71,22 @@ public class OutputManager {
 		frontLeftMotor.configEncoderCodesPerRev(250);
 		frontLeftMotor.setVoltageRampRate(6400);
 		
-		frontRightMotor = new CANTalon(4);
-		rearRightMotor = new CANTalon(6);
-		rightSlave = new CANTalon(5);
+		frontRightMotor = new CANTalon(Constants.R1_MOTOR_CHANNEL);
+		rearRightMotor = new CANTalon(Constants.R3_MOTOR_CHANNEL);
+		rightSlave = new CANTalon(Constants.R2_MOTOR_CHANNEL);
 		
 		frontRightMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		frontRightMotor.configEncoderCodesPerRev(250);
 		frontRightMotor.setVoltageRampRate(6400);
 		
-		shooterMotor = new CANTalon (7);
+		shooterMotor = new CANTalon (Constants.SHOOTER_MOTOR_CHANNEL);
 		
 		// Spark Range is 2.003 ms Full Forward - .999 ms Full Reverse
-		intakeSpark = new Spark (0);
+		intakeSpark = new Spark (Constants.INTAKE_MOTOR_CHANNEL);
 		
-		climberSpark = new Spark (9);
+		climberSpark = new Spark (Constants.CLIMBER_MOTOR_CHANNEL);
 		
-		feederSpark = new Spark (10);
+		feederSpark = new Spark (Constants.FEEDER_MOTOR_CHANNEL);
 		
 	}
 	

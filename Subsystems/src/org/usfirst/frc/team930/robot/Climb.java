@@ -9,7 +9,7 @@ public class Climb implements Runnable {
 		
 		System.out.println("Climb " + Timer.getFPGATimestamp());
 	
-		if(OutputManager.getPDPChannelCurrent(5) < 35){
+		if(OutputManager.getPDPChannelCurrent(Constants.PDP_CHANNEL8) < 35){
 		
 		OutputManager.setClimberSpeed(DSManager.getDriveYAxis());
 	

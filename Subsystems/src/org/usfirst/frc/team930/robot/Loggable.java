@@ -89,7 +89,7 @@ public class Loggable implements Runnable {
 	public static void init() {
         try
     	{
-    		file = new File("DataLogging" + File.separator + System.currentTimeMillis() + "ShooterSpeed.txt");
+    		file = new File("c" + File.separator + System.currentTimeMillis() + "ShooterSpeed.txt");
     		bwriter = new BufferedWriter(new FileWriter(file));
     		if (!file.exists()) {
     			file.createNewFile();

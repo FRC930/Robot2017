@@ -37,4 +37,11 @@ public class Constants {
 	public static final int CLIMBER_MOTOR_CHANNEL = 9;
 	public static final int FEEDER_MOTOR_CHANNEL = 10;
 	
+	// -----------DRIVE CODE CONSTANTS-----------
+	
+	public static final int JOYSTICK_NONLINEARITY = 3;
+	public static final int X_DEFAULT_VALUE = 0;
+	public static final int Y_DEFAULT_VALUE = 0;
+	public static final double JOYSTICK_ERROR_ALLOWANCE = 0.1;
+	
 }
