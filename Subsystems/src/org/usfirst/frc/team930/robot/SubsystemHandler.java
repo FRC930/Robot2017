@@ -4,18 +4,17 @@ import edu.wpi.first.wpilibj.Notifier;
 // This class contains the framework for how the subsystems update
 public class SubsystemHandler {
 
-	// Used to be private final, just changing it up
 		private final  Drive myDrive;
 		private final  Shoot myShoot;
 		private final  Climb myClimb;
 		private final  Intake myIntake;
-		private final  Loggable myLog;
+		//private final  Loggable myLog;
 		
 		private final  Notifier driveNotifier;
 		private final  Notifier shootNotifier;
 		private final  Notifier climbNotifier;
 		private final  Notifier intakeNotifier;
-		private final  Notifier logNotifier;
+		//private final  Notifier logNotifier;
 		
 		public SubsystemHandler(){
 			
@@ -23,7 +22,7 @@ public class SubsystemHandler {
 			myShoot = new Shoot();
 			myClimb = new Climb();
 			myIntake = new Intake();
-			myLog = new Loggable();
+			//myLog = new Loggable();
 			
 			driveNotifier = new Notifier (myDrive); // Instantiates the notifiers for each subsystem
 					
@@ -33,7 +32,7 @@ public class SubsystemHandler {
 				
 			intakeNotifier = new Notifier (myIntake);
 			
-			logNotifier = new Notifier (myLog);
+			//logNotifier = new Notifier (myLog);
 			
 		}
 		
@@ -48,7 +47,7 @@ public class SubsystemHandler {
 			
 			intakeNotifier.startPeriodic(.02);
 			
-			logNotifier.startPeriodic(.005);
+			//logNotifier.startPeriodic(.005);
 			
 		}
 }

@@ -5,8 +5,13 @@ public class Climb implements Runnable {
   
 	public void run(){
 		
-	System.out.println("Climb " + Timer.getFPGATimestamp());
+		System.out.println("Climb " + Timer.getFPGATimestamp());
 	
+		if(OutputManager.getPDPChannelCurrent(5) < 3){
+		
+		OutputManager.setClimberSpeed(DSManager.getRawAxisOne());
+	
+		}
 	}
 	
 }

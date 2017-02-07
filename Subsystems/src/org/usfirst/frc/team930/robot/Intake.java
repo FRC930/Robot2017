@@ -13,21 +13,6 @@ public class Intake implements Runnable {
 		System.out.println("Intake " + Timer.getFPGATimestamp());
 		//Constructors
 		
-		Spark intakeSpark = new Spark(0);		//Talon
-		
-		boolean toggleOn = false;
-		
-			
-			if (DSManager.getRawButtonOne() && !toggleOn) {
-					toggleOn = true;
-					intakeSpark.set(-1);
-					System.out.println("On");
-				}
-			else if(!DSManager.getRawButtonOne() && toggleOn) {
-				toggleOn = false;
-				intakeSpark.set(0);	
-				System.out.println("Off");
-			}	
 		}
 	}
 	
