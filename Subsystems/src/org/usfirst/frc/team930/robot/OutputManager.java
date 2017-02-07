@@ -1,5 +1,6 @@
 package org.usfirst.frc.team930.robot;
 import com.ctre.CANTalon;
+import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
 import java.lang.Object;
 import edu.wpi.first.wpilibj.SensorBase;
@@ -53,12 +54,25 @@ public class OutputManager {
 		// Initializing motors
 		// Initializes Motors for drivetrain
 		frontLeftMotor = new CANTalon(1);
-		rearLeftMotor = new CANTalon(2);
-		frontRightMotor = new CANTalon(3);
-		rearRightMotor = new CANTalon(4);
+		rearLeftMotor = new CANTalon(3);
+		leftSlave = new CANTalon(2);
 		
-		leftSlave = new CANTalon(5);
-		rightSlave = new CANTalon(6);
+		frontLeftMotor.setInverted(true);
+		rearLeftMotor.setInverted(true);
+		leftSlave.setInverted(true);
+		
+		frontLeftMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		frontLeftMotor.reverseSensor(false);
+		frontLeftMotor.configEncoderCodesPerRev(250);
+		frontLeftMotor.setVoltageRampRate(6400);
+		
+		frontRightMotor = new CANTalon(4);
+		rearRightMotor = new CANTalon(6);
+		rightSlave = new CANTalon(5);
+		
+		frontRightMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		frontRightMotor.configEncoderCodesPerRev(250);
+		frontRightMotor.setVoltageRampRate(6400);
 		
 		shooterMotor = new CANTalon (7);
 		
@@ -75,8 +89,7 @@ public class OutputManager {
 	public static void setSpeedR(double speed){
 		
 		frontRightMotor.set(speed);
-		rearRightMotor.set(speed);
-		rightSlave.set(speed);
+
 		
 	}
 	
@@ -84,8 +97,7 @@ public class OutputManager {
 	public static void setSpeedL(double speed){
 		
 		frontLeftMotor.set(speed);
-		rearLeftMotor.set(speed);
-		leftSlave.set(speed);
+
 		
 	}
 	
@@ -96,10 +108,15 @@ public class OutputManager {
 		rearRightMotor.changeControlMode(CANTalon.TalonControlMode.Follower);
 		rightSlave.changeControlMode(CANTalon.TalonControlMode.Follower);
 		
+		rearRightMotor.set(frontRightMotor.getDeviceID());
+		rightSlave.set(frontRightMotor.getDeviceID());
+		
 		frontLeftMotor.changeControlMode(CANTalon.TalonControlMode.Speed);
 		rearLeftMotor.changeControlMode(CANTalon.TalonControlMode.Follower);
 		leftSlave.changeControlMode(CANTalon.TalonControlMode.Follower);
 		
+		rearLeftMotor.set(frontLeftMotor.getDeviceID());
+		leftSlave.set(frontLeftMotor.getDeviceID());
 	}
 	
 	// Sets the Drivetrain motors to Disabled Mode.
@@ -119,12 +136,18 @@ public class OutputManager {
 	public static void setDrivetrainPercentVbusMode(){
 		
 		frontRightMotor.changeControlMode(CANTalon.TalonControlMode.PercentVbus );
-		rearRightMotor.changeControlMode(CANTalon.TalonControlMode.PercentVbus );
-		rightSlave.changeControlMode(CANTalon.TalonControlMode.PercentVbus );
+		rearRightMotor.changeControlMode(CANTalon.TalonControlMode.Follower );
+		rightSlave.changeControlMode(CANTalon.TalonControlMode.Follower );
+		
+		rearRightMotor.set(frontRightMotor.getDeviceID());
+		rightSlave.set(frontRightMotor.getDeviceID());
 		
 		frontLeftMotor.changeControlMode(CANTalon.TalonControlMode.PercentVbus );
-		rearLeftMotor.changeControlMode(CANTalon.TalonControlMode.PercentVbus );
-		leftSlave.changeControlMode(CANTalon.TalonControlMode.PercentVbus );
+		rearLeftMotor.changeControlMode(CANTalon.TalonControlMode.Follower );
+		leftSlave.changeControlMode(CANTalon.TalonControlMode.Follower );
+		
+		rearLeftMotor.set(frontLeftMotor.getDeviceID());
+		leftSlave.set(frontLeftMotor.getDeviceID());
 		
 	}
 	
