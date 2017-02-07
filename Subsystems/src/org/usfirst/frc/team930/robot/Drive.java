@@ -20,7 +20,20 @@ public class Drive implements Runnable {
 		OutputManager.setSpeedL(yValue + xValue);
 		OutputManager.setSpeedR(yValue - xValue);
 		
-	}
+		
+		//Setting Lights for driving
+		if(DSManager.getDriveXAxis() >= 0 || DSManager.getDriveXAxis() <= 0 || DSManager.getDriveYAxis() >= 0 || DSManager.getDriveYAxis() <= 0){
+			
+			OutputManager.setLights(OutputManager.LightPatterns.LIGHTS_DRIVE);
+		
+		}
+		else {
+			
+			OutputManager.setLights(OutputManager.LightPatterns.LIGHTS_DRIVE);
+		
+		}
+		
+		}
 	public static void init(){
 		OutputManager.setDrivetrainPercentVbusMode();		
 	}
