@@ -1,4 +1,6 @@
 package org.usfirst.frc.team930.robot;
+import org.usfirst.frc.team930.robot.OutputManager.LightPatterns;
+
 import edu.wpi.first.wpilibj.Timer;
 
 public class Climb implements Runnable {
@@ -12,6 +14,7 @@ public class Climb implements Runnable {
 		OutputManager.setClimberSpeed(DSManager.getDriveYAxis());
 	
 		}
+		OutputManager.setLights(OutputManager.LightPatterns.LIGHTS_CLIMB);
 	}
 	
 }
