@@ -21,26 +21,12 @@ public class Loggable implements Runnable {
 	String shooterMotorSpeed = "";
 	String intakeMotorSpeed = "";
 	String climberMotorSpeed = "";
-	String feederMotorSpeed = ""; 
+	String feederMotorSpeed = "";
 	BufferedWriter bwriter;
-	File file = null;{
+	File file;
 	
-	if(!file.exists()) {
-		try {
-			  file = new File("DataLogging" + File.separator + "output.txt");
-				bwriter = new BufferedWriter(new FileWriter(file));
-			  if (!file.exists()) {
-				  file.createNewFile();
-			  }
-			  
-			  
-		  } catch (IOException e) {
-			  //e.printStackTrace();
-			  System.err.println(e);	
-		  } 
-		}
-	}
-		 public void run() {
+
+	public void run() {
 
 		// Gets values from output manager to pass to .txt -> .xl
 		rearLeftMotorSpeed = Double.toString(OutputManager.getTalonSpeedRearLeftMotor());
@@ -89,7 +75,8 @@ public class Loggable implements Runnable {
 			bwriter.flush();
 			bwriter.newLine();
 			bwriter.close();
-
+			System.out.println(
+					"\nJust wrote 10 lines BROOOOOOOOOOOOOO\n----------------------------------------------------------------\n---------------------------------------------------------------------\n----------------------------------------------------------------------------\n");
 		} catch (IOException e) {
 
 			// e.printStackTrace();
@@ -99,4 +86,21 @@ public class Loggable implements Runnable {
 
 	}
 
-}	
+	public static void LoggableInit(File file, BufferedWriter bwriter) {
+        try
+    	{
+    		file = new File("DataLogging" + File.separator + System.currentTimeMillis() + "ShooterSpeed.txt");
+    		bwriter = new BufferedWriter(new FileWriter(file));
+    		if (!file.exists()) {
+    			file.createNewFile();
+    		}
+
+    	}catch(
+    	IOException e)
+    	{
+    		// e.printStackTrace();
+    		System.err.println(e);
+    	}
+		}
+	}
+}
