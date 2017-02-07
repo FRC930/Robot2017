@@ -9,7 +9,7 @@ public class Climb implements Runnable {
 	
 		if(OutputManager.getPDPChannelCurrent(5) < 3){
 		
-		OutputManager.setClimberSpeed(DSManager.getRawAxisOne());
+		OutputManager.setClimberSpeed(DSManager.getDriveYAxis());
 	
 		}
 	}
