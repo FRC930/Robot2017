@@ -10,7 +10,9 @@ public class Shoot implements Runnable {
 	public void run(){
 		
 		System.out.println("Shoot " + Timer.getFPGATimestamp());
-		
+		if(OutputManager.getPDPChannelCurrent(7)>5){
+		OutputManager.setLights(OutputManager.LightPatterns.LIGHTS_SHOOT);
+		}
 	}
 	
 	public void visionTrack (){
