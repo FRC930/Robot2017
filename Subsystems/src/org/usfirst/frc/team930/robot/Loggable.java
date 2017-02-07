@@ -22,8 +22,8 @@ public class Loggable implements Runnable {
 	String intakeMotorSpeed = "";
 	String climberMotorSpeed = "";
 	String feederMotorSpeed = "";
-	BufferedWriter bwriter;
-	File file;
+	private static BufferedWriter bwriter;
+	private static File file;
 	
 
 	public void run() {
@@ -86,7 +86,7 @@ public class Loggable implements Runnable {
 
 	}
 
-	public static void LoggableInit(File file, BufferedWriter bwriter) {
+	public static void init() {
         try
     	{
     		file = new File("DataLogging" + File.separator + System.currentTimeMillis() + "ShooterSpeed.txt");
@@ -101,6 +101,6 @@ public class Loggable implements Runnable {
     		// e.printStackTrace();
     		System.err.println(e);
     	}
-		}
 	}
 }
+

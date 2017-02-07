@@ -20,10 +20,10 @@ public class Robot extends IterativeRobot {
     	 	
     	OutputManager.init();
     	Drive.init();
+    	Loggable.init();
         SH = new SubsystemHandler(); // Begins the SystemHandler, which controls the speeds at which the subsystems are updated.
         SH.startSubsystems();
-       File file;
-       BufferedWriter bwriter;
+
        
        
         
