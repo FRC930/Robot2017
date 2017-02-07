@@ -7,6 +7,8 @@ public class Climb implements Runnable {
 		
 	System.out.println("Climb " + Timer.getFPGATimestamp());
 	
+	OutputManager.setClimberSpeed(DSManager.getRawAxisOne());
+	
 	}
 	
 }
