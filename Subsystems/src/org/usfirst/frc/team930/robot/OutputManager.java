@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.PWM;
 import edu.wpi.first.wpilibj.SafePWM;
 import edu.wpi.first.wpilibj.PWMSpeedController;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Spark;
 
 public class OutputManager {
@@ -27,6 +28,10 @@ public class OutputManager {
 	private static	DigitalOutput lightPin0 = new DigitalOutput(0);
 	private static	DigitalOutput lightPin1 = new DigitalOutput(1);
 	private static	DigitalOutput lightPin2 = new DigitalOutput(2);
+	
+	//PDP Class used to monitor current
+	private static	PowerDistributionPanel PDP = new PowerDistributionPanel();
+	
 	// Declaring robot motors
 	// 6 Drivetrain motor declarations
 	private static CANTalon frontLeftMotor; 	
@@ -230,6 +235,11 @@ public class OutputManager {
 	public static double getSparkSpeedFeeder(){
 		
 		return feederSpark.getSpeed();
+		
+	}
+	public static double getPDPChannelCurrent(int Channel){
+		
+		return PDP.getCurrent(Channel);
 		
 	}
 	public static void setLights(LightPatterns L){
