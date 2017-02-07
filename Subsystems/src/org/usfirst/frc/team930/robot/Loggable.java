@@ -21,31 +21,26 @@ public class Loggable implements Runnable {
 	String shooterMotorSpeed = "";
 	String intakeMotorSpeed = "";
 	String climberMotorSpeed = "";
-	String feederMotorSpeed = "";
+	String feederMotorSpeed = ""; 
 	BufferedWriter bwriter;
-
-	File f = new File("DataLogging" + File.separator + System.currentTimeMillis() + "shooterspeed.txt"){
-		{
+	File file = null;{
+	
+	if(!file.exists()) {
 		try {
-			FileWriter fw = new FileWriter(f);
-			
-			 bwriter = new BufferedWriter(fw);
-			
-		} catch (IOException ex) {
-			System.out.println(ex.toString());
+			  file = new File("DataLogging" + File.separator + "output.txt");
+				bwriter = new BufferedWriter(new FileWriter(file));
+			  if (!file.exists()) {
+				  file.createNewFile();
+			  }
+			  
+			  
+		  } catch (IOException e) {
+			  //e.printStackTrace();
+			  System.err.println(e);	
+		  } 
 		}
-		if (!f.exists()) {
-
-			try {
-				f.createNewFile();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-	}};
-
-	public void run() {
+	}
+		 public void run() {
 
 		// Gets values from output manager to pass to .txt -> .xl
 		rearLeftMotorSpeed = Double.toString(OutputManager.getTalonSpeedRearLeftMotor());
@@ -104,4 +99,4 @@ public class Loggable implements Runnable {
 
 	}
 
-;}
+}	
