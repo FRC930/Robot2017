@@ -2,7 +2,7 @@ package org.usfirst.frc.team930.robot;
 
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.TalonControlMode;
-
+import com.ctre.CANTalon.MotionProfileStatus;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -16,18 +16,15 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * directory.
  */
 public class Robot extends IterativeRobot {
-	final String defaultAuto = "Default";
-	final String customAuto = "My Auto";
-	String autoSelected;
-	SendableChooser<String> chooser = new SendableChooser<>();
 	
 	Joystick stick = new Joystick(1);
 	
 	CANTalon L1 = new CANTalon(1);
-	CANTalon L2 = new CANTalon(1);
-	CANTalon R1 = new CANTalon(1);
-	CANTalon R2 = new CANTalon(1);
-	
+	CANTalon L2 = new CANTalon(2);
+	CANTalon L3 = new CANTalon(3);
+	CANTalon R1 = new CANTalon(4);
+	CANTalon R2 = new CANTalon(5);
+	CANTalon R3 = new CANTalon(6);	
 	
 	//MotionProfileExample example = new MotionProfileExample(L1, L2, R1, R2);
 
@@ -39,9 +36,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		chooser.addDefault("Default Auto", defaultAuto);
-		chooser.addObject("My Auto", customAuto);
-		SmartDashboard.putData("Auto choices", chooser);
+		
 	}
 
 	/**
@@ -57,15 +52,10 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		autoSelected = chooser.getSelected();
-		// autoSelected = SmartDashboard.getString("Auto Selector",
-		// defaultAuto);
-		System.out.println("Auto selected: " + autoSelected);
 		
-		// Motion profiling
-		L1.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Relative);
+		L1.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 		L1.reverseSensor(false);
-		R1.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Relative);
+		R1.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 		R1.reverseSensor(false);
 		
 	}
@@ -75,15 +65,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
-		switch (autoSelected) {
-		case customAuto:
-			// Put custom auto code here
-			break;
-		case defaultAuto:
-		default:
-			// Put default auto code here
-			break;
-		}
+		
 	}
 
 	/**
@@ -109,7 +91,7 @@ public class Robot extends IterativeRobot {
 			R1.changeControlMode(TalonControlMode.Voltage);
 			R1.set(12.0 * leftYjoystick);
 
-			// example.reset();
+			//example.reset();
 		} 
 		else {
 			
