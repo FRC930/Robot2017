@@ -16,36 +16,36 @@ public class DSManager {
 	//METHODS FOR CONTROLLER ONE
 	
 	public static double getDriveXAxis(){
-		return stick.getRawAxis(4);
+		return stick.getRawAxis(Constants.DRIVE_X_AXIS_PORT);
 	}
 	public static double getDriveYAxis(){
-		return stick.getRawAxis(1);
+		return stick.getRawAxis(Constants.DRIVE_Y_AXIS_PORT);
 	}
 	public static boolean getRawButtonOne(){
-		return stick.getRawButton(1);
+		return stick.getRawButton(Constants.RAW_BUTTON_ONE_PORT);
 	}
 	public static boolean getRawButtonFive(){
-		return stick.getRawButton(5);
+		return stick.getRawButton(Constants.RAW_BUTTON_FIVE_PORT);
 	}
 	public static boolean getRawButtonSix(){
-		return stick.getRawButton(6);
+		return stick.getRawButton(Constants.RAW_BUTTON_SIX_PORT);
 	}
 	
 	//METHODS FOR CONTROLLER TWO
 	
 	public static double getCoDriveXAxis(){
-		return stick2.getRawAxis(4);
+		return stick2.getRawAxis(Constants.DRIVE_X_AXIS_PORT);
 	}
 	public static double getCoDriveYAxis(){
-		return stick2.getRawAxis(1);
+		return stick2.getRawAxis(Constants.DRIVE_Y_AXIS_PORT);
 	}
 	public static boolean getCoDriveRawButtonOne(){
-		return stick2.getRawButton(1);
+		return stick2.getRawButton(Constants.RAW_BUTTON_ONE_PORT);
 	}
 	public static boolean getCoDriveRawButtonFive(){
-		return stick2.getRawButton(5);
+		return stick2.getRawButton(Constants.RAW_BUTTON_FIVE_PORT);
 	}
 	public static boolean getCoDriveRawButtonSix(){
-		return stick2.getRawButton(6);
+		return stick2.getRawButton(Constants.RAW_BUTTON_SIX_PORT);
 	}
 }

@@ -44,4 +44,14 @@ public class Constants {
 	public static final int Y_DEFAULT_VALUE = 0;
 	public static final double JOYSTICK_ERROR_ALLOWANCE = 0.1;
 	
+	// ----------JOYSTICK CONSTANTS----------
+	
+	public static final int DRIVE_X_AXIS_PORT = 4;
+	public static final int DRIVE_Y_AXIS_PORT = 1;
+	public static final int RAW_BUTTON_ONE_PORT = 1;
+	public static final int RAW_BUTTON_TWO_PORT = 2;
+	public static final int RAW_BUTTON_THREE_PORT = 3;
+	public static final int RAW_BUTTON_FOUR_PORT = 4;
+	public static final int RAW_BUTTON_FIVE_PORT = 5;
+	public static final int RAW_BUTTON_SIX_PORT = 6;
 }
