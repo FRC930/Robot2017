@@ -43,40 +43,28 @@ public class Loggable implements Runnable {
 		// Creates writer, and reports errors.
 
 		try {
-
-			bwriter.write(rearLeftMotorSpeed);
-			bwriter.flush();
+			bwriter.write(rearLeftMotorSpeed + ", ");
+			
+			bwriter.write(rearRightMotorSpeed + ", ");
+			
+			bwriter.write(frontRightMotorSpeed + ", ");
+			
+			bwriter.write(frontLeftMotorSpeed + ", ");
+			
+			bwriter.write(leftSlaveMotorSpeed + ", ");
+			
+			bwriter.write(rightSlaveMotorSpeed + ", ");
+			
+			bwriter.write(shooterMotorSpeed + ", ");
+			
+			bwriter.write(intakeMotorSpeed + ", ");
+			
+			bwriter.write(climberMotorSpeed + ", ");
+			
+			bwriter.write(feederMotorSpeed + ", ");
 			bwriter.newLine();
-			bwriter.write(rearRightMotorSpeed);
-			bwriter.flush();
-			bwriter.newLine();
-			bwriter.write(frontRightMotorSpeed);
-			bwriter.flush();
-			bwriter.newLine();
-			bwriter.write(frontLeftMotorSpeed);
-			bwriter.flush();
-			bwriter.newLine();
-			bwriter.write(leftSlaveMotorSpeed);
-			bwriter.flush();
-			bwriter.newLine();
-			bwriter.write(rightSlaveMotorSpeed);
-			bwriter.flush();
-			bwriter.newLine();
-			bwriter.write(shooterMotorSpeed);
-			bwriter.flush();
-			bwriter.newLine();
-			bwriter.write(intakeMotorSpeed);
-			bwriter.flush();
-			bwriter.newLine();
-			bwriter.write(climberMotorSpeed);
-			bwriter.flush();
-			bwriter.newLine();
-			bwriter.write(feederMotorSpeed);
-			bwriter.flush();
-			bwriter.newLine();
-			bwriter.close();
-			System.out.println(
-					"\nJust wrote 10 lines BROOOOOOOOOOOOOO\n----------------------------------------------------------------\n---------------------------------------------------------------------\n----------------------------------------------------------------------------\n");
+			
+			
 		} catch (IOException e) {
 
 			// e.printStackTrace();
@@ -87,13 +75,26 @@ public class Loggable implements Runnable {
 	}
 
 	public static void init() {
-        try
+		System.out.println(
+				"\nJust wrote 10 lines BROOOOOOOOOOOOOO\n----------------------------------------------------------------\n---------------------------------------------------------------------\n----------------------------------------------------------------------------\n");
+		try
     	{
-    		file = new File("c" + File.separator + System.currentTimeMillis() + "ShooterSpeed.txt");
+    		file = new File("DataLogging" + File.separator + System.currentTimeMillis() + "ShooterSpeed.csv");
     		bwriter = new BufferedWriter(new FileWriter(file));
-    		if (!file.exists()) {
+    		
     			file.createNewFile();
-    		}
+    			bwriter.write("rearLeftMotorSpeed, ");
+    			bwriter.write("rearRightMotorSpeed, ");
+    			bwriter.write("frontRightMotorSpeed, ");
+    			bwriter.write("frontLeftMotorSpeed, ");
+    			bwriter.write("leftSlaveMotorSpeed, ");
+    			bwriter.write("rightSlaveMotorSpeed, ");
+    			bwriter.write("shooterMotorSpeed, ");
+    			bwriter.write("intakeMotorSpeed, ");
+    			bwriter.write("climberMotorSpeed, ");
+    			bwriter.write("feederMotorSpeed, ");
+    			bwriter.newLine();
+    					
 
     	}catch(
     	IOException e)

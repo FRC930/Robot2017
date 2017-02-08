@@ -9,14 +9,14 @@ public class SubsystemHandler {
 		private final  Climb myClimb;
 		private final  Intake myIntake;
 		private final  Lights myLights;
-		//private final  Loggable myLog;
+		private final  Loggable myLog;
 		
 		private final  Notifier driveNotifier;
 		private final  Notifier shootNotifier;
 		private final  Notifier climbNotifier;
 		private final  Notifier intakeNotifier;
 		private final  Notifier lightsNotifier;
-		//private final  Notifier logNotifier;
+		private final  Notifier logNotifier;
 		
 		public SubsystemHandler(){
 			
@@ -25,7 +25,7 @@ public class SubsystemHandler {
 			myClimb = new Climb();
 			myIntake = new Intake();
 			myLights = new Lights();
-			//myLog = new Loggable();
+			myLog = new Loggable();
 			
 			driveNotifier = new Notifier (myDrive); // Instantiates the notifiers for each subsystem
 					
@@ -37,7 +37,7 @@ public class SubsystemHandler {
 			
 			lightsNotifier = new Notifier (myLights);
 			
-			//logNotifier = new Notifier (myLog);
+			logNotifier = new Notifier (myLog);
 			
 		}
 		
@@ -54,7 +54,7 @@ public class SubsystemHandler {
 			
 			lightsNotifier.startPeriodic(.025);
 			
-			//logNotifier.startPeriodic(.005);
+			logNotifier.startPeriodic(.005);
 			
 		}
 }
