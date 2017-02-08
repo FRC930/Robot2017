@@ -8,13 +8,22 @@ public class Climb implements Runnable {
 	public void run(){
 		
 		System.out.println("Climb " + Timer.getFPGATimestamp());
-	
+		
+		//Setting speed to controller
+		OutputManager.setClimberSpeed(DSManager.getCoDriveYAxis());
+		
+		//Setting lights for the climb
 		if(OutputManager.getPDPChannelCurrent(Constants.PDP_CHANNEL8) < 35){
 		
-		OutputManager.setClimberSpeed(DSManager.getDriveYAxis());
+			OutputManager.setLights(OutputManager.LightPatterns.LIGHTS_CLIMB);
 	
 		}
-		OutputManager.setLights(OutputManager.LightPatterns.LIGHTS_CLIMB);
+		else {
+			
+			OutputManager.setLights(OutputManager.LightPatterns.LIGHTS_DRIVE);
+		
+		}
+		
 	}
 	
 }

@@ -11,11 +11,13 @@ public class DSManager {
 	
 	// Instantiates the Joystick as stick
 	private static Joystick stick = new Joystick(1);
+	private static Joystick stick2 = new Joystick(2);
+	
+	//METHODS FOR CONTROLLER ONE
 	
 	public static double getDriveXAxis(){
 		return stick.getRawAxis(4);
 	}
-	
 	public static double getDriveYAxis(){
 		return stick.getRawAxis(1);
 	}
@@ -27,5 +29,23 @@ public class DSManager {
 	}
 	public static boolean getRawButtonSix(){
 		return stick.getRawButton(6);
+	}
+	
+	//METHODS FOR CONTROLLER TWO
+	
+	public static double getCoDriveXAxis(){
+		return stick2.getRawAxis(4);
+	}
+	public static double getCoDriveYAxis(){
+		return stick2.getRawAxis(1);
+	}
+	public static boolean getCoDriveRawButtonOne(){
+		return stick2.getRawButton(1);
+	}
+	public static boolean getCoDriveRawButtonFive(){
+		return stick2.getRawButton(5);
+	}
+	public static boolean getCoDriveRawButtonSix(){
+		return stick2.getRawButton(6);
 	}
 }
