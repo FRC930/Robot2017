@@ -11,7 +11,18 @@ public class Intake implements Runnable {
 	public void run(){
 		
 		System.out.println("Intake " + Timer.getFPGATimestamp());
-		//Constructors
+		
+		//Setting lights for the Intake
+				if(DSManager.getCoDriveRawButtonOne()){
+				
+					OutputManager.setLights(OutputManager.LightPatterns.LIGHTS_INTAKE);
+			
+				}
+				else {
+					
+					OutputManager.setLights(OutputManager.LightPatterns.LIGHTS_TELE);
+				
+				}
 		
 		}
 	}

@@ -29,7 +29,7 @@ public class Drive implements Runnable {
 		}
 		else {
 			
-			OutputManager.setLights(OutputManager.LightPatterns.LIGHTS_DRIVE);
+			OutputManager.setLights(OutputManager.LightPatterns.LIGHTS_TELE);
 		
 		}
 		
