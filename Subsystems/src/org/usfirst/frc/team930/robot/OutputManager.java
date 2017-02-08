@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.SafePWM;
 import edu.wpi.first.wpilibj.PWMSpeedController;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.Talon;
 
 public class OutputManager {
 	
@@ -41,7 +42,7 @@ public class OutputManager {
 	private static CANTalon rearRightMotor; 
 	private static CANTalon leftSlave;
 	private static CANTalon rightSlave;
-	
+		
 	// 1 Shooter Talon declaration
 	private static CANTalon shooterMotor;
 	
@@ -78,7 +79,7 @@ public class OutputManager {
 		frontRightMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		frontRightMotor.configEncoderCodesPerRev(250);
 		frontRightMotor.setVoltageRampRate(6400);
-		
+				
 		shooterMotor = new CANTalon (Constants.SHOOTER_MOTOR_CHANNEL);
 		
 		// Spark Range is 2.003 ms Full Forward - .999 ms Full Reverse
@@ -123,6 +124,22 @@ public class OutputManager {
 		rearLeftMotor.set(frontLeftMotor.getDeviceID());
 		leftSlave.set(frontLeftMotor.getDeviceID());
 	}
+public static void setDrivetrainMotionProfileMode(){
+		
+		frontRightMotor.changeControlMode(CANTalon.TalonControlMode.MotionProfile);
+		rearRightMotor.changeControlMode(CANTalon.TalonControlMode.Follower);
+		rightSlave.changeControlMode(CANTalon.TalonControlMode.Follower);
+		
+		rearRightMotor.set(frontRightMotor.getDeviceID());
+		rightSlave.set(frontRightMotor.getDeviceID());
+		
+		frontLeftMotor.changeControlMode(CANTalon.TalonControlMode.MotionProfile);
+		rearLeftMotor.changeControlMode(CANTalon.TalonControlMode.Follower);
+		leftSlave.changeControlMode(CANTalon.TalonControlMode.Follower);
+		
+		rearLeftMotor.set(frontLeftMotor.getDeviceID());
+		leftSlave.set(frontLeftMotor.getDeviceID());
+	}
 	
 	// Sets the Drivetrain motors to Disabled Mode.
 	public static void setDrivetrainDisabledMode(){
@@ -134,6 +151,16 @@ public class OutputManager {
 		frontLeftMotor.changeControlMode(CANTalon.TalonControlMode.Disabled);
 		rearLeftMotor.changeControlMode(CANTalon.TalonControlMode.Disabled);
 		leftSlave.changeControlMode(CANTalon.TalonControlMode.Disabled);
+		
+	}
+	public static void setLeftDrivetrainCustomMode(CANTalon.SetValueMotionProfile setValue){
+		
+		frontLeftMotor.set(setValue.value);
+		
+	}
+	public static void setRightDrivetrainCustomMode(CANTalon.SetValueMotionProfile setValue){
+		
+		frontRightMotor.set(setValue.value);
 		
 	}
 	
@@ -263,6 +290,26 @@ public class OutputManager {
 	public static double getPDPChannelCurrent(int Channel){
 		
 		return PDP.getCurrent(Channel);
+		
+	}
+	public static double getL1Voltage() {
+		
+		return frontLeftMotor.getOutputVoltage();
+		
+	}
+	public static double getR1Voltage() {
+		
+		return frontRightMotor.getOutputVoltage();
+		
+	}
+	public static CANTalon getL1() {
+		
+		return frontLeftMotor;
+		
+	}
+	public static CANTalon getR1() {
+		
+		return frontRightMotor;
 		
 	}
 	public static void setLights(LightPatterns L){
