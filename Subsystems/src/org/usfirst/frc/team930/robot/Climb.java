@@ -6,6 +6,8 @@ import edu.wpi.first.wpilibj.Timer;
 public class Climb implements Runnable {
   
 	public void run(){
+
+		double yValue = Math.pow(DSManager.getDriveYAxis(), Constants.JOYSTICK_NONLINEARITY);
 		
 		System.out.println("Climb " + Timer.getFPGATimestamp());
 		
@@ -15,10 +17,8 @@ public class Climb implements Runnable {
 			OutputManager.setClimberSpeed(DSManager.getCoDriveYAxis());
 	
 		}
-		
-		//Setting lights for the climb
-		if(DSManager.getCoDriveYAxis() >= 0 || DSManager.getCoDriveYAxis() <=0){
-		
+		if (Math.abs(yValue) >= Constants.JOYSTICK_ERROR_ALLOWANCE){
+
 			OutputManager.setLights(OutputManager.LightPatterns.LIGHTS_CLIMB);
 	
 		}
