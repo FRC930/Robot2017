@@ -20,12 +20,6 @@ public class Intake implements Runnable {
 	
 		}
 		
-		else {
-			
-			OutputManager.setLights(OutputManager.LightPatterns.LIGHTS_TELE);
-		
-		}
-	
 	}
 	
 }

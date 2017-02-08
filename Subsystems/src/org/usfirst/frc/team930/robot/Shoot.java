@@ -17,12 +17,7 @@ public class Shoot implements Runnable {
 			OutputManager.setLights(OutputManager.LightPatterns.LIGHTS_SHOOT);
 		
 		}
-		else {
 			
-			OutputManager.setLights(OutputManager.LightPatterns.LIGHTS_TELE);
-		
-		}
-		
 	}
 	
 	public void visionTrack (){

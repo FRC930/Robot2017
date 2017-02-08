@@ -14,7 +14,6 @@ public class Drive implements Runnable {
 		if (Math.abs(xValue) < Constants.JOYSTICK_ERROR_ALLOWANCE && Math.abs(yValue) < Constants.JOYSTICK_ERROR_ALLOWANCE) {
 			xValue = Constants.X_DEFAULT_VALUE;
 			yValue = Constants.Y_DEFAULT_VALUE;
-			OutputManager.setLights(OutputManager.LightPatterns.LIGHTS_TELE);
 		}
 		else{
 			OutputManager.setLights(OutputManager.LightPatterns.LIGHTS_DRIVE);
