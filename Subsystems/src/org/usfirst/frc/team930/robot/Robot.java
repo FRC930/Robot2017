@@ -34,7 +34,7 @@ public class Robot extends IterativeRobot {
     }
 
     public void autonomousPeriodic() {
-
+    	OutputManager.setLights(OutputManager.LightPatterns.LIGHTS_AUTO);
     }
 
     public void teleopPeriodic() {
