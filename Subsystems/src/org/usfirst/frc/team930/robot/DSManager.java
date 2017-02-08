@@ -10,8 +10,8 @@ public class DSManager {
 	private static DriverStation ds = DriverStation.getInstance();
 	
 	// Instantiates the Joystick as stick
-	private static Joystick stick = new Joystick(1);
-	private static Joystick stick2 = new Joystick(2);
+	private static Joystick stick = new Joystick(Constants.JOYSTICK_ONE_PORT);
+	private static Joystick stick2 = new Joystick(Constants.JOYSTICK_TWO_PORT);
 	
 	//METHODS FOR CONTROLLER ONE
 	

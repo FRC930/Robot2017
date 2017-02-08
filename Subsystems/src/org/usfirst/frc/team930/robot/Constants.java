@@ -46,6 +46,8 @@ public class Constants {
 	
 	// ----------JOYSTICK CONSTANTS----------
 	
+	public static final int JOYSTICK_ONE_PORT = 1;
+	public static final int JOYSTICK_TWO_PORT = 2;
 	public static final int DRIVE_X_AXIS_PORT = 4;
 	public static final int DRIVE_Y_AXIS_PORT = 1;
 	public static final int RAW_BUTTON_ONE_PORT = 1;
