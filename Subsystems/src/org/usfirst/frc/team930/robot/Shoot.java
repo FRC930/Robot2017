@@ -12,7 +12,7 @@ public class Shoot implements Runnable {
 		System.out.println("Shoot " + Timer.getFPGATimestamp());
 		
 		//Setting Lights for Shooting
-		if(OutputManager.getPDPChannelCurrent(7)>5){
+		if(OutputManager.getPDPChannelCurrent(Constants.PDP_CHANNEL7)>5){
 		
 			OutputManager.setLights(OutputManager.LightPatterns.LIGHTS_SHOOT);
 		
