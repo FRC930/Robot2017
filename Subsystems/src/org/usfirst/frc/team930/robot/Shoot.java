@@ -18,24 +18,24 @@ public class Shoot implements Runnable {
 	boolean onBool = false;
 	
 	public void run(){
-		if (DSManager.getRawButtonFour() && (!Ypressed)) { // Y
+		if (DSManager.getDriveRawButtonFour() && (!Ypressed)) { // Y
 			speed += 0.025;                      
 			Ypressed = true;
-		} else if((!DSManager.getRawButtonFour()) && Ypressed) {
+		} else if((!DSManager.getDriveRawButtonFour()) && Ypressed) {
 			Ypressed = false;
 		}
 
-		if(DSManager.getRawButtonOne() && (!Apressed)) { // A
+		if(DSManager.getDriveRawButtonOne() && (!Apressed)) { // A
 		    speed -= 0.025;  
 		    Apressed = true;
-		} else if((!DSManager.getRawButtonOne()) && Apressed) {
+		} else if((!DSManager.getDriveRawButtonOne()) && Apressed) {
 		    Apressed = false;
 		}
 
-		if(DSManager.getRawButtonOne() && (!Bpressed)) { // B
+		if(DSManager.getDriveRawButtonOne() && (!Bpressed)) { // B
 		    onBool = !onBool;
 		    Bpressed = true; 
-		} else if((!DSManager.getRawButtonTwo()) && Bpressed) {
+		} else if((!DSManager.getDriveRawButtonTwo()) && Bpressed) {
 			Bpressed = false;
 		}
 		
