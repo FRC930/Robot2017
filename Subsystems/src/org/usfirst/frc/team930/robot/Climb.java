@@ -2,6 +2,7 @@ package org.usfirst.frc.team930.robot;
 import org.usfirst.frc.team930.robot.OutputManager.LightPatterns;
 
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Climb implements Runnable {
   
@@ -15,11 +16,15 @@ public class Climb implements Runnable {
 			
 			//Setting speed to controller
 			
-			if(OutputManager.getPDPChannelCurrent(Constants.PDP_CHANNEL8) < 35){
+			/*if(OutputManager.getPDPChannelCurrent(Constants.PDP_CHANNEL8) < 35){
 				
 				OutputManager.setClimberSpeed(DSManager.getCoDriveYAxis());
 		
 			}
+			*/
+			SmartDashboard.putNumber("Climb Motor Current", OutputManager.getPDPChannelCurrent(Constants.PDP_CHANNEL8));
+			
+			OutputManager.setClimberSpeed(DSManager.getCoDriveYAxis());
 			
 			if (Math.abs(yValue) >= Constants.JOYSTICK_ERROR_ALLOWANCE){
 	
