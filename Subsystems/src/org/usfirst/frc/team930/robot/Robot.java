@@ -24,6 +24,7 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
     	 	
     	OutputManager.init();
+    	OutputManager.teleopInit();
     	Drive.init();
     	//Loggable.init();
         SH = new SubsystemHandler(); // Begins the SystemHandler, which controls the speeds at which the subsystems are updated.
@@ -36,6 +37,8 @@ public class Robot extends IterativeRobot {
     }
     
     public void autonomousInit() {
+    	
+    	OutputManager.autonomousInit();
     	
     	OutputManager.setDrivetrainMotionProfileMode();
     	
@@ -67,7 +70,7 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopPeriodic() {
-        
+        OutputManager.teleopInit();
     }
 
     public void testPeriodic() {

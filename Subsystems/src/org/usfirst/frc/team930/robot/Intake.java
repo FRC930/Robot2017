@@ -10,14 +10,22 @@ public class Intake implements Runnable {
    
 	public void run(){
 		
-		//System.out.println("Intake " + Timer.getFPGATimestamp());
+		if (OutputManager.isRobotTeleop()){
+			
+			//System.out.println("Intake " + Timer.getFPGATimestamp());
+			
+			//Setting lights for the Intake
 		
-		//Setting lights for the Intake
-	
-		if(DSManager.getCoDriveRawButtonOne()){
+			if(DSManager.getCoDriveRawButtonOne()){
+			
+				OutputManager.setLights(OutputManager.LightPatterns.LIGHTS_INTAKE);
 		
-			OutputManager.setLights(OutputManager.LightPatterns.LIGHTS_INTAKE);
-	
+			}
+			
+		}
+		
+		else if (OutputManager.isRobotAuton()){
+			
 		}
 		
 	}

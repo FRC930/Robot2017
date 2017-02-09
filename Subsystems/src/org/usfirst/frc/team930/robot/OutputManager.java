@@ -55,6 +55,9 @@ public class OutputManager {
 	// Feeder 1 Spark, either combine with shooter or make own subsystem
 	private static Spark feederSpark;
 	
+	private static boolean isRobotTeleop;
+	private static boolean isRobotAuton;
+	
 	public static void init(){
 		
 		// Initializing motors
@@ -89,6 +92,8 @@ public class OutputManager {
 		
 		feederSpark = new Spark (Constants.FEEDER_MOTOR_CHANNEL);
 		
+		isRobotTeleop = false;
+		isRobotAuton = false;
 	}
 	
 	// Sets the speed for the motors on the right side of the robot drivetrain.
@@ -372,4 +377,41 @@ public static void setDrivetrainMotionProfileMode(){
 		}
 		// Why is there no false true true?
 	}
+	
+	public static void teleopInit(){
+		
+		if (isRobotAuton){
+			
+			isRobotAuton = false;
+			
+		}
+		
+		isRobotTeleop = true;
+			
+	}
+	
+	public static void autonomousInit(){
+		
+		if (isRobotTeleop){
+			
+			isRobotTeleop = false;
+			
+		}
+		
+		isRobotAuton = true;
+		
+	}
+	
+	public static boolean isRobotTeleop(){
+		
+		return isRobotTeleop;
+		
+	}
+	
+	public static boolean isRobotAuton(){
+		
+		return isRobotAuton;
+		
+	}
+	
 }
