@@ -6,21 +6,31 @@ import edu.wpi.first.wpilibj.Timer;
 public class Climb implements Runnable {
   
 	public void run(){
-
-		double yValue = Math.pow(DSManager.getDriveYAxis(), Constants.JOYSTICK_NONLINEARITY);
 		
-		//System.out.println("Climb " + Timer.getFPGATimestamp());
+		if (OutputManager.isRobotTeleop()){
 		
-		//Setting speed to controller
-		if(OutputManager.getPDPChannelCurrent(Constants.PDP_CHANNEL8) < 35){
+			double yValue = Math.pow(DSManager.getDriveYAxis(), Constants.JOYSTICK_NONLINEARITY);
 			
-			OutputManager.setClimberSpeed(DSManager.getCoDriveYAxis());
+			//System.out.println("Climb " + Timer.getFPGATimestamp());
+			
+			//Setting speed to controller
+			
+			if(OutputManager.getPDPChannelCurrent(Constants.PDP_CHANNEL8) < 35){
+				
+				OutputManager.setClimberSpeed(DSManager.getCoDriveYAxis());
+		
+			}
+			
+			if (Math.abs(yValue) >= Constants.JOYSTICK_ERROR_ALLOWANCE){
 	
+				OutputManager.setLights(OutputManager.LightPatterns.LIGHTS_CLIMB);
+		
+			}
+		
 		}
-		if (Math.abs(yValue) >= Constants.JOYSTICK_ERROR_ALLOWANCE){
-
-			OutputManager.setLights(OutputManager.LightPatterns.LIGHTS_CLIMB);
-	
+		
+		else if (OutputManager.isRobotAuton()){
+			
 		}
 		
 	}
