@@ -25,6 +25,15 @@ public class DSManager {
 	public static boolean getRawButtonOne(){
 		return stick.getRawButton(Constants.RAW_BUTTON_ONE_PORT);
 	}
+	public static boolean getRawButtonTwo(){
+		return stick.getRawButton(Constants.RAW_BUTTON_TWO_PORT);
+	}
+	public static boolean getRawButtonThree(){
+		return stick.getRawButton(Constants.RAW_BUTTON_THREE_PORT);
+	}
+	public static boolean getRawButtonFour(){
+		return stick.getRawButton(Constants.RAW_BUTTON_FOUR_PORT);
+	}
 	public static boolean getRawButtonFive(){
 		return stick.getRawButton(Constants.RAW_BUTTON_FIVE_PORT);
 	}
