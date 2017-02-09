@@ -22,23 +22,31 @@ public class DSManager {
 	public static double getDriveYAxis(){
 		return stick.getRawAxis(Constants.DRIVE_Y_AXIS_PORT);
 	}
-	public static boolean getRawButtonOne(){
+	public static boolean getDriveRawButtonOne(){
 		return stick.getRawButton(Constants.RAW_BUTTON_ONE_PORT);
 	}
-	public static boolean getRawButtonTwo(){
+	public static boolean getDriveRawButtonTwo(){
 		return stick.getRawButton(Constants.RAW_BUTTON_TWO_PORT);
 	}
-	public static boolean getRawButtonThree(){
+	public static boolean getDriveRawButtonThree(){
 		return stick.getRawButton(Constants.RAW_BUTTON_THREE_PORT);
 	}
-	public static boolean getRawButtonFour(){
+	public static boolean getDriveRawButtonFour(){
 		return stick.getRawButton(Constants.RAW_BUTTON_FOUR_PORT);
 	}
-	public static boolean getRawButtonFive(){
+	public static boolean getDriveRawButtonFive(){
 		return stick.getRawButton(Constants.RAW_BUTTON_FIVE_PORT);
 	}
-	public static boolean getRawButtonSix(){
+	public static boolean getDriveRawButtonSix(){
 		return stick.getRawButton(Constants.RAW_BUTTON_SIX_PORT);
+	}
+	public static boolean getDriveTriggers(){
+		if(stick.getRawAxis(Constants.RAW_AXIS_TRIGGER_RIGHT) > 0.1 && stick.getRawAxis(Constants.RAW_AXIS_TRIGGER_LEFT) > 0.1){
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	
 	//METHODS FOR CONTROLLER TWO
