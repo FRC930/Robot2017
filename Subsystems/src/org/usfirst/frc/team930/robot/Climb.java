@@ -9,7 +9,7 @@ public class Climb implements Runnable {
 
 		double yValue = Math.pow(DSManager.getDriveYAxis(), Constants.JOYSTICK_NONLINEARITY);
 		
-		System.out.println("Climb " + Timer.getFPGATimestamp());
+		//System.out.println("Climb " + Timer.getFPGATimestamp());
 		
 		//Setting speed to controller
 		if(OutputManager.getPDPChannelCurrent(Constants.PDP_CHANNEL8) < 35){

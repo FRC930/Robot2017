@@ -17,23 +17,25 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
 
 	SubsystemHandler SH;
+	
+	MotionProfilingHandler motionProfilerLeft;
+	MotionProfilingHandler motionProfilerRight;
 
     public void robotInit() {
     	 	
     	OutputManager.init();
     	Drive.init();
-    	Loggable.init();
+    	//Loggable.init();
         SH = new SubsystemHandler(); // Begins the SystemHandler, which controls the speeds at which the subsystems are updated.
         SH.startSubsystems();
+        
+        motionProfilerLeft = new MotionProfilingHandler(OutputManager.getL1());
+        motionProfilerRight = new MotionProfilingHandler(OutputManager.getR1());       
 
-       
-       
         
     }
     
     public void autonomousInit() {
-    	MotionProfilingHandler motionProfilerLeft = new MotionProfilingHandler(OutputManager.getL1());
-    	MotionProfilingHandler motionProfilerRight = new MotionProfilingHandler(OutputManager.getR1());
     	
     	OutputManager.setDrivetrainMotionProfileMode();
     	
@@ -42,6 +44,7 @@ public class Robot extends IterativeRobot {
     	
 		CANTalon.SetValueMotionProfile setOutputLeft = motionProfilerLeft.getSetValue();
 		OutputManager.setLeftDrivetrainCustomMode(setOutputLeft);
+		
 		CANTalon.SetValueMotionProfile setOutputRight = motionProfilerRight.getSetValue();
 		OutputManager.setLeftDrivetrainCustomMode(setOutputRight);
     	
@@ -52,6 +55,9 @@ public class Robot extends IterativeRobot {
 
     public void autonomousPeriodic() {
     	OutputManager.setLights(OutputManager.LightPatterns.LIGHTS_AUTO);
+    	
+    	motionProfilerLeft.control();
+		motionProfilerRight.control();
     }
 
     public void teleopPeriodic() {

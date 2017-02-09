@@ -9,7 +9,7 @@ public class Shoot implements Runnable {
 	
 	public void run(){
 		
-		System.out.println("Shoot " + Timer.getFPGATimestamp());
+		//System.out.println("Shoot " + Timer.getFPGATimestamp());
 		
 		//Setting Lights for Shooting
 		if(OutputManager.getPDPChannelCurrent(Constants.PDP_CHANNEL7)>5){

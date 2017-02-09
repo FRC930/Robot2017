@@ -10,7 +10,7 @@ public class Intake implements Runnable {
    
 	public void run(){
 		
-		System.out.println("Intake " + Timer.getFPGATimestamp());
+		//System.out.println("Intake " + Timer.getFPGATimestamp());
 		
 		//Setting lights for the Intake
 	
