@@ -56,7 +56,7 @@ public class Shoot implements Runnable {
 			OutputManager.setShooterSpeed(0.0);
 		}
 		
-		System.out.println("TS: " +  (speed * 4500) + "   S: " + (OutputManager.getTalonShooterMotor())); // ln
+		//System.out.println("TS: " +  (speed * 4500) + "   S: " + (OutputManager.getTalonShooterMotor())); // ln
 		//System.out.println("     Volt: " + myTal.getOutputVoltage() + "    E: " + myTal.getClosedLoopError());
 		SmartDashboard.putNumber("Speed of Shooter", OutputManager.getTalonShooterMotor());
 		//if (onBool) {

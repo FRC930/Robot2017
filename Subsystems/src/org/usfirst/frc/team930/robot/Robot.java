@@ -56,6 +56,12 @@ public class Robot extends IterativeRobot {
     public void autonomousPeriodic() {
     	OutputManager.setLights(OutputManager.LightPatterns.LIGHTS_AUTO);
     	
+    	CANTalon.SetValueMotionProfile setOutputLeft = motionProfilerLeft.getSetValue();
+		OutputManager.setLeftDrivetrainCustomMode(setOutputLeft);
+		
+		CANTalon.SetValueMotionProfile setOutputRight = motionProfilerRight.getSetValue();
+		OutputManager.setLeftDrivetrainCustomMode(setOutputRight);
+    	
     	motionProfilerLeft.control();
 		motionProfilerRight.control();
     }
