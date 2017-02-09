@@ -6,7 +6,6 @@ public class Shoot implements Runnable {
 
 	double targetX;
 	double targetY;
-	double speed = 0.50;
 	
 	public void run(){
 		
@@ -14,7 +13,7 @@ public class Shoot implements Runnable {
 		
 			if (DSManager.getDriveTriggers()){ // Replace with onBool for buttons
 				OutputManager.setShooterSpeedMode();
-				OutputManager.setShooterSpeed(speed * Constants.FULL_SHOOT_SPEED);
+				OutputManager.setShooterSpeed(Constants.FULL_SHOOT_SPEED);
 			}
 			else{
 				OutputManager.setShooterDisabledMode();
