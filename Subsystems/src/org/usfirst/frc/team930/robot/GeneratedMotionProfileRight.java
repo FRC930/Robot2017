@@ -1,6 +1,6 @@
 package org.usfirst.frc.team930.robot;
 
-public class GeneratedMotionProfile {
+public class GeneratedMotionProfileRight {
 	public static final int kNumPoints =90;		
 	// Position (rotations)	Velocity (RPM)	Duration (ms)
 	public static double [][]Points = new double[][]{		

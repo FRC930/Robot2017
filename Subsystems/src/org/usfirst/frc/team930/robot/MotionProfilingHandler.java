@@ -9,6 +9,13 @@ public class MotionProfilingHandler {
 	private static int kNumPoints;
 	public static double[][] Points;
 	
+	public enum MotionProfileDrivetrainSide {
+		DRIVE_LEFT_SIDE,
+		DRIVE_RIGHT_SIDE
+	}
+	
+	private MotionProfileDrivetrainSide drivetrainSide;
+	
 	static double timeout = 0;
 	static int count = 0;
 
@@ -81,8 +88,11 @@ public class MotionProfilingHandler {
 	 * @param talon
 	 *            reference to Talon object to fetch motion profile status from.
 	 */
-	public MotionProfilingHandler(CANTalon _talon) {
+	public MotionProfilingHandler(CANTalon _talon, MotionProfileDrivetrainSide _drivetrainSide) {
 		talon = _talon;
+		
+		drivetrainSide = _drivetrainSide;
+		
 		/*
 		 * since our MP is 10ms per point, set the control frame rate and the
 		 * notifer to half that
@@ -214,11 +224,19 @@ public class MotionProfilingHandler {
 	/** Start filling the MPs to all of the involved Talons. */
 	private void startFilling() {
 		/* since this example only has one talon, just update that one */
-		startFilling(getPoints(), getkNumPoints());
+		if(drivetrainSide == MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE) {
+			startFilling(GeneratedMotionProfileRight.Points, GeneratedMotionProfileRight.kNumPoints);
+			System.out.println("Right Side");
+		}
+		else if(drivetrainSide == MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE) {
+			startFilling(GeneratedMotionProfileLeft.Points, GeneratedMotionProfileLeft.kNumPoints);
+			System.out.println("Left Side");
+		}
+		
 	}
 
 	private void startFilling(double[][] profile, int totalCnt) {
-
+		
 		/* create an empty point */
 		CANTalon.TrajectoryPoint point = new CANTalon.TrajectoryPoint();
 
@@ -248,6 +266,7 @@ public class MotionProfilingHandler {
 			point.velocityOnly = false; /* set true to not do any position
 										 * servo, just velocity feedforward
 										 */
+			System.out.println("i Value: " + i);
 			point.zeroPos = false;
 			if (i == 0)
 				point.zeroPos = true; /* set this to true on the first point */

@@ -30,8 +30,8 @@ public class Robot extends IterativeRobot {
         SH = new SubsystemHandler(); // Begins the SystemHandler, which controls the speeds at which the subsystems are updated.
         SH.startSubsystems();
         
-        motionProfilerLeft = new MotionProfilingHandler(OutputManager.getL1());
-        motionProfilerRight = new MotionProfilingHandler(OutputManager.getR1());       
+        motionProfilerLeft = new MotionProfilingHandler(OutputManager.getL1(), MotionProfilingHandler.MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE);
+        motionProfilerRight = new MotionProfilingHandler(OutputManager.getR1(), MotionProfilingHandler.MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE);       
 
         
     }
@@ -49,7 +49,7 @@ public class Robot extends IterativeRobot {
 		OutputManager.setLeftDrivetrainCustomMode(setOutputLeft);
 		
 		CANTalon.SetValueMotionProfile setOutputRight = motionProfilerRight.getSetValue();
-		OutputManager.setLeftDrivetrainCustomMode(setOutputRight);
+		OutputManager.setRightDrivetrainCustomMode(setOutputRight);
     	
 		motionProfilerLeft.startMotionProfile();
 		motionProfilerRight.startMotionProfile();
@@ -63,7 +63,7 @@ public class Robot extends IterativeRobot {
 		OutputManager.setLeftDrivetrainCustomMode(setOutputLeft);
 		
 		CANTalon.SetValueMotionProfile setOutputRight = motionProfilerRight.getSetValue();
-		OutputManager.setLeftDrivetrainCustomMode(setOutputRight);
+		OutputManager.setRightDrivetrainCustomMode(setOutputRight);
     	
     	motionProfilerLeft.control();
 		motionProfilerRight.control();
