@@ -18,6 +18,7 @@ public class Shoot implements Runnable {
 	boolean onBool = false;
 	
 	public void run(){
+		/*
 		if (DSManager.getDriveRawButtonFour() && (!Ypressed)) { // Y
 			speed += 0.025;                      
 			Ypressed = true;
@@ -38,16 +39,9 @@ public class Shoot implements Runnable {
 		} else if((!DSManager.getDriveRawButtonTwo()) && Bpressed) {
 			Bpressed = false;
 		}
+		*/
 		
-		if (onBool){
-			// Bang Bang
-			//rpmActual = myTal.getEncVelocity() / 4096.0 * 60.0 * 10.0;
-			/*if (rpmActual < (speed * 4550)) {
-				myTal.set(1.0);
-			}
-			else {
-				myTal.set(0.0);
-			}*/
+		if (DSManager.getDriveTriggers()){ // Replace with onBool for buttons
 			OutputManager.setShooterSpeedMode();
 			OutputManager.setShooterSpeed(speed*4500);
 		}
