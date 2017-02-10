@@ -71,7 +71,6 @@ public class OutputManager {
 		leftSlave.setInverted(true);
 		
 		frontLeftMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		frontLeftMotor.reverseSensor(false);
 		frontLeftMotor.configEncoderCodesPerRev(250);
 		frontLeftMotor.setVoltageRampRate(6400);
 		

@@ -259,8 +259,16 @@ public class MotionProfilingHandler {
 		/* This is fast since it's just into our TOP buffer */
 		for (int i = 0; i < totalCnt; ++i) {
 			/* for each point, fill our structure and pass it to API */
-			point.position = profile[i][0];
-			point.velocity = profile[i][1];
+			
+			if(drivetrainSide == MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE) {
+				point.position = profile[i][0] * -1.0;
+				point.velocity = profile[i][1] * -1.0;
+			}
+			else if(drivetrainSide == MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE) {
+				point.position = profile[i][0];
+				point.velocity = profile[i][1];
+			}
+			
 			point.timeDurMs = (int) profile[i][2];
 			point.profileSlotSelect = 0; /* which set of gains would you like to use? */
 			point.velocityOnly = false; /* set true to not do any position
@@ -271,6 +279,9 @@ public class MotionProfilingHandler {
 			if (i == 0)
 				point.zeroPos = true; /* set this to true on the first point */
 
+			if(totalCnt == 207)
+				point.zeroPos = true;
+			
 			point.isLastPoint = false;
 			if ((i + 1) == totalCnt)
 				point.isLastPoint = true; /* set this to true on the last point  */
