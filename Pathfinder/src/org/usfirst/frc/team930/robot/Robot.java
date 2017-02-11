@@ -25,8 +25,11 @@ public class Robot extends SampleRobot {
 	}
 
 	public void robotInit() {
-	    File file;
-	    file = new File("c" + File.separator + "HoldUPWEDEMPOINTS.csv");
+	    File fileleft;
+	    fileleft = new File("c" + File.separator + "LeftSideTraj.csv");
+	    
+	    File fileright;
+	    fileright = new File("c" + File.separator + "RightSideTraj.csv");
 	    try {
 			file.createNewFile();
 		} catch (IOException e) {
@@ -48,7 +51,8 @@ public class Robot extends SampleRobot {
 		        // Do something with the new Trajectories...
 		        Trajectory left = modifier.getLeftTrajectory();
 		        Trajectory right = modifier.getRightTrajectory();
-		        Pathfinder.writeToCSV(file, trajectory);
+		        Pathfinder.writeToCSV(fileleft, left);
+		        Pathfinder.writeToCSV(fileright, right);
 		        }
 	
 
