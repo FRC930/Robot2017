@@ -4,7 +4,10 @@ public class Elevator implements Runnable{
 
 	@Override
 	public void run() {
-		
+		if (OutputManager.isRobotTeleop()){
+			
+			OutputManager.setSpeedElevator(DSManager.getDriveElevatorTrigger());
 		
 	}
+}
 }

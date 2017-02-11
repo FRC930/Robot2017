@@ -221,6 +221,12 @@ public static void setDrivetrainMotionProfileMode(){
 		intakeSpark.set(speed);
 		
 	}
+	//Sets the Elevator Speed
+	public static void setSpeedElevator(double speed){
+		
+		 elevatorSpark.set(speed);
+		
+	}
 	// Mutator method to set the speed of the climber motor [-1,1]
 	public static void setClimberSpeed( double speed ){
 		
