@@ -36,7 +36,7 @@ public class Constants {
 	
 	public static final int INTAKE_MOTOR_CHANNEL = 0;
 	public static final int CLIMBER_MOTOR_CHANNEL = 9;
-	public static final int FEEDER_MOTOR_CHANNEL = 10;
+	public static final int ELEVATOR_MOTOR_CHANNEL = 10;
 	
 	// -----------DRIVE CODE CONSTANTS-----------
 	

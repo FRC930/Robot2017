@@ -52,8 +52,8 @@ public class OutputManager {
 	// 1 Climber  Spark Motor controller declaration
 	private static Spark climberSpark;
 	
-	// Feeder 1 Spark, either combine with shooter or make own subsystem
-	private static Spark feederSpark;
+	// Elevator 1 Spark, either combine with shooter or make own subsystem
+	private static Spark elevatorSpark;
 	
 	private static boolean isRobotTeleop;
 	private static boolean isRobotAuton;
@@ -89,7 +89,7 @@ public class OutputManager {
 		
 		climberSpark = new Spark (Constants.CLIMBER_MOTOR_CHANNEL);
 		
-		feederSpark = new Spark (Constants.FEEDER_MOTOR_CHANNEL);
+		elevatorSpark = new Spark (Constants.ELEVATOR_MOTOR_CHANNEL);
 		
 		isRobotTeleop = false;
 		isRobotAuton = false;
@@ -286,9 +286,9 @@ public static void setDrivetrainMotionProfileMode(){
 		
 	}
 	
-	public static double getSparkSpeedFeeder(){
+	public static double getSparkSpeedElevator(){
 		
-		return feederSpark.getSpeed();
+		return elevatorSpark.getSpeed();
 		
 	}
 	public static double getPDPChannelCurrent(int Channel){
