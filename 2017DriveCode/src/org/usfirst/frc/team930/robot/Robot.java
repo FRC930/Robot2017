@@ -3,18 +3,13 @@ package org.usfirst.frc.team930.robot;
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
-import com.ctre.CANTalon.TrajectoryPoint;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.RobotDrive;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -50,7 +45,8 @@ public class Robot extends IterativeRobot {
 	CANTalon R3 = new CANTalon(6);		// Left P: 0.1
 										// Left I: 0.0012
 	Spark intakeMotor = new Spark(1);
-	boolean motorOn = false;
+	
+	PowerDistributionPanel pdp = new PowerDistributionPanel();
 	
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -63,10 +59,10 @@ public class Robot extends IterativeRobot {
 		L2.setInverted(true);
 		L3.setInverted(true);
 		
-		L1.changeControlMode(CANTalon.TalonControlMode.Speed);
+		L1.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 		L2.changeControlMode(CANTalon.TalonControlMode.Follower);
 		L3.changeControlMode(CANTalon.TalonControlMode.Follower);
-		R1.changeControlMode(CANTalon.TalonControlMode.Speed);
+		R1.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 		R2.changeControlMode(CANTalon.TalonControlMode.Follower);
 		R3.changeControlMode(CANTalon.TalonControlMode.Follower);
 		
@@ -87,8 +83,8 @@ public class Robot extends IterativeRobot {
 		R1.configEncoderCodesPerRev(250);
 		
 		// At 200 slammed forward and backward no drop outs and driving responsive
-		L1.setVoltageRampRate(6400);
-		R1.setVoltageRampRate(6400);
+		//L1.setVoltageRampRate(6400);
+		//R1.setVoltageRampRate(6400);
 
 	}
 
@@ -123,7 +119,7 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		
 		// Intake
-		if (stick.getRawButton(5) || stick.getRawButton(6) ) {
+		if (stick.getRawButton(5) || stick.getRawButton(6)) {
 			intakeMotor.set(1);
 		}
 		else if (stick.getRawButton(1)) {
@@ -146,56 +142,93 @@ public class Robot extends IterativeRobot {
 			yValue = 0;
 		}
 		
-		// Left drive & right drive
-		double leftDrive = (yValue + xValue) * 600;
-		double rightDrive = (yValue - xValue) * 600;
+		// Left drive & right drive Speed mode
+		double leftDrive = (yValue + xValue) * 570;
+		double rightDrive = (yValue - xValue) * 570;
 		
-		if (Math.abs(leftDrive) > 600) {
+		if (Math.abs(leftDrive) > 570) {
 			leftDrive = 600 * Math.signum(leftDrive);
 		}
 		
-		if (Math.abs(rightDrive) > 600) {
+		if (Math.abs(rightDrive) > 570) {
 			rightDrive = 600 * Math.signum(rightDrive);
 		}
 		
 		// Setting talons
-		L1.set(leftDrive);
-		R1.set(rightDrive);
-		//L1.set(yValue + xValue);
-		//R1.set(yValue - xValue);
 		
-		System.out.println(Math.round(leftDrive) + " " + Math.round(L1.getSpeed() * -1.0) + " " + Math.round(leftDrive - (L1.getSpeed() * -1.0)) + "          " + Math.round(rightDrive) + " " + Math.round(R1.getSpeed()) + " " + Math.round(rightDrive - R1.getSpeed()));
+		// Speed mode
+		//L1.set(leftDrive);
+		//R1.set(rightDrive);
 		
-		/*if(stick.getRawButton(1) == true) {
-			L1.set(0.25 * 600);
-			R1.set(0.25 * 600);
+		// PercenVbus mode
+		L1.set(yValue + xValue);
+		R1.set(yValue - xValue);
+		
+		// Left Side & Right Side Speed mode
+		//System.out.println(Math.round(leftDrive) + " " + Math.round(L1.getSpeed() * -1.0) + " " + Math.round(leftDrive - (L1.getSpeed() * -1.0)) + "          " + Math.round(rightDrive) + " " + Math.round(R1.getSpeed()) + " " + Math.round(rightDrive - R1.getSpeed()));
+		
+		// Left Side & Right Side PercentVbus mode
+		//System.out.println(Math.round(yValue + xValue) + " " + Math.round(L1.getSpeed() * -1.0) + " " + Math.round((yValue + xValue) - (L1.getSpeed() * -1.0)) + "          " + Math.round(yValue - xValue) + " " + Math.round(R1.getSpeed()) + " " + Math.round((yValue - xValue) - R1.getSpeed()) + "          " + Timer.getFPGATimestamp());
+		
+		// Right Side PercentVbus mode
+		//System.out.println(Math.round(yValue - xValue) + "," + (R1.getSpeed()) + "," + ((yValue - xValue) - R1.getSpeed()) + "," + R1.getOutputVoltage() + "," + pdp.getCurrent(0) + "," + pdp.getVoltage() + "," + Timer.getFPGATimestamp());
+		
+		// Left Side & Right Side PercentVbus mode
+		System.out.println(Math.round(yValue + xValue) + "," + (L1.getSpeed()) + "," + ((yValue + xValue) - L1.getSpeed()) + "," + L1.getOutputVoltage() + "," + pdp.getCurrent(15) + "," + pdp.getVoltage() + "," + L1.getBusVoltage() + "," + Math.round(yValue - xValue) + "," + (R1.getSpeed()) + "," + ((yValue - xValue) - R1.getSpeed()) + "," + R1.getOutputVoltage() + "," + pdp.getCurrent(0) + "," + pdp.getVoltage() + "," + R1.getBusVoltage() + "," + Timer.getFPGATimestamp());
+
+		/*double percent25 = 0.25 * 570;
+		double percent50 = 0.50 * 570;
+		double percent75 = 0.75 * 570;
+		double percent100 = 1.0 * 570;
+		
+		double leftSent;
+		double rightSent;
+		
+		if(stick.getRawButton(1)) {
+			L1.set(percent25);
+			R1.set(percent25);
+			leftSent = percent25;
+			rightSent = percent25;
 		}
-		else if(stick.getRawButton(2) == true) {
-			L1.set(0.5 * 600);
-			R1.set(0.5 * 600);
+		else if(stick.getRawButton(2)) {
+			L1.set(percent50);
+			R1.set(percent50);
+			leftSent = percent50;
+			rightSent = percent50;
 		}
-		else if(stick.getRawButton(3) == true) {
-			L1.set(0.75 * 600);
-			R1.set(0.75 * 600);
+		else if(stick.getRawButton(3)) {
+			L1.set(percent75);
+			R1.set(percent75);
+			leftSent = percent75;
+			rightSent = percent75;
 		}
-		else if(stick.getRawButton(4) == true) {
-			L1.set(1.0 * 600);
-			R1.set(1.0 * 600);
+		else if(stick.getRawButton(4)) {
+			L1.set(percent100);
+			R1.set(percent100);
+			leftSent = percent100;
+			rightSent = percent100;
 		}
 		else {
 			L1.set(0);
 			R1.set(0);
+			leftSent = 0;
+			rightSent = 0;
 		}*/
 		
-		double leftSpeed = L1.getSpeed();
-		double rightSpeed = R1.getSpeed();
-		//System.out.println("Left Speed: " + leftSpeed);
-		//System.out.println("Right Speed: " + rightSpeed);
+		// Left Side & Right Side Speed mode Buttons
+		//System.out.println(Math.round(leftSent) + " " + Math.round(L1.getSpeed() * -1.0) + " " + Math.round(leftSent - (L1.getSpeed() * -1.0)) + "          " + Math.round(rightSent) + " " + Math.round(R1.getSpeed()) + " " + Math.round(rightSent - R1.getSpeed()));
 		
-		double leftEncoder = L1.getEncVelocity();
+		// Left & Right Motor Output
+		/*double leftSpeed = L1.getSpeed();
+		double rightSpeed = R1.getSpeed();
+		System.out.println("Left Speed: " + leftSpeed);
+		System.out.println("Right Speed: " + rightSpeed);*/
+		
+		// Left & Right Encoder Output
+		/*double leftEncoder = L1.getEncVelocity();
 		double rightEncoder = R1.getEncVelocity();
-		//System.out.println("Left Encoder Value: " + leftEncoder);
-		//System.out.println("Right Encoder Value: " + rightEncoder);
+		System.out.println("Left Encoder Value: " + leftEncoder);
+		System.out.println("Right Encoder Value: " + rightEncoder);*/
 		
 		/* Joystick values to gyro values
 		double angleGyro = gyro.getAngle()%360;
@@ -205,10 +238,6 @@ public class Robot extends IterativeRobot {
 		System.out.println(angleStick);*/
 
 		Timer.delay(0.005);
-	}
-
-	public double handleDeadband(double val, double deadband) {
-		return (Math.abs(val) > Math.abs(deadband)) ? val : 0.0;
 	}
 
 	/**

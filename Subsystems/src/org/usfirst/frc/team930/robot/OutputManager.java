@@ -36,11 +36,11 @@ public class OutputManager {
 	
 	// Declaring robot motors
 	// 6 Drivetrain motor declarations
-	private static CANTalon frontLeftMotor; 	
+	public static CANTalon frontLeftMotor; 	
 	private static CANTalon rearLeftMotor;
-	private static CANTalon frontRightMotor;
-	private static CANTalon rearRightMotor; 
 	private static CANTalon leftSlave;
+	public static CANTalon frontRightMotor;
+	private static CANTalon rearRightMotor; 
 	private static CANTalon rightSlave;
 		
 	// 1 Shooter Talon declaration
