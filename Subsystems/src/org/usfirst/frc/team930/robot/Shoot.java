@@ -23,7 +23,7 @@ public class Shoot implements Runnable {
 			SmartDashboard.putNumber("Speed of Shooter", OutputManager.getTalonShooterMotor());
 			
 			//Setting Lights for Shooting
-			if(OutputManager.getPDPChannelCurrent(Constants.PDP_CHANNEL7)>5){
+			if(OutputManager.getPDPChannelCurrent(Constants.PDP_CHANNEL12)>5){
 			
 				OutputManager.setLights(OutputManager.LightPatterns.LIGHTS_SHOOT);
 			

@@ -4,6 +4,10 @@ public class Constants {
 	
 	// ----------PDP CHANNELS----------
 	
+	/*
+	 * Shooter: 12
+	 * Climb: 5
+	 */
 	public static final int PDP_CHANNEL0 = 0;
 	public static final int PDP_CHANNEL1 = 1;
 	public static final int PDP_CHANNEL2 = 2;
