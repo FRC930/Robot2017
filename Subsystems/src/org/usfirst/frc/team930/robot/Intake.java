@@ -17,9 +17,12 @@ public class Intake implements Runnable {
 			//Setting lights for the Intake
 		
 			if(DSManager.getCoDriveRawButtonOne()){
-			
+				OutputManager.setIntakeSpeed(1);
 				OutputManager.setLights(OutputManager.LightPatterns.LIGHTS_INTAKE);
 		
+			}
+			else{
+				OutputManager.setIntakeSpeed(0);
 			}
 			
 		}
