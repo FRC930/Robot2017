@@ -2,6 +2,8 @@ package org.usfirst.frc.team930.robot;
 
 import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.Notifier;
+import edu.wpi.first.wpilibj.Timer;
+
 import com.ctre.CANTalon.TalonControlMode;
 
 public class MotionProfilingHandler {
@@ -218,7 +220,9 @@ public class MotionProfilingHandler {
 			}
 		}
 		/* printfs and/or logging */
-		process(status);
+		//process(status);
+		
+		
 	}
 
 	/** Start filling the MPs to all of the involved Talons. */
@@ -226,11 +230,11 @@ public class MotionProfilingHandler {
 		/* since this example only has one talon, just update that one */
 		if(drivetrainSide == MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE) {
 			startFilling(GeneratedMotionProfileRight.Points, GeneratedMotionProfileRight.kNumPoints);
-			System.out.println("Right Side");
+			//System.out.println("Right Side");
 		}
 		else if(drivetrainSide == MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE) {
 			startFilling(GeneratedMotionProfileLeft.Points, GeneratedMotionProfileLeft.kNumPoints);
-			System.out.println("Left Side");
+			//System.out.println("Left Side");
 		}
 		
 	}

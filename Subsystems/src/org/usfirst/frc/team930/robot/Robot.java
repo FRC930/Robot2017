@@ -10,6 +10,7 @@ import java.io.IOException;
 import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -20,6 +21,8 @@ public class Robot extends IterativeRobot {
 	
 	MotionProfilingHandler motionProfilerLeft;
 	MotionProfilingHandler motionProfilerRight;
+	
+	PowerDistributionPanel pdp = new PowerDistributionPanel();
 
     public void robotInit() {
     	 	
@@ -67,6 +70,14 @@ public class Robot extends IterativeRobot {
     	
     	motionProfilerLeft.control();
 		motionProfilerRight.control();
+		
+		System.out.println((OutputManager.frontLeftMotor.getSpeed()) + "," + (OutputManager.frontLeftMotor.getClosedLoopError()) + "," + OutputManager.frontLeftMotor.getOutputVoltage() + "," + pdp.getCurrent(15) + "," + pdp.getVoltage() + "," + OutputManager.frontLeftMotor.getBusVoltage() + "," + (OutputManager.frontRightMotor.getSpeed()) + "," + (OutputManager.frontRightMotor.getClosedLoopError()) + "," + OutputManager.frontRightMotor.getOutputVoltage() + "," + pdp.getCurrent(0) + "," + pdp.getVoltage() + "," + OutputManager.frontRightMotor.getBusVoltage() + "," + Timer.getFPGATimestamp());
+		
+		/*
+		 * F: 2
+		 * P: 10
+		 * I: 0.0003
+		 */
     }
 
     public void teleopPeriodic() {
