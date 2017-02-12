@@ -83,7 +83,7 @@ public class OutputManager {
 		frontRightMotor.setVoltageRampRate(6400);
 				
 		shooterMotor = new CANTalon (Constants.SHOOTER_MOTOR_CHANNEL);
-		
+		//shooterMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
 		// Spark Range is 2.003 ms Full Forward - .999 ms Full Reverse
 		intakeSpark = new Spark (Constants.INTAKE_MOTOR_CHANNEL);
 		
