@@ -1,5 +1,7 @@
 package org.usfirst.frc.team930.robot;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 public class Elevator implements Runnable{
 
 	@Override
@@ -9,6 +11,7 @@ public class Elevator implements Runnable{
 			if(DSManager.getDriveElevatorTrigger()>0.02){
 			OutputManager.setSpeedElevator(DSManager.getDriveElevatorTrigger());
 				//OutputManager.setSpeedElevator(0.6);
+			SmartDashboard.putNumber("Elevator Speed", OutputManager.getSparkSpeedElevator());
 			}
 		}
 	}
