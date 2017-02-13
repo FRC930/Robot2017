@@ -1,4 +1,5 @@
 package org.usfirst.frc.team930.robot;
+import com.ctre.CANTalon;
 
 public class Drive implements Runnable {
 
@@ -24,6 +25,15 @@ public class Drive implements Runnable {
 			OutputManager.setSpeedR(yValue - xValue);
 		}
 		else if (OutputManager.isRobotAuton()){
+			
+	    	CANTalon.SetValueMotionProfile setOutputLeft = OutputManager.motionProfilerLeft.getSetValue();
+			OutputManager.setLeftDrivetrainCustomMode(setOutputLeft);
+			
+			CANTalon.SetValueMotionProfile setOutputRight = OutputManager.motionProfilerRight.getSetValue();
+			OutputManager.setRightDrivetrainCustomMode(setOutputRight);
+	    	
+			OutputManager.motionProfilerLeft.control();
+			OutputManager.motionProfilerRight.control();
 			
 		}
 			

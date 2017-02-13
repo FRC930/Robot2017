@@ -28,6 +28,7 @@ public class MotionProfilingHandler {
 	 * or call set(), just get motion profile status and make decisions based on
 	 * motion profile.
 	 */
+	
 	private CANTalon talon;
 
 	/**
