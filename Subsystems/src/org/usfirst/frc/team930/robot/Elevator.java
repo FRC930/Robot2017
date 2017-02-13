@@ -6,11 +6,12 @@ public class Elevator implements Runnable{
 	public void run() {
 		
 		if (OutputManager.isRobotTeleop()){
-			/*if(DSManager.getDriveElevatorTrigger()>0.02){
-			//OutputManager.setSpeedElevator(DSManager.getDriveElevatorTrigger());
-				*/OutputManager.setSpeedElevator(0.6);
+			if(DSManager.getDriveElevatorTrigger()>0.02){
+			OutputManager.setSpeedElevator(DSManager.getDriveElevatorTrigger());
+				//OutputManager.setSpeedElevator(0.6);
 			}
 		}
 	}
+}
 
 
