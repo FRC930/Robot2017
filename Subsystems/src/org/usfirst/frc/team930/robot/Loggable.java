@@ -38,7 +38,7 @@ public class Loggable implements Runnable {
 		shooterMotorSpeed = Double.toString(OutputManager.getTalonShooterMotor());
 		intakeMotorSpeed = Double.toString(OutputManager.getSparkSpeedIntake());
 		climberMotorSpeed = Double.toString(OutputManager.getSparkSpeedClimber());
-		feederMotorSpeed = Double.toString(OutputManager.getSparkSpeedFeeder());
+		feederMotorSpeed = Double.toString(OutputManager.getSparkSpeedElevator());
 
 		// Creates writer, and reports errors.
 

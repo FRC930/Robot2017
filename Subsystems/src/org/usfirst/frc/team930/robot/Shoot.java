@@ -11,19 +11,23 @@ public class Shoot implements Runnable {
 		
 		if (OutputManager.isRobotTeleop()){
 		
-			if (DSManager.getDriveTriggers()){ // Replace with onBool for buttons
-				OutputManager.setShooterSpeedMode();
-				OutputManager.setShooterSpeed(Constants.FULL_SHOOT_SPEED);
+			if (DSManager.getDriveShootTrigger()){ // Replace with onBool for buttons
+				OutputManager.setShooterPercentVbusMode();
+				OutputManager.setShooterSpeed(-0.7);
+				//OutputManager.setShooterSpeedMode();
+				//OutputManager.setShooterSpeed(Constants.FULL_SHOOT_SPEED);
 			}
 			else{
-				OutputManager.setShooterDisabledMode();
-				OutputManager.setShooterSpeed(0.0);
+				OutputManager.setShooterSpeed(0);
+				//OutputManager.setShooterDisabledMode();
+				//OutputManager.setShooterSpeed(0.0);
 			}
 			
-			SmartDashboard.putNumber("Speed of Shooter", OutputManager.getTalonShooterMotor());
+			System.out.println("Speed of Shooter: " + OutputManager.getTalonShooterMotor());
+			SmartDashboard.putNumber("Speed of Shooter", (((OutputManager.getTalonShooterMotor()) *-1) * 600) / 4096);
 			
 			//Setting Lights for Shooting
-			if(OutputManager.getPDPChannelCurrent(Constants.PDP_CHANNEL7)>5){
+			if(OutputManager.getPDPChannelCurrent(Constants.PDP_CHANNEL12)>5){
 			
 				OutputManager.setLights(OutputManager.LightPatterns.LIGHTS_SHOOT);
 			

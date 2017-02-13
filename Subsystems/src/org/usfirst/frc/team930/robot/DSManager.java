@@ -40,12 +40,20 @@ public class DSManager {
 	public static boolean getDriveRawButtonSix(){
 		return stick.getRawButton(Constants.RAW_BUTTON_SIX_PORT);
 	}
-	public static boolean getDriveTriggers(){
-		if(stick.getRawAxis(Constants.RAW_AXIS_TRIGGER_RIGHT) > 0.1 && stick.getRawAxis(Constants.RAW_AXIS_TRIGGER_LEFT) > 0.1){
+	public static boolean getDriveShootTrigger(){
+		if(stick.getRawAxis(Constants.RAW_AXIS_TRIGGER_RIGHT) > 0.1){
 			return true;
 		}
 		else {
 			return false;
+		}
+	}
+	public static double getDriveElevatorTrigger(){
+		if(stick.getRawAxis(Constants.RAW_AXIS_TRIGGER_LEFT) > 0.09){
+			return stick.getRawAxis(Constants.RAW_AXIS_TRIGGER_LEFT);
+		}
+		else {
+			return 0;
 		}
 	}
 	

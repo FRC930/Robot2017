@@ -4,6 +4,10 @@ public class Constants {
 	
 	// ----------PDP CHANNELS----------
 	
+	/*
+	 * Shooter: 12
+	 * Climb: 5
+	 */
 	public static final int PDP_CHANNEL0 = 0;
 	public static final int PDP_CHANNEL1 = 1;
 	public static final int PDP_CHANNEL2 = 2;
@@ -35,8 +39,8 @@ public class Constants {
 	// ----------Spark Motor Channels-----------
 	
 	public static final int INTAKE_MOTOR_CHANNEL = 0;
-	public static final int CLIMBER_MOTOR_CHANNEL = 9;
-	public static final int FEEDER_MOTOR_CHANNEL = 10;
+	public static final int CLIMBER_MOTOR_CHANNEL = 3;
+	public static final int ELEVATOR_MOTOR_CHANNEL = 2;
 	
 	// -----------DRIVE CODE CONSTANTS-----------
 	

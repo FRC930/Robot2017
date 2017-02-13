@@ -36,11 +36,11 @@ public class OutputManager {
 	
 	// Declaring robot motors
 	// 6 Drivetrain motor declarations
-	private static CANTalon frontLeftMotor; 	
+	public static CANTalon frontLeftMotor; 	
 	private static CANTalon rearLeftMotor;
-	private static CANTalon frontRightMotor;
-	private static CANTalon rearRightMotor; 
 	private static CANTalon leftSlave;
+	public static CANTalon frontRightMotor;
+	private static CANTalon rearRightMotor; 
 	private static CANTalon rightSlave;
 		
 	// 1 Shooter Talon declaration
@@ -52,8 +52,8 @@ public class OutputManager {
 	// 1 Climber  Spark Motor controller declaration
 	private static Spark climberSpark;
 	
-	// Feeder 1 Spark, either combine with shooter or make own subsystem
-	private static Spark feederSpark;
+	// Elevator 1 Spark, either combine with shooter or make own subsystem
+	private static Spark elevatorSpark;
 	
 	private static boolean isRobotTeleop;
 	private static boolean isRobotAuton;
@@ -74,7 +74,6 @@ public class OutputManager {
 		leftSlave.setInverted(true);
 		
 		frontLeftMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		frontLeftMotor.reverseSensor(false);
 		frontLeftMotor.configEncoderCodesPerRev(250);
 		frontLeftMotor.setVoltageRampRate(6400);
 		
@@ -90,13 +89,13 @@ public class OutputManager {
         motionProfilerRight = new MotionProfilingHandler(OutputManager.getR1(), MotionProfilingHandler.MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE);       
 				
 		shooterMotor = new CANTalon (Constants.SHOOTER_MOTOR_CHANNEL);
-		
+		//shooterMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
 		// Spark Range is 2.003 ms Full Forward - .999 ms Full Reverse
 		intakeSpark = new Spark (Constants.INTAKE_MOTOR_CHANNEL);
 		
 		climberSpark = new Spark (Constants.CLIMBER_MOTOR_CHANNEL);
 		
-		feederSpark = new Spark (Constants.FEEDER_MOTOR_CHANNEL);
+		elevatorSpark = new Spark (Constants.ELEVATOR_MOTOR_CHANNEL);
 		
 		isRobotTeleop = false;
 		isRobotAuton = false;
@@ -228,6 +227,12 @@ public static void setDrivetrainMotionProfileMode(){
 		intakeSpark.set(speed);
 		
 	}
+	//Sets the Elevator Speed
+	public static void setSpeedElevator(double speed){
+		
+		 elevatorSpark.set(speed);
+		
+	}
 	// Mutator method to set the speed of the climber motor [-1,1]
 	public static void setClimberSpeed( double speed ){
 		
@@ -293,9 +298,9 @@ public static void setDrivetrainMotionProfileMode(){
 		
 	}
 	
-	public static double getSparkSpeedFeeder(){
+	public static double getSparkSpeedElevator(){
 		
-		return feederSpark.getSpeed();
+		return elevatorSpark.getSpeed();
 		
 	}
 	public static double getPDPChannelCurrent(int Channel){
