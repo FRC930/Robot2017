@@ -58,6 +58,9 @@ public class OutputManager {
 	private static boolean isRobotTeleop;
 	private static boolean isRobotAuton;
 	
+	public static MotionProfilingHandler motionProfilerLeft;
+	public static MotionProfilingHandler motionProfilerRight;
+	
 	public static void init(){
 		
 		// Initializing motors
@@ -81,8 +84,13 @@ public class OutputManager {
 		frontRightMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		frontRightMotor.configEncoderCodesPerRev(250);
 		frontRightMotor.setVoltageRampRate(6400);
+		
+        motionProfilerLeft = new MotionProfilingHandler(OutputManager.getL1(), MotionProfilingHandler.MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE);
+        motionProfilerRight = new MotionProfilingHandler(OutputManager.getR1(), MotionProfilingHandler.MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE);       
 				
 		shooterMotor = new CANTalon (Constants.SHOOTER_MOTOR_CHANNEL);
+		shooterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		shooterMotor.configEncoderCodesPerRev(4096);
 		//shooterMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
 		// Spark Range is 2.003 ms Full Forward - .999 ms Full Reverse
 		intakeSpark = new Spark (Constants.INTAKE_MOTOR_CHANNEL);
@@ -404,6 +412,20 @@ public static void setDrivetrainMotionProfileMode(){
 		}
 		
 		isRobotAuton = true;
+		
+		OutputManager.setDrivetrainMotionProfileMode();
+    	
+	    motionProfilerLeft.control();
+		motionProfilerRight.control();
+    	
+		CANTalon.SetValueMotionProfile setOutputLeft = motionProfilerLeft.getSetValue();
+		OutputManager.setLeftDrivetrainCustomMode(setOutputLeft);
+		
+		CANTalon.SetValueMotionProfile setOutputRight = motionProfilerRight.getSetValue();
+		OutputManager.setRightDrivetrainCustomMode(setOutputRight);
+    	
+		motionProfilerLeft.startMotionProfile();
+		motionProfilerRight.startMotionProfile(); 
 		
 	}
 	

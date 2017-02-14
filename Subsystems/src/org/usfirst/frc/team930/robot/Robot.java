@@ -33,19 +33,20 @@ public class Robot extends IterativeRobot {
         SH = new SubsystemHandler(); // Begins the SystemHandler, which controls the speeds at which the subsystems are updated.
         SH.startSubsystems();
         
+      /**  
         motionProfilerLeft = new MotionProfilingHandler(OutputManager.getL1(), MotionProfilingHandler.MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE);
         motionProfilerRight = new MotionProfilingHandler(OutputManager.getR1(), MotionProfilingHandler.MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE);       
 
-        
+        **/
     }
     
     public void autonomousInit() {
     	
     	OutputManager.autonomousInit();
     	
-    	OutputManager.setDrivetrainMotionProfileMode();
+    	/**	    	OutputManager.setDrivetrainMotionProfileMode();
     	
-		motionProfilerLeft.control();
+	    motionProfilerLeft.control();
 		motionProfilerRight.control();
     	
 		CANTalon.SetValueMotionProfile setOutputLeft = motionProfilerLeft.getSetValue();
@@ -55,13 +56,14 @@ public class Robot extends IterativeRobot {
 		OutputManager.setRightDrivetrainCustomMode(setOutputRight);
     	
 		motionProfilerLeft.startMotionProfile();
-		motionProfilerRight.startMotionProfile();
+		motionProfilerRight.startMotionProfile(); */
 
     }
 
     public void autonomousPeriodic() {
     	OutputManager.setLights(OutputManager.LightPatterns.LIGHTS_AUTO);
     	
+    	/**
     	CANTalon.SetValueMotionProfile setOutputLeft = motionProfilerLeft.getSetValue();
 		OutputManager.setLeftDrivetrainCustomMode(setOutputLeft);
 		
@@ -70,8 +72,9 @@ public class Robot extends IterativeRobot {
     	
     	motionProfilerLeft.control();
 		motionProfilerRight.control();
-		
-		System.out.println((OutputManager.frontLeftMotor.getSpeed()) + "," + (OutputManager.frontLeftMotor.getClosedLoopError()) + "," + OutputManager.frontLeftMotor.getOutputVoltage() + "," + pdp.getCurrent(15) + "," + pdp.getVoltage() + "," + OutputManager.frontLeftMotor.getBusVoltage() + "," + (OutputManager.frontRightMotor.getSpeed()) + "," + (OutputManager.frontRightMotor.getClosedLoopError()) + "," + OutputManager.frontRightMotor.getOutputVoltage() + "," + pdp.getCurrent(0) + "," + pdp.getVoltage() + "," + OutputManager.frontRightMotor.getBusVoltage() + "," + Timer.getFPGATimestamp());
+
+		**/
+	//	System.out.println((OutputManager.frontLeftMotor.getSpeed()) + "," + (OutputManager.frontLeftMotor.getClosedLoopError()) + "," + OutputManager.frontLeftMotor.getOutputVoltage() + "," + pdp.getCurrent(15) + "," + pdp.getVoltage() + "," + OutputManager.frontLeftMotor.getBusVoltage() + "," + (OutputManager.frontRightMotor.getSpeed()) + "," + (OutputManager.frontRightMotor.getClosedLoopError()) + "," + OutputManager.frontRightMotor.getOutputVoltage() + "," + pdp.getCurrent(0) + "," + pdp.getVoltage() + "," + OutputManager.frontRightMotor.getBusVoltage() + "," + Timer.getFPGATimestamp());
 		
 		/*
 		 * F: 2

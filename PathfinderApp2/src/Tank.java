@@ -10,27 +10,25 @@ public class Tank {
     public static void main(String[] args) {
 	Pathfinder finder = new Pathfinder();
     	
-    	File fileRight = new File("C:/Users/Devin/Desktop/FILES/rightData.csv");
-    	File fileLeft = new File("C:/Users/Devin/Desktop/FILES/leftData.csv");
+    	File fileRight = new File("C:/Users/Scott/Desktop/PathfinderFiles/rightData.csv");
+    	File fileLeft = new File("C:/Users/Scott/Desktop/PathfinderFiles/leftData.csv");
     	
-        Trajectory.Config config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_HIGH, 0.05, 1.7, 2.0, 60.0);
+        Trajectory.Config config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_HIGH, 0.01, 3.15, 6.3, 630);
         Waypoint[] points = new Waypoint[] {
-                new Waypoint(-4, -1, Pathfinder.d2r(-45)),
-                new Waypoint(-2, -2, 0),
                 new Waypoint(0, 0, 0),
-                new Waypoint(2,7,-1),
-                new Waypoint(8,2,1),
-                new Waypoint(3,5,2)
+                new Waypoint(9.75, 0, 0),
+                new Waypoint(14.75, -4.2, finder.d2r(30))
         };
 
         Trajectory trajectory = Pathfinder.generate(points, config);
+        
 
         // Wheelbase Width = 0.5m
-        TankModifier modifier = new TankModifier(trajectory).modify(0.5);
+        TankModifier modifier = new TankModifier(trajectory).modify(0.813);
 
         // Do something with the new Trajectories...
         Trajectory left = modifier.getLeftTrajectory();
-        Trajectory right = modifier.getRightTrajectory();
+        Trajectory right = modifier.getRightTrajectory(); 
         
         finder.writeToCSV(fileLeft, left);
         finder.writeToCSV(fileRight, right);
