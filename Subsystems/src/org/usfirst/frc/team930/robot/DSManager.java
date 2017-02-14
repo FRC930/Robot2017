@@ -41,7 +41,7 @@ public class DSManager {
 		return stick.getRawButton(Constants.RAW_BUTTON_SIX_PORT);
 	}
 	public static boolean getDriveShootTrigger(){
-		if(stick.getRawAxis(Constants.RAW_AXIS_TRIGGER_RIGHT) > 0.1){
+		if(stick.getRawAxis(Constants.RAW_AXIS_TRIGGER_RIGHT) > 0.3){
 			return true;
 		}
 		else {
