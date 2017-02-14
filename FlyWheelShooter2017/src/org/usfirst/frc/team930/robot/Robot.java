@@ -13,9 +13,9 @@ import com.ctre.CANTalon.FeedbackDevice;
 
 public class Robot extends IterativeRobot {
 	
-	final Joystick joy1 = new Joystick(0);
+	final Joystick joy1 = new Joystick(1);
 	
-	final CANTalon myTal = new CANTalon(5);
+	final CANTalon myTal = new CANTalon(7);
 	
 	double speed = 0.50;
 	double rpmActual = 0;
