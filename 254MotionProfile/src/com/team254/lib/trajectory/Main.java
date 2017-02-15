@@ -98,8 +98,11 @@ public class Main {
       // Remember that this is for the GO LEFT CASE!                 
       WaypointSequence p = new WaypointSequence(10);
       p.addWaypoint(new WaypointSequence.Waypoint(0, 0, 0));
-      p.addWaypoint(new WaypointSequence.Waypoint(2.0, 0, 0));
-      p.addWaypoint(new WaypointSequence.Waypoint(4.0, 2.0, Math.PI / 12.0));
+      p.addWaypoint(new WaypointSequence.Waypoint(4.0, 0, 0));
+      p.addWaypoint(new WaypointSequence.Waypoint(6.0, 2.0, Math.PI / 12.0));
+      p.addWaypoint(new WaypointSequence.Waypoint(8.0, 2.0, 0));
+      p.addWaypoint(new WaypointSequence.Waypoint(10.0, 2.0, 0));
+      p.addWaypoint(new WaypointSequence.Waypoint(12.0, 2.0, 0));
 
       Path path = PathGenerator.makePath(p, config,
           kWheelbaseWidth, path_name);

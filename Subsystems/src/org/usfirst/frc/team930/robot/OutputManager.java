@@ -85,11 +85,11 @@ public class OutputManager {
 		frontRightMotor.configEncoderCodesPerRev(250);
 		frontRightMotor.setVoltageRampRate(6400);
 		
-        motionProfilerLeft = new MotionProfilingHandler(OutputManager.getL1(), MotionProfilingHandler.MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE);
-        motionProfilerRight = new MotionProfilingHandler(OutputManager.getR1(), MotionProfilingHandler.MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE);       
+        //motionProfilerLeft = new MotionProfilingHandler(OutputManager.getL1(), MotionProfilingHandler.MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE);
+        //motionProfilerRight = new MotionProfilingHandler(OutputManager.getR1(), MotionProfilingHandler.MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE);       
 				
 		shooterMotor = new CANTalon (Constants.SHOOTER_MOTOR_CHANNEL);
-		shooterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		//shooterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		shooterMotor.configEncoderCodesPerRev(4096);
 		//shooterMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
 		// Spark Range is 2.003 ms Full Forward - .999 ms Full Reverse
