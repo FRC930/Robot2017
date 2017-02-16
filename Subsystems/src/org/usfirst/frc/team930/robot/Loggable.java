@@ -8,12 +8,12 @@ import java.io.IOException;
 import java.sql.Time;
 
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
-import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.Spark;    //Imports necessary files 
 
 public class Loggable implements Runnable {
 
-	String rearLeftMotorSpeed = "";
-	String rearRightMotorSpeed = "";
+	String rearLeftMotorSpeed = "";  // Creates strings to use for ease of importing motor encoder values
+	String rearRightMotorSpeed = ""; 
 	String frontRightMotorSpeed = "";
 	String frontLeftMotorSpeed = "";
 	String leftSlaveMotorSpeed = "";
@@ -28,7 +28,7 @@ public class Loggable implements Runnable {
 
 	public void run() {
 
-		// Gets values from output manager to pass to .txt -> .xl
+		// Gets values from output manager to pass to .csv
 		rearLeftMotorSpeed = Double.toString(OutputManager.getTalonSpeedRearLeftMotor());
 		rearRightMotorSpeed = Double.toString(OutputManager.getTalonSpeedRearRightMotor());
 		frontRightMotorSpeed = Double.toString(OutputManager.getTalonSpeedFrontRightMotor());
@@ -73,12 +73,9 @@ public class Loggable implements Runnable {
 		}
 
 	}
-
+	// In the init method it creates one file that has all the data, and labels each set of values within the file
 	public static void init() {
-		System.out.println(
-				"\nJust wrote 10 lines BROOOOOOOOOOOOOO\n----------------------------------------------------------------\n---------------------------------------------------------------------\n----------------------------------------------------------------------------\n");
-		try
-    	{
+		try {
     		file = new File("DataLogging" + File.separator + System.currentTimeMillis() + "ShooterSpeed.csv");
     		bwriter = new BufferedWriter(new FileWriter(file));
     		
