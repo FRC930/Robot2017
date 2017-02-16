@@ -288,8 +288,16 @@ public class MotionProfilingHandler {
 			if (i == 0)
 				point.zeroPos = true; /* set this to true on the first point */
 			
+			if (i >= (totalCnt - 25))point.velocityOnly = true;
+			
+			if (i == (totalCnt - 8)) {
+				point.isLastPoint = true;
+				point.zeroPos = true;
+			}
+			
 			point.isLastPoint = false;
 			if ((i + 1) >= totalCnt) {
+				point.velocityOnly = true;
 				point.isLastPoint = true; /* set this to true on the last point  */
 				System.out.println("Last Point");
 			}

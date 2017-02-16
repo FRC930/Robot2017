@@ -89,8 +89,8 @@ public class Main {
     {
       config.dt = .01;
       config.max_acc = 5.0;
-      config.max_jerk = 10.0;
-      config.max_vel = 6.0;
+      config.max_jerk = 50.0;
+      config.max_vel = 5.0;
       // Path name must be a valid Java class name.
       final String path_name = "CenterLanePathFar";
       
@@ -99,10 +99,15 @@ public class Main {
       WaypointSequence p = new WaypointSequence(10);
       p.addWaypoint(new WaypointSequence.Waypoint(0, 0, 0));
       p.addWaypoint(new WaypointSequence.Waypoint(4.0, 0, 0));
-      p.addWaypoint(new WaypointSequence.Waypoint(6.0, 2.0, Math.PI / 12.0));
-      p.addWaypoint(new WaypointSequence.Waypoint(8.0, 2.0, 0));
-      p.addWaypoint(new WaypointSequence.Waypoint(10.0, 2.0, 0));
-      p.addWaypoint(new WaypointSequence.Waypoint(12.0, 2.0, 0));
+      p.addWaypoint(new WaypointSequence.Waypoint(12.0, 3.0, Math.PI/12));
+      /*p.addWaypoint(new WaypointSequence.Waypoint(6.0, 0, 0));
+      p.addWaypoint(new WaypointSequence.Waypoint(8.0, 0, 0));
+      p.addWaypoint(new WaypointSequence.Waypoint(10.0, 1.0, Math.toRadians(22.5)));
+      p.addWaypoint(new WaypointSequence.Waypoint(12.0, 2.0, Math.toRadians(45)));
+      p.addWaypoint(new WaypointSequence.Waypoint(14.0, 3.0, Math.toRadians(67.5)));
+      p.addWaypoint(new WaypointSequence.Waypoint(16.0, 4.0, Math.toRadians(90)));
+      p.addWaypoint(new WaypointSequence.Waypoint(16.0, 6.0, Math.toRadians(90)));
+      p.addWaypoint(new WaypointSequence.Waypoint(16.0, 8.0, Math.toRadians(90)));*/
 
       Path path = PathGenerator.makePath(p, config,
           kWheelbaseWidth, path_name);
@@ -111,7 +116,7 @@ public class Main {
       TextFileSerializer js = new TextFileSerializer();
       String serialized = js.serialize(path);
       //System.out.print(serialized);
-      String fullpath = joinPath(directory, path_name + ".txt");
+      String fullpath = joinPath(directory, path_name + ".csv");
       if (!writeFile(fullpath, serialized)) {
         System.err.println(fullpath + " could not be written!!!!1");
         System.exit(1);
