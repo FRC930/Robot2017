@@ -37,6 +37,22 @@ public class TextFileSerializer implements IPathSerializer {
     return content;
   }
   
+  public String serializeLeft(Path path) {
+	    String content = path.getName() + "\n";
+	    path.goLeft();
+	    content += path.getLeftWheelTrajectory().getNumSegments() + "\n";
+	    content += serializeTrajectory(path.getLeftWheelTrajectory());
+	    return content;
+	  }
+  
+  public String serializeRight(Path path) {
+	    String content = path.getName() + "\n";
+	    path.goLeft();
+	    content += path.getLeftWheelTrajectory().getNumSegments() + "\n";
+	    content += serializeTrajectory(path.getRightWheelTrajectory());
+	    return content;
+	  }
+  
   private String serializeTrajectory(Trajectory trajectory) {
     String content = "";
     for (int i = 0; i < trajectory.getNumSegments(); ++i) {
