@@ -80,7 +80,10 @@ public class MotionProfilingHandler {
 	 * every 10ms.
 	 */
 	class PeriodicRunnable implements java.lang.Runnable {
-	    public void run() {  talon.processMotionProfileBuffer();    }
+	    public void run() {  
+	    	talon.processMotionProfileBuffer();
+	    	//System.out.println("Running");
+	    }
 	}
 	Notifier _notifer = new Notifier(new PeriodicRunnable());
 	
@@ -213,9 +216,10 @@ public class MotionProfilingHandler {
 						 * because we set the last point's isLast to true, we will
 						 * get here when the MP is done
 						 */
-						setValue = CANTalon.SetValueMotionProfile.Hold;
-						state = 0;
+						setValue = CANTalon.SetValueMotionProfile.Disable;
+						//state = 0;
 						loopTimeout = -1;
+						System.out.println("MP Done " + Timer.getFPGATimestamp());
 					}
 					break;
 			}
@@ -283,13 +287,20 @@ public class MotionProfilingHandler {
 			point.zeroPos = false;
 			if (i == 0)
 				point.zeroPos = true; /* set this to true on the first point */
-
-			if(totalCnt == 207)
+			
+			if (i >= (totalCnt - 25))point.velocityOnly = true;
+			
+			if (i == (totalCnt - 8)) {
+				point.isLastPoint = true;
 				point.zeroPos = true;
+			}
 			
 			point.isLastPoint = false;
-			if ((i + 1) == totalCnt)
+			if ((i + 1) >= totalCnt) {
+				point.velocityOnly = true;
 				point.isLastPoint = true; /* set this to true on the last point  */
+				System.out.println("Last Point");
+			}
 
 			talon.pushMotionProfileTrajectory(point);
 		}

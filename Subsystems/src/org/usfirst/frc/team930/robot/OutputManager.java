@@ -66,9 +66,9 @@ public class OutputManager {
 		
 		// Initializing motors
 		// Initializes Motors for drivetrain
-		frontLeftMotor = new CANTalon(Constants.L1_MOTOR_CHANNEL);
-		rearLeftMotor = new CANTalon(Constants.L3_MOTOR_CHANNEL);
-		leftSlave = new CANTalon(Constants.L2_MOTOR_CHANNEL);
+		frontLeftMotor = new CANTalon(Constants.L1_MOTOR_CHANNEL, 5);
+		rearLeftMotor = new CANTalon(Constants.L3_MOTOR_CHANNEL, 5);
+		leftSlave = new CANTalon(Constants.L2_MOTOR_CHANNEL, 5);
 		
 		frontLeftMotor.setInverted(true);
 		rearLeftMotor.setInverted(true);
@@ -77,15 +77,22 @@ public class OutputManager {
 		frontLeftMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		frontLeftMotor.configEncoderCodesPerRev(250);
 		frontLeftMotor.setVoltageRampRate(6400);
+		frontLeftMotor.setF(1.0);
+		frontLeftMotor.setP(10.0);
+		frontLeftMotor.setI(0.0003);
 		
-		frontRightMotor = new CANTalon(Constants.R1_MOTOR_CHANNEL);
-		rearRightMotor = new CANTalon(Constants.R3_MOTOR_CHANNEL);
-		rightSlave = new CANTalon(Constants.R2_MOTOR_CHANNEL);
+		frontRightMotor = new CANTalon(Constants.R1_MOTOR_CHANNEL, 5);
+		rearRightMotor = new CANTalon(Constants.R3_MOTOR_CHANNEL, 5);
+		rightSlave = new CANTalon(Constants.R2_MOTOR_CHANNEL, 5);
 		
 		frontRightMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		frontRightMotor.configEncoderCodesPerRev(250);
 		frontRightMotor.setVoltageRampRate(6400);
+		frontRightMotor.setF(1.0);
+		frontRightMotor.setP(10.0);
+		frontRightMotor.setI(0.0003);
 		
+<<<<<<< HEAD
         motionProfilerLeft = new MotionProfilingHandler(OutputManager.getL1(), MotionProfilingHandler.MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE);
         motionProfilerRight = new MotionProfilingHandler(OutputManager.getR1(), MotionProfilingHandler.MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE);       
 		
@@ -93,6 +100,14 @@ public class OutputManager {
 		shooterMotor = new CANTalon (Constants.SHOOTER_MOTOR_CHANNEL);
 		shooterMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
 		
+=======
+        //motionProfilerLeft = new MotionProfilingHandler(OutputManager.getL1(), MotionProfilingHandler.MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE);
+        //motionProfilerRight = new MotionProfilingHandler(OutputManager.getR1(), MotionProfilingHandler.MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE);       
+				
+		shooterMotor = new CANTalon (Constants.SHOOTER_MOTOR_CHANNEL);
+		//shooterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		shooterMotor.configEncoderCodesPerRev(4096);
+>>>>>>> 9432833cbd4dc3d25bf14b3ef90c16add9d6aa14
 		//shooterMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
 		// Spark Range is 2.003 ms Full Forward - .999 ms Full Reverse
 		intakeSpark = new Spark (Constants.INTAKE_MOTOR_CHANNEL);

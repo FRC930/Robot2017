@@ -88,27 +88,41 @@ public class Main {
     //////////////////////////////////////////////////////////////////////////
     {
       config.dt = .01;
-      config.max_acc = 5.0;
-      config.max_jerk = 10.0;
-      config.max_vel = 6.0;
+      config.max_acc = 4.0;
+      config.max_jerk = 50.0;
+      config.max_vel = 4.0;
       // Path name must be a valid Java class name.
-      final String path_name = "CenterLanePathFar";
+      final String path_name = "DriveToHopper";
       
       // Description of this auto mode path.
       // Remember that this is for the GO LEFT CASE!                 
       WaypointSequence p = new WaypointSequence(10);
       p.addWaypoint(new WaypointSequence.Waypoint(0, 0, 0));
-      p.addWaypoint(new WaypointSequence.Waypoint(2.0, 0, 0));
-      p.addWaypoint(new WaypointSequence.Waypoint(4.0, 2.0, Math.PI / 12.0));
+      p.addWaypoint(new WaypointSequence.Waypoint(2, 0.25, Math.toRadians(10)));
+      p.addWaypoint(new WaypointSequence.Waypoint(8.0, 6.0, Math.toRadians(90)));
+      //p.addWaypoint(new WaypointSequence.Waypoint(12.0, 9, Math.toRadians(89)));//Math.PI/2.0));
+      
 
       Path path = PathGenerator.makePath(p, config,
           kWheelbaseWidth, path_name);
 
       // Outputs to the directory supplied as the first argument.
       TextFileSerializer js = new TextFileSerializer();
-      String serialized = js.serialize(path);
+      String serialized = js.serializeLeft(path);
       //System.out.print(serialized);
-      String fullpath = joinPath(directory, path_name + ".txt");
+      String fullpath = joinPath(directory, path_name + "_Left.csv");
+      if (!writeFile(fullpath, serialized)) {
+        System.err.println(fullpath + " could not be written!!!!1");
+        System.exit(1);
+      } else {
+        System.out.println("Wrote " + fullpath);
+      }
+      
+   // Outputs to the directory supplied as the first argument.
+      js = new TextFileSerializer();
+      serialized = js.serializeRight(path);
+      //System.out.print(serialized);
+      fullpath = joinPath(directory, path_name + "_Right.csv");
       if (!writeFile(fullpath, serialized)) {
         System.err.println(fullpath + " could not be written!!!!1");
         System.exit(1);
