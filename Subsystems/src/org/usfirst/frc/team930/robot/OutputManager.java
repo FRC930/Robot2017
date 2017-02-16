@@ -91,8 +91,8 @@ public class OutputManager {
 		
         shooterMotor2 = new CANTalon (Constants.SHOOTER_MOTOR_CHANNEL2);
 		shooterMotor = new CANTalon (Constants.SHOOTER_MOTOR_CHANNEL);
-		shooterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		shooterMotor.configEncoderCodesPerRev(4096);
+		shooterMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+		
 		//shooterMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
 		// Spark Range is 2.003 ms Full Forward - .999 ms Full Reverse
 		intakeSpark = new Spark (Constants.INTAKE_MOTOR_CHANNEL);
