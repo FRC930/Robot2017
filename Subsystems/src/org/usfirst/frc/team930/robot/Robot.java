@@ -42,6 +42,9 @@ public class Robot extends IterativeRobot {
     
     public void autonomousInit() {
     	
+    	OutputManager.motionProfilerLeft.reset();
+    	OutputManager.motionProfilerRight.reset();
+    	
     	OutputManager.autonomousInit();
     	
     	OutputManager.setDrivetrainMotionProfileMode();
