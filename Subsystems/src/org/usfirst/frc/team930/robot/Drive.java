@@ -21,7 +21,7 @@ public class Drive implements Runnable {
 				xValue = Constants.X_DEFAULT_VALUE;	
 			}
 			if (Math.abs(yValue) < Constants.JOYSTICK_ERROR_ALLOWANCE){
-				xValue = Constants.X_DEFAULT_VALUE;
+				yValue = Constants.Y_DEFAULT_VALUE;
 			}
 					
 			// Setting talons
