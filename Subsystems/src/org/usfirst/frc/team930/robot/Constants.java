@@ -64,4 +64,11 @@ public class Constants {
 	public static final int RAW_BUTTON_SIX_PORT = 6;
 	public static final int RAW_AXIS_TRIGGER_RIGHT = 3;
 	public static final int RAW_AXIS_TRIGGER_LEFT = 2;
+	
+	// ----------CLIMBER CURRENT CONSTANTS----------
+	
+	public static final int	CLIMBER_GOING_CURRENT = 2;
+	public static final int CLIMBER_FIRST_INTERVAL_CURRENT = 10;
+	public static final int CLIMBER_CUT_OUT_CURRENT = 35;
+	
 }
