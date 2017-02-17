@@ -11,7 +11,7 @@ public class Shoot implements Runnable {
 		
 		if (OutputManager.isRobotTeleop()){
 		
-			if (DSManager.getDriveShootTrigger()){ // Replace with onBool for buttons
+			if (DSManager.getCoDriveShootTrigger()){ // Replace with onBool for buttons
 				OutputManager.setShooterPercentVbusMode();
 				OutputManager.setShooterSpeed(-0.7);
 				//OutputManager.setShooterSpeedMode();

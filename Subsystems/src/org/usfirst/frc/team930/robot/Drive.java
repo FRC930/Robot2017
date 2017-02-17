@@ -23,6 +23,8 @@ public class Drive implements Runnable {
 			// Setting talons
 			OutputManager.setSpeedL(yValue + xValue);
 			OutputManager.setSpeedR(yValue - xValue);
+			System.out.println("r: " + OutputManager.getTalonSpeedFrontRightMotor());
+			System.out.println("l: "+OutputManager.getTalonSpeedFrontLeftMotor());
 		}
 		else if (OutputManager.isRobotAuton()){
 			

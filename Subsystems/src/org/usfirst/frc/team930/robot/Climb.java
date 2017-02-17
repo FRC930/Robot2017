@@ -42,7 +42,7 @@ public class Climb implements Runnable {
 			
 			SmartDashboard.putNumber("Climb Motor Current", OutputManager.getPDPChannelCurrent(Constants.PDP_CHANNEL5));
 			
-			System.out.println("Climb Motor Current" + OutputManager.getPDPChannelCurrent(Constants.PDP_CHANNEL5));
+			//System.out.println("Climb Motor Current" + OutputManager.getPDPChannelCurrent(Constants.PDP_CHANNEL5));
 			
 			if (Math.abs(yValue) >= Constants.JOYSTICK_ERROR_ALLOWANCE){
 	
