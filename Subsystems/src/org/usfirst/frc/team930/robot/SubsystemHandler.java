@@ -10,7 +10,7 @@ public class SubsystemHandler {
 		private final  Intake myIntake;
 		private final  Lights myLights;
 		private final  Elevator myElevator;
-		private final  MotionProfilerSubsystem myMP;
+		private final  DriveMotionProfiler myMP;
 		//private final  Loggable myLog;
 		
 		private final  Notifier driveNotifier;
@@ -30,7 +30,7 @@ public class SubsystemHandler {
 			myIntake = new Intake();
 			myLights = new Lights();
 			myElevator = new Elevator();
-			myMP = new MotionProfilerSubsystem();
+			myMP = new DriveMotionProfiler();
 			//myLog = new Loggable();
 			
 			driveNotifier = new Notifier (myDrive); // Instantiates the notifiers for each subsystem
@@ -68,8 +68,8 @@ public class SubsystemHandler {
 			
 			MPNotifier.startPeriodic(0.005);
 			
-			OutputManager.getTalon(MotionProfilerSubsystem.MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE).changeMotionControlFramePeriod(5);
-			OutputManager.getTalon(MotionProfilerSubsystem.MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE).changeMotionControlFramePeriod(5);
+			OutputManager.getTalon(DriveMotionProfiler.MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE).changeMotionControlFramePeriod(5);
+			OutputManager.getTalon(DriveMotionProfiler.MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE).changeMotionControlFramePeriod(5);
 
 			//logNotifier.startPeriodic(.005);
 			

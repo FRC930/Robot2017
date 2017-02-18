@@ -18,11 +18,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
 
 	SubsystemHandler SH;
-	
-	//MotionProfilingHandler motionProfilerLeft;
-	//MotionProfilingHandler motionProfilerRight;
-	
-	PowerDistributionPanel pdp = new PowerDistributionPanel();
 
     public void robotInit() {
     	 	
@@ -43,11 +38,11 @@ public class Robot extends IterativeRobot {
     	
     	//OutputManager.motionProfilerLeft.reset();
     	//OutputManager.motionProfilerRight.reset();
-    	MotionProfilerSubsystem.reset();
+    	DriveMotionProfiler.init();
     	
     	OutputManager.autonomousInit();
     	
-    	OutputManager.setDrivetrainMotionProfileMode();
+    	//OutputManager.setDrivetrainMotionProfileMode();
     	
     	//OutputManager.motionProfilerLeft.control();
     	//OutputManager.motionProfilerRight.control();

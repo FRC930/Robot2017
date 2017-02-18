@@ -12,16 +12,13 @@ import edu.wpi.first.wpilibj.Spark;    //Imports necessary files
 
 public class Loggable implements Runnable {
 
-	String rearLeftMotorSpeed = "";  // Creates strings to use for ease of importing motor encoder values
-	String rearRightMotorSpeed = ""; 
+	  // Creates strings to use for ease of importing motor encoder values
 	String frontRightMotorSpeed = "";
 	String frontLeftMotorSpeed = "";
-	String leftSlaveMotorSpeed = "";
-	String rightSlaveMotorSpeed = "";
 	String shooterMotorSpeed = "";
 	String intakeMotorSpeed = "";
 	String climberMotorSpeed = "";
-	String feederMotorSpeed = "";
+	String elevatorMotorSpeed = "";
 	private static BufferedWriter bwriter;
 	private static File file;
 	
@@ -29,39 +26,27 @@ public class Loggable implements Runnable {
 	public void run() {
 
 		// Gets values from output manager to pass to .csv
-		rearLeftMotorSpeed = Double.toString(OutputManager.getTalonSpeedRearLeftMotor());
-		rearRightMotorSpeed = Double.toString(OutputManager.getTalonSpeedRearRightMotor());
-		frontRightMotorSpeed = Double.toString(OutputManager.getTalonSpeedFrontRightMotor());
-		frontLeftMotorSpeed = Double.toString(OutputManager.getTalonSpeedFrontLeftMotor());
-		leftSlaveMotorSpeed = Double.toString(OutputManager.getTalonSpeedLeftSlave());
-		rightSlaveMotorSpeed = Double.toString(OutputManager.getTalonSpeedRightSlave());
-		shooterMotorSpeed = Double.toString(OutputManager.getTalonShooterMotor());
-		intakeMotorSpeed = Double.toString(OutputManager.getSparkSpeedIntake());
-		climberMotorSpeed = Double.toString(OutputManager.getSparkSpeedClimber());
-		feederMotorSpeed = Double.toString(OutputManager.getSparkSpeedElevator());
+		frontLeftMotorSpeed = Double.toString(OutputManager.getFeedbackSpeed(OutputManager.Motors.L1MASTER));
+		frontRightMotorSpeed = Double.toString(OutputManager.getFeedbackSpeed(OutputManager.Motors.R1MASTER));
+		climberMotorSpeed = Double.toString(OutputManager.getCommandedSpeed(OutputManager.Motors.CLIMBER));
+		elevatorMotorSpeed = Double.toString(OutputManager.getCommandedSpeed(OutputManager.Motors.ELEVATOR));
+		intakeMotorSpeed = Double.toString(OutputManager.getCommandedSpeed(OutputManager.Motors.INTAKE));
+		shooterMotorSpeed = Double.toString(OutputManager.getFeedbackSpeed(OutputManager.Motors.SHOOTER));
 
 		// Creates writer, and reports errors.
 
-		try {
-			bwriter.write(rearLeftMotorSpeed + ", ");
-			
-			bwriter.write(rearRightMotorSpeed + ", ");
-			
+		try {			
 			bwriter.write(frontRightMotorSpeed + ", ");
 			
 			bwriter.write(frontLeftMotorSpeed + ", ");
-			
-			bwriter.write(leftSlaveMotorSpeed + ", ");
-			
-			bwriter.write(rightSlaveMotorSpeed + ", ");
-			
+									
 			bwriter.write(shooterMotorSpeed + ", ");
 			
 			bwriter.write(intakeMotorSpeed + ", ");
 			
 			bwriter.write(climberMotorSpeed + ", ");
 			
-			bwriter.write(feederMotorSpeed + ", ");
+			bwriter.write(elevatorMotorSpeed + ", ");
 			bwriter.newLine();
 			
 			

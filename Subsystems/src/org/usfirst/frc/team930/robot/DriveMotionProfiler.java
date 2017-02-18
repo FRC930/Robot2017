@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.Timer;
 import com.ctre.CANTalon.TalonControlMode;
 
 
-public class MotionProfilerSubsystem implements Runnable {
+public class DriveMotionProfiler implements Runnable {
 	
 	public enum MotionProfileDrivetrainSide {
 		
@@ -106,7 +106,7 @@ public class MotionProfilerSubsystem implements Runnable {
 					loopTimeout = kNumLoopsTimeout;
 					state = 2;
 					
-					System.out.println((OutputManager.motionProfilerLeft.getSetValue()) + "          " + (OutputManager.motionProfilerRight.getSetValue()) + "          " + (Timer.getFPGATimestamp()));
+					//System.out.println((OutputManager.motionProfilerLeft.getSetValue()) + "          " + (OutputManager.motionProfilerRight.getSetValue()) + "          " + (Timer.getFPGATimestamp()));
 				}
 				
 				break;
@@ -236,7 +236,10 @@ public class MotionProfilerSubsystem implements Runnable {
 		OutputManager.getTalon(drivetrainSide).processMotionProfileBuffer();;
 	
 	}
-	public static void reset(){
+	public static void init(){
+		
+		OutputManager.setDrivetrainMode(CANTalon.TalonControlMode.MotionProfile);
+		
 		drivetrainSide = MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE;
 		OutputManager.getTalon(drivetrainSide).clearMotionProfileTrajectories();
 	

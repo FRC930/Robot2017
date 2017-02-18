@@ -200,7 +200,7 @@ public class MotionProfilingHandler {
 						state = 2;
 						loopTimeout = kNumLoopsTimeout;
 						
-						System.out.println((OutputManager.motionProfilerLeft.getSetValue()) + "          " + (OutputManager.motionProfilerRight.getSetValue()) + "          " + (Timer.getFPGATimestamp()));
+						//System.out.println((OutputManager.motionProfilerLeft.getSetValue()) + "          " + (OutputManager.motionProfilerRight.getSetValue()) + "          " + (Timer.getFPGATimestamp()));
 					}
 					break;
 				case 2: /* check the status of the MP */

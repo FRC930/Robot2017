@@ -23,8 +23,8 @@ public class Drive implements Runnable {
 			// Setting talons
 			OutputManager.setSpeedL(yValue + xValue);
 			OutputManager.setSpeedR(yValue - xValue);
-			System.out.println("r: " + OutputManager.getTalonSpeedFrontRightMotor());
-			System.out.println("l: "+OutputManager.getTalonSpeedFrontLeftMotor());
+			System.out.println("r: " + OutputManager.getCommandedSpeed(OutputManager.Motors.R1MASTER));
+			System.out.println("l: "+OutputManager.getCommandedSpeed(OutputManager.Motors.L1MASTER));
 		}
 		else if (OutputManager.isRobotAuton()){
 			
@@ -43,6 +43,6 @@ public class Drive implements Runnable {
 			
 		}
 	public static void init(){
-		OutputManager.setDrivetrainPercentVbusMode();		
+		OutputManager.setDrivetrainMode(CANTalon.TalonControlMode.PercentVbus);		
 	}
 }
