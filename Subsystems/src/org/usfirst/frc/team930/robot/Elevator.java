@@ -15,7 +15,11 @@ public class Elevator implements Runnable{
 			SmartDashboard.putNumber("Elevator Speed", OutputManager.getCommandedSpeed(OutputManager.Motors.ELEVATOR));
 
 			}
-			else{
+			else if(DSManager.getCoDriveRawButtonEight()){
+				OutputManager.setSpeedElevator(1.0);
+				
+			}
+			else {
 				OutputManager.setSpeedElevator(0.0);
 
 			}

@@ -62,6 +62,8 @@ public class Constants {
 	public static final int RAW_BUTTON_FOUR_PORT = 4;
 	public static final int RAW_BUTTON_FIVE_PORT = 5;
 	public static final int RAW_BUTTON_SIX_PORT = 6;
+	public static final int RAW_BACK_BUTTON_PORT = 7;
+	public static final int RAW_START_BUTTON_PORT = 8;
 	public static final int RAW_AXIS_TRIGGER_RIGHT = 3;
 	public static final int RAW_AXIS_TRIGGER_LEFT = 2;
 	

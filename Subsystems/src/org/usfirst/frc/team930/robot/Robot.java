@@ -24,12 +24,12 @@ public class Robot extends IterativeRobot {
     
     public void autonomousInit() {
     	
+    	OutputManager.autonomousInit();
+    	
     	//OutputManager.motionProfilerLeft.reset();
     	//OutputManager.motionProfilerRight.reset();
     	DriveMotionProfiler.init();
-    	
-    	OutputManager.autonomousInit();
-    	
+    	    	
     	//OutputManager.setDrivetrainMotionProfileMode();
     	
     	//OutputManager.motionProfilerLeft.control();
@@ -78,6 +78,7 @@ public class Robot extends IterativeRobot {
     }
     public void disabledInit(){
     	OutputManager.disabledInit();
+    	OutputManager.setShooterSpeed(0);
     }
     
 }

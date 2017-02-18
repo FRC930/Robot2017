@@ -6,11 +6,7 @@ import edu.wpi.first.wpilibj.Timer;
 
 
 public class DriveMotionProfiler implements Runnable {
-	
-
-	
-	private CANTalon talon;
-	
+		
 	private int loopTimeout = -1;
 	
 	private static final int kNumLoopsTimeout = 10;
@@ -159,7 +155,7 @@ public class DriveMotionProfiler implements Runnable {
 		 * points in memory, clear it.
 		 */
 		
-		talon.clearMotionProfileTrajectories();
+		OutputManager.clearMotionProfileTrajectories();
 
 		/* This is fast since it's just into our TOP buffer */
 	
@@ -218,6 +214,6 @@ public class DriveMotionProfiler implements Runnable {
 		
 	}
 	public static void OnNoProgress() {
-		System.out.format("%s\n", "NOPROGRESS");
+		//System.out.format("%s\n", "NOPROGRESS");
 	}
 }

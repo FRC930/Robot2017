@@ -16,7 +16,7 @@ public class Shoot implements Runnable {
 				//OutputManager.setShooterSpeedMode();
 				//OutputManager.setShooterSpeed(Constants.FULL_SHOOT_SPEED);
 			}
-			else{
+			else {
 				//OutputManager.setShooterSpeedMode();
 				OutputManager.setShooterSpeed(0.0);
 				//OutputManager.setShooterDisabledMode();
@@ -25,7 +25,9 @@ public class Shoot implements Runnable {
 			
 			System.out.println("Speed of Shooter: " + OutputManager.getFeedbackSpeed(OutputManager.Motors.SHOOTER));
 			SmartDashboard.putNumber("Speed of Shooter", ((OutputManager.getFeedbackSpeed(OutputManager.Motors.SHOOTER)) *-1));
-			
+			SmartDashboard.putNumber("Current of Shooter", OutputManager.getPDPChannelCurrent(Constants.PDP_CHANNEL11));
+			SmartDashboard.putNumber("Current of Shooter2", OutputManager.getPDPChannelCurrent(Constants.PDP_CHANNEL10));
+
 			//Setting Lights for Shooting
 			if(OutputManager.getPDPChannelCurrent(Constants.PDP_CHANNEL12)>5){
 			
