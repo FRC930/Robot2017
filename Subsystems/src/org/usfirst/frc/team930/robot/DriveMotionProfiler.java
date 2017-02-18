@@ -68,19 +68,12 @@ public class DriveMotionProfiler implements Runnable {
 				
 			case 1:
 			
-<<<<<<< HEAD
+
 				System.out.println("Right BufferCnt: " + OutputManager.GetBtmBufferCntRight());
 				System.out.println("Left BufferCnt: " + OutputManager.GetBtmBufferCntLeft());
 
 				if ((OutputManager.GetBtmBufferCntRight() > kMinPointsInTalon) && (OutputManager.GetBtmBufferCntLeft() > kMinPointsInTalon)) {
-=======
-				OutputManager.getMotionProfileStatus(statusL, statusR);
-				
-				System.out.println("Left BufferCnt: " + statusL.btmBufferCnt);
-				System.out.println("Right BufferCnt: " + statusR.btmBufferCnt);
-				
-				if ((statusL.btmBufferCnt > kMinPointsInTalon) && (statusR.btmBufferCnt > kMinPointsInTalon)) {
->>>>>>> 154ed37b2593218d8c532f71c3e6f81f7ba6d8f2
+
 					/* start (once) the motion profile */
 					
 					OutputManager.startMotionProfiler();
