@@ -13,10 +13,6 @@ public class DriveMotionProfiler implements Runnable {
 	
 	private static final int kMinPointsInTalon = 5;
 		
-	private CANTalon.MotionProfileStatus statusL = new CANTalon.MotionProfileStatus();
-	
-	private CANTalon.MotionProfileStatus statusR = new CANTalon.MotionProfileStatus();
-
 	private static OutputManager.MotionProfileDrivetrainSide drivetrainSide;
 	
 	public static boolean isRunning = false;
@@ -28,7 +24,7 @@ public class DriveMotionProfiler implements Runnable {
 		
 		/* Get the motion profile status every loop */
 		
-		OutputManager.getMotionProfileStatus(statusL, statusR);
+		
 
 		/*
 		 * track time, this is rudimentary but that's okay, we just want to make
@@ -61,8 +57,6 @@ public class DriveMotionProfiler implements Runnable {
 					
 					OutputManager.bufferTalons();
 					
-					OutputManager.getMotionProfileStatus(statusL, statusR);
-					
 					startFilling();
 					
 					state = 1;
@@ -74,12 +68,19 @@ public class DriveMotionProfiler implements Runnable {
 				
 			case 1:
 			
+<<<<<<< HEAD
+				System.out.println("Right BufferCnt: " + OutputManager.GetBtmBufferCntRight());
+				System.out.println("Left BufferCnt: " + OutputManager.GetBtmBufferCntLeft());
+
+				if ((OutputManager.GetBtmBufferCntRight() > kMinPointsInTalon) && (OutputManager.GetBtmBufferCntLeft() > kMinPointsInTalon)) {
+=======
 				OutputManager.getMotionProfileStatus(statusL, statusR);
 				
 				System.out.println("Left BufferCnt: " + statusL.btmBufferCnt);
 				System.out.println("Right BufferCnt: " + statusR.btmBufferCnt);
 				
 				if ((statusL.btmBufferCnt > kMinPointsInTalon) && (statusR.btmBufferCnt > kMinPointsInTalon)) {
+>>>>>>> 154ed37b2593218d8c532f71c3e6f81f7ba6d8f2
 					/* start (once) the motion profile */
 					
 					OutputManager.startMotionProfiler();
@@ -96,11 +97,11 @@ public class DriveMotionProfiler implements Runnable {
 				
 			case 2:
 				
-				if ((statusL.isUnderrun == false) || (statusR.isUnderrun == false)) {
+				if (!OutputManager.isLeftStatusUnderrun() || !OutputManager.isRightStatusUnderrun()) {
 					loopTimeout = kNumLoopsTimeout;
 				}
 				
-				if ((statusL.activePointValid && statusL.activePoint.isLastPoint) && (statusR.activePointValid && statusR.activePoint.isLastPoint)) {
+				if ((OutputManager.isLeftActivePointValid()) && (OutputManager.isRightActivePointValid())) {
 					/*
 					 * because we set the last point's isLast to true, we will
 					 * get here when the MP is done
@@ -134,15 +135,14 @@ public class DriveMotionProfiler implements Runnable {
 	}
 
 	private void startFilling(double[][] profile, int totalCnt) {
-		
-		
-		
+			
 		/* create an empty point */
 		CANTalon.TrajectoryPoint point = new CANTalon.TrajectoryPoint();
 
 		/* did we get an underrun condition since last time we checked ? */
 	
-		if ((statusL.hasUnderrun) && (statusR.hasUnderrun)) {
+		if ((OutputManager.isLeftStatusUnderrun()) && (OutputManager.isRightStatusUnderrun())) {
+		
 			/* better log it so we know about it */
 			OutputManager.OnUnderrun();
 			/*
@@ -166,12 +166,17 @@ public class DriveMotionProfiler implements Runnable {
 			/* for each point, fill our structure and pass it to API */
 			
 			if(drivetrainSide == OutputManager.MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE) {
+			
 				point.position = profile[i][0] * -1.0;
 				point.velocity = profile[i][1] * -1.0;
+			
 			}
+			
 			else if(drivetrainSide == OutputManager.MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE) {
+			
 				point.position = profile[i][0];
 				point.velocity = profile[i][1];
+			
 			}
 			
 			point.timeDurMs = (int) profile[i][2];
@@ -181,25 +186,42 @@ public class DriveMotionProfiler implements Runnable {
 										 */
 			System.out.println("i Value: " + i);
 			point.zeroPos = false;
+			
 			if (i == 0)
+				
 				point.zeroPos = true; /* set this to true on the first point */
 			
 			if (i >= (totalCnt - 25))point.velocityOnly = true;
 			
 			if (i == (totalCnt - 8)) {
+			
 				point.isLastPoint = true;
 				point.zeroPos = true;
+			
 			}
 			
 			point.isLastPoint = false;
+			
 			if ((i + 1) >= totalCnt) {
+			
 				point.velocityOnly = true;
 				point.isLastPoint = true; /* set this to true on the last point  */
 				System.out.println("Last Point");
+			
 			}
-
-			OutputManager.pushMotionProfileTrajectory(point);
-	
+			
+			if(drivetrainSide == OutputManager.MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE) {
+			
+				OutputManager.pushMotionProfileTrajectoryLeft(point);
+			
+			}
+			
+			else if (drivetrainSide == OutputManager.MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE) {
+				
+				OutputManager.pushMotionProfileTrajectoryLeft(point);
+			
+			}
+			
 		}
 	
 	}
