@@ -3,6 +3,7 @@ package org.usfirst.frc.team930.robot;
 import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.Notifier;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.ctre.CANTalon.TalonControlMode;
 
@@ -190,6 +191,7 @@ public class MotionProfilingHandler {
 						 * points
 						 */
 					/* do we have a minimum numberof points in Talon */
+					SmartDashboard.putNumber("BufferCount : ", status.btmBufferCnt);
 					if (status.btmBufferCnt > kMinPointsInTalon) {
 						/* start (once) the motion profile */
 						setValue = CANTalon.SetValueMotionProfile.Enable;

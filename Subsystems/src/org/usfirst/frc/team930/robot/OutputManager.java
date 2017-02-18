@@ -81,6 +81,11 @@ public class OutputManager {
 	private static boolean isRobotTeleop;
 	private static boolean isRobotAuton;
 	
+	
+	private static CANTalon.MotionProfileStatus statusL = new CANTalon.MotionProfileStatus();
+	private static CANTalon.MotionProfileStatus statusR = new CANTalon.MotionProfileStatus();
+
+	
 	//public static MotionProfilingHandler motionProfilerLeft;
 	//public static MotionProfilingHandler motionProfilerRight;
 	
@@ -136,6 +141,8 @@ public class OutputManager {
 		
 		isRobotTeleop = false;
 		isRobotAuton = false;
+		
+		
 	}
 	
 	// Sets the speed for the motors on the right side of the robot drivetrain.
@@ -203,10 +210,7 @@ public class OutputManager {
 		
 		shooter.set(speed);
 		shooterMotor2.set(speed);
-<<<<<<< HEAD
-=======
-		SmartDashboard.putNumber("isworking", speed);
->>>>>>> 4ed766156f84be78c7d9274c6adaa1aa9597202a
+
 		
 	}
 	
@@ -490,44 +494,116 @@ public static void endMotionProfiler(){
 	
 	}
 	
-	public static void getMotionProfileStatus(CANTalon.MotionProfileStatus statusL, CANTalon.MotionProfileStatus statusR ){
+	public static void getMotionProfileStatus(){
       
-		OutputManager.getTalon(MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE).getMotionProfileStatus(statusL);
+		L1Master.getMotionProfileStatus(statusL);
 
-		OutputManager.getTalon(MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE).getMotionProfileStatus(statusR);
+		R1Master.getMotionProfileStatus(statusR);
 		
 	}
 	
 	public static void clearMotionProfileHasUnderrun(){
 
-		OutputManager.getTalon(MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE).clearMotionProfileHasUnderrun();
+		L1Master.clearMotionProfileHasUnderrun();
 
-		OutputManager.getTalon(MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE).clearMotionProfileHasUnderrun();
+		R1Master.clearMotionProfileHasUnderrun();
 	
 	}
 	
-	public static void pushMotionProfileTrajectory(CANTalon.TrajectoryPoint point){
+	public static void pushMotionProfileTrajectoryLeft(CANTalon.TrajectoryPoint point){
 		
-		OutputManager.getTalon(MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE).pushMotionProfileTrajectory(point);
+		L1Master.pushMotionProfileTrajectory(point);
 
-		OutputManager.getTalon(MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE).pushMotionProfileTrajectory(point);
+	}
+	
+	public static void pushMotionProgileTrajectoryRight(CANTalon.TrajectoryPoint point) {
+		
+		R1Master.pushMotionProfileTrajectory(point);
 	
 	}
 	
 	public  static void bufferTalons(){
 		
-		OutputManager.getTalon(MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE).processMotionProfileBuffer();;
+		L1Master.processMotionProfileBuffer();;
 
-		OutputManager.getTalon(MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE).processMotionProfileBuffer();;
+		R1Master.processMotionProfileBuffer();;
 	
 	}
 	
 	public static void clearMotionProfileTrajectories(){
 		
-		OutputManager.getTalon(MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE).clearMotionProfileTrajectories();;
+		L1Master.clearMotionProfileTrajectories();;
 
-		OutputManager.getTalon(MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE).clearMotionProfileTrajectories();;
+		R1Master.clearMotionProfileTrajectories();;
 		
+	}
+	
+	public static int GetBtmBufferCntRight(){
+		
+		getMotionProfileStatus();
+		
+		return statusR.btmBufferCnt;
+		
+	}
+	
+	public static int GetBtmBufferCntLeft(){
+		
+		getMotionProfileStatus();
+		
+		return statusL.btmBufferCnt;
+		
+	}
+	
+	public static boolean isLeftStatusUnderrun(){
+		
+		getMotionProfileStatus();
+		
+		return statusL.isUnderrun;
+		
+	}
+	
+	public static boolean isRightStatusUnderrun(){
+		
+		getMotionProfileStatus();
+		
+		return statusR.isUnderrun;
+		
+	}
+	
+	public static boolean isRightActivePointValid(){
+		
+		getMotionProfileStatus();
+		
+		if (statusR.activePointValid && statusR.activePoint.isLastPoint){
+		
+			return true;
+		
+		}
+		
+		else{ 
+		
+			return false;
+		
+		}
+	
+	}
+	
+	public static boolean isLeftActivePointValid(){
+		
+		getMotionProfileStatus();
+		
+		if (statusL.activePointValid && statusL.activePoint.isLastPoint){
+		
+			return true;
+		
+		}
+		
+		else{ 
+		
+			return false;
+		
+		}
+	
 	}
 	
 }
