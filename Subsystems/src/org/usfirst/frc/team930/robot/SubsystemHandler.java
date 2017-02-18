@@ -67,8 +67,10 @@ public class SubsystemHandler {
 			lightsNotifier.startPeriodic(.025);
 			
 			MPNotifier.startPeriodic(0.005);
-			//talon.changeMotionControlFramePeriod(5);
 			
+			OutputManager.getTalon(MotionProfilerSubsystem.MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE).changeMotionControlFramePeriod(5);
+			OutputManager.getTalon(MotionProfilerSubsystem.MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE).changeMotionControlFramePeriod(5);
+
 			//logNotifier.startPeriodic(.005);
 			
 		}

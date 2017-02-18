@@ -30,6 +30,33 @@ public class MotionProfilerSubsystem implements Runnable {
 	
 	public void run (){
 		
+		/* Get the motion profile status every loop */
+		drivetrainSide = MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE;
+		OutputManager.getTalon(drivetrainSide).getMotionProfileStatus(status);
+		
+		
+		drivetrainSide = MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE;
+		OutputManager.getTalon(drivetrainSide).getMotionProfileStatus(status);
+		
+		/*
+		 * track time, this is rudimentary but that's okay, we just want to make
+		 * sure things never get stuck.
+		 */
+		if (loopTimeout < 0) {
+			/* do nothing, timeout is disabled */
+		} else {
+			/* our timeout is nonzero */
+			if (loopTimeout == 0) {
+				/*
+				 * something is wrong. Talon is not present, unplugged, breaker
+				 * tripped
+				 */
+				OnNoProgress();
+			} else {
+				--loopTimeout;
+			}
+		}
+		
 		if (OutputManager.isRobotAuton() && OutputManager.profilerRun(true)){
 			bufferTalons();
 			OutputManager.setDrivetrainMotionProfileMode();
@@ -62,7 +89,16 @@ public class MotionProfilerSubsystem implements Runnable {
 			}
 			
 			//OutputManager.startMotionProfiler();
-		
+			if (status.activePointValid && status.activePoint.isLastPoint) {
+				/*
+				 * because we set the last point's isLast to true, we will
+				 * get here when the MP is done
+				 */
+				OutputManager.endMotionProfiler();
+				//state = 0;
+				loopTimeout = -1;
+				System.out.println("MP Done " + Timer.getFPGATimestamp());
+			}
 		}
 		
 	}
@@ -165,5 +201,21 @@ public class MotionProfilerSubsystem implements Runnable {
 
 		OutputManager.getTalon(drivetrainSide).processMotionProfileBuffer();;
 	
+	}
+	public static void reset(){
+		drivetrainSide = MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE;
+		OutputManager.getTalon(drivetrainSide).clearMotionProfileTrajectories();
+	
+		
+		drivetrainSide = MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE;
+		OutputManager.getTalon(drivetrainSide).clearMotionProfileTrajectories();
+	
+		
+		OutputManager.endMotionProfiler();
+		OutputManager.profilerRun(false);
+		
+	}
+	public static void OnNoProgress() {
+		System.out.format("%s\n", "NOPROGRESS");
 	}
 }

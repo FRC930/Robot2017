@@ -467,6 +467,13 @@ public static void setDrivetrainMotionProfileMode(){
 		frontRightMotor.set(CANTalon.SetValueMotionProfile.Enable.value);
 	
 	}
+public static void endMotionProfiler(){
+		
+		frontLeftMotor.set(CANTalon.SetValueMotionProfile.Disable.value);
+		frontRightMotor.set(CANTalon.SetValueMotionProfile.Disable.value);
+	
+	}
+	
 	
 	public static void OnUnderrun() {
 		

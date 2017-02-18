@@ -41,24 +41,26 @@ public class Robot extends IterativeRobot {
     
     public void autonomousInit() {
     	
-    	OutputManager.motionProfilerLeft.reset();
-    	OutputManager.motionProfilerRight.reset();
+    	//OutputManager.motionProfilerLeft.reset();
+    	//OutputManager.motionProfilerRight.reset();
+    	MotionProfilerSubsystem.reset();
     	
     	OutputManager.autonomousInit();
     	
     	OutputManager.setDrivetrainMotionProfileMode();
     	
-    	OutputManager.motionProfilerLeft.control();
-    	OutputManager.motionProfilerRight.control();
+    	//OutputManager.motionProfilerLeft.control();
+    	//OutputManager.motionProfilerRight.control();
+    	OutputManager.profilerRun(true);
     	
-		CANTalon.SetValueMotionProfile setOutputLeft = OutputManager.motionProfilerLeft.getSetValue();
-		OutputManager.setLeftDrivetrainCustomMode(setOutputLeft);
+		//CANTalon.SetValueMotionProfile setOutputLeft = OutputManager.motionProfilerLeft.getSetValue();
+		//OutputManager.setLeftDrivetrainCustomMode(setOutputLeft);
 		
-		CANTalon.SetValueMotionProfile setOutputRight = OutputManager.motionProfilerRight.getSetValue();
-		OutputManager.setRightDrivetrainCustomMode(setOutputRight);
+		//CANTalon.SetValueMotionProfile setOutputRight = OutputManager.motionProfilerRight.getSetValue();
+		//OutputManager.setRightDrivetrainCustomMode(setOutputRight);
     	
-		OutputManager.motionProfilerLeft.startMotionProfile();
-		OutputManager.motionProfilerRight.startMotionProfile();
+		//OutputManager.motionProfilerLeft.startMotionProfile();
+		//OutputManager.motionProfilerRight.startMotionProfile();
 
     }
 
