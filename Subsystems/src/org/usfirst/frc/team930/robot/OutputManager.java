@@ -486,11 +486,14 @@ public static void endMotionProfiler(){
 	}
 	
 	public static void getMotionProfileStatus(CANTalon.MotionProfileStatus statusL, CANTalon.MotionProfileStatus statusR ){
-
-		OutputManager.getTalon(MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE).getMotionProfileStatus(statusL);
-
-		OutputManager.getTalon(MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE).getMotionProfileStatus(statusR);
 		
+		if(isRobotTeleop) {
+			
+			OutputManager.getTalon(MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE).getMotionProfileStatus(statusL);
+
+			OutputManager.getTalon(MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE).getMotionProfileStatus(statusR);
+			
+		}
 	}
 	
 	public static void clearMotionProfileHasUnderrun(){
