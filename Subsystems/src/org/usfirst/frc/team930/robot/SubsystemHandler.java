@@ -68,9 +68,9 @@ public class SubsystemHandler {
 			
 			MPNotifier.startPeriodic(0.005);
 			
-			OutputManager.getTalon(DriveMotionProfiler.MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE).changeMotionControlFramePeriod(5);
-			OutputManager.getTalon(DriveMotionProfiler.MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE).changeMotionControlFramePeriod(5);
-
+			// Put in DMP init
+			//OutputManager.changeMotionControlFramePeriod();
+				
 			//logNotifier.startPeriodic(.005);
 			
 		}

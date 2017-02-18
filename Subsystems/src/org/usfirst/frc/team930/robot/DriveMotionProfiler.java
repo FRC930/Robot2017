@@ -1,20 +1,13 @@
 package org.usfirst.frc.team930.robot;
 
-import org.usfirst.frc.team930.robot.MotionProfilingHandler.MotionProfileDrivetrainSide;
 
 import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.Timer;
-import com.ctre.CANTalon.TalonControlMode;
 
 
 public class DriveMotionProfiler implements Runnable {
 	
-	public enum MotionProfileDrivetrainSide {
-		
-		DRIVE_LEFT_SIDE,
-		DRIVE_RIGHT_SIDE
-		
-	}
+
 	
 	private CANTalon talon;
 	
@@ -28,22 +21,19 @@ public class DriveMotionProfiler implements Runnable {
 	
 	private CANTalon.MotionProfileStatus statusR = new CANTalon.MotionProfileStatus();
 
-	private static MotionProfileDrivetrainSide drivetrainSide;
+	private static OutputManager.MotionProfileDrivetrainSide drivetrainSide;
 	
 	public static boolean isRunning = false;
 	
 	private static int state = 0;
 	
+	
 	public void run (){
 		
 		/* Get the motion profile status every loop */
-		drivetrainSide = MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE;
-		OutputManager.getTalon(drivetrainSide).getMotionProfileStatus(statusL);
 		
-		
-		drivetrainSide = MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE;
-		OutputManager.getTalon(drivetrainSide).getMotionProfileStatus(statusR);
-		
+		OutputManager.getMotionProfileStatus(statusL, statusR);
+
 		/*
 		 * track time, this is rudimentary but that's okay, we just want to make
 		 * sure things never get stuck.
@@ -64,37 +54,31 @@ public class DriveMotionProfiler implements Runnable {
 		}
 		// && isRunning
 		if (OutputManager.isRobotAuton()){
+			
 			switch (state) {
+			
 			case 0: 
+				
 				if(isRunning){
 					
 					OutputManager.endMotionProfiler();
 					
-					bufferTalons();
+					OutputManager.bufferTalons();
 					
-					drivetrainSide = MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE;
-					OutputManager.getTalon(drivetrainSide).getMotionProfileStatus(statusL);
-					startFilling();
+					OutputManager.getMotionProfileStatus(statusL, statusR);
 					
-					
-					
-					drivetrainSide = MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE;
-					OutputManager.getTalon(drivetrainSide).getMotionProfileStatus(statusR);
 					startFilling();
 					
 					state = 1;
 					loopTimeout = kNumLoopsTimeout;
+					
 				}
+				
 				break;
+				
 			case 1:
-				
-				bufferTalons();
-				drivetrainSide = MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE;
-				OutputManager.getTalon(drivetrainSide).getMotionProfileStatus(statusL);
-				
-				drivetrainSide = MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE;
-				OutputManager.getTalon(drivetrainSide).getMotionProfileStatus(statusR);
-				
+			
+				OutputManager.getMotionProfileStatus(statusL, statusR);
 				
 				if ((statusL.btmBufferCnt > kMinPointsInTalon) && (statusR.btmBufferCnt > kMinPointsInTalon)) {
 					/* start (once) the motion profile */
@@ -110,7 +94,9 @@ public class DriveMotionProfiler implements Runnable {
 				}
 				
 				break;
+				
 			case 2:
+				
 				if ((statusL.isUnderrun == false) || (statusR.isUnderrun == false)) {
 					loopTimeout = kNumLoopsTimeout;
 				}
@@ -127,6 +113,7 @@ public class DriveMotionProfiler implements Runnable {
 				}
 				
 				break;
+				
 			}
 			
 		}
@@ -134,16 +121,16 @@ public class DriveMotionProfiler implements Runnable {
 	}
 	private void startFilling() {
 		/* since this example only has one talon, just update that one */
-		bufferTalons();
-		if(drivetrainSide == MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE) {
+		
+		drivetrainSide = OutputManager.MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE;
 			startFilling(GeneratedMotionProfileRight.Points, GeneratedMotionProfileRight.kNumPoints);
 			//System.out.println("Right Side");
-		}
-		else if(drivetrainSide == MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE) {
+	
+		drivetrainSide = OutputManager.MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE;
 			startFilling(GeneratedMotionProfileLeft.Points, GeneratedMotionProfileLeft.kNumPoints);
 			//System.out.println("Left Side");
-		}
-		bufferTalons();
+		//}
+		
 		
 	}
 
@@ -153,9 +140,9 @@ public class DriveMotionProfiler implements Runnable {
 		
 		/* create an empty point */
 		CANTalon.TrajectoryPoint point = new CANTalon.TrajectoryPoint();
-		bufferTalons();
+
 		/* did we get an underrun condition since last time we checked ? */
-		bufferTalons();
+	
 		if ((statusL.hasUnderrun) && (statusR.hasUnderrun)) {
 			/* better log it so we know about it */
 			OutputManager.OnUnderrun();
@@ -163,30 +150,27 @@ public class DriveMotionProfiler implements Runnable {
 			 * clear the error. This flag does not auto clear, this way 
 			 * we never miss logging it.
 			 */
-			drivetrainSide = MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE;
-			OutputManager.getTalon(drivetrainSide).clearMotionProfileHasUnderrun();
+			OutputManager.clearMotionProfileHasUnderrun();
 			
-			drivetrainSide = MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE;
-			OutputManager.getTalon(drivetrainSide).clearMotionProfileHasUnderrun();
 		}
-		bufferTalons();
+		
 		/*
 		 * just in case we are interrupting another MP and there is still buffer
 		 * points in memory, clear it.
 		 */
-		bufferTalons();
+		
 		talon.clearMotionProfileTrajectories();
 
 		/* This is fast since it's just into our TOP buffer */
-		bufferTalons();
+	
 		for (int i = 0; i < totalCnt; ++i) {
 			/* for each point, fill our structure and pass it to API */
 			
-			if(drivetrainSide == MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE) {
+			if(drivetrainSide == OutputManager.MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE) {
 				point.position = profile[i][0] * -1.0;
 				point.velocity = profile[i][1] * -1.0;
 			}
-			else if(drivetrainSide == MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE) {
+			else if(drivetrainSide == OutputManager.MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE) {
 				point.position = profile[i][0];
 				point.velocity = profile[i][1];
 			}
@@ -215,38 +199,17 @@ public class DriveMotionProfiler implements Runnable {
 				System.out.println("Last Point");
 			}
 
-			bufferTalons();
-			drivetrainSide = MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE;
-			OutputManager.getTalon(drivetrainSide).pushMotionProfileTrajectory(point);
-		
-			
-			drivetrainSide = MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE;
-			OutputManager.getTalon(drivetrainSide).pushMotionProfileTrajectory(point);
-		
+			OutputManager.pushMotionProfileTrajectory(point);
+	
 		}
 	
 	}
-	private static void bufferTalons(){
-		drivetrainSide = MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE;
 
-		OutputManager.getTalon(drivetrainSide).processMotionProfileBuffer();;
-		
-		drivetrainSide = MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE;
-
-		OutputManager.getTalon(drivetrainSide).processMotionProfileBuffer();;
-	
-	}
 	public static void init(){
 		
+		OutputManager.changeMotionControlFramePeriod();
+		
 		OutputManager.setDrivetrainMode(CANTalon.TalonControlMode.MotionProfile);
-		
-		drivetrainSide = MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE;
-		OutputManager.getTalon(drivetrainSide).clearMotionProfileTrajectories();
-	
-		
-		drivetrainSide = MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE;
-		OutputManager.getTalon(drivetrainSide).clearMotionProfileTrajectories();
-	
 		
 		OutputManager.endMotionProfiler();
 		OutputManager.profilerRun(false);

@@ -17,6 +17,7 @@ public class DSManager {
 	//METHODS FOR CONTROLLER ONE
 	
 	public static double getDriveXAxis(){
+		ds.getAlliance();
 		return stick.getRawAxis(Constants.DRIVE_X_AXIS_PORT);
 	}
 	public static double getDriveYAxis(){

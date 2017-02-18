@@ -52,8 +52,6 @@ public class MotionProfilingHandler {
 	 * service it.
 	 */
 	private boolean bStart = false;
-	
-	private boolean sideCheck = false;
 
 	/**
 	 * Since the CANTalon.set() routine is mode specific, deduce what we want

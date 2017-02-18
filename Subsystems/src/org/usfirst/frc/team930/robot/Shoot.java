@@ -1,5 +1,4 @@
 package org.usfirst.frc.team930.robot;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Shoot implements Runnable {

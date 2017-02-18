@@ -1,14 +1,9 @@
 package org.usfirst.frc.team930.robot;
 
-import com.ctre.CANTalon;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.sql.Time;
-
-import edu.wpi.first.wpilibj.PowerDistributionPanel;
-import edu.wpi.first.wpilibj.Spark;    //Imports necessary files 
 
 public class Loggable implements Runnable {
 

@@ -1,20 +1,13 @@
 package org.usfirst.frc.team930.robot;
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
-import com.ctre.CANTalon.MotionProfileStatus;
-import com.ctre.CANTalon.TalonControlMode;
-import java.lang.Object;
 
-import org.usfirst.frc.team930.robot.DriveMotionProfiler.MotionProfileDrivetrainSide;
+//import org.usfirst.frc.team930.robot.DriveMotionProfiler.MotionProfileDrivetrainSide;
 
-import edu.wpi.first.wpilibj.SensorBase;
 import edu.wpi.first.wpilibj.DigitalOutput;
-import edu.wpi.first.wpilibj.PWM;
-import edu.wpi.first.wpilibj.SafePWM;
-import edu.wpi.first.wpilibj.PWMSpeedController;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Spark;
-import edu.wpi.first.wpilibj.Talon;
+
 
 public class OutputManager {
 	
@@ -29,6 +22,13 @@ public class OutputManager {
 		 LIGHTS_INTAKE,
 		 LIGHTS_FUUN
 	 }
+	 
+	public enum MotionProfileDrivetrainSide {
+		
+		DRIVE_LEFT_SIDE,
+		DRIVE_RIGHT_SIDE
+		
+	}
 	 
 	 enum Motors {
 		 L1MASTER,
@@ -454,6 +454,7 @@ public static void endMotionProfiler(){
 		System.out.format("%s\n", "NOPROGRESS");
 		
 	}
+	
 	public static CANTalon getTalon(MotionProfileDrivetrainSide side){
 		if(side == MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE){
 			return L1Master;
@@ -465,10 +466,58 @@ public static void endMotionProfiler(){
 			return null;
 		}
 
-	}
+	} 
 	public static void profilerRun(boolean check){
 		
 		DriveMotionProfiler.isRunning = check;
 		
 	}
+	
+	public static void changeMotionControlFramePeriod(){
+		
+		L1Master.changeMotionControlFramePeriod(5);
+		R1Master.changeMotionControlFramePeriod(5);
+	
+	}
+	
+	public static void getMotionProfileStatus(CANTalon.MotionProfileStatus statusL, CANTalon.MotionProfileStatus statusR ){
+
+		OutputManager.getTalon(MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE).getMotionProfileStatus(statusL);
+
+		OutputManager.getTalon(MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE).getMotionProfileStatus(statusR);
+		
+	}
+	
+	public static void clearMotionProfileHasUnderrun(){
+
+		OutputManager.getTalon(MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE).clearMotionProfileHasUnderrun();
+
+		OutputManager.getTalon(MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE).clearMotionProfileHasUnderrun();
+	
+	}
+	
+	public static void pushMotionProfileTrajectory(CANTalon.TrajectoryPoint point){
+		
+		OutputManager.getTalon(MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE).pushMotionProfileTrajectory(point);
+
+		OutputManager.getTalon(MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE).pushMotionProfileTrajectory(point);
+	
+	}
+	
+	public  static void bufferTalons(){
+		
+		OutputManager.getTalon(MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE).processMotionProfileBuffer();;
+
+		OutputManager.getTalon(MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE).processMotionProfileBuffer();;
+	
+	}
+	
+	public static void clearMotionProfileTrajectories(){
+		
+		OutputManager.getTalon(MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE).clearMotionProfileTrajectories();;
+
+		OutputManager.getTalon(MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE).clearMotionProfileTrajectories();;
+		
+	}
+	
 }
