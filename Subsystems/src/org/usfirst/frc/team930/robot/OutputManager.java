@@ -7,6 +7,7 @@ import com.ctre.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class OutputManager {
@@ -202,6 +203,7 @@ public class OutputManager {
 		
 		shooter.set(speed);
 		shooterMotor2.set(speed);
+		SmartDashboard.putBoolean("isworking", true);
 		
 	}
 	
@@ -486,14 +488,11 @@ public static void endMotionProfiler(){
 	}
 	
 	public static void getMotionProfileStatus(CANTalon.MotionProfileStatus statusL, CANTalon.MotionProfileStatus statusR ){
-		
-		if(isRobotTeleop) {
-			
-			OutputManager.getTalon(MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE).getMotionProfileStatus(statusL);
+      
+		OutputManager.getTalon(MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE).getMotionProfileStatus(statusL);
 
-			OutputManager.getTalon(MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE).getMotionProfileStatus(statusR);
-			
-		}
+		OutputManager.getTalon(MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE).getMotionProfileStatus(statusR);
+		
 	}
 	
 	public static void clearMotionProfileHasUnderrun(){
