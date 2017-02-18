@@ -203,6 +203,10 @@ public class OutputManager {
 		
 		shooter.set(speed);
 		shooterMotor2.set(speed);
+<<<<<<< HEAD
+=======
+		SmartDashboard.putNumber("isworking", speed);
+>>>>>>> 4ed766156f84be78c7d9274c6adaa1aa9597202a
 		
 	}
 	
