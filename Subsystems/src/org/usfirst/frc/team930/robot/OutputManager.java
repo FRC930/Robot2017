@@ -391,7 +391,12 @@ public class OutputManager {
 		isRobotTeleop = true;
 			
 	}
-	
+	public static void disabledInit(){
+		
+		isRobotTeleop = false;
+		isRobotAuton = false;
+		
+	}
 	public static void autonomousInit(){
 			
 		isRobotTeleop = false;	
