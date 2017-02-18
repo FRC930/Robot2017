@@ -203,7 +203,7 @@ public class OutputManager {
 		
 		shooter.set(speed);
 		shooterMotor2.set(speed);
-		SmartDashboard.putBoolean("isworking", true);
+		SmartDashboard.putNumber("isworking", speed);
 		
 	}
 	
