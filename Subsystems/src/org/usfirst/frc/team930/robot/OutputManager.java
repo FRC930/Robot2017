@@ -457,7 +457,7 @@ public static void setDrivetrainMotionProfileMode(){
 	
 	public static boolean isRobotAuton(){
 		
-		return isRobotAuton;
+		return isRobotAuton;  
 		
 	}
 	
@@ -471,6 +471,7 @@ public static void endMotionProfiler(){
 		
 		frontLeftMotor.set(CANTalon.SetValueMotionProfile.Disable.value);
 		frontRightMotor.set(CANTalon.SetValueMotionProfile.Disable.value);
+		profilerRun(false);
 	
 	}
 	
@@ -499,9 +500,9 @@ public static void endMotionProfiler(){
 		}
 
 	}
-	public static boolean profilerRun(boolean check){
+	public static void profilerRun(boolean check){
 		
-		return check;
+		MotionProfilerSubsystem.isRunning = check;
 		
 	}
 }

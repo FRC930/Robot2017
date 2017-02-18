@@ -24,19 +24,25 @@ public class MotionProfilerSubsystem implements Runnable {
 	
 	private static final int kMinPointsInTalon = 5;
 		
-	private CANTalon.MotionProfileStatus status = new CANTalon.MotionProfileStatus();
+	private CANTalon.MotionProfileStatus statusL = new CANTalon.MotionProfileStatus();
 	
+	private CANTalon.MotionProfileStatus statusR = new CANTalon.MotionProfileStatus();
+
 	private static MotionProfileDrivetrainSide drivetrainSide;
+	
+	public static boolean isRunning = false;
+	
+	private static int state = 0;
 	
 	public void run (){
 		
 		/* Get the motion profile status every loop */
 		drivetrainSide = MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE;
-		OutputManager.getTalon(drivetrainSide).getMotionProfileStatus(status);
+		OutputManager.getTalon(drivetrainSide).getMotionProfileStatus(statusL);
 		
 		
 		drivetrainSide = MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE;
-		OutputManager.getTalon(drivetrainSide).getMotionProfileStatus(status);
+		OutputManager.getTalon(drivetrainSide).getMotionProfileStatus(statusR);
 		
 		/*
 		 * track time, this is rudimentary but that's okay, we just want to make
@@ -56,49 +62,73 @@ public class MotionProfilerSubsystem implements Runnable {
 				--loopTimeout;
 			}
 		}
-		
-		if (OutputManager.isRobotAuton() && OutputManager.profilerRun(true)){
-			bufferTalons();
-			OutputManager.setDrivetrainMotionProfileMode();
-			
-			bufferTalons();
-			
-			drivetrainSide = MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE;
-			OutputManager.getTalon(drivetrainSide).getMotionProfileStatus(status);
-			startFilling();
-			
-			bufferTalons();
-			
-			drivetrainSide = MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE;
-			OutputManager.getTalon(drivetrainSide).getMotionProfileStatus(status);
-			
-			startFilling();
-			
-			bufferTalons();
-			
-			if (status.btmBufferCnt > kMinPointsInTalon) {
-				/* start (once) the motion profile */
+		// && isRunning
+		if (OutputManager.isRobotAuton()){
+			switch (state) {
+			case 0: 
+				if(isRunning){
+					
+					OutputManager.endMotionProfiler();
+					
+					bufferTalons();
+					
+					drivetrainSide = MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE;
+					OutputManager.getTalon(drivetrainSide).getMotionProfileStatus(statusL);
+					startFilling();
+					
+					
+					
+					drivetrainSide = MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE;
+					OutputManager.getTalon(drivetrainSide).getMotionProfileStatus(statusR);
+					startFilling();
+					
+					state = 1;
+					loopTimeout = kNumLoopsTimeout;
+				}
+				break;
+			case 1:
 				
-				OutputManager.startMotionProfiler();
- 
-				/* MP will start once the control frame gets scheduled */
-		
-				loopTimeout = kNumLoopsTimeout;
+				bufferTalons();
+				drivetrainSide = MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE;
+				OutputManager.getTalon(drivetrainSide).getMotionProfileStatus(statusL);
 				
-				System.out.println((OutputManager.motionProfilerLeft.getSetValue()) + "          " + (OutputManager.motionProfilerRight.getSetValue()) + "          " + (Timer.getFPGATimestamp()));
+				drivetrainSide = MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE;
+				OutputManager.getTalon(drivetrainSide).getMotionProfileStatus(statusR);
+				
+				
+				if ((statusL.btmBufferCnt > kMinPointsInTalon) && (statusR.btmBufferCnt > kMinPointsInTalon)) {
+					/* start (once) the motion profile */
+					
+					OutputManager.startMotionProfiler();
+	 
+					/* MP will start once the control frame gets scheduled */
+			
+					loopTimeout = kNumLoopsTimeout;
+					state = 2;
+					
+					System.out.println((OutputManager.motionProfilerLeft.getSetValue()) + "          " + (OutputManager.motionProfilerRight.getSetValue()) + "          " + (Timer.getFPGATimestamp()));
+				}
+				
+				break;
+			case 2:
+				if ((statusL.isUnderrun == false) || (statusR.isUnderrun == false)) {
+					loopTimeout = kNumLoopsTimeout;
+				}
+				
+				if ((statusL.activePointValid && statusL.activePoint.isLastPoint) && (statusR.activePointValid && statusR.activePoint.isLastPoint)) {
+					/*
+					 * because we set the last point's isLast to true, we will
+					 * get here when the MP is done
+					 */
+					OutputManager.endMotionProfiler();
+					//state = 0;
+					loopTimeout = -1;
+					System.out.println("MP Done " + Timer.getFPGATimestamp());
+				}
+				
+				break;
 			}
 			
-			//OutputManager.startMotionProfiler();
-			if (status.activePointValid && status.activePoint.isLastPoint) {
-				/*
-				 * because we set the last point's isLast to true, we will
-				 * get here when the MP is done
-				 */
-				OutputManager.endMotionProfiler();
-				//state = 0;
-				loopTimeout = -1;
-				System.out.println("MP Done " + Timer.getFPGATimestamp());
-			}
 		}
 		
 	}
@@ -126,14 +156,18 @@ public class MotionProfilerSubsystem implements Runnable {
 		bufferTalons();
 		/* did we get an underrun condition since last time we checked ? */
 		bufferTalons();
-		if (status.hasUnderrun) {
+		if ((statusL.hasUnderrun) && (statusR.hasUnderrun)) {
 			/* better log it so we know about it */
 			OutputManager.OnUnderrun();
 			/*
 			 * clear the error. This flag does not auto clear, this way 
 			 * we never miss logging it.
 			 */
-			talon.clearMotionProfileHasUnderrun();
+			drivetrainSide = MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE;
+			OutputManager.getTalon(drivetrainSide).clearMotionProfileHasUnderrun();
+			
+			drivetrainSide = MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE;
+			OutputManager.getTalon(drivetrainSide).clearMotionProfileHasUnderrun();
 		}
 		bufferTalons();
 		/*
@@ -213,6 +247,8 @@ public class MotionProfilerSubsystem implements Runnable {
 		
 		OutputManager.endMotionProfiler();
 		OutputManager.profilerRun(false);
+		
+		state = 0;
 		
 	}
 	public static void OnNoProgress() {
