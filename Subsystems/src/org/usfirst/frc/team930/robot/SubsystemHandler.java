@@ -10,6 +10,7 @@ public class SubsystemHandler {
 		private final  Intake myIntake;
 		private final  Lights myLights;
 		private final  Elevator myElevator;
+		private final  MotionProfilerSubsystem myMP;
 		//private final  Loggable myLog;
 		
 		private final  Notifier driveNotifier;
@@ -18,6 +19,7 @@ public class SubsystemHandler {
 		private final  Notifier intakeNotifier;
 		private final  Notifier lightsNotifier;
 		private final  Notifier elevatorNotifier;
+		private final  Notifier MPNotifier;
 		//private final  Notifier logNotifier;
 		
 		public SubsystemHandler(){
@@ -28,6 +30,7 @@ public class SubsystemHandler {
 			myIntake = new Intake();
 			myLights = new Lights();
 			myElevator = new Elevator();
+			myMP = new MotionProfilerSubsystem();
 			//myLog = new Loggable();
 			
 			driveNotifier = new Notifier (myDrive); // Instantiates the notifiers for each subsystem
@@ -41,6 +44,8 @@ public class SubsystemHandler {
 			lightsNotifier = new Notifier (myLights);
 			
 			elevatorNotifier = new Notifier (myElevator);
+			
+			MPNotifier = new Notifier (myMP);
 			
 			//logNotifier = new Notifier (myLog);
 			
@@ -61,6 +66,8 @@ public class SubsystemHandler {
 			
 			lightsNotifier.startPeriodic(.025);
 			
+			MPNotifier.startPeriodic(0.005);
+			//talon.changeMotionControlFramePeriod(5);
 			
 			//logNotifier.startPeriodic(.005);
 			

@@ -1,8 +1,12 @@
 package org.usfirst.frc.team930.robot;
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
+import com.ctre.CANTalon.MotionProfileStatus;
 import com.ctre.CANTalon.TalonControlMode;
 import java.lang.Object;
+
+import org.usfirst.frc.team930.robot.MotionProfilerSubsystem.MotionProfileDrivetrainSide;
+
 import edu.wpi.first.wpilibj.SensorBase;
 import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.PWM;
@@ -25,6 +29,7 @@ public class OutputManager {
 		 LIGHTS_INTAKE,
 		 LIGHTS_FUUN
 	 }
+	 
 	 
 	 // Declaring Pins on RoboRio
 	private static	DigitalOutput lightPin0 = new DigitalOutput(0);
@@ -456,4 +461,40 @@ public static void setDrivetrainMotionProfileMode(){
 		
 	}
 	
+	public static void startMotionProfiler(){
+		
+		frontLeftMotor.set(CANTalon.SetValueMotionProfile.Enable.value);
+		frontRightMotor.set(CANTalon.SetValueMotionProfile.Enable.value);
+	
+	}
+	
+	public static void OnUnderrun() {
+		
+		
+		System.out.format("%s\n", "UNDERRUN");
+	
+	}
+	
+	public static void OnNoProgress() {
+		
+		System.out.format("%s\n", "NOPROGRESS");
+		
+	}
+	public static CANTalon getTalon(MotionProfileDrivetrainSide side){
+		if(side == MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE){
+			return frontLeftMotor;
+		}
+		else if(side == MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE){
+			return frontRightMotor;
+		}
+		else{
+			return null;
+		}
+
+	}
+	public static boolean profilerRun(boolean check){
+		
+		return check;
+		
+	}
 }

@@ -52,6 +52,8 @@ public class MotionProfilingHandler {
 	 * service it.
 	 */
 	private boolean bStart = false;
+	
+	private boolean sideCheck = false;
 
 	/**
 	 * Since the CANTalon.set() routine is mode specific, deduce what we want
@@ -85,6 +87,7 @@ public class MotionProfilingHandler {
 	    	//System.out.println("Running");
 	    }
 	}
+	
 	Notifier _notifer = new Notifier(new PeriodicRunnable());
 	
 
@@ -192,9 +195,12 @@ public class MotionProfilingHandler {
 					if (status.btmBufferCnt > kMinPointsInTalon) {
 						/* start (once) the motion profile */
 						setValue = CANTalon.SetValueMotionProfile.Enable;
+						
 						/* MP will start once the control frame gets scheduled */
 						state = 2;
 						loopTimeout = kNumLoopsTimeout;
+						
+						System.out.println((OutputManager.motionProfilerLeft.getSetValue()) + "          " + (OutputManager.motionProfilerRight.getSetValue()) + "          " + (Timer.getFPGATimestamp()));
 					}
 					break;
 				case 2: /* check the status of the MP */
@@ -313,7 +319,7 @@ public class MotionProfilingHandler {
 	void startMotionProfile() {
 		bStart = true;
 	}
-
+	
 	/**
 	 * 
 	 * @return the output value to pass to Talon's set() routine. 0 for disable
