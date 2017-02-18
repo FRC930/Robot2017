@@ -88,6 +88,8 @@ public class OutputManager {
 		
 		// Initializing motors
 		// Initializes Motors for drivetrain
+		
+
 		L1Master = new CANTalon(Constants.L1_MOTOR_CHANNEL, 5);
 		L2Slave = new CANTalon(Constants.L2_MOTOR_CHANNEL, 5);
 		L3Slave = new CANTalon(Constants.L3_MOTOR_CHANNEL, 5);
@@ -120,6 +122,14 @@ public class OutputManager {
 		
 		shooter = new CANTalon (Constants.SHOOTER_MOTOR_CHANNEL);
         shooterMotor2 = new CANTalon (Constants.SHOOTER_MOTOR_CHANNEL2);
+        //shooter.setF(1);
+        //shooter.setP(100);
+        //shooter.setD(0);
+        //shooter.setI(0);
+        //F1
+        //P100
+        //I
+        //d0
 		shooter.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
 		
 
@@ -210,6 +220,8 @@ public class OutputManager {
 	public static void setShooterSpeedMode(){
 		
 		shooter.changeControlMode(CANTalon.TalonControlMode.Speed);
+		shooterMotor2.changeControlMode(CANTalon.TalonControlMode.Follower);
+		shooterMotor2.set(Constants.SHOOTER_MOTOR_CHANNEL);
 		
 	}
 	
