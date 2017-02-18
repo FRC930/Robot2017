@@ -210,7 +210,10 @@ public class OutputManager {
 		
 		shooter.set(speed);
 		shooterMotor2.set(speed);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 154ed37b2593218d8c532f71c3e6f81f7ba6d8f2
 		
 	}
 	
