@@ -109,15 +109,26 @@ public class DriveMotionProfiler implements Runnable {
 				OutputManager.L1Master.getMotionProfileStatus(statusL);
 				OutputManager.R1Master.getMotionProfileStatus(statusR);
 				
-				if ((statusL.activePointValid && statusL.activePoint.isLastPoint) && (statusR.activePointValid && statusR.activePoint.isLastPoint)) {
+				if ((statusL.activePointValid && statusL.activePoint.isLastPoint)) {
 					/*
 					 * because we set the last point's isLast to true, we will
 					 * get here when the MP is done
 					 */
-					OutputManager.endMotionProfiler();
+					//OutputManager.endMotionProfiler();
 					//state = 0;
-					loopTimeout = -1;
-					System.out.println("MP Done " + Timer.getFPGATimestamp());
+					//loopTimeout = -1;
+					System.out.println("Left Done " + Timer.getFPGATimestamp());
+				}
+				
+				if ((statusR.activePointValid && statusR.activePoint.isLastPoint)) {
+					/*
+					 * because we set the last point's isLast to true, we will
+					 * get here when the MP is done
+					 */
+					//OutputManager.endMotionProfiler();
+					//state = 0;
+					//loopTimeout = -1;
+					System.out.println("Right Done " + Timer.getFPGATimestamp());
 				}
 				
 				break;
