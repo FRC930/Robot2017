@@ -171,6 +171,9 @@ public class DriveMotionProfiler implements Runnable {
 		int totalCnt = GeneratedMotionProfileRight.kNumPoints;
 		
 		for (int i = 0; i < totalCnt; ++i) {
+			OutputManager.L1Master.processMotionProfileBuffer();
+			OutputManager.R1Master.processMotionProfileBuffer();
+			
 			/* for each point, fill our structure and pass it to API */
 			
 			point.position = profile[i][0];
@@ -216,6 +219,9 @@ public class DriveMotionProfiler implements Runnable {
 		totalCnt = GeneratedMotionProfileLeft.kNumPoints;
 		
 		for (int i = 0; i < totalCnt; ++i) {
+			OutputManager.L1Master.processMotionProfileBuffer();
+			OutputManager.R1Master.processMotionProfileBuffer();
+			
 			/* for each point, fill our structure and pass it to API */
 			
 			point.position = profile[i][0] * -1.0;
