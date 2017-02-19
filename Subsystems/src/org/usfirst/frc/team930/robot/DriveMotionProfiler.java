@@ -114,7 +114,7 @@ public class DriveMotionProfiler implements Runnable {
 	}
 	private void startFilling() {
 		/* since this example only has one talon, just update that one */
-		
+		/*
 		drivetrainSide = OutputManager.MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE;
 			startFilling(GeneratedMotionProfileRight.Points, GeneratedMotionProfileRight.kNumPoints);
 			//System.out.println("Right Side");
@@ -122,19 +122,14 @@ public class DriveMotionProfiler implements Runnable {
 		drivetrainSide = OutputManager.MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE;
 			startFilling(GeneratedMotionProfileLeft.Points, GeneratedMotionProfileLeft.kNumPoints);
 			//System.out.println("Left Side");
-		//}
+		//}*/
 		
-		
-	}
-
-	private void startFilling(double[][] profile, int totalCnt) {
-			
 		/* create an empty point */
 		CANTalon.TrajectoryPoint point = new CANTalon.TrajectoryPoint();
 
 		/* did we get an underrun condition since last time we checked ? */
 	
-		if ((OutputManager.isLeftStatusUnderrun()) && (OutputManager.isRightStatusUnderrun())) {
+		if ((OutputManager.isLeftStatusUnderrun()) || (OutputManager.isRightStatusUnderrun())) {
 		
 			/* better log it so we know about it */
 			OutputManager.OnUnderrun();
@@ -152,25 +147,16 @@ public class DriveMotionProfiler implements Runnable {
 		 */
 		
 		OutputManager.clearMotionProfileTrajectories();
-
-		/* This is fast since it's just into our TOP buffer */
-	
+		
+		double[][] profile = GeneratedMotionProfileRight.Points;
+		
+		int totalCnt = GeneratedMotionProfileRight.kNumPoints;
+		
 		for (int i = 0; i < totalCnt; ++i) {
 			/* for each point, fill our structure and pass it to API */
 			
-			if(drivetrainSide == OutputManager.MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE) {
-			
-				point.position = profile[i][0] * -1.0;
-				point.velocity = profile[i][1] * -1.0;
-			
-			}
-			
-			else if(drivetrainSide == OutputManager.MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE) {
-			
-				point.position = profile[i][0];
-				point.velocity = profile[i][1];
-			
-			}
+			point.position = profile[i][0];
+			point.velocity = profile[i][1];
 			
 			point.timeDurMs = (int) profile[i][2];
 			point.profileSlotSelect = 0; /* which set of gains would you like to use? */
@@ -203,6 +189,133 @@ public class DriveMotionProfiler implements Runnable {
 			
 			}
 			
+			OutputManager.pushMotionProfileTrajectoryRight(point);
+			
+		}
+		
+		profile = GeneratedMotionProfileLeft.Points;
+		
+		totalCnt = GeneratedMotionProfileLeft.kNumPoints;
+		
+		for (int i = 0; i < totalCnt; ++i) {
+			/* for each point, fill our structure and pass it to API */
+			
+			point.position = profile[i][0] * -1.0;
+			point.velocity = profile[i][1] * -1.0;
+			
+			point.timeDurMs = (int) profile[i][2];
+			point.profileSlotSelect = 0; /* which set of gains would you like to use? */
+			point.velocityOnly = false; /* set true to not do any position
+										 * servo, just velocity feedforward
+										 */
+			System.out.println("i Value: " + i);
+			point.zeroPos = false;
+			
+			if (i == 0)
+				
+				point.zeroPos = true; /* set this to true on the first point */
+			
+			if (i >= (totalCnt - 25))point.velocityOnly = true;
+			
+			if (i == (totalCnt - 8)) {
+			
+				point.isLastPoint = true;
+				point.zeroPos = true;
+			
+			}
+			
+			point.isLastPoint = false;
+			
+			if ((i + 1) >= totalCnt) {
+			
+				point.velocityOnly = true;
+				point.isLastPoint = true; /* set this to true on the last point  */
+				System.out.println("Last Point");
+			
+			}
+			
+			OutputManager.pushMotionProfileTrajectoryLeft(point);
+			
+		}
+		
+	}
+
+	/*private void startFilling(double[][] profile, int totalCnt) {
+			
+		/* create an empty point 
+		CANTalon.TrajectoryPoint point = new CANTalon.TrajectoryPoint();
+
+		 did we get an underrun condition since last time we checked ? 
+	
+		if ((OutputManager.isLeftStatusUnderrun()) && (OutputManager.isRightStatusUnderrun())) {
+		
+			 better log it so we know about it 
+			OutputManager.OnUnderrun();
+			
+			 * clear the error. This flag does not auto clear, this way 
+			 * we never miss logging it.
+			 
+			OutputManager.clearMotionProfileHasUnderrun();
+			
+		}
+		
+		
+		 * just in case we are interrupting another MP and there is still buffer
+		 * points in memory, clear it.
+		 
+		
+		OutputManager.clearMotionProfileTrajectories();
+
+		 This is fast since it's just into our TOP buffer 
+	
+		for (int i = 0; i < totalCnt; ++i) {
+			 for each point, fill our structure and pass it to API 
+			
+			if(drivetrainSide == OutputManager.MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE) {
+			
+				point.position = profile[i][0] * -1.0;
+				point.velocity = profile[i][1] * -1.0;
+			
+			}
+			
+			else if(drivetrainSide == OutputManager.MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE) {
+			
+				point.position = profile[i][0];
+				point.velocity = profile[i][1];
+			
+			}
+			
+			point.timeDurMs = (int) profile[i][2];
+			point.profileSlotSelect = 0;  which set of gains would you like to use? 
+			point.velocityOnly = false;  set true to not do any position
+										 * servo, just velocity feedforward
+										 
+			System.out.println("i Value: " + i);
+			point.zeroPos = false;
+			
+			if (i == 0)
+				
+				point.zeroPos = true;  set this to true on the first point 
+			
+			if (i >= (totalCnt - 25))point.velocityOnly = true;
+			
+			if (i == (totalCnt - 8)) {
+			
+				point.isLastPoint = true;
+				point.zeroPos = true;
+			
+			}
+			
+			point.isLastPoint = false;
+			
+			if ((i + 1) >= totalCnt) {
+			
+				point.velocityOnly = true;
+				point.isLastPoint = true;  set this to true on the last point  
+				System.out.println("Last Point");
+			
+			}
+			
 			if(drivetrainSide == OutputManager.MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE) {
 			
 				OutputManager.pushMotionProfileTrajectoryLeft(point);
@@ -215,9 +328,9 @@ public class DriveMotionProfiler implements Runnable {
 			
 			}
 			
-		}
+		}*/
 	
-	}
+	//}
 
 	public static void init(){
 		

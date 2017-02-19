@@ -528,7 +528,7 @@ public static void endMotionProfiler(){
 
 	}
 	
-	public static void pushMotionProgileTrajectoryRight(CANTalon.TrajectoryPoint point) {
+	public static void pushMotionProfileTrajectoryRight(CANTalon.TrajectoryPoint point) {
 		
 		R1Master.pushMotionProfileTrajectory(point);
 	
