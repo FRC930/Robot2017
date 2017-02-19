@@ -98,7 +98,7 @@ public class Main {
       // Remember that this is for the GO LEFT CASE!                 
       WaypointSequence p = new WaypointSequence(10);
       p.addWaypoint(new WaypointSequence.Waypoint(0, 0, 0));
-      p.addWaypoint(new WaypointSequence.Waypoint(10.0, 0, 0));
+      p.addWaypoint(new WaypointSequence.Waypoint(5.0, 0, 0));
       //p.addWaypoint(new WaypointSequence.Waypoint(6.033, 0.5125, Math.toRadians(28)));
       //p.addWaypoint(new WaypointSequence.Waypoint(7.0, 6.5, Math.toRadians(100)));
       //p.addWaypoint(new WaypointSequence.Waypoint(12.0, 9, Math.toRadians(89)));//Math.PI/2.0));
