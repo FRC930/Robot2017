@@ -52,6 +52,9 @@ public class DriveMotionProfiler implements Runnable {
 		// && isRunning
 		if (OutputManager.isRobotAuton()){
 			
+			OutputManager.L1Master.processMotionProfileBuffer();
+			OutputManager.R1Master.processMotionProfileBuffer();
+			
 			switch (state) {
 			
 			case 0: 
