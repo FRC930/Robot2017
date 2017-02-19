@@ -1,6 +1,8 @@
 
 package org.usfirst.frc.team930.robot;
 
+import com.ctre.CANTalon;
+
 import edu.wpi.first.wpilibj.IterativeRobot;
 
 public class Robot extends IterativeRobot {
@@ -71,6 +73,7 @@ public class Robot extends IterativeRobot {
     public void teleopInit(){
     	//OutputManager.setShooterSpeedMode();
     	OutputManager.setShooterPercentVbusMode();
+    	OutputManager.setDrivetrainMode(CANTalon.TalonControlMode.PercentVbus);
     }
     public void teleopPeriodic() {
         OutputManager.teleopInit();
