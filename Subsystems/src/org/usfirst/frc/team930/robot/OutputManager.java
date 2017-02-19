@@ -58,10 +58,10 @@ public class OutputManager {
 	// Declaring robot motors
 	// 6 Drivetrain motor declarations
 	
-	private static CANTalon L1Master; 	
+	public static CANTalon L1Master; 	
 	private static CANTalon L2Slave;
 	private static CANTalon L3Slave;
-	private static CANTalon R1Master;
+	public static CANTalon R1Master;
 	private static CANTalon R2Slave;
 	private static CANTalon R3Slave; 
 		

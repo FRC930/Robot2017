@@ -12,6 +12,10 @@ public class DriveMotionProfiler implements Runnable {
 	private static final int kNumLoopsTimeout = 10;
 	
 	private static final int kMinPointsInTalon = 5;
+	
+	private CANTalon.MotionProfileStatus statusL = new CANTalon.MotionProfileStatus();
+	
+	private CANTalon.MotionProfileStatus statusR = new CANTalon.MotionProfileStatus();
 		
 	private static OutputManager.MotionProfileDrivetrainSide drivetrainSide;
 	
@@ -24,7 +28,8 @@ public class DriveMotionProfiler implements Runnable {
 		
 		/* Get the motion profile status every loop */
 		
-		
+		OutputManager.L1Master.getMotionProfileStatus(statusL);
+		OutputManager.R1Master.getMotionProfileStatus(statusR);
 
 		/*
 		 * track time, this is rudimentary but that's okay, we just want to make
@@ -55,7 +60,8 @@ public class DriveMotionProfiler implements Runnable {
 					
 					OutputManager.endMotionProfiler();
 					
-					OutputManager.bufferTalons();
+					OutputManager.L1Master.processMotionProfileBuffer();
+					OutputManager.R1Master.processMotionProfileBuffer();					
 					
 					startFilling();
 					
@@ -69,10 +75,13 @@ public class DriveMotionProfiler implements Runnable {
 			case 1:
 			
 
-				System.out.println("Right BufferCnt: " + OutputManager.GetBtmBufferCntRight());
-				System.out.println("Left BufferCnt: " + OutputManager.GetBtmBufferCntLeft());
-
-				if ((OutputManager.GetBtmBufferCntRight() > kMinPointsInTalon) && (OutputManager.GetBtmBufferCntLeft() > kMinPointsInTalon)) {
+				OutputManager.L1Master.getMotionProfileStatus(statusL);
+				OutputManager.R1Master.getMotionProfileStatus(statusR);
+				
+				System.out.println("Right BufferCnt: " + statusR.btmBufferCnt);
+				System.out.println("Left BufferCnt: " + statusL.btmBufferCnt);
+				
+				if ((statusL.btmBufferCnt > kMinPointsInTalon) && (statusR.btmBufferCnt > kMinPointsInTalon)) {
 
 					/* start (once) the motion profile */
 					
@@ -90,11 +99,17 @@ public class DriveMotionProfiler implements Runnable {
 				
 			case 2:
 				
-				if (!OutputManager.isLeftStatusUnderrun() || !OutputManager.isRightStatusUnderrun()) {
+				OutputManager.L1Master.getMotionProfileStatus(statusL);
+				OutputManager.R1Master.getMotionProfileStatus(statusR);
+				
+				if (!statusL.isUnderrun || !statusR.isUnderrun) {
 					loopTimeout = kNumLoopsTimeout;
 				}
 				
-				if ((OutputManager.isLeftActivePointValid()) && (OutputManager.isRightActivePointValid())) {
+				OutputManager.L1Master.getMotionProfileStatus(statusL);
+				OutputManager.R1Master.getMotionProfileStatus(statusR);
+				
+				if ((statusL.activePointValid && statusL.activePoint.isLastPoint) && (statusR.activePointValid && statusR.activePoint.isLastPoint)) {
 					/*
 					 * because we set the last point's isLast to true, we will
 					 * get here when the MP is done
@@ -129,7 +144,10 @@ public class DriveMotionProfiler implements Runnable {
 
 		/* did we get an underrun condition since last time we checked ? */
 	
-		if ((OutputManager.isLeftStatusUnderrun()) || (OutputManager.isRightStatusUnderrun())) {
+		OutputManager.L1Master.getMotionProfileStatus(statusL);
+		OutputManager.R1Master.getMotionProfileStatus(statusR);
+		
+		if ((statusL.hasUnderrun) || (statusR.hasUnderrun)) {
 		
 			/* better log it so we know about it */
 			OutputManager.OnUnderrun();
