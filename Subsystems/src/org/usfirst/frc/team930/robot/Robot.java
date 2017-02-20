@@ -90,5 +90,8 @@ public class Robot extends IterativeRobot {
     public void testPeriodic() {
     
     }
+    public void disabledInit() {
+        OutputManager.switchTeleopBool();
+    }
     
 }

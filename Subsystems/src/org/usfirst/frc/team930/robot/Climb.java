@@ -24,7 +24,7 @@ public class Climb implements Runnable {
 			*/
 			SmartDashboard.putNumber("Climb Motor Current", OutputManager.getPDPChannelCurrent(Constants.PDP_CHANNEL5));
 			
-			System.out.println("Climb Motor Current" + OutputManager.getPDPChannelCurrent(Constants.PDP_CHANNEL5));
+			//System.out.println("Climb Motor Current" + OutputManager.getPDPChannelCurrent(Constants.PDP_CHANNEL5));
 			
 			OutputManager.setClimberSpeed(DSManager.getCoDriveYAxis());
 			
