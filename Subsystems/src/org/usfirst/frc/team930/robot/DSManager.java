@@ -52,7 +52,7 @@ public class DSManager {
 		}
 	}
 	public static double getDriveElevatorTrigger(){
-		if(stick.getRawAxis(Constants.RAW_AXIS_TRIGGER_LEFT) > 0.09){
+		if(stick.getRawAxis(Constants.RAW_AXIS_TRIGGER_LEFT) > 0.1){
 			return stick.getRawAxis(Constants.RAW_AXIS_TRIGGER_LEFT);
 		}
 		else {

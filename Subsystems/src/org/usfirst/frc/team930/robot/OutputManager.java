@@ -92,8 +92,7 @@ public class OutputManager {
 	public static void init(){
 		
 		// Initializing motors
-		// Initializes Motors for drivetrain
-		
+		// Initializes Motors for drivetrain	
 
 		L1Master = new CANTalon(Constants.L1_MOTOR_CHANNEL, 5);
 		L2Slave = new CANTalon(Constants.L2_MOTOR_CHANNEL, 5);
@@ -140,7 +139,6 @@ public class OutputManager {
 
         //motionProfilerLeft = new MotionProfilingHandler(OutputManager.getL1(), MotionProfilingHandler.MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE);
         //motionProfilerRight = new MotionProfilingHandler(OutputManager.getR1(), MotionProfilingHandler.MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE);       
-
 
 		// Spark Range is 2.003 ms Full Forward - .999 ms Full Reverse
 		intake = new Spark (Constants.INTAKE_MOTOR_CHANNEL);
@@ -580,6 +578,18 @@ public static void endMotionProfiler(){
 		
 		return statusR.isUnderrun;
 		
+	}
+	public static void switchTeleopBool(){
+		if (isRobotTeleop)
+			isRobotTeleop = false;
+		else
+			isRobotTeleop = true;
+	}
+	public static void switchAutonBool(){
+		if (isRobotAuton)
+			isRobotAuton = false;
+		else
+			isRobotAuton = true;
 	}
 	
 	public static boolean isRightActivePointValid(){

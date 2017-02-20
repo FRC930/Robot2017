@@ -83,7 +83,7 @@ public class Robot extends IterativeRobot {
     public void testPeriodic() {
     
     }
-    public void disabledInit(){
+   public void disabledInit(){
     	OutputManager.disabledInit();
     	OutputManager.setShooterSpeed(0);
     }

@@ -16,7 +16,7 @@ public class Elevator implements Runnable{
 
 			}
 			else if(DSManager.getCoDriveRawButtonEight()){
-				OutputManager.setSpeedElevator(1.0);
+				OutputManager.setSpeedElevator(1.0); 	
 				
 			}
 			else {
