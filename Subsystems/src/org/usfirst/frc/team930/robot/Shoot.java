@@ -23,10 +23,10 @@ public class Shoot implements Runnable {
 				//OutputManager.setShooterDisabledMode();
 				//OutputManager.setShooterSpeed(0.0);
 			}
-			if (DSManager.getCoDriveIncrementShootTrigger()){
+			if (DSManager.increaseShooterSpeed()){
 				shooterSpeed -= .025;
 			}
-			if (DSManager.getCoDriveDecrementShootTrigger()){
+			if (DSManager.decreaseShooterSpeed()){
 				shooterSpeed += .025;
 			}
 

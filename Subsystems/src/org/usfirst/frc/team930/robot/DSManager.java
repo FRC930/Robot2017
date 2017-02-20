@@ -14,8 +14,8 @@ public class DSManager {
 	private static Joystick stick = new Joystick(Constants.JOYSTICK_ONE_PORT);
 	private static Joystick stick2 = new Joystick(Constants.JOYSTICK_TWO_PORT);
 	
-	private static boolean dumbbool = false;
-	private static boolean dumbbool2 = false;
+	private static boolean increaseShooterSpeedBool = false;
+	private static boolean decreaseShooterSpeedBool = false;
 	//METHODS FOR CONTROLLER ONE
 	
 	public static double getDriveXAxis(){
@@ -71,6 +71,12 @@ public class DSManager {
 	public static boolean getCoDriveRawButtonOne(){
 		return stick2.getRawButton(Constants.RAW_BUTTON_ONE_PORT);
 	}
+	public static boolean getCoDriveRawButtonTwo(){
+		return stick2.getRawButton(Constants.RAW_BUTTON_TWO_PORT);
+	}
+	public static boolean getCoDriveRawButtonThree(){
+		return stick2.getRawButton(Constants.RAW_BUTTON_THREE_PORT);
+	}
 	public static boolean getCoDriveRawButtonFive(){
 		return stick2.getRawButton(Constants.RAW_BUTTON_FIVE_PORT);
 	}
@@ -91,25 +97,25 @@ public class DSManager {
 			return false;
 		}
 	}
-	public static boolean getCoDriveIncrementShootTrigger(){
-		if( stick2.getRawButton(Constants.RAW_BUTTON_TWO_PORT) && !dumbbool){
-			dumbbool = true;
-			return false;
+	public static boolean increaseShooterSpeed(){
+		if( getCoDriveRawButtonTwo() && !increaseShooterSpeedBool){
+			increaseShooterSpeedBool = true;
+			return !increaseShooterSpeedBool;
 		}
-		else if (!stick2.getRawButton(Constants.RAW_BUTTON_TWO_PORT) && dumbbool){
-			dumbbool = false;
-			return true;
+		else if (!getCoDriveRawButtonTwo() && increaseShooterSpeedBool){
+			increaseShooterSpeedBool = false;
+			return !increaseShooterSpeedBool;
 		}
 		return false;
 	}
-	public static boolean getCoDriveDecrementShootTrigger(){
-		if( stick2.getRawButton(Constants.RAW_BUTTON_THREE_PORT) && !dumbbool2){
-			dumbbool2 = true;
-			return false;
+	public static boolean decreaseShooterSpeed(){
+		if( getCoDriveRawButtonThree() && !decreaseShooterSpeedBool){
+			decreaseShooterSpeedBool = true;
+			return !decreaseShooterSpeedBool;
 		}
-		else if (!stick2.getRawButton(Constants.RAW_BUTTON_THREE_PORT) && dumbbool2){
-			dumbbool2 = false;
-			return true;
+		else if (!getCoDriveRawButtonThree() && decreaseShooterSpeedBool){
+			decreaseShooterSpeedBool = false;
+			return !decreaseShooterSpeedBool;
 		}
 		return false;
 	}
