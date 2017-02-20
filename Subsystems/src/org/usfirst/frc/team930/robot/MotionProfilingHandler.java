@@ -3,6 +3,7 @@ package org.usfirst.frc.team930.robot;
 import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.Notifier;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.ctre.CANTalon.TalonControlMode;
 
@@ -80,8 +81,12 @@ public class MotionProfilingHandler {
 	 * every 10ms.
 	 */
 	class PeriodicRunnable implements java.lang.Runnable {
-	    public void run() {  talon.processMotionProfileBuffer();    }
+	    public void run() {  
+	    	talon.processMotionProfileBuffer();
+	    	//System.out.println("Running");
+	    }
 	}
+	
 	Notifier _notifer = new Notifier(new PeriodicRunnable());
 	
 
@@ -186,12 +191,16 @@ public class MotionProfilingHandler {
 						 * points
 						 */
 					/* do we have a minimum numberof points in Talon */
+					SmartDashboard.putNumber("BufferCount : ", status.btmBufferCnt);
 					if (status.btmBufferCnt > kMinPointsInTalon) {
 						/* start (once) the motion profile */
 						setValue = CANTalon.SetValueMotionProfile.Enable;
+						
 						/* MP will start once the control frame gets scheduled */
 						state = 2;
 						loopTimeout = kNumLoopsTimeout;
+						
+						//System.out.println((OutputManager.motionProfilerLeft.getSetValue()) + "          " + (OutputManager.motionProfilerRight.getSetValue()) + "          " + (Timer.getFPGATimestamp()));
 					}
 					break;
 				case 2: /* check the status of the MP */
@@ -213,9 +222,10 @@ public class MotionProfilingHandler {
 						 * because we set the last point's isLast to true, we will
 						 * get here when the MP is done
 						 */
-						setValue = CANTalon.SetValueMotionProfile.Hold;
-						state = 0;
+						setValue = CANTalon.SetValueMotionProfile.Disable;
+						//state = 0;
 						loopTimeout = -1;
+						System.out.println("MP Done " + Timer.getFPGATimestamp());
 					}
 					break;
 			}
@@ -283,13 +293,20 @@ public class MotionProfilingHandler {
 			point.zeroPos = false;
 			if (i == 0)
 				point.zeroPos = true; /* set this to true on the first point */
-
-			if(totalCnt == 207)
+			
+			if (i >= (totalCnt - 25))point.velocityOnly = true;
+			
+			if (i == (totalCnt - 8)) {
+				point.isLastPoint = true;
 				point.zeroPos = true;
+			}
 			
 			point.isLastPoint = false;
-			if ((i + 1) == totalCnt)
+			if ((i + 1) >= totalCnt) {
+				point.velocityOnly = true;
 				point.isLastPoint = true; /* set this to true on the last point  */
+				System.out.println("Last Point");
+			}
 
 			talon.pushMotionProfileTrajectory(point);
 		}
@@ -302,7 +319,7 @@ public class MotionProfilingHandler {
 	void startMotionProfile() {
 		bStart = true;
 	}
-
+	
 	/**
 	 * 
 	 * @return the output value to pass to Talon's set() routine. 0 for disable

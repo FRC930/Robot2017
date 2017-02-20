@@ -1,67 +1,47 @@
 package org.usfirst.frc.team930.robot;
 
-import com.ctre.CANTalon;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.sql.Time;
-
-import edu.wpi.first.wpilibj.PowerDistributionPanel;
-import edu.wpi.first.wpilibj.Spark;
 
 public class Loggable implements Runnable {
 
-	String rearLeftMotorSpeed = "";
-	String rearRightMotorSpeed = "";
+	  // Creates strings to use for ease of importing motor encoder values
 	String frontRightMotorSpeed = "";
 	String frontLeftMotorSpeed = "";
-	String leftSlaveMotorSpeed = "";
-	String rightSlaveMotorSpeed = "";
 	String shooterMotorSpeed = "";
 	String intakeMotorSpeed = "";
 	String climberMotorSpeed = "";
-	String feederMotorSpeed = "";
+	String elevatorMotorSpeed = "";
 	private static BufferedWriter bwriter;
 	private static File file;
 	
 
 	public void run() {
 
-		// Gets values from output manager to pass to .txt -> .xl
-		rearLeftMotorSpeed = Double.toString(OutputManager.getTalonSpeedRearLeftMotor());
-		rearRightMotorSpeed = Double.toString(OutputManager.getTalonSpeedRearRightMotor());
-		frontRightMotorSpeed = Double.toString(OutputManager.getTalonSpeedFrontRightMotor());
-		frontLeftMotorSpeed = Double.toString(OutputManager.getTalonSpeedFrontLeftMotor());
-		leftSlaveMotorSpeed = Double.toString(OutputManager.getTalonSpeedLeftSlave());
-		rightSlaveMotorSpeed = Double.toString(OutputManager.getTalonSpeedRightSlave());
-		shooterMotorSpeed = Double.toString(OutputManager.getTalonShooterMotor());
-		intakeMotorSpeed = Double.toString(OutputManager.getSparkSpeedIntake());
-		climberMotorSpeed = Double.toString(OutputManager.getSparkSpeedClimber());
-		feederMotorSpeed = Double.toString(OutputManager.getSparkSpeedElevator());
+		// Gets values from output manager to pass to .csv
+		frontLeftMotorSpeed = Double.toString(OutputManager.getFeedbackSpeed(OutputManager.Motors.L1MASTER));
+		frontRightMotorSpeed = Double.toString(OutputManager.getFeedbackSpeed(OutputManager.Motors.R1MASTER));
+		climberMotorSpeed = Double.toString(OutputManager.getCommandedSpeed(OutputManager.Motors.CLIMBER));
+		elevatorMotorSpeed = Double.toString(OutputManager.getCommandedSpeed(OutputManager.Motors.ELEVATOR));
+		intakeMotorSpeed = Double.toString(OutputManager.getCommandedSpeed(OutputManager.Motors.INTAKE));
+		shooterMotorSpeed = Double.toString(OutputManager.getFeedbackSpeed(OutputManager.Motors.SHOOTER));
 
 		// Creates writer, and reports errors.
 
-		try {
-			bwriter.write(rearLeftMotorSpeed + ", ");
-			
-			bwriter.write(rearRightMotorSpeed + ", ");
-			
+		try {			
 			bwriter.write(frontRightMotorSpeed + ", ");
 			
 			bwriter.write(frontLeftMotorSpeed + ", ");
-			
-			bwriter.write(leftSlaveMotorSpeed + ", ");
-			
-			bwriter.write(rightSlaveMotorSpeed + ", ");
-			
+									
 			bwriter.write(shooterMotorSpeed + ", ");
 			
 			bwriter.write(intakeMotorSpeed + ", ");
 			
 			bwriter.write(climberMotorSpeed + ", ");
 			
-			bwriter.write(feederMotorSpeed + ", ");
+			bwriter.write(elevatorMotorSpeed + ", ");
 			bwriter.newLine();
 			
 			
@@ -73,12 +53,9 @@ public class Loggable implements Runnable {
 		}
 
 	}
-
+	// In the init method it creates one file that has all the data, and labels each set of values within the file
 	public static void init() {
-		System.out.println(
-				"\nJust wrote 10 lines BROOOOOOOOOOOOOO\n----------------------------------------------------------------\n---------------------------------------------------------------------\n----------------------------------------------------------------------------\n");
-		try
-    	{
+		try {
     		file = new File("DataLogging" + File.separator + System.currentTimeMillis() + "ShooterSpeed.csv");
     		bwriter = new BufferedWriter(new FileWriter(file));
     		

@@ -1,28 +1,13 @@
 
 package org.usfirst.frc.team930.robot;
 
-
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-
 import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.PowerDistributionPanel;
-import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends IterativeRobot {
 
 	SubsystemHandler SH;
-	
-	MotionProfilingHandler motionProfilerLeft;
-	MotionProfilingHandler motionProfilerRight;
-	
-	PowerDistributionPanel pdp = new PowerDistributionPanel();
 
     public void robotInit() {
     	 	
@@ -33,37 +18,42 @@ public class Robot extends IterativeRobot {
         SH = new SubsystemHandler(); // Begins the SystemHandler, which controls the speeds at which the subsystems are updated.
         SH.startSubsystems();
         
-      /**  
-        motionProfilerLeft = new MotionProfilingHandler(OutputManager.getL1(), MotionProfilingHandler.MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE);
-        motionProfilerRight = new MotionProfilingHandler(OutputManager.getR1(), MotionProfilingHandler.MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE);       
-
-        **/
+       
+       // OutputManager.motionProfilerLeft = new MotionProfilingHandler(OutputManager.getL1(), MotionProfilingHandler.MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE);
+       // OutputManager.motionProfilerRight = new MotionProfilingHandler(OutputManager.getR1(), MotionProfilingHandler.MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE);
+        
     }
     
     public void autonomousInit() {
     	
-    	OutputManager.autonomousInit();
+    	// COMMENTED THIS OUT SO AUTONOMOUS WOULD NOT RUN
+    	//OutputManager.autonomousInit();
     	
-    	/**	    	OutputManager.setDrivetrainMotionProfileMode();
+    	//OutputManager.motionProfilerLeft.reset();
+    	//OutputManager.motionProfilerRight.reset();
+    	DriveMotionProfiler.init();
+    	    	
+    	//OutputManager.setDrivetrainMotionProfileMode();
     	
-	    motionProfilerLeft.control();
-		motionProfilerRight.control();
+    	//OutputManager.motionProfilerLeft.control();
+    	//OutputManager.motionProfilerRight.control();
+    	OutputManager.profilerRun(true);
     	
-		CANTalon.SetValueMotionProfile setOutputLeft = motionProfilerLeft.getSetValue();
-		OutputManager.setLeftDrivetrainCustomMode(setOutputLeft);
+		//CANTalon.SetValueMotionProfile setOutputLeft = OutputManager.motionProfilerLeft.getSetValue();
+		//OutputManager.setLeftDrivetrainCustomMode(setOutputLeft);
 		
-		CANTalon.SetValueMotionProfile setOutputRight = motionProfilerRight.getSetValue();
-		OutputManager.setRightDrivetrainCustomMode(setOutputRight);
+		//CANTalon.SetValueMotionProfile setOutputRight = OutputManager.motionProfilerRight.getSetValue();
+		//OutputManager.setRightDrivetrainCustomMode(setOutputRight);
     	
-		motionProfilerLeft.startMotionProfile();
-		motionProfilerRight.startMotionProfile(); */
+		//OutputManager.motionProfilerLeft.startMotionProfile();
+		//OutputManager.motionProfilerRight.startMotionProfile();
 
     }
 
     public void autonomousPeriodic() {
     	OutputManager.setLights(OutputManager.LightPatterns.LIGHTS_AUTO);
     	
-    	/**
+    	/*
     	CANTalon.SetValueMotionProfile setOutputLeft = motionProfilerLeft.getSetValue();
 		OutputManager.setLeftDrivetrainCustomMode(setOutputLeft);
 		
@@ -72,8 +62,7 @@ public class Robot extends IterativeRobot {
     	
     	motionProfilerLeft.control();
 		motionProfilerRight.control();
-
-		**/
+    	 */
 	//	System.out.println((OutputManager.frontLeftMotor.getSpeed()) + "," + (OutputManager.frontLeftMotor.getClosedLoopError()) + "," + OutputManager.frontLeftMotor.getOutputVoltage() + "," + pdp.getCurrent(15) + "," + pdp.getVoltage() + "," + OutputManager.frontLeftMotor.getBusVoltage() + "," + (OutputManager.frontRightMotor.getSpeed()) + "," + (OutputManager.frontRightMotor.getClosedLoopError()) + "," + OutputManager.frontRightMotor.getOutputVoltage() + "," + pdp.getCurrent(0) + "," + pdp.getVoltage() + "," + OutputManager.frontRightMotor.getBusVoltage() + "," + Timer.getFPGATimestamp());
 		
 		/*
@@ -82,7 +71,11 @@ public class Robot extends IterativeRobot {
 		 * I: 0.0003
 		 */
     }
-
+    public void teleopInit(){
+    	//OutputManager.setShooterSpeedMode();
+    	OutputManager.setShooterPercentVbusMode();
+    	OutputManager.setDrivetrainMode(CANTalon.TalonControlMode.PercentVbus);
+    }
     public void teleopPeriodic() {
         OutputManager.teleopInit();
     }
@@ -90,8 +83,9 @@ public class Robot extends IterativeRobot {
     public void testPeriodic() {
     
     }
-    public void disabledInit() {
-        OutputManager.switchTeleopBool();
+   public void disabledInit(){
+    	OutputManager.disabledInit();
+    	OutputManager.setShooterSpeed(0);
     }
     
 }

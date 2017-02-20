@@ -1,5 +1,4 @@
 package org.usfirst.frc.team930.robot;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Shoot implements Runnable {
@@ -11,22 +10,22 @@ public class Shoot implements Runnable {
 		
 		if (OutputManager.isRobotTeleop()){
 		
-			if (DSManager.getDriveShootTrigger()){ // Replace with onBool for buttons
-				OutputManager.setShooterPercentVbusMode();
-				OutputManager.setShooterSpeed(-0.7);
-				//OutputManager.setShooterSpeedMode();
+			if (DSManager.getCoDriveShootTrigger()){ // Replace with onBool for buttons
+				
+				OutputManager.setShooterSpeed(-0.80);
 				//OutputManager.setShooterSpeed(Constants.FULL_SHOOT_SPEED);
 			}
-			else{
+			else {
 				//OutputManager.setShooterSpeedMode();
 				OutputManager.setShooterSpeed(0.0);
 				//OutputManager.setShooterDisabledMode();
 				//OutputManager.setShooterSpeed(0.0);
 			}
 			
-			System.out.println("Speed of Shooter: " + OutputManager.getTalonShooterMotor());
-			SmartDashboard.putNumber("Speed of Shooter", ((OutputManager.getTalonShooterMotor()) *-1));
-			
+		System.out.println("Speed of Shooter: " + OutputManager.getFeedbackSpeed(OutputManager.Motors.SHOOTER));
+			SmartDashboard.putNumber("Speed of Shooter", ((OutputManager.getFeedbackSpeed(OutputManager.Motors.SHOOTER)) *-1));
+			SmartDashboard.putNumber("Current of Shooter", OutputManager.getPDPChannelCurrent(Constants.PDP_CHANNEL11));
+			SmartDashboard.putNumber("Current of Shooter2", OutputManager.getPDPChannelCurrent(Constants.PDP_CHANNEL10));
 			//Setting Lights for Shooting
 			if(OutputManager.getPDPChannelCurrent(Constants.PDP_CHANNEL12)>5){
 			

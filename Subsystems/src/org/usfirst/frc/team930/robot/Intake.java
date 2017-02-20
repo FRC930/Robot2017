@@ -1,10 +1,4 @@
 package org.usfirst.frc.team930.robot;
-import com.ctre.CANTalon;
-
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Spark;
-import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Intake implements Runnable {
    
@@ -17,12 +11,17 @@ public class Intake implements Runnable {
 			//Setting lights for the Intake
 		
 			if(DSManager.getCoDriveRawButtonOne()){
-				OutputManager.setIntakeSpeed(1);
+				OutputManager.setIntakeSpeed(-1.0);
 				OutputManager.setLights(OutputManager.LightPatterns.LIGHTS_INTAKE);
 		
 			}
+			else if(DSManager.getCoDriveRawButtonSeven()){
+				OutputManager.setIntakeSpeed(1.0);
+				
+			}
 			else{
 				OutputManager.setIntakeSpeed(0);
+				
 			}
 			
 		}

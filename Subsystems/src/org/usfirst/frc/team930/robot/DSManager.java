@@ -17,6 +17,7 @@ public class DSManager {
 	//METHODS FOR CONTROLLER ONE
 	
 	public static double getDriveXAxis(){
+		ds.getAlliance();
 		return stick.getRawAxis(Constants.DRIVE_X_AXIS_PORT);
 	}
 	public static double getDriveYAxis(){
@@ -73,5 +74,19 @@ public class DSManager {
 	}
 	public static boolean getCoDriveRawButtonSix(){
 		return stick2.getRawButton(Constants.RAW_BUTTON_SIX_PORT);
+	}
+	public static boolean getCoDriveRawButtonSeven(){
+		return stick2.getRawButton(Constants.RAW_BACK_BUTTON_PORT);
+	}
+	public static boolean getCoDriveRawButtonEight(){
+		return stick2.getRawButton(Constants.RAW_START_BUTTON_PORT);
+	}
+	public static boolean getCoDriveShootTrigger(){
+		if(stick2.getRawAxis(Constants.RAW_AXIS_TRIGGER_RIGHT) > 0.3){
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 }

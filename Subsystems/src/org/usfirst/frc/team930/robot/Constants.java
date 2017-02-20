@@ -34,7 +34,8 @@ public class Constants {
 	public static final int R2_MOTOR_CHANNEL = 5;
 	public static final int R3_MOTOR_CHANNEL = 6;
 	public static final int SHOOTER_MOTOR_CHANNEL = 7;
-	public static final double FULL_SHOOT_SPEED = 2250.0;
+	public static final int SHOOTER_MOTOR_CHANNEL2 = 8;
+	public static final double FULL_SHOOT_SPEED = 2500.0;
 	
 	// ----------Spark Motor Channels-----------
 	
@@ -61,6 +62,15 @@ public class Constants {
 	public static final int RAW_BUTTON_FOUR_PORT = 4;
 	public static final int RAW_BUTTON_FIVE_PORT = 5;
 	public static final int RAW_BUTTON_SIX_PORT = 6;
+	public static final int RAW_BACK_BUTTON_PORT = 7;
+	public static final int RAW_START_BUTTON_PORT = 8;
 	public static final int RAW_AXIS_TRIGGER_RIGHT = 3;
 	public static final int RAW_AXIS_TRIGGER_LEFT = 2;
+	
+	// ----------CLIMBER CURRENT CONSTANTS----------
+	
+	public static final int	CLIMBER_GOING_CURRENT = 2;
+	public static final int CLIMBER_FIRST_INTERVAL_CURRENT = 10;
+	public static final int CLIMBER_CUT_OUT_CURRENT = 35;
+	
 }
