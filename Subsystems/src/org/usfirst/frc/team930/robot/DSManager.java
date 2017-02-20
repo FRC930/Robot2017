@@ -14,6 +14,8 @@ public class DSManager {
 	private static Joystick stick = new Joystick(Constants.JOYSTICK_ONE_PORT);
 	private static Joystick stick2 = new Joystick(Constants.JOYSTICK_TWO_PORT);
 	
+	private static boolean dumbbool = false;
+	private static boolean dumbbool2 = false;
 	//METHODS FOR CONTROLLER ONE
 	
 	public static double getDriveXAxis(){
@@ -88,5 +90,27 @@ public class DSManager {
 		else {
 			return false;
 		}
+	}
+	public static boolean getCoDriveIncrementShootTrigger(){
+		if( stick2.getRawButton(Constants.RAW_BUTTON_TWO_PORT) && !dumbbool){
+			dumbbool = true;
+			return false;
+		}
+		else if (!stick2.getRawButton(Constants.RAW_BUTTON_TWO_PORT) && dumbbool){
+			dumbbool = false;
+			return true;
+		}
+		return false;
+	}
+	public static boolean getCoDriveDecrementShootTrigger(){
+		if( stick2.getRawButton(Constants.RAW_BUTTON_THREE_PORT) && !dumbbool2){
+			dumbbool2 = true;
+			return false;
+		}
+		else if (!stick2.getRawButton(Constants.RAW_BUTTON_THREE_PORT) && dumbbool2){
+			dumbbool2 = false;
+			return true;
+		}
+		return false;
 	}
 }
