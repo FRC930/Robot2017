@@ -1,7 +1,5 @@
 package com.team254.lib.trajectory;
 
-import com.team254.lib.trajectory.io.JavaSerializer;
-import com.team254.lib.trajectory.io.JavaStringSerializer;
 import com.team254.lib.trajectory.io.TextFileSerializer;
 import java.io.BufferedWriter;
 import java.io.File;
