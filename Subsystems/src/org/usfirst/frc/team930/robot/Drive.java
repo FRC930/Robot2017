@@ -1,6 +1,8 @@
 package org.usfirst.frc.team930.robot;
 import com.ctre.CANTalon;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 public class Drive implements Runnable {
 
 	public void run(){
@@ -11,18 +13,20 @@ public class Drive implements Runnable {
 			double yValue = Math.pow(DSManager.getDriveYAxis() * -1.0, Constants.JOYSTICK_NONLINEARITY);
 					
 			// Deadband
-			if (Math.abs(xValue) < Constants.JOYSTICK_ERROR_ALLOWANCE) {
+			/*if (Math.abs(DSManager.getDriveXAxis()) < Constants.JOYSTICK_ERROR_ALLOWANCE) {
 				xValue = Constants.X_DEFAULT_VALUE;
 			}
-			if (Math.abs(yValue) < Constants.JOYSTICK_ERROR_ALLOWANCE) {
+			if (Math.abs(DSManager.getDriveYAxis()) < Constants.JOYSTICK_ERROR_ALLOWANCE) {
 				yValue = Constants.Y_DEFAULT_VALUE;
-			}
+			}*/
 			if (!(Math.abs(xValue) < Constants.JOYSTICK_ERROR_ALLOWANCE)&& !(Math.abs(yValue) < Constants.JOYSTICK_ERROR_ALLOWANCE)) {
 				OutputManager.setLights(OutputManager.LightPatterns.LIGHTS_DRIVE);
 			}
 			
-			System.out.println("Left stick: " + DSManager.getDriveYAxis());
-			System.out.println("Right stick: " + DSManager.getDriveXAxis());
+			SmartDashboard.putNumber("Left stick", DSManager.getDriveYAxis());
+			SmartDashboard.putNumber("Right stick", DSManager.getDriveXAxis());
+			SmartDashboard.putNumber("Left commanded", OutputManager.getCommandedSpeed(OutputManager.Motors.L1MASTER));
+			SmartDashboard.putNumber("Right commanded", OutputManager.getCommandedSpeed(OutputManager.Motors.R1MASTER));
 			
 			// Setting talons
 			OutputManager.setSpeedL(yValue + xValue);

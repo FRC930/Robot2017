@@ -42,7 +42,7 @@ public class Shoot implements Runnable {
 
 			
 
-			System.out.println("Speed of Shooter: " + OutputManager.getFeedbackSpeed(OutputManager.Motors.SHOOTER));
+			//System.out.println("Speed of Shooter: " + OutputManager.getFeedbackSpeed(OutputManager.Motors.SHOOTER));
 			SmartDashboard.putNumber("Commanded Speed of Shooter: ", shooterSpeed);
 
 			System.out.println("Speed of Shooter: " + OutputManager.getFeedbackSpeed(OutputManager.Motors.SHOOTER));
