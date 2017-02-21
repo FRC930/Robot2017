@@ -35,7 +35,11 @@ public class Constants {
 	public static final int R3_MOTOR_CHANNEL = 6;
 	public static final int SHOOTER_MOTOR_CHANNEL = 7;
 	public static final int SHOOTER_MOTOR_CHANNEL2 = 8;
-	public static final double FULL_SHOOT_SPEED = 2500.0;
+	
+	//-----------Shooter Constants--------------
+	
+	public static final double BANG_BANG_VARIABLES = 5;
+	public static final double FULL_SHOOT_SPEED =2750.0;
 	
 	// ----------Spark Motor Channels-----------
 	

@@ -123,8 +123,8 @@ public class OutputManager {
         //motionProfilerLeft = new MotionProfilingHandler(OutputManager.getL1(), MotionProfilingHandler.MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE);
         //motionProfilerRight = new MotionProfilingHandler(OutputManager.getR1(), MotionProfilingHandler.MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE);       
 		
-		shooter = new CANTalon (Constants.SHOOTER_MOTOR_CHANNEL);
-        shooterMotor2 = new CANTalon (Constants.SHOOTER_MOTOR_CHANNEL2);
+		shooter = new CANTalon (Constants.SHOOTER_MOTOR_CHANNEL,10);
+        shooterMotor2 = new CANTalon (Constants.SHOOTER_MOTOR_CHANNEL2,10);
         //shooter.setF(1);
         //shooter.setP(100);
         //shooter.setD(0);
@@ -134,6 +134,7 @@ public class OutputManager {
         //I
         //d0
 		shooter.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+		shooter.reverseSensor(true);
 		
 
         //motionProfilerLeft = new MotionProfilingHandler(OutputManager.getL1(), MotionProfilingHandler.MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE);
