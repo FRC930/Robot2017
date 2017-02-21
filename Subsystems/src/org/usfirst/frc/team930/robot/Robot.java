@@ -73,6 +73,7 @@ public class Robot extends IterativeRobot {
     }
     public void teleopInit(){
     	//OutputManager.setShooterSpeedMode();
+    	OutputManager.turnRelaysOn();
     	OutputManager.setShooterPercentVbusMode();
     	OutputManager.setDrivetrainMode(CANTalon.TalonControlMode.PercentVbus);
     }
@@ -84,6 +85,7 @@ public class Robot extends IterativeRobot {
     
     }
    public void disabledInit(){
+	   	OutputManager.turnRelaysOff();
     	OutputManager.disabledInit();
     	OutputManager.setShooterSpeed(0);
     }

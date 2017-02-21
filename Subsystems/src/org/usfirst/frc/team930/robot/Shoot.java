@@ -15,7 +15,7 @@ public class Shoot implements Runnable {
 				
 				OutputManager.setShooterSpeed(shooterSpeed);
 				//OutputManager.setShooterSpeed(Constants.FULL_SHOOT_SPEED);
-				
+					
 			}
 			else {
 				//OutputManager.setShooterSpeedMode();

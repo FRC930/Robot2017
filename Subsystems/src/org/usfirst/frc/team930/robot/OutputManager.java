@@ -8,7 +8,8 @@ import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
+import edu.wpi.first.wpilibj.SensorBase;
+import edu.wpi.first.wpilibj.Relay;
 
 public class OutputManager {
 	
@@ -85,6 +86,8 @@ public class OutputManager {
 	private static CANTalon.MotionProfileStatus statusL = new CANTalon.MotionProfileStatus();
 	private static CANTalon.MotionProfileStatus statusR = new CANTalon.MotionProfileStatus();
 
+	private static Relay leftRelay = new Relay(Constants.PDP_CHANNEL0);
+	private static Relay rightRelay = new Relay(Constants.PDP_CHANNEL1);
 	
 	//public static MotionProfilingHandler motionProfilerLeft;
 	//public static MotionProfilingHandler motionProfilerRight;
@@ -150,6 +153,24 @@ public class OutputManager {
 		isRobotTeleop = false;
 		isRobotAuton = false;
 		
+		
+	}
+	
+	public static Relay.Value getRelayState(){
+		return leftRelay.get();
+	}
+	public static void turnRelaysOn(){
+		
+		leftRelay.set(Relay.Value.kOn);
+		rightRelay.set(Relay.Value.kOn);
+		
+
+	}
+	
+	public static void turnRelaysOff(){
+		
+		leftRelay.set(Relay.Value.kOff);
+		rightRelay.set(Relay.Value.kOff);
 		
 	}
 	

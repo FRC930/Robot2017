@@ -1,11 +1,22 @@
 package org.usfirst.frc.team930.robot;
 import com.ctre.CANTalon;
 
+import edu.wpi.first.wpilibj.Relay;
+
 public class Drive implements Runnable {
 
 	public void run(){
 		if(OutputManager.isRobotTeleop()){
 		//	OutputManager.setDrivetrainPercentVbusMode();
+			
+			if (DSManager.checkToggleRelay()){
+				if (OutputManager.getRelayState() == Relay.Value.kOn){
+					OutputManager.turnRelaysOff();
+				}
+				else if (OutputManager.getRelayState() == Relay.Value.kOff){
+					OutputManager.turnRelaysOn();
+				}
+			}
 			
 			// Adjusting joystick sensitivity
 			double xValue = Math.pow(DSManager.getDriveXAxis(), Constants.JOYSTICK_NONLINEARITY);

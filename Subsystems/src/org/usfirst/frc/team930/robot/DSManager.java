@@ -16,6 +16,8 @@ public class DSManager {
 	
 	private static boolean increaseShooterSpeedBool = false;
 	private static boolean decreaseShooterSpeedBool = false;
+	
+	private static boolean toggleRelayBool = false;
 	//METHODS FOR CONTROLLER ONE
 	
 	public static double getDriveXAxis(){
@@ -77,6 +79,9 @@ public class DSManager {
 	public static boolean getCoDriveRawButtonThree(){
 		return stick2.getRawButton(Constants.RAW_BUTTON_THREE_PORT);
 	}
+	public static boolean getCoDriveRawButtonFour(){
+		return stick2.getRawButton(Constants.RAW_BUTTON_FOUR_PORT);
+	}
 	public static boolean getCoDriveRawButtonFive(){
 		return stick2.getRawButton(Constants.RAW_BUTTON_FIVE_PORT);
 	}
@@ -97,6 +102,19 @@ public class DSManager {
 			return false;
 		}
 	}
+	
+	public static boolean checkToggleRelay(){
+		if ( getCoDriveRawButtonFour() && !toggleRelayBool){
+			toggleRelayBool = true;
+			return !toggleRelayBool;
+		}
+		else if (!getCoDriveRawButtonFour() && toggleRelayBool){
+			toggleRelayBool = false;
+			return !toggleRelayBool;
+		}
+		return false;
+	}
+	
 	public static boolean increaseShooterSpeed(){
 		if( getCoDriveRawButtonTwo() && !increaseShooterSpeedBool){
 			increaseShooterSpeedBool = true;
