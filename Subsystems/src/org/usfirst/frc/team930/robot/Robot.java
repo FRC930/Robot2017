@@ -25,10 +25,7 @@ public class Robot extends IterativeRobot {
     }
     
     public void autonomousInit() {
-    	
-    	// Backup Autonomous, Drive Straight, Not Motion Profiling
-    	BackupAuton.init();
-    	
+
     	// COMMENTED THIS OUT SO AUTONOMOUS WOULD NOT RUN
     	//OutputManager.autonomousInit();
     	
@@ -54,7 +51,7 @@ public class Robot extends IterativeRobot {
     }
 
     public void autonomousPeriodic() {
-    	OutputManager.setLights(OutputManager.LightPatterns.LIGHTS_AUTO);
+    	
     	
     	/*
     	CANTalon.SetValueMotionProfile setOutputLeft = motionProfilerLeft.getSetValue();

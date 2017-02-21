@@ -1,11 +1,14 @@
 package org.usfirst.frc.team930.robot;
 import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.Relay;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class Drive implements Runnable {
 
+	private static Timer time = new Timer();
+	
 	public void run(){
 		if(OutputManager.isRobotTeleop()){
 			
@@ -54,13 +57,37 @@ public class Drive implements Runnable {
 			
 			//OutputManager.motionProfilerLeft.control();
 			//OutputManager.motionProfilerRight.control();
+				
+			if (time.get() > 3) {
+						
+					OutputManager.setSpeedL(0);
+					OutputManager.setSpeedR(0);
+			}
+				
+			else {
+					
+					OutputManager.setSpeedL(0.25);
+					OutputManager.setSpeedR(0.25);
+			}
 			
 			OutputManager.profilerRun(true);
 			
 		}
 			
-		}
-	public static void init(){
-		OutputManager.setDrivetrainMode(CANTalon.TalonControlMode.PercentVbus);		
 	}
+	
+	public static void init(){
+		
+		OutputManager.setDrivetrainMode(CANTalon.TalonControlMode.PercentVbus);	
+		
+	}
+	
+	public static void autonInit(){
+		
+		time.reset();	
+		
+		time.start();
+		
+	}
+	
 }

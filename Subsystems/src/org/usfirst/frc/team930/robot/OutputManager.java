@@ -14,6 +14,7 @@ public class OutputManager {
 	
 	//Enum for Light Patterns on Arduino
 	 enum LightPatterns {
+		 
 		 LIGHTS_AUTO,
 		 LIGHTS_TELE,
 		 LIGHTS_DISABLE,
@@ -22,6 +23,7 @@ public class OutputManager {
 		 LIGHTS_CLIMB,
 		 LIGHTS_INTAKE,
 		 LIGHTS_FUUN
+		 
 	 }
 	 
 	public enum MotionProfileDrivetrainSide {
@@ -30,8 +32,17 @@ public class OutputManager {
 		DRIVE_RIGHT_SIDE
 		
 	}
+	
+	// Sam's Beautiful enum to choose which autonomous code we use for a match.
+	enum AutonomousPicker{
+		
+		MOTION_PROFILING1,
+		BACKUP_AUTON1
+		
+	}
 	 
 	 enum Motors {
+		 
 		 L1MASTER,
 		 L2SLAVE,
 		 L3SLAVE,
@@ -81,6 +92,7 @@ public class OutputManager {
 	private static boolean isRobotTeleop;
 	private static boolean isRobotAuton;
 	
+	private static AutonomousPicker whichAuton;
 	
 	private static CANTalon.MotionProfileStatus statusL = new CANTalon.MotionProfileStatus();
 	private static CANTalon.MotionProfileStatus statusR = new CANTalon.MotionProfileStatus();
@@ -157,8 +169,11 @@ public class OutputManager {
 	}
 	
 	public static Relay.Value getRelayState(){
+		
 		return leftRelay.get();
+		
 	}
+	
 	public static void turnRelaysOn(){
 		
 		leftRelay.set(Relay.Value.kOn);
@@ -223,11 +238,13 @@ public class OutputManager {
 		L3Slave.changeControlMode(CANTalon.TalonControlMode.Disabled);
 		
 	}
+	
 	public static void setLeftDrivetrainCustomMode(CANTalon.SetValueMotionProfile setValue){
 		
 		L1Master.set(setValue.value);
 		
 	}
+	
 	public static void setRightDrivetrainCustomMode(CANTalon.SetValueMotionProfile setValue){
 		
 		R1Master.set(setValue.value);
@@ -273,12 +290,14 @@ public class OutputManager {
 		intake.set(speed);
 		
 	}
+	
 	//Sets the Elevator Speed
 	public static void setSpeedElevator(double speed){
 		
 		 elevator.set(speed);
 		
 	}
+	
 	// Mutator method to set the speed of the climber motor [-1,1]
 	public static void setClimberSpeed( double speed ){
 		
@@ -325,9 +344,11 @@ public class OutputManager {
 			
 		default:
 			return -999;
+			
 		}
 		
 	}
+	
 	public static double getFeedbackSpeed(Motors motor){
 		
 		switch(motor) {
@@ -343,6 +364,7 @@ public class OutputManager {
 			
 		default:
 			return -999;
+			
 		}
 		
 	}
@@ -352,11 +374,13 @@ public class OutputManager {
 		return PDP.getCurrent(Channel);
 		
 	}
+	
 	public static double getL1Voltage() {
 		
 		return L1Master.getOutputVoltage();
 		
 	}
+	
 	public static double getR1Voltage() {
 		
 		return R1Master.getOutputVoltage();
@@ -364,6 +388,7 @@ public class OutputManager {
 	}
 
 	public static void setLights(LightPatterns L){
+		
 		switch(L){
 		
 		case LIGHTS_AUTO:	
@@ -420,6 +445,7 @@ public class OutputManager {
 			lightPin1.set(false);
 			lightPin2.set(true);
 			break;
+			
 		}
 		// Why is there no false true true?
 	}
@@ -431,12 +457,14 @@ public class OutputManager {
 		isRobotTeleop = true;
 			
 	}
+	
 	public static void disabledInit(){
 		
 		isRobotTeleop = false;
 		isRobotAuton = false;
 		
 	}
+	
 	public static void autonomousInit(){
 			
 		isRobotTeleop = false;	
@@ -476,9 +504,23 @@ public class OutputManager {
 		
 		L1Master.set(CANTalon.SetValueMotionProfile.Enable.value);
 		R1Master.set(CANTalon.SetValueMotionProfile.Enable.value);
+		whichAuton = AutonomousPicker.MOTION_PROFILING1;
 	
 	}
-public static void endMotionProfiler(){
+	
+	public static boolean areWeMP(){
+		
+		if (whichAuton == AutonomousPicker.MOTION_PROFILING1){
+			
+			return true;
+			
+		}
+		
+		return false;
+		
+	}
+	
+	public static void endMotionProfiler(){
 		
 		L1Master.set(CANTalon.SetValueMotionProfile.Disable.value);
 		R1Master.set(CANTalon.SetValueMotionProfile.Disable.value);
@@ -501,17 +543,27 @@ public static void endMotionProfiler(){
 	}
 	
 	public static CANTalon getTalon(MotionProfileDrivetrainSide side){
+		
 		if(side == MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE){
+			
 			return L1Master;
+			
 		}
+		
 		else if(side == MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE){
+			
 			return R1Master;
+			
 		}
+		
 		else{
+			
 			return null;
+			
 		}
 
 	} 
+	
 	public static void profilerRun(boolean check){
 		
 		DriveMotionProfiler.isRunning = check;
@@ -521,6 +573,8 @@ public static void endMotionProfiler(){
 	public static void changeMotionControlFramePeriod(){
 		
 		L1Master.changeMotionControlFramePeriod(5);
+		
+		
 		R1Master.changeMotionControlFramePeriod(5);
 	
 	}
@@ -600,17 +654,29 @@ public static void endMotionProfiler(){
 		return statusR.isUnderrun;
 		
 	}
+	
 	public static void switchTeleopBool(){
+		
 		if (isRobotTeleop)
+			
 			isRobotTeleop = false;
+		
 		else
+			
 			isRobotTeleop = true;
+		
 	}
+	
 	public static void switchAutonBool(){
+		
 		if (isRobotAuton)
+			
 			isRobotAuton = false;
+		
 		else
+			
 			isRobotAuton = true;
+		
 	}
 	
 	public static boolean isRightActivePointValid(){

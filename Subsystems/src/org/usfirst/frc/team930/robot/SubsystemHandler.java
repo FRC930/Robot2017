@@ -10,8 +10,7 @@ public class SubsystemHandler {
 		private final  Intake myIntake;
 		private final  Lights myLights;
 		private final  Elevator myElevator;
-		private final BackupAuton myAuton;
-		
+	
 		//private final  DriveMotionProfiler myMP;
 
 		//private final  Loggable myLog;
@@ -22,8 +21,7 @@ public class SubsystemHandler {
 		private final  Notifier intakeNotifier;
 		private final  Notifier lightsNotifier;
 		private final  Notifier elevatorNotifier;
-		private final  Notifier autonNotifier;
-
+		
 		//private final  Notifier MPNotifier;
 
 		//private final  Notifier logNotifier;
@@ -36,8 +34,7 @@ public class SubsystemHandler {
 			myIntake = new Intake();
 			myLights = new Lights();
 			myElevator = new Elevator();
-			myAuton = new BackupAuton();
-
+		
 			//myMP = new DriveMotionProfiler();
 
 			//myLog = new Loggable();
@@ -54,8 +51,6 @@ public class SubsystemHandler {
 			
 			elevatorNotifier = new Notifier (myElevator);
 			
-			autonNotifier = new Notifier (myAuton);
-
 			//MPNotifier = new Notifier (myMP);
 			
 			//logNotifier = new Notifier (myLog);
@@ -63,6 +58,7 @@ public class SubsystemHandler {
 		}
 		
 		public void startSubsystems(){
+			
 			System.out.println("Starting Subsystems");
 			
 			driveNotifier.startPeriodic(.005); // Gives the update values in seconds for each subsystem notifier
@@ -77,8 +73,6 @@ public class SubsystemHandler {
 			
 			lightsNotifier.startPeriodic(.025);
 			
-			autonNotifier.startPeriodic(0.005);
-
 			//MPNotifier.startPeriodic(0.005);
 			
 			//logNotifier.startPeriodic(.005);

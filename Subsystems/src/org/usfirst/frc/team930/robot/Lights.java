@@ -3,6 +3,7 @@ package org.usfirst.frc.team930.robot;
 public class Lights implements Runnable {
 
 	public void run() {
+		
 		//Makes a button to make the fun mode work in lights
 		if (OutputManager.isRobotTeleop()){
 			if(DSManager.getCoDriveRawButtonFive()){
@@ -17,6 +18,12 @@ public class Lights implements Runnable {
 				OutputManager.setLights(OutputManager.LightPatterns.LIGHTS_TELE);
 				
 			}
+			
+		}
+		
+		else if (OutputManager.isRobotAuton()){
+			
+			OutputManager.setLights(OutputManager.LightPatterns.LIGHTS_AUTO);
 			
 		}
 		
