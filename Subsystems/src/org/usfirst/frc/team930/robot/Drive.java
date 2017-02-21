@@ -5,7 +5,6 @@ public class Drive implements Runnable {
 
 	public void run(){
 		if(OutputManager.isRobotTeleop()){
-		//	OutputManager.setDrivetrainPercentVbusMode();
 			
 			// Adjusting joystick sensitivity
 			double xValue = Math.pow(DSManager.getDriveXAxis(), Constants.JOYSTICK_NONLINEARITY);
@@ -22,12 +21,14 @@ public class Drive implements Runnable {
 				OutputManager.setLights(OutputManager.LightPatterns.LIGHTS_DRIVE);
 			}
 			
+			System.out.println("Left stick: " + DSManager.getDriveYAxis());
+			System.out.println("Right stick: " + DSManager.getDriveXAxis());
 			
 			// Setting talons
 			OutputManager.setSpeedL(yValue + xValue);
 			OutputManager.setSpeedR(yValue - xValue);
-			System.out.println("r: " + OutputManager.getCommandedSpeed(OutputManager.Motors.R1MASTER));
-			System.out.println("l: "+OutputManager.getCommandedSpeed(OutputManager.Motors.L1MASTER));
+			//System.out.println("r: " + OutputManager.getCommandedSpeed(OutputManager.Motors.R1MASTER));
+			//System.out.println("l: "+OutputManager.getCommandedSpeed(OutputManager.Motors.L1MASTER));
 		}
 		else if (OutputManager.isRobotAuton()){
 			
