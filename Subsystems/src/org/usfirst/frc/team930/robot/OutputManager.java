@@ -1,4 +1,5 @@
 package org.usfirst.frc.team930.robot;
+
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
 
@@ -7,9 +8,12 @@ import com.ctre.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Spark;
+<<<<<<< HEAD
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.SensorBase;
 import edu.wpi.first.wpilibj.Relay;
+=======
+>>>>>>> 8d3abec0447cdf9475c6c0d1c871c2ea47e8b4c3
 
 public class OutputManager {
 	
@@ -127,8 +131,8 @@ public class OutputManager {
         //motionProfilerLeft = new MotionProfilingHandler(OutputManager.getL1(), MotionProfilingHandler.MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE);
         //motionProfilerRight = new MotionProfilingHandler(OutputManager.getR1(), MotionProfilingHandler.MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE);       
 		
-		shooter = new CANTalon (Constants.SHOOTER_MOTOR_CHANNEL);
-        shooterMotor2 = new CANTalon (Constants.SHOOTER_MOTOR_CHANNEL2);
+		shooter = new CANTalon (Constants.SHOOTER_MOTOR_CHANNEL,10);
+        shooterMotor2 = new CANTalon (Constants.SHOOTER_MOTOR_CHANNEL2,10);
         //shooter.setF(1);
         //shooter.setP(100);
         //shooter.setD(0);
@@ -138,6 +142,7 @@ public class OutputManager {
         //I
         //d0
 		shooter.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+		shooter.reverseSensor(true);
 		
 
         //motionProfilerLeft = new MotionProfilingHandler(OutputManager.getL1(), MotionProfilingHandler.MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE);

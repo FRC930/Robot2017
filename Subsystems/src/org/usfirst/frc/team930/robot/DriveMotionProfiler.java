@@ -1,6 +1,5 @@
 package org.usfirst.frc.team930.robot;
 
-
 import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.Timer;
 

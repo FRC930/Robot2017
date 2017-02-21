@@ -23,7 +23,7 @@ public class Climb implements Runnable {
 			
 			if (Math.abs(yValue) >= Constants.JOYSTICK_ERROR_ALLOWANCE){
 	
-				OutputManager.setClimberSpeed(yValue);
+				OutputManager.setClimberSpeed(-yValue);
 				OutputManager.setLights(OutputManager.LightPatterns.LIGHTS_CLIMB);
 		
 			}

@@ -26,6 +26,9 @@ public class Robot extends IterativeRobot {
     
     public void autonomousInit() {
     	
+    	// Backup Autonomous, Drive Straight, Not Motion Profiling
+    	BackupAuton.init();
+    	
     	// COMMENTED THIS OUT SO AUTONOMOUS WOULD NOT RUN
     	//OutputManager.autonomousInit();
     	
