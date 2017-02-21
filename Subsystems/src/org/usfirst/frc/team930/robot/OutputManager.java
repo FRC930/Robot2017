@@ -8,12 +8,7 @@ import com.ctre.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Spark;
-<<<<<<< HEAD
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.SensorBase;
 import edu.wpi.first.wpilibj.Relay;
-=======
->>>>>>> 8d3abec0447cdf9475c6c0d1c871c2ea47e8b4c3
 
 public class OutputManager {
 	

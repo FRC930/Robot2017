@@ -1,11 +1,8 @@
 package org.usfirst.frc.team930.robot;
 import com.ctre.CANTalon;
-
-<<<<<<< HEAD
 import edu.wpi.first.wpilibj.Relay;
-=======
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
->>>>>>> 8d3abec0447cdf9475c6c0d1c871c2ea47e8b4c3
+
 
 public class Drive implements Runnable {
 

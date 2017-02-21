@@ -29,7 +29,6 @@ public class Shoot implements Runnable {
 			}
 			else{
 				OutputManager.setShooterSpeed(0.0);	
->>>>>>> 8d3abec0447cdf9475c6c0d1c871c2ea47e8b4c3
 			}
 			/*else {
 				//OutputManager.setShooterSpeedMode();

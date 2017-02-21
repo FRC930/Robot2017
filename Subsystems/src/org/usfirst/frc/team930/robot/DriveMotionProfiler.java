@@ -15,9 +15,6 @@ public class DriveMotionProfiler implements Runnable {
 	private CANTalon.MotionProfileStatus statusL = new CANTalon.MotionProfileStatus();
 	
 	private CANTalon.MotionProfileStatus statusR = new CANTalon.MotionProfileStatus();
-		
-	private static OutputManager.MotionProfileDrivetrainSide drivetrainSide;
-	
 	public static boolean isRunning = false;
 	
 	private static int state = 0;
