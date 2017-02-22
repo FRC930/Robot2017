@@ -8,6 +8,8 @@ import com.ctre.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Relay;
 
 public class OutputManager {
@@ -26,13 +28,12 @@ public class OutputManager {
 		 
 	 }
 	 
-	public enum MotionProfileDrivetrainSide {
+	 public enum MotionProfileDrivetrainSide {
 		
 		DRIVE_LEFT_SIDE,
 		DRIVE_RIGHT_SIDE
 		
-	}
-	
+	 }
 	 
 	 enum Motors {
 		 
@@ -48,10 +49,13 @@ public class OutputManager {
 		 ELEVATOR
 		 
 	 }
-	 
-	 
-	 // Declaring Pins on RoboRio
-	 
+	
+	// Autonomous chooser
+	static SendableChooser<String> autoChooser = new SendableChooser<>();
+	final static String defaultAuto = "Default";
+	final static String customAuto = "My Auto";
+	
+	// Declaring Pins on RoboRio
 	private static	DigitalOutput lightPin0 = new DigitalOutput(0);
 	private static	DigitalOutput lightPin1 = new DigitalOutput(1);
 	private static	DigitalOutput lightPin2 = new DigitalOutput(2);
@@ -691,6 +695,14 @@ public class OutputManager {
 		
 		}
 	
+	}
+	
+	public static void autonChooser() {
+		
+		autoChooser.addDefault("Default Auto", defaultAuto);
+		autoChooser.addObject("My Auto", customAuto);
+		SmartDashboard.putData("Auto choices", autoChooser);
+		
 	}
 	
 }
