@@ -33,13 +33,6 @@ public class OutputManager {
 		
 	}
 	
-	// Sam's Beautiful enum to choose which autonomous code we use for a match.
-	enum AutonomousPicker{
-		
-		MOTION_PROFILING1,
-		BACKUP_AUTON1
-		
-	}
 	 
 	 enum Motors {
 		 
@@ -91,8 +84,6 @@ public class OutputManager {
 	
 	private static boolean isRobotTeleop;
 	private static boolean isRobotAuton;
-	
-	private static AutonomousPicker whichAuton;
 	
 	private static CANTalon.MotionProfileStatus statusL = new CANTalon.MotionProfileStatus();
 	private static CANTalon.MotionProfileStatus statusR = new CANTalon.MotionProfileStatus();
@@ -504,20 +495,7 @@ public class OutputManager {
 		
 		L1Master.set(CANTalon.SetValueMotionProfile.Enable.value);
 		R1Master.set(CANTalon.SetValueMotionProfile.Enable.value);
-		whichAuton = AutonomousPicker.MOTION_PROFILING1;
-	
-	}
-	
-	public static boolean areWeMP(){
-		
-		if (whichAuton == AutonomousPicker.MOTION_PROFILING1){
-			
-			return true;
-			
-		}
-		
-		return false;
-		
+
 	}
 	
 	public static void endMotionProfiler(){

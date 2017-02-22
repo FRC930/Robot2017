@@ -10,19 +10,27 @@ public class Elevator implements Runnable{
 		if (OutputManager.isRobotTeleop()){
 
 			if(DSManager.getDriveElevatorTrigger()>0.02){
+				
 			//OutputManager.setSpeedElevator(DSManager.getDriveElevatorTrigger());
-				OutputManager.setSpeedElevator(-1.0);
+				OutputManager.setSpeedElevator(-.8);
 			SmartDashboard.putNumber("Elevator Speed", OutputManager.getCommandedSpeed(OutputManager.Motors.ELEVATOR));
 
 			}
+			
 			else if(DSManager.getCoDriveRawButtonEight()){
-				OutputManager.setSpeedElevator(1.0); 	
+				
+				OutputManager.setSpeedElevator(.8); 	
 				
 			}
+			
 			else {
+				
 				OutputManager.setSpeedElevator(0.0);
 
 			}
+			
 		}
+		
 	}
+	
 }

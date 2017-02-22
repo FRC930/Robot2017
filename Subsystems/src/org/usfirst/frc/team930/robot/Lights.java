@@ -6,6 +6,7 @@ public class Lights implements Runnable {
 		
 		//Makes a button to make the fun mode work in lights
 		if (OutputManager.isRobotTeleop()){
+			
 			if(DSManager.getCoDriveRawButtonFive()){
 				
 				OutputManager.setLights(OutputManager.LightPatterns.LIGHTS_FUUN);

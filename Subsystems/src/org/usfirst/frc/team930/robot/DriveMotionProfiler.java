@@ -229,6 +229,7 @@ public class DriveMotionProfiler implements Runnable {
 		totalCnt = GeneratedMotionProfileLeft.kNumPoints;
 		
 		for (int i = 0; i < totalCnt; ++i) {
+			
 			OutputManager.L1Master.processMotionProfileBuffer();
 			OutputManager.R1Master.processMotionProfileBuffer();
 			
