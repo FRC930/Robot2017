@@ -10,7 +10,9 @@ public class Shoot implements Runnable {
 	public void run(){
 		
 		if (OutputManager.isRobotTeleop()){
-		
+			
+			OutputManager.getShooter1Voltage();
+			
 			if (DSManager.getCoDriveShootTrigger()){ // Replace with onBool for buttons
 				
 			/*	if(OutputManager.getFeedbackSpeed(OutputManager.Motors.SHOOTER) >= Constants.FULL_SHOOT_SPEED + Constants.BANG_BANG_VARIABLES){

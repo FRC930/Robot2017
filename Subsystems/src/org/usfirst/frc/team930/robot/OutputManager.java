@@ -588,6 +588,13 @@ public class OutputManager {
 		R1Master.pushMotionProfileTrajectory(point);
 	
 	}
+	public static void getShooter1Voltage() {
+		
+		SmartDashboard.putNumber("Shooter 1 Volts:", shooter.getBusVoltage());
+		SmartDashboard.putNumber("Shooter 2 Volts:", shooterMotor2.getBusVoltage());
+
+	
+	}
 	
 	public  static void bufferTalons(){
 		
