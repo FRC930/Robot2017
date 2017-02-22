@@ -8,6 +8,7 @@ import com.ctre.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Relay;
 
 public class OutputManager {
@@ -582,6 +583,13 @@ public class OutputManager {
 	public static void pushMotionProfileTrajectoryRight(CANTalon.TrajectoryPoint point) {
 		
 		R1Master.pushMotionProfileTrajectory(point);
+	
+	}
+	public static void getShooter1Voltage() {
+		
+		SmartDashboard.putNumber("Shooter 1 Volts:", shooter.getBusVoltage());
+		SmartDashboard.putNumber("Shooter 2 Volts:", shooterMotor2.getBusVoltage());
+
 	
 	}
 	
