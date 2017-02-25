@@ -52,8 +52,9 @@ public class OutputManager {
 	
 	// Autonomous chooser
 	static SendableChooser<String> autoChooser = new SendableChooser<>();
-	final static String defaultAuto = "Default";
-	final static String customAuto = "My Auto";
+	final static String defaultAuto = "Drive Straight";
+	final static String customAuto = "Motion Profile 1";
+	final static String customAuto2 = "Motion Profile 2";
 	
 	// Declaring Pins on RoboRio
 	private static	DigitalOutput lightPin0 = new DigitalOutput(0);
@@ -707,7 +708,8 @@ public class OutputManager {
 	public static void autonChooser() {
 		
 		autoChooser.addDefault("Default Auto", defaultAuto);
-		autoChooser.addObject("My Auto", customAuto);
+		autoChooser.addObject("Motion Profile 1", customAuto);
+		autoChooser.addObject("Motion Profile 2", customAuto2);
 		SmartDashboard.putData("Auto choices", autoChooser);
 		
 	}
