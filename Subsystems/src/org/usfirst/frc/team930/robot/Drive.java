@@ -58,16 +58,17 @@ public class Drive implements Runnable {
 			//OutputManager.motionProfilerLeft.control();
 			//OutputManager.motionProfilerRight.control();
 				
-			if (time.get() > 3) {
-						
-					OutputManager.setSpeedL(0);
-					OutputManager.setSpeedR(0);
-			}
+
+			
+			if (time.get() > 1) {
 				
+				OutputManager.turnRelaysOff();
+				
+			}
 			else {
-					
-					OutputManager.setSpeedL(0.25);
-					OutputManager.setSpeedR(0.25);
+				
+				OutputManager.turnRelaysOn();
+			
 			}
 			
 			OutputManager.profilerRun(true);

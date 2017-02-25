@@ -170,7 +170,6 @@ public class OutputManager {
 		leftRelay.set(Relay.Value.kOn);
 		rightRelay.set(Relay.Value.kOn);
 		
-
 	}
 	
 	public static void turnRelaysOff(){
