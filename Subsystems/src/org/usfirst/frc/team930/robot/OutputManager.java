@@ -8,6 +8,8 @@ import com.ctre.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Relay;
 
 public class OutputManager {
@@ -26,13 +28,12 @@ public class OutputManager {
 		 
 	 }
 	 
-	public enum MotionProfileDrivetrainSide {
+	 public enum MotionProfileDrivetrainSide {
 		
 		DRIVE_LEFT_SIDE,
 		DRIVE_RIGHT_SIDE
 		
-	}
-	
+	 }
 	 
 	 enum Motors {
 		 
@@ -48,10 +49,14 @@ public class OutputManager {
 		 ELEVATOR
 		 
 	 }
-	 
-	 
-	 // Declaring Pins on RoboRio
-	 
+	
+	// Autonomous chooser
+	static SendableChooser<String> autoChooser = new SendableChooser<>();
+	final static String defaultAuto = "Drive Straight";
+	final static String customAuto = "Motion Profile 1";
+	final static String customAuto2 = "Motion Profile 2";
+	
+	// Declaring Pins on RoboRio
 	private static	DigitalOutput lightPin0 = new DigitalOutput(0);
 	private static	DigitalOutput lightPin1 = new DigitalOutput(1);
 	private static	DigitalOutput lightPin2 = new DigitalOutput(2);
@@ -583,6 +588,13 @@ public class OutputManager {
 		R1Master.pushMotionProfileTrajectory(point);
 	
 	}
+	public static void getShooter1Voltage() {
+		
+		SmartDashboard.putNumber("Shooter 1 Volts:", shooter.getBusVoltage());
+		SmartDashboard.putNumber("Shooter 2 Volts:", shooterMotor2.getBusVoltage());
+
+	
+	}
 	
 	public  static void bufferTalons(){
 		
@@ -690,6 +702,15 @@ public class OutputManager {
 		
 		}
 	
+	}
+	
+	public static void autonChooser() {
+		
+		autoChooser.addDefault("Default Auto", defaultAuto);
+		autoChooser.addObject("Motion Profile 1", customAuto);
+		autoChooser.addObject("Motion Profile 2", customAuto2);
+		SmartDashboard.putData("Auto choices", autoChooser);
+		
 	}
 	
 }
