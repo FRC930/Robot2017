@@ -58,7 +58,7 @@ public class Drive implements Runnable {
 			//OutputManager.motionProfilerLeft.control();
 			//OutputManager.motionProfilerRight.control();
 				
-
+			AutonManager.driveCode();
 			
 			if (time.get() > 1) {
 				

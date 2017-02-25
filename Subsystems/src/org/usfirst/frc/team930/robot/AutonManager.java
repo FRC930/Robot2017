@@ -74,4 +74,21 @@ public class AutonManager {
 		// End Shooter Switch Statement
 	}
 	
+	public static void lightsCode(){
+		
+		switch(Mode){
+		
+		case MOTION_PROFILE1:
+			
+			//code for motion profile shooter
+			break;
+			
+		case DEFAULT:
+			
+
+			
+		}
+		// End Lights Switch Statement
+	}
+	
 }
