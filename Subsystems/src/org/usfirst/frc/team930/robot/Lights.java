@@ -24,6 +24,8 @@ public class Lights implements Runnable {
 		
 		else if (OutputManager.isRobotAuton()){
 			
+			//AutonManager.lightsCode();
+			
 			OutputManager.setLights(OutputManager.LightPatterns.LIGHTS_AUTO);
 			
 		}
