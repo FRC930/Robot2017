@@ -587,8 +587,8 @@ public class OutputManager {
 	}
 	public static void getShooter1Voltage() {
 		
-		SmartDashboard.putNumber("Shooter 1 Volts:", shooter.getBusVoltage());
-		SmartDashboard.putNumber("Shooter 2 Volts:", shooterMotor2.getBusVoltage());
+		SmartDashboard.putNumber("Shooter 1 Volts:", shooter.getOutputVoltage());
+		SmartDashboard.putNumber("Shooter 2 Volts:", shooterMotor2.getOutputVoltage());
 
 	
 	}

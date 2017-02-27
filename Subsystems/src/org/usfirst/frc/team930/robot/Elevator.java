@@ -12,7 +12,7 @@ public class Elevator implements Runnable{
 			if(DSManager.getDriveElevatorTrigger()>0.02){
 				
 			//OutputManager.setSpeedElevator(DSManager.getDriveElevatorTrigger());
-				OutputManager.setSpeedElevator(-.8);
+				OutputManager.setSpeedElevator(-1);
 			SmartDashboard.putNumber("Elevator Speed", OutputManager.getCommandedSpeed(OutputManager.Motors.ELEVATOR));
 
 			}
