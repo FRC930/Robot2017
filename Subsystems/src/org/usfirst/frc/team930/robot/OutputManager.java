@@ -115,6 +115,7 @@ public class OutputManager {
 		L1Master.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		L1Master.configEncoderCodesPerRev(250);
 		L1Master.setVoltageRampRate(6400);
+		L1Master.reverseSensor(true);
 		L1Master.setF(1.0);
 		L1Master.setP(10.0);
 		L1Master.setI(0.0003);
@@ -126,6 +127,7 @@ public class OutputManager {
 		R1Master.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		R1Master.configEncoderCodesPerRev(250);
 		R1Master.setVoltageRampRate(6400);
+		R1Master.reverseSensor(true);
 		R1Master.setF(1.0);
 		R1Master.setP(10.0);
 		R1Master.setI(0.0003);
