@@ -27,13 +27,13 @@ public class Robot extends IterativeRobot {
     public void autonomousInit() {
 
     	// COMMENTED THIS OUT SO AUTONOMOUS WOULD NOT RUN
-    	//OutputManager.autonomousInit();
+    	OutputManager.autonomousInit();
     	
     	//OutputManager.motionProfilerLeft.reset();
     	//OutputManager.motionProfilerRight.reset();
     	DriveMotionProfiler.init();
     	AutonManager.init();
-    	    	
+    	
     	//OutputManager.setDrivetrainMotionProfileMode();
     	
     	//OutputManager.motionProfilerLeft.control();

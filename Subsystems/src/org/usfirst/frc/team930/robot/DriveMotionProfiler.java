@@ -24,8 +24,12 @@ public class DriveMotionProfiler implements Runnable {
 		
 		/* Get the motion profile status every loop */
 		
-		OutputManager.L1Master.getMotionProfileStatus(statusL);
-		OutputManager.R1Master.getMotionProfileStatus(statusR);
+		if (OutputManager.isRobotAuton()) {
+			
+			OutputManager.L1Master.getMotionProfileStatus(statusL);
+			OutputManager.R1Master.getMotionProfileStatus(statusR);
+
+		}
 
 		/*
 		 * track time, this is rudimentary but that's okay, we just want to make
