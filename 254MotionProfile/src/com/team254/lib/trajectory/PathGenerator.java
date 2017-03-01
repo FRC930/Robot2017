@@ -22,12 +22,12 @@ public class PathGenerator {
           TrajectoryGenerator.Config config, double wheelbase_width, 
           String name) {
     return new Path(name, 
-            generateLeftAndRightFromSeq(waypoints, config, wheelbase_width));
+            generateLeftAndRightFromSeq(waypoints, config, wheelbase_width)); //////////////////////////////////////////////
   }
 
   static Trajectory.Pair generateLeftAndRightFromSeq(WaypointSequence path,
           TrajectoryGenerator.Config config, double wheelbase_width) {
-    return makeLeftAndRightTrajectories(generateFromPath(path, config),
+    return makeLeftAndRightTrajectories(generateFromPath(path, config), /////////////////////////////////////////////////////
             wheelbase_width);
   }
 
@@ -103,7 +103,7 @@ public class PathGenerator {
   static Trajectory.Pair makeLeftAndRightTrajectories(Trajectory input,
           double wheelbase_width) {
     Trajectory[] output = new Trajectory[2];
-    output[0] = input.copy();
+    output[0] = input.copy();//////////////////////////////////////////////////////////////////////////////////////////////
     output[1] = input.copy();
     Trajectory left = output[0];
     Trajectory right = output[1];
