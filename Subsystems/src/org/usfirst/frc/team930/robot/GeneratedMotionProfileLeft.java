@@ -917,9 +917,8 @@ public class GeneratedMotionProfileLeft {
 		{0,	0,	10},
 		{0,	0,	10},
 		{0,	0,	10},
-		{0,	0,	10}
+		{0,	0,	10},
 		
-	/*
 	// Drive to Boiler
 		{0.00003,	0.3	,10},
 		{0.00013,	0.6	,10},
@@ -1154,7 +1153,6 @@ public class GeneratedMotionProfileLeft {
 		{4.99998,	0.6	,10},
 		{5,	0.12	,10},
 		{5,	0	,10},
-		
 
 		{0,	0,	10},
 		{0,	0,	10},
@@ -1164,6 +1162,6 @@ public class GeneratedMotionProfileLeft {
 		{0,	0,	10},
 		{0,	0,	10},
 		{0,	0,	10}
-		*/
+		
 	};
 }
