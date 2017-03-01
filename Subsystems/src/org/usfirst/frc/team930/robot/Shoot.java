@@ -15,7 +15,7 @@ public class Shoot implements Runnable {
 			
 			if (DSManager.getCoDriveShootTrigger()){ // Replace with onBool for buttons
 				
-			/*	if(OutputManager.getFeedbackSpeed(OutputManager.Motors.SHOOTER) >= Constants.FULL_SHOOT_SPEED + Constants.BANG_BANG_VARIABLES){
+				if(OutputManager.getFeedbackSpeed(OutputManager.Motors.SHOOTER) >= Constants.FULL_SHOOT_SPEED + Constants.BANG_BANG_VARIABLES){
 					
 					OutputManager.setShooterSpeed(0.5);
 					
@@ -27,19 +27,17 @@ public class Shoot implements Runnable {
 					
 				}
 				
-				OutputManager.setShooterSpeed(shooterSpeed);
-				//OutputManager.setShooterSpeed(Constants.FULL_SHOOT_SPEED);
-<<<<<<< HEAD
-					
-=======
+				//OutputManager.setShooterSpeed(shooterSpeed);
+
+
 				
 			}
 			
-			else{
-				*/
+			/*else{
+				
 				OutputManager.setShooterSpeed(-0.8);	
 				
-			}
+			}*/
 			else {
 				//OutputManager.setShooterSpeedMode();
 				OutputManager.setShooterSpeed(0.0);
