@@ -17,18 +17,18 @@ public class AutonManager {
     
 	public static void init(){
 		
-		Mode = getMode();
+		//Mode = getMode();
 
 		time.reset();	
 		time.start();
 		
 	}
 	
-	public static mode getMode(){
+	//public static mode getMode(){
 		
-		return DSManager.getMode();
+		//return DSManager.getMode();
 		
-	}
+	//}
 	
 	public static void driveCode(){
 		
