@@ -26,7 +26,6 @@ public class AutonManager {
 	
 	//public static mode getMode(){
 		
-		//return D /SManager.getMode();
 		
 	//}
 	

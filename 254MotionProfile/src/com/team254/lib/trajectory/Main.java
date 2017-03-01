@@ -94,11 +94,32 @@ public class Main {
       
       // Description of this auto mode path.
       // Remember that this is for the GO LEFT CASE!                 
+      
       WaypointSequence p = new WaypointSequence(10);
+      // REAL POINTS
+      // Drive to Hopper
+      //p.addWaypoint(new WaypointSequence.Waypoint(0, 0, 0));
+      //p.addWaypoint(new WaypointSequence.Waypoint(5.5, -6.3, Math.toRadians(-89)));
+      
+      
+      // Backup and Pivot
+      //p.addWaypoint(new WaypointSequence.Waypoint(0, 0, 0));
+      //p.addWaypoint(new WaypointSequence.Waypoint(-6.3, 5.0, Math.toRadians(-45)));
+      
+      // Drive to Boiler
+      //p.addWaypoint(new WaypointSequence.Waypoint(0, 0, 0));
+      //p.addWaypoint(new WaypointSequence.Waypoint(5.0, 0, 0));
+      
+      // Tiburon's Testing
       p.addWaypoint(new WaypointSequence.Waypoint(0, 0, 0));
-      p.addWaypoint(new WaypointSequence.Waypoint(5.0, 0, Math.toRadians(90)));
+      
+      p.addWaypoint(new WaypointSequence.Waypoint(2.0079921, -0.6103582, Math.toRadians(-29.43835677)));
+      p.addWaypoint(new WaypointSequence.Waypoint(5.5, -6.3, Math.toRadians(-100)));
+      
+      
+      
+      //p.addWaypoint(new WaypointSequence.Waypoint(5.0, 0, Math.toRadians(75)));
       //p.addWaypoint(new WaypointSequence.Waypoint(6.033, 0.5125, Math.toRadians(28)));
-      p.addWaypoint(new WaypointSequence.Waypoint(7.0, 6.5, Math.toRadians(100)));
       //p.addWaypoint(new WaypointSequence.Waypoint(12.0, 9, Math.toRadians(89)));//Math.PI/2.0));
       
 
