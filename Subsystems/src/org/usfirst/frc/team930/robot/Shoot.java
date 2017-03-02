@@ -17,7 +17,7 @@ public class Shoot implements Runnable {
 				
 				if(OutputManager.getFeedbackSpeed(OutputManager.Motors.SHOOTER) >= Constants.FULL_SHOOT_SPEED + Constants.BANG_BANG_VARIABLES){
 					
-					OutputManager.setShooterSpeed(0.5);
+					OutputManager.setShooterSpeed(-0.75);
 					
 				}
 				
