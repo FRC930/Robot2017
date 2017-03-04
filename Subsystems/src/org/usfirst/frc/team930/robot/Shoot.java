@@ -5,6 +5,7 @@ public class Shoot implements Runnable {
 
 	double targetX;
 	double targetY;
+	double percentError;
 	private static double shooterSpeed = -.8;
 	
 	public void run(){
@@ -12,12 +13,20 @@ public class Shoot implements Runnable {
 		if (OutputManager.isRobotTeleop()){
 			
 			OutputManager.getShooter1Voltage();
+			if(Math.abs((OutputManager.errorShooter()/Constants.FULL_SHOOT_SPEED)*100) > 50){
+				percentError = 50;
+			}
+			else{
+			percentError =  (OutputManager.errorShooter()/Constants.FULL_SHOOT_SPEED)*100;
+			}
+			System.out.println("Error " + OutputManager.errorShooter());
+			SmartDashboard.putNumber("Error as Pecent", percentError);
 			
-			if (DSManager.getCoDriveShootTrigger()){ // Replace with onBool for buttons
+	/*if (DSManager.getCoDriveShootTrigger()){ // Replace with onBool for buttons
 				
 				if(OutputManager.getFeedbackSpeed(OutputManager.Motors.SHOOTER) >= Constants.FULL_SHOOT_SPEED + Constants.BANG_BANG_VARIABLES){
 					
-					OutputManager.setShooterSpeed(0.5);
+					OutputManager.setShooterSpeed(-0.0);
 					
 				}
 				
@@ -31,13 +40,15 @@ public class Shoot implements Runnable {
 
 
 				
+			}*/
+			
+	
+			if(DSManager.getCoDriveShootTrigger()){
+				
+				OutputManager.setShooterSpeed(-Constants.FULL_SHOOT_SPEED);	
+				
 			}
 			
-			/*else{
-				
-				OutputManager.setShooterSpeed(-0.8);	
-				
-			}*/
 			else {
 				//OutputManager.setShooterSpeedMode();
 				OutputManager.setShooterSpeed(0.0);
@@ -56,7 +67,7 @@ public class Shoot implements Runnable {
 			//System.out.println("Speed of Shooter: " + OutputManager.getFeedbackSpeed(OutputManager.Motors.SHOOTER));
 			SmartDashboard.putNumber("Commanded Speed of Shooter: ", shooterSpeed);
 
-			System.out.println("Speed of Shooter: " + OutputManager.getFeedbackSpeed(OutputManager.Motors.SHOOTER));
+			//System.out.println("Speed of Shooter: " + OutputManager.getFeedbackSpeed(OutputManager.Motors.SHOOTER));
 
 			SmartDashboard.putNumber("Speed of Shooter", ((OutputManager.getFeedbackSpeed(OutputManager.Motors.SHOOTER))));
 			SmartDashboard.putNumber("Current of Shooter", OutputManager.getPDPChannelCurrent(Constants.PDP_CHANNEL11));

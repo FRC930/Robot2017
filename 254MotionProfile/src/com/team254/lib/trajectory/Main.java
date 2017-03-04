@@ -103,18 +103,24 @@ public class Main {
       
       
       // Backup and Pivot
-      //p.addWaypoint(new WaypointSequence.Waypoint(0, 0, 0));
-      //p.addWaypoint(new WaypointSequence.Waypoint(-6.3, 5.0, Math.toRadians(-45)));
+      p.addWaypoint(new WaypointSequence.Waypoint(0, 0, 0));
+      p.addWaypoint(new WaypointSequence.Waypoint(6.3, 5.0, Math.toRadians(45)));
       
       // Drive to Boiler
       //p.addWaypoint(new WaypointSequence.Waypoint(0, 0, 0));
       //p.addWaypoint(new WaypointSequence.Waypoint(5.0, 0, 0));
       
       // Tiburon's Testing
+<<<<<<< HEAD
       p.addWaypoint(new WaypointSequence.Waypoint(0, 0, 0));
       
       p.addWaypoint(new WaypointSequence.Waypoint(2.0079921, -0.6103582, Math.toRadians(-29.43835677)));
       p.addWaypoint(new WaypointSequence.Waypoint(5.5, -6.3, Math.toRadians(-100)));
+=======
+      //p.addWaypoint(new WaypointSequence.Waypoint(0, 0, 0));
+      //p.addWaypoint(new WaypointSequence.Waypoint(2.0079921, -0.6103582, Math.toRadians(-29.43835677)));
+      //p.addWaypoint(new WaypointSequence.Waypoint(5.5, -6.3, Math.toRadians(-100)));
+>>>>>>> 7e23c818f9e6d74cf42e693fc95659932001658a
       
       
       
