@@ -74,7 +74,8 @@ public class Robot extends IterativeRobot {
     }
     public void teleopInit(){
     	//OutputManager.setShooterSpeedMode();
-    	OutputManager.setShooterPercentVbusMode();
+    	//OutputManager.setShooterPercentVbusMode();
+    	OutputManager.setShooterSpeedMode();
     	OutputManager.setDrivetrainMode(CANTalon.TalonControlMode.PercentVbus);
     }
     public void teleopPeriodic() {

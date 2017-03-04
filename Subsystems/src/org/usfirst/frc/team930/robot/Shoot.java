@@ -12,12 +12,14 @@ public class Shoot implements Runnable {
 		if (OutputManager.isRobotTeleop()){
 			
 			OutputManager.getShooter1Voltage();
+
+			System.out.println("Error " + OutputManager.errorShooter());
 			
-			/*if (DSManager.getCoDriveShootTrigger()){ // Replace with onBool for buttons
-				
+	//if (DSManager.getCoDriveShootTrigger()){ // Replace with onBool for buttons
+				/*
 				if(OutputManager.getFeedbackSpeed(OutputManager.Motors.SHOOTER) >= Constants.FULL_SHOOT_SPEED + Constants.BANG_BANG_VARIABLES){
 					
-					OutputManager.setShooterSpeed(-0.75);
+					OutputManager.setShooterSpeed(-0.0);
 					
 				}
 				
@@ -31,13 +33,15 @@ public class Shoot implements Runnable {
 
 
 				
-			}*/
-			
+			}
+			*/
+//	}
 			if(DSManager.getCoDriveShootTrigger()){
 				
-				OutputManager.setShooterSpeed(-0.8);	
+				OutputManager.setShooterSpeed(-Constants.FULL_SHOOT_SPEED);	
 				
 			}
+			
 			else {
 				//OutputManager.setShooterSpeedMode();
 				OutputManager.setShooterSpeed(0.0);
@@ -56,7 +60,7 @@ public class Shoot implements Runnable {
 			//System.out.println("Speed of Shooter: " + OutputManager.getFeedbackSpeed(OutputManager.Motors.SHOOTER));
 			SmartDashboard.putNumber("Commanded Speed of Shooter: ", shooterSpeed);
 
-			System.out.println("Speed of Shooter: " + OutputManager.getFeedbackSpeed(OutputManager.Motors.SHOOTER));
+			//System.out.println("Speed of Shooter: " + OutputManager.getFeedbackSpeed(OutputManager.Motors.SHOOTER));
 
 			SmartDashboard.putNumber("Speed of Shooter", ((OutputManager.getFeedbackSpeed(OutputManager.Motors.SHOOTER))));
 			SmartDashboard.putNumber("Current of Shooter", OutputManager.getPDPChannelCurrent(Constants.PDP_CHANNEL11));

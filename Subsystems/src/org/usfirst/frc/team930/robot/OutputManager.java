@@ -138,10 +138,12 @@ public class OutputManager {
 		
 		shooter = new CANTalon (Constants.SHOOTER_MOTOR_CHANNEL,10);
         shooterMotor2 = new CANTalon (Constants.SHOOTER_MOTOR_CHANNEL2,10);
-        //shooter.setF(1);
-        //shooter.setP(100);
-        //shooter.setD(0);
-        //shooter.setI(0);
+        shooter.configNominalOutputVoltage(+0.0f, -0.0f);
+        shooter.configPeakOutputVoltage(0.0f, -12.0f);
+        shooter.setF(1);
+        shooter.setP(1);
+        shooter.setD(0);
+        shooter.setI(0);
         //F1
         //P100
         //I
@@ -713,6 +715,10 @@ public class OutputManager {
 		autoChooser.addObject("Motion Profile 2", customAuto2);
 		SmartDashboard.putData("Auto choices", autoChooser);
 		
+	}
+	
+	public static double errorShooter(){
+		return shooter.getError();
 	}
 	
 }
