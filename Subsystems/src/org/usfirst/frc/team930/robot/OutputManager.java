@@ -140,16 +140,17 @@ public class OutputManager {
         shooterMotor2 = new CANTalon (Constants.SHOOTER_MOTOR_CHANNEL2,10);
         shooter.configNominalOutputVoltage(+0.0f, -0.0f);
         shooter.configPeakOutputVoltage(0.0f, -12.0f);
-        shooter.setF(1);
-        shooter.setP(1);
-        shooter.setD(0);
-        shooter.setI(0);
+        shooter.setF(.03);
+        shooter.setP(.5);
+        shooter.setD(1);
+        shooter.setI(0.0);
         //F1
         //P100
         //I
         //d0
 		shooter.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
-		shooter.reverseSensor(true);
+		//shooter.reverseSensor(true);
+		shooter.setVoltageRampRate(10000);
 		
 
         //motionProfilerLeft = new MotionProfilingHandler(OutputManager.getL1(), MotionProfilingHandler.MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE);
@@ -254,7 +255,7 @@ public class OutputManager {
 	public static void setShooterSpeed( double speed ){
 		
 		shooter.set(speed);
-		shooterMotor2.set(speed);
+		//shooterMotor2.set(speed);
 
 		
 	}
@@ -272,6 +273,7 @@ public class OutputManager {
 	public static void setShooterDisabledMode(){
 		
 		shooter.changeControlMode(CANTalon.TalonControlMode.Disabled);
+		shooterMotor2.changeControlMode(CANTalon.TalonControlMode.Disabled);
 		
 	}
 	
