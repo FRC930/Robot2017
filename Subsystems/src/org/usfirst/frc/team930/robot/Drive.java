@@ -40,7 +40,9 @@ public class Drive implements Runnable {
 			SmartDashboard.putNumber("Right stick", DSManager.getDriveXAxis());
 			SmartDashboard.putNumber("Left commanded", OutputManager.getCommandedSpeed(OutputManager.Motors.L1MASTER));
 			SmartDashboard.putNumber("Right commanded", OutputManager.getCommandedSpeed(OutputManager.Motors.R1MASTER));
-			
+			SmartDashboard.putNumber("Left Encoder", OutputManager.L1Master.getEncVelocity());
+			SmartDashboard.putNumber("Right Encoder", OutputManager.R1Master.getEncVelocity());
+
 			// Setting talons
 			OutputManager.setSpeedL(yValue + xValue);
 			OutputManager.setSpeedR(yValue - xValue);

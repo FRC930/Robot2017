@@ -207,9 +207,10 @@ public class DriveMotionProfiler implements Runnable {
 				
 				point.zeroPos = true; /* set this to true on the first point */
 			
-			if ((i >= (totalCntToHopper - 25)) && (i <= (totalCntToHopper))) point.velocityOnly = true;
+			if (i >= (totalCnt - 25)) point.velocityOnly = true;
+			/*if ((i >= (totalCntToHopper - 25)) && (i <= (totalCntToHopper))) point.velocityOnly = true;
 			if ((i >= (totalCntBackwards - 25)) && (i <= (totalCntBackwards))) point.velocityOnly = true;
-			if ((i >= (totalCntToBoiler - 25)) && (i <= (totalCntToBoiler))) point.velocityOnly = true;
+			if ((i >= (totalCntToBoiler - 25)) && (i <= (totalCntToBoiler))) point.velocityOnly = true;*/
 			
 			if (i == (totalCnt - 8)) {
 			
@@ -217,7 +218,7 @@ public class DriveMotionProfiler implements Runnable {
 				point.zeroPos = true;
 			
 			}
-			if (i == (totalCntToHopper - 8)) {
+			/*if (i == (totalCntToHopper - 8)) {
 				
 				point.zeroPos = true;
 			
@@ -231,7 +232,7 @@ public class DriveMotionProfiler implements Runnable {
 				
 				point.zeroPos = true;
 			
-			}
+			}*/
 			
 			point.isLastPoint = false;
 			
@@ -276,9 +277,10 @@ public class DriveMotionProfiler implements Runnable {
 				
 				point.zeroPos = true; /* set this to true on the first point */
 			
-			if ((i >= (totalCntToHopper - 25)) && (i <= (totalCntToHopper))) point.velocityOnly = true;
+			if (i >= (totalCnt - 25)) point.velocityOnly = true;
+			/*if ((i >= (totalCntToHopper - 25)) && (i <= (totalCntToHopper))) point.velocityOnly = true;
 			if ((i >= (totalCntBackwards - 25)) && (i <= (totalCntBackwards))) point.velocityOnly = true;
-			if ((i >= (totalCntToBoiler - 25)) && (i <= (totalCntToBoiler))) point.velocityOnly = true;
+			if ((i >= (totalCntToBoiler - 25)) && (i <= (totalCntToBoiler))) point.velocityOnly = true;*/
 			
 			if (i == (totalCnt - 8)) {
 			
@@ -286,7 +288,7 @@ public class DriveMotionProfiler implements Runnable {
 				point.zeroPos = true;
 			
 			}
-			if (i == (totalCntToHopper - 8)) {
+			/*if (i == (totalCntToHopper - 8)) {
 				
 				point.zeroPos = true;
 			
@@ -300,7 +302,7 @@ public class DriveMotionProfiler implements Runnable {
 				
 				point.zeroPos = true;
 			
-			}
+			}*/
 			
 			point.isLastPoint = false;
 			
