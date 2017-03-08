@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Drive implements Runnable {
 
 	private static Timer time = new Timer();
-	
+	double xValue, yValue;
 	public void run(){
 		if(OutputManager.isRobotTeleop()){
 			
@@ -21,10 +21,6 @@ public class Drive implements Runnable {
 				}
 			}
 			
-			// Adjusting joystick sensitivity
-			double xValue = Math.pow(DSManager.getDriveXAxis(), Constants.JOYSTICK_NONLINEARITY);
-			double yValue = Math.pow(DSManager.getDriveYAxis() * -1.0, Constants.JOYSTICK_NONLINEARITY);
-					
 			// Deadband
 			if (Math.abs(DSManager.getDriveXAxis()) < Constants.JOYSTICK_ERROR_ALLOWANCE) {
 				xValue = Constants.X_DEFAULT_VALUE;
@@ -35,7 +31,10 @@ public class Drive implements Runnable {
 			if (!(Math.abs(xValue) < Constants.JOYSTICK_ERROR_ALLOWANCE)&& !(Math.abs(yValue) < Constants.JOYSTICK_ERROR_ALLOWANCE)) {
 				OutputManager.setLights(OutputManager.LightPatterns.LIGHTS_DRIVE);
 			}
-			
+			// Adjusting joystick sensitivity
+			xValue = Math.pow(DSManager.getDriveXAxis(), Constants.JOYSTICK_NONLINEARITY);
+			yValue = Math.pow(DSManager.getDriveYAxis() * -1.0, Constants.JOYSTICK_NONLINEARITY);
+								
 			SmartDashboard.putNumber("Left stick", DSManager.getDriveYAxis());
 			SmartDashboard.putNumber("Right stick", DSManager.getDriveXAxis());
 			SmartDashboard.putNumber("Left commanded", OutputManager.getCommandedSpeed(OutputManager.Motors.L1MASTER));

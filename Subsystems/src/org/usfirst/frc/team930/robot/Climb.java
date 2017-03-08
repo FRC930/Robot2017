@@ -16,8 +16,8 @@ public class Climb implements Runnable {
 			
 			//Setting speed to controller
 
-			SmartDashboard.putNumber("Climb Progress", OutputManager.getPDPChannelCurrent(Constants.PDP_CHANNEL0));
-			SmartDashboard.putNumber("Climb Motor Current", OutputManager.getPDPChannelCurrent(Constants.PDP_CHANNEL0));
+			SmartDashboard.putNumber("Climb Progress", OutputManager.getPDPChannelCurrent(Constants.PDP_CHANNEL12));
+			SmartDashboard.putNumber("Climb Motor Current", OutputManager.getPDPChannelCurrent(Constants.PDP_CHANNEL12));
 
 			//System.out.println("Climb Motor Current " + OutputManager.getPDPChannelCurrent(Constants.PDP_CHANNEL0));
 			
