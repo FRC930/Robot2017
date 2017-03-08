@@ -18,7 +18,7 @@ public class Main {
 		// 3 Waypoints
 		Waypoint[] points = new Waypoint[] {
 		    new Waypoint(0, 0, 0),      // Waypoint @ x=-4, y=-1, exit angle=-45 degrees
-		    new Waypoint(5.0, -6.3, Pathfinder.d2r(-89))                        // Waypoint @ x=-2, y=-2, exit angle=0 radians
+		    new Waypoint(5.5, -6.3, Pathfinder.d2r(-89))                        // Waypoint @ x=-2, y=-2, exit angle=0 radians
 		};
 
 		// Create the Trajectory Configuration

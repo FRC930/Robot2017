@@ -19,7 +19,7 @@ public class Shoot implements Runnable {
 			else{
 			percentError =  (OutputManager.errorShooter()/Constants.FULL_SHOOT_SPEED)*100;
 			}
-			System.out.println("Error " + OutputManager.errorShooter());
+			//System.out.println("Error " + OutputManager.errorShooter());
 			SmartDashboard.putNumber("Error as Pecent", percentError);
 			
 	/*if (DSManager.getCoDriveShootTrigger()){ // Replace with onBool for buttons

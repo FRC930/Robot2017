@@ -24,9 +24,36 @@ public class Drive implements Runnable {
 			// Adjusting joystick sensitivity
 			double xValue = Math.pow(DSManager.getDriveXAxis(), Constants.JOYSTICK_NONLINEARITY);
 			double yValue = Math.pow(DSManager.getDriveYAxis() * -1.0, Constants.JOYSTICK_NONLINEARITY);
-					
-			xValue = Math.ceil(xValue * 1000) / 1000;
-			yValue = Math.ceil(yValue * 1000) / 1000;
+
+			SmartDashboard.putNumber("yVal1", yValue);
+			SmartDashboard.putNumber("xVal1", xValue);
+
+			System.out.println("xVal1" + xValue);
+			System.out.println("yVal1" + yValue);
+			 
+			if (xValue > 0){
+
+				xValue = Math.ceil(xValue * 1000000) / 1000000;
+				
+		    }
+		    
+			if (yValue > 0){
+
+				yValue = Math.ceil(yValue * 1000000) / 1000000;
+				
+			}
+			
+			if (yValue < 0){
+				
+			    yValue = Math.floor(yValue * 1000000) / 1000000;
+			    
+			}
+			
+			if (xValue < 0){
+				
+			    xValue = Math.floor(xValue * 1000000) / 1000000;
+			    
+			}
 			
 			// Deadband
 			if (Math.abs(DSManager.getDriveXAxis()) < Constants.JOYSTICK_ERROR_ALLOWANCE) {
@@ -39,13 +66,19 @@ public class Drive implements Runnable {
 				OutputManager.setLights(OutputManager.LightPatterns.LIGHTS_DRIVE);
 			}
 			
-			SmartDashboard.putNumber("Left stick", DSManager.getDriveYAxis());
+			SmartDashboard.putNumber("yVal2", yValue);
+			SmartDashboard.putNumber("xVal2", xValue);
+
+			System.out.println("xVal2" + xValue);
+			System.out.println("yVal2" + yValue);
+			
+			/*SmartDashboard.putNumber("Left stick", DSManager.getDriveYAxis());
 			SmartDashboard.putNumber("Right stick", DSManager.getDriveXAxis());
 			SmartDashboard.putNumber("Left commanded", OutputManager.getCommandedSpeed(OutputManager.Motors.L1MASTER));
 			SmartDashboard.putNumber("Right commanded", OutputManager.getCommandedSpeed(OutputManager.Motors.R1MASTER));
 			SmartDashboard.putNumber("Left Encoder", OutputManager.L1Master.getEncVelocity());
 			SmartDashboard.putNumber("Right Encoder", OutputManager.R1Master.getEncVelocity());
-
+*/
 			// Setting talons
 			OutputManager.setSpeedL(yValue + xValue);
 			OutputManager.setSpeedR(yValue - xValue);
