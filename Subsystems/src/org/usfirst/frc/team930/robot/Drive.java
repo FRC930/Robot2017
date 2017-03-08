@@ -25,6 +25,9 @@ public class Drive implements Runnable {
 			double xValue = Math.pow(DSManager.getDriveXAxis(), Constants.JOYSTICK_NONLINEARITY);
 			double yValue = Math.pow(DSManager.getDriveYAxis() * -1.0, Constants.JOYSTICK_NONLINEARITY);
 					
+			xValue = Math.ceil(xValue * 1000) / 1000;
+			yValue = Math.ceil(yValue * 1000) / 1000;
+			
 			// Deadband
 			if (Math.abs(DSManager.getDriveXAxis()) < Constants.JOYSTICK_ERROR_ALLOWANCE) {
 				xValue = Constants.X_DEFAULT_VALUE;
