@@ -21,16 +21,19 @@ public class Drive implements Runnable {
 				}
 			}
 			
+			SmartDashboard.putNumber("xVal0", DSManager.getDriveXAxis());
+			SmartDashboard.putNumber("yVal0", DSManager.getDriveYAxis());
+			
 			// Adjusting joystick sensitivity
-			double xValue = Math.pow(DSManager.getDriveXAxis(), Constants.JOYSTICK_NONLINEARITY);
-			double yValue = Math.pow(DSManager.getDriveYAxis() * -1.0, Constants.JOYSTICK_NONLINEARITY);
+			double xValue = Math.pow((DSManager.getDriveXAxis()-.04)/.96, Constants.JOYSTICK_NONLINEARITY);
+			double yValue = Math.pow((DSManager.getDriveYAxis() * -1.0 -.04)/.96, Constants.JOYSTICK_NONLINEARITY);
 
 			SmartDashboard.putNumber("yVal1", yValue);
 			SmartDashboard.putNumber("xVal1", xValue);
 
 			System.out.println("xVal1" + xValue);
 			System.out.println("yVal1" + yValue);
-			 
+			
 			if (xValue > 0){
 
 				xValue = Math.ceil(xValue * 1000000) / 1000000;
@@ -65,6 +68,15 @@ public class Drive implements Runnable {
 			if ((Math.abs(xValue) >= Constants.JOYSTICK_ERROR_ALLOWANCE)&& (Math.abs(yValue) >= Constants.JOYSTICK_ERROR_ALLOWANCE)) {
 				OutputManager.setLights(OutputManager.LightPatterns.LIGHTS_DRIVE);
 			}
+			
+			if (xValue > 1)
+				xValue = 1;
+			if (xValue < -1)
+				xValue = -1;
+			if (yValue >1)
+				yValue = 1;
+			if(yValue < -1)
+				yValue = -1;
 			
 			SmartDashboard.putNumber("yVal2", yValue);
 			SmartDashboard.putNumber("xVal2", xValue);
