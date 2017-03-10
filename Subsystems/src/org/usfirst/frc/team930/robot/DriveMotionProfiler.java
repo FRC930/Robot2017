@@ -183,6 +183,7 @@ public class DriveMotionProfiler implements Runnable {
 		
 		int totalCnt = GeneratedMotionProfileRight.kNumPoints;
 		int totalCntToHopper = GeneratedMotionProfileRight.kNumPointsToHopper;
+		int totalCntWait = GeneratedMotionProfileRight.kNumPointsWait;
 		int totalCntBackwards = GeneratedMotionProfileRight.kNumPointsBackwards;
 		int totalCntToBoiler = GeneratedMotionProfileRight.kNumPointsToBoiler;
 		
@@ -208,9 +209,9 @@ public class DriveMotionProfiler implements Runnable {
 				point.zeroPos = true; /* set this to true on the first point */
 			
 			if (i >= (totalCnt - 25)) point.velocityOnly = true;
-			/*if ((i >= (totalCntToHopper - 25)) && (i <= (totalCntToHopper))) point.velocityOnly = true;
+			if ((i >= (totalCntToHopper - 25)) && (i <= (totalCntToHopper))) point.velocityOnly = true;
 			if ((i >= (totalCntBackwards - 25)) && (i <= (totalCntBackwards))) point.velocityOnly = true;
-			if ((i >= (totalCntToBoiler - 25)) && (i <= (totalCntToBoiler))) point.velocityOnly = true;*/
+			if ((i >= (totalCntToBoiler - 25)) && (i <= (totalCntToBoiler))) point.velocityOnly = true;
 			
 			if (i == (totalCnt - 8)) {
 			
@@ -218,7 +219,12 @@ public class DriveMotionProfiler implements Runnable {
 				point.zeroPos = true;
 			
 			}
-			/*if (i == (totalCntToHopper - 8)) {
+			if (i == (totalCntToHopper - 8)) {
+				
+				point.zeroPos = true;
+			
+			}
+			if (i == (totalCntWait - 200)) {
 				
 				point.zeroPos = true;
 			
@@ -232,7 +238,7 @@ public class DriveMotionProfiler implements Runnable {
 				
 				point.zeroPos = true;
 			
-			}*/
+			}
 			
 			point.isLastPoint = false;
 			
@@ -252,6 +258,7 @@ public class DriveMotionProfiler implements Runnable {
 		
 		totalCnt = GeneratedMotionProfileLeft.kNumPoints;
 		totalCntToHopper = GeneratedMotionProfileLeft.kNumPointsToHopper;
+		totalCntWait = GeneratedMotionProfileLeft.kNumPointsWait;
 		totalCntBackwards = GeneratedMotionProfileLeft.kNumPointsBackwards;
 		totalCntToBoiler = GeneratedMotionProfileLeft.kNumPointsToBoiler;
 		
@@ -278,9 +285,9 @@ public class DriveMotionProfiler implements Runnable {
 				point.zeroPos = true; /* set this to true on the first point */
 			
 			if (i >= (totalCnt - 25)) point.velocityOnly = true;
-			/*if ((i >= (totalCntToHopper - 25)) && (i <= (totalCntToHopper))) point.velocityOnly = true;
+			if ((i >= (totalCntToHopper - 25)) && (i <= (totalCntToHopper))) point.velocityOnly = true;
 			if ((i >= (totalCntBackwards - 25)) && (i <= (totalCntBackwards))) point.velocityOnly = true;
-			if ((i >= (totalCntToBoiler - 25)) && (i <= (totalCntToBoiler))) point.velocityOnly = true;*/
+			if ((i >= (totalCntToBoiler - 25)) && (i <= (totalCntToBoiler))) point.velocityOnly = true;
 			
 			if (i == (totalCnt - 8)) {
 			
@@ -288,7 +295,12 @@ public class DriveMotionProfiler implements Runnable {
 				point.zeroPos = true;
 			
 			}
-			/*if (i == (totalCntToHopper - 8)) {
+			if (i == (totalCntToHopper - 8)) {
+				
+				point.zeroPos = true;
+			
+			}
+			if (i == (totalCntWait - 200)) {
 				
 				point.zeroPos = true;
 			
@@ -302,7 +314,7 @@ public class DriveMotionProfiler implements Runnable {
 				
 				point.zeroPos = true;
 			
-			}*/
+			}
 			
 			point.isLastPoint = false;
 			
