@@ -6,21 +6,21 @@ public class SubsystemHandler {
 
 		private final  Drive myDrive;
 		private final  Shoot myShoot;
-		private final  Climb myClimb;
-		private final  Intake myIntake;
-		private final  Lights myLights;
-		private final  Elevator myElevator;
-		private final  DriveMotionProfiler myMP;
+		//private final  Climb myClimb;
+		//private final  Intake myIntake;
+		//private final  Lights myLights;
+		private final  CoDriverMisc myCoDrive;
+		//private final  DriveMotionProfiler myMP;
 
 		//private final  Loggable myLog;
 		
 		private final  Notifier driveNotifier;
 		private final  Notifier shootNotifier;
-		private final  Notifier climbNotifier;
-		private final  Notifier intakeNotifier;
-		private final  Notifier lightsNotifier;
-		private final  Notifier elevatorNotifier;
-		private final  Notifier MPNotifier;
+		//private final  Notifier climbNotifier;
+		//private final  Notifier intakeNotifier;
+		//private final  Notifier lightsNotifier;
+		private final  Notifier coDriveNotifier;
+		//private final  Notifier MPNotifier;
 
 		//private final  Notifier logNotifier;
 		
@@ -28,11 +28,11 @@ public class SubsystemHandler {
 			
 			myDrive = new Drive(); // Instantiates runnable subsystem classes
 			myShoot = new Shoot();
-			myClimb = new Climb();
-			myIntake = new Intake();
-			myLights = new Lights();
-			myElevator = new Elevator();
-			myMP = new DriveMotionProfiler();
+			//myClimb = new Climb();
+			//myIntake = new Intake();
+			//myLights = new Lights();
+			myCoDrive = new CoDriverMisc();
+			//myMP = new DriveMotionProfiler();
 
 			//myLog = new Loggable();
 			
@@ -40,15 +40,15 @@ public class SubsystemHandler {
 					
 			shootNotifier = new Notifier (myShoot);
 						
-			climbNotifier = new Notifier (myClimb);
+			//climbNotifier = new Notifier (myClimb);
 				
-			intakeNotifier = new Notifier (myIntake);
+			//intakeNotifier = new Notifier (myIntake);
 			
-			lightsNotifier = new Notifier (myLights);
+			//lightsNotifier = new Notifier (myLights);
 			
-			elevatorNotifier = new Notifier (myElevator);
+			coDriveNotifier = new Notifier (myCoDrive);
 			
-			MPNotifier = new Notifier (myMP);
+			//MPNotifier = new Notifier (myMP);
 			
 			//logNotifier = new Notifier (myLog);
 			
@@ -62,15 +62,15 @@ public class SubsystemHandler {
 			
 			shootNotifier.startPeriodic(.01);
 
-			elevatorNotifier.startPeriodic(0.2);
+			coDriveNotifier.startPeriodic(0.2);
 			
-			climbNotifier.startPeriodic(.02);
+			//climbNotifier.startPeriodic(.02);
 			
-			intakeNotifier.startPeriodic(.02);
+			//intakeNotifier.startPeriodic(.02);
 			
-			lightsNotifier.startPeriodic(.025);
+			//lightsNotifier.startPeriodic(.025);
 			
-			MPNotifier.startPeriodic(0.005);
+			//MPNotifier.startPeriodic(0.005);
 			
 			//logNotifier.startPeriodic(.005);
 			

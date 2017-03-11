@@ -15,6 +15,8 @@ public class Robot extends IterativeRobot {
     	OutputManager.teleopInit();
     	Drive.init();
     	//Loggable.init();
+    	AutonManager.init();
+    	DriveMotionProfiler.startFilling();
         SH = new SubsystemHandler(); // Begins the SystemHandler, which controls the speeds at which the subsystems are updated.
         SH.startSubsystems();
         
@@ -32,7 +34,6 @@ public class Robot extends IterativeRobot {
     	//OutputManager.motionProfilerLeft.reset();
     	//OutputManager.motionProfilerRight.reset();
     	DriveMotionProfiler.init();
-    	AutonManager.init();
     	
     	//OutputManager.setDrivetrainMotionProfileMode();
     	

@@ -12,9 +12,9 @@ public class DriveMotionProfiler implements Runnable {
 	
 	private static final int kMinPointsInTalon = 5;
 	
-	private CANTalon.MotionProfileStatus statusL = new CANTalon.MotionProfileStatus();
+	private static CANTalon.MotionProfileStatus statusL = new CANTalon.MotionProfileStatus();
 	
-	private CANTalon.MotionProfileStatus statusR = new CANTalon.MotionProfileStatus();
+	private static CANTalon.MotionProfileStatus statusR = new CANTalon.MotionProfileStatus();
 	public static boolean isRunning = false;
 	
 	private static int state = 0;
@@ -65,8 +65,6 @@ public class DriveMotionProfiler implements Runnable {
 					
 					OutputManager.L1Master.processMotionProfileBuffer();
 					OutputManager.R1Master.processMotionProfileBuffer();					
-					
-					startFilling();
 					
 					state = 1;
 					loopTimeout = kNumLoopsTimeout;
@@ -140,7 +138,7 @@ public class DriveMotionProfiler implements Runnable {
 		}
 		
 	}
-	private void startFilling() {
+	public static void startFilling() {
 		/* since this example only has one talon, just update that one */
 		/*
 		drivetrainSide = OutputManager.MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE;
