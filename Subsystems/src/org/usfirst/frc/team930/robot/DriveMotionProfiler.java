@@ -2,6 +2,7 @@ package org.usfirst.frc.team930.robot;
 
 import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class DriveMotionProfiler implements Runnable {
@@ -12,9 +13,9 @@ public class DriveMotionProfiler implements Runnable {
 	
 	private static final int kMinPointsInTalon = 5;
 	
-	private CANTalon.MotionProfileStatus statusL = new CANTalon.MotionProfileStatus();
+	private static CANTalon.MotionProfileStatus statusL = new CANTalon.MotionProfileStatus();
 	
-	private CANTalon.MotionProfileStatus statusR = new CANTalon.MotionProfileStatus();
+	private static CANTalon.MotionProfileStatus statusR = new CANTalon.MotionProfileStatus();
 	public static boolean isRunning = false;
 	
 	private static int state = 0;
@@ -52,6 +53,9 @@ public class DriveMotionProfiler implements Runnable {
 		// && isRunning
 		if (OutputManager.isRobotAuton()){
 			
+			SmartDashboard.putNumber("Left Encoder Velocity", OutputManager.L1Master.getEncVelocity());
+			SmartDashboard.putNumber("Right Encoder Velocity", OutputManager.R1Master.getEncVelocity());
+			
 			OutputManager.L1Master.processMotionProfileBuffer();
 			OutputManager.R1Master.processMotionProfileBuffer();
 			
@@ -66,7 +70,7 @@ public class DriveMotionProfiler implements Runnable {
 					OutputManager.L1Master.processMotionProfileBuffer();
 					OutputManager.R1Master.processMotionProfileBuffer();					
 					
-					startFilling();
+					//startFilling();
 					
 					state = 1;
 					loopTimeout = kNumLoopsTimeout;
@@ -140,7 +144,7 @@ public class DriveMotionProfiler implements Runnable {
 		}
 		
 	}
-	private void startFilling() {
+	public static void startFilling() {
 		/* since this example only has one talon, just update that one */
 		/*
 		drivetrainSide = OutputManager.MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE;
@@ -183,6 +187,7 @@ public class DriveMotionProfiler implements Runnable {
 		
 		int totalCnt = GeneratedMotionProfileRight.kNumPoints;
 		int totalCntToHopper = GeneratedMotionProfileRight.kNumPointsToHopper;
+		int totalCntWait = GeneratedMotionProfileRight.kNumPointsWait;
 		int totalCntBackwards = GeneratedMotionProfileRight.kNumPointsBackwards;
 		int totalCntToBoiler = GeneratedMotionProfileRight.kNumPointsToBoiler;
 		
@@ -207,6 +212,7 @@ public class DriveMotionProfiler implements Runnable {
 				
 				point.zeroPos = true; /* set this to true on the first point */
 			
+			if (i >= (totalCnt - 25)) point.velocityOnly = true;
 			if ((i >= (totalCntToHopper - 25)) && (i <= (totalCntToHopper))) point.velocityOnly = true;
 			if ((i >= (totalCntBackwards - 25)) && (i <= (totalCntBackwards))) point.velocityOnly = true;
 			if ((i >= (totalCntToBoiler - 25)) && (i <= (totalCntToBoiler))) point.velocityOnly = true;
@@ -218,6 +224,11 @@ public class DriveMotionProfiler implements Runnable {
 			
 			}
 			if (i == (totalCntToHopper - 8)) {
+				
+				point.zeroPos = true;
+			
+			}
+			if (i == (totalCntWait - 200)) {
 				
 				point.zeroPos = true;
 			
@@ -251,6 +262,7 @@ public class DriveMotionProfiler implements Runnable {
 		
 		totalCnt = GeneratedMotionProfileLeft.kNumPoints;
 		totalCntToHopper = GeneratedMotionProfileLeft.kNumPointsToHopper;
+		totalCntWait = GeneratedMotionProfileLeft.kNumPointsWait;
 		totalCntBackwards = GeneratedMotionProfileLeft.kNumPointsBackwards;
 		totalCntToBoiler = GeneratedMotionProfileLeft.kNumPointsToBoiler;
 		
@@ -276,6 +288,7 @@ public class DriveMotionProfiler implements Runnable {
 				
 				point.zeroPos = true; /* set this to true on the first point */
 			
+			if (i >= (totalCnt - 25)) point.velocityOnly = true;
 			if ((i >= (totalCntToHopper - 25)) && (i <= (totalCntToHopper))) point.velocityOnly = true;
 			if ((i >= (totalCntBackwards - 25)) && (i <= (totalCntBackwards))) point.velocityOnly = true;
 			if ((i >= (totalCntToBoiler - 25)) && (i <= (totalCntToBoiler))) point.velocityOnly = true;
@@ -287,6 +300,11 @@ public class DriveMotionProfiler implements Runnable {
 			
 			}
 			if (i == (totalCntToHopper - 8)) {
+				
+				point.zeroPos = true;
+			
+			}
+			if (i == (totalCntWait - 200)) {
 				
 				point.zeroPos = true;
 			

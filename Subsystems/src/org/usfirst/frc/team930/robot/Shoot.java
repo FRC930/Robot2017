@@ -12,15 +12,14 @@ public class Shoot implements Runnable {
 		
 		if (OutputManager.isRobotTeleop()){
 			
-			OutputManager.getShooter1Voltage();
+			//OutputManager.getShooter1Voltage();
 			if(Math.abs((OutputManager.errorShooter()/Constants.FULL_SHOOT_SPEED)*100) > 50){
 				percentError = 50;
 			}
 			else{
 			percentError =  (OutputManager.errorShooter()/Constants.FULL_SHOOT_SPEED)*100;
 			}
-			System.out.println("Error " + OutputManager.errorShooter());
-			SmartDashboard.putNumber("Error as Pecent", percentError);
+			//SmartDashboard.putNumber("Error as Pecent", percentError);
 			
 	/*if (DSManager.getCoDriveShootTrigger()){ // Replace with onBool for buttons
 				
@@ -65,13 +64,13 @@ public class Shoot implements Runnable {
 			
 
 			//System.out.println("Speed of Shooter: " + OutputManager.getFeedbackSpeed(OutputManager.Motors.SHOOTER));
-			SmartDashboard.putNumber("Commanded Speed of Shooter: ", shooterSpeed);
+			//SmartDashboard.putNumber("Commanded Speed of Shooter: ", shooterSpeed);
 
 			//System.out.println("Speed of Shooter: " + OutputManager.getFeedbackSpeed(OutputManager.Motors.SHOOTER));
 
-			SmartDashboard.putNumber("Speed of Shooter", ((OutputManager.getFeedbackSpeed(OutputManager.Motors.SHOOTER))));
-			SmartDashboard.putNumber("Current of Shooter", OutputManager.getPDPChannelCurrent(Constants.PDP_CHANNEL11));
-			SmartDashboard.putNumber("Current of Shooter2", OutputManager.getPDPChannelCurrent(Constants.PDP_CHANNEL10));
+			//SmartDashboard.putNumber("Speed of Shooter", ((OutputManager.getFeedbackSpeed(OutputManager.Motors.SHOOTER))));
+			//SmartDashboard.putNumber("Current of Shooter", OutputManager.getPDPChannelCurrent(Constants.PDP_CHANNEL11));
+			//SmartDashboard.putNumber("Current of Shooter2", OutputManager.getPDPChannelCurrent(Constants.PDP_CHANNEL10));
 			//Setting Lights for Shooting
 			if(OutputManager.getPDPChannelCurrent(Constants.PDP_CHANNEL12)>5){
 			

@@ -111,6 +111,11 @@ public class Main {
       //p.addWaypoint(new WaypointSequence.Waypoint(5.0, 0, 0));
       
       // Tiburon's Testing
+      p.addWaypoint(new WaypointSequence.Waypoint(0, 0, 0));
+      
+      p.addWaypoint(new WaypointSequence.Waypoint(2.0079921, -0.6103582, Math.toRadians(-29.43835677)));
+      p.addWaypoint(new WaypointSequence.Waypoint(5.5, -6.3, Math.toRadians(-100)));
+      
       //p.addWaypoint(new WaypointSequence.Waypoint(0, 0, 0));
       //p.addWaypoint(new WaypointSequence.Waypoint(2.0079921, -0.6103582, Math.toRadians(-29.43835677)));
       //p.addWaypoint(new WaypointSequence.Waypoint(5.5, -6.3, Math.toRadians(-100)));
