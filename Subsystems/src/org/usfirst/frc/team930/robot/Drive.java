@@ -21,8 +21,7 @@ public class Drive implements Runnable {
 				}
 			}
 			
-<<<<<<< HEAD
-=======
+
 			// Adjusting joystick sensitivity
 			double xValue = Math.pow((DSManager.getDriveXAxis()-.04)/.96, Constants.JOYSTICK_NONLINEARITY);
 			double yValue = Math.pow((DSManager.getDriveYAxis() * -1.0 -.04)/.96, Constants.JOYSTICK_NONLINEARITY);
@@ -51,7 +50,7 @@ public class Drive implements Runnable {
 			    
 			}
 			
->>>>>>> 9aaf717224454dbd68cea8e48d7e01d15a7bee55
+
 			// Deadband
 			if (Math.abs(DSManager.getDriveXAxis()) < Constants.JOYSTICK_ERROR_ALLOWANCE) {
 				xValue = Constants.X_DEFAULT_VALUE;
@@ -62,16 +61,7 @@ public class Drive implements Runnable {
 			if ((Math.abs(xValue) >= Constants.JOYSTICK_ERROR_ALLOWANCE)&& (Math.abs(yValue) >= Constants.JOYSTICK_ERROR_ALLOWANCE)) {
 				OutputManager.setLights(OutputManager.LightPatterns.LIGHTS_DRIVE);
 			}
-<<<<<<< HEAD
-			// Adjusting joystick sensitivity
-			xValue = Math.pow(DSManager.getDriveXAxis(), Constants.JOYSTICK_NONLINEARITY);
-			yValue = Math.pow(DSManager.getDriveYAxis() * -1.0, Constants.JOYSTICK_NONLINEARITY);
-								
-			SmartDashboard.putNumber("Left stick", DSManager.getDriveYAxis());
-			SmartDashboard.putNumber("Right stick", DSManager.getDriveXAxis());
-			SmartDashboard.putNumber("Left commanded", OutputManager.getCommandedSpeed(OutputManager.Motors.L1MASTER));
-			SmartDashboard.putNumber("Right commanded", OutputManager.getCommandedSpeed(OutputManager.Motors.R1MASTER));
-=======
+			
 			
 			if (xValue > 1)
 				xValue = 1;
@@ -81,7 +71,7 @@ public class Drive implements Runnable {
 				yValue = 1;
 			if(yValue < -1)
 				yValue = -1;
->>>>>>> 9aaf717224454dbd68cea8e48d7e01d15a7bee55
+
 			
 			// Setting talons
 			OutputManager.setSpeedL(yValue + xValue);

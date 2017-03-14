@@ -39,12 +39,8 @@ public class Constants {
 	//-----------Shooter Constants--------------
 	
 	public static final double BANG_BANG_VARIABLES = 5;
-<<<<<<< HEAD
-	public static final double FULL_SHOOT_SPEED =2750.0;
-=======
 	public static final double FULL_SHOOT_SPEED =2650.0;
->>>>>>> 9aaf717224454dbd68cea8e48d7e01d15a7bee55
-	
+
 	// ----------Spark Motor Channels-----------
 	
 	public static final int INTAKE_MOTOR_CHANNEL = 0;
@@ -56,11 +52,7 @@ public class Constants {
 	public static final int JOYSTICK_NONLINEARITY = 3;
 	public static final int X_DEFAULT_VALUE = 0;
 	public static final int Y_DEFAULT_VALUE = 0;
-<<<<<<< HEAD
-	public static final double JOYSTICK_ERROR_ALLOWANCE = 0.15;
-=======
 	public static final double JOYSTICK_ERROR_ALLOWANCE = 0.1;
->>>>>>> 9aaf717224454dbd68cea8e48d7e01d15a7bee55
 	
 	// ----------JOYSTICK CONSTANTS----------
 	
