@@ -72,6 +72,10 @@ public class Drive implements Runnable {
 			// Setting talons
 			OutputManager.setSpeedL(yValue + xValue);
 			OutputManager.setSpeedR(yValue - xValue);
+			
+			SmartDashboard.putNumber("Left Encoder Velocity", OutputManager.L1Master.getEncVelocity());
+			SmartDashboard.putNumber("Right Encoder Velocity", OutputManager.R1Master.getEncVelocity());
+
 		}
 		else if (OutputManager.isRobotAuton()){
 				

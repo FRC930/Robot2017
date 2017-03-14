@@ -10,7 +10,7 @@ public class SubsystemHandler {
 		//private final  Intake myIntake;
 		//private final  Lights myLights;
 		private final  CoDriverMisc myCoDrive;
-		//private final  DriveMotionProfiler myMP;
+		private final  DriveMotionProfiler myMP;
 
 		//private final  Loggable myLog;
 		
@@ -20,7 +20,7 @@ public class SubsystemHandler {
 		//private final  Notifier intakeNotifier;
 		//private final  Notifier lightsNotifier;
 		private final  Notifier coDriveNotifier;
-		//private final  Notifier MPNotifier;
+		private final  Notifier MPNotifier;
 
 		//private final  Notifier logNotifier;
 		
@@ -32,7 +32,7 @@ public class SubsystemHandler {
 			//myIntake = new Intake();
 			//myLights = new Lights();
 			myCoDrive = new CoDriverMisc();
-			//myMP = new DriveMotionProfiler();
+			myMP = new DriveMotionProfiler();
 
 			//myLog = new Loggable();
 			
@@ -48,7 +48,7 @@ public class SubsystemHandler {
 			
 			coDriveNotifier = new Notifier (myCoDrive);
 			
-			//MPNotifier = new Notifier (myMP);
+			MPNotifier = new Notifier (myMP);
 			
 			//logNotifier = new Notifier (myLog);
 			
@@ -70,7 +70,7 @@ public class SubsystemHandler {
 			
 			//lightsNotifier.startPeriodic(.025);
 			
-			//MPNotifier.startPeriodic(0.005);
+			MPNotifier.startPeriodic(0.005);
 			
 			//logNotifier.startPeriodic(.005);
 			

@@ -2,6 +2,7 @@ package org.usfirst.frc.team930.robot;
 
 import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class DriveMotionProfiler implements Runnable {
@@ -52,6 +53,9 @@ public class DriveMotionProfiler implements Runnable {
 		// && isRunning
 		if (OutputManager.isRobotAuton()){
 			
+			SmartDashboard.putNumber("Left Encoder Velocity", OutputManager.L1Master.getEncVelocity());
+			SmartDashboard.putNumber("Right Encoder Velocity", OutputManager.R1Master.getEncVelocity());
+			
 			OutputManager.L1Master.processMotionProfileBuffer();
 			OutputManager.R1Master.processMotionProfileBuffer();
 			
@@ -65,6 +69,8 @@ public class DriveMotionProfiler implements Runnable {
 					
 					OutputManager.L1Master.processMotionProfileBuffer();
 					OutputManager.R1Master.processMotionProfileBuffer();					
+					
+					//startFilling();
 					
 					state = 1;
 					loopTimeout = kNumLoopsTimeout;
