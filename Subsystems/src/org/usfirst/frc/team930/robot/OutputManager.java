@@ -473,6 +473,8 @@ public class OutputManager {
 		
 		isRobotAuton = true;
 		
+		Drive.generatePoints(0);
+		
 		/*
 		OutputManager.setDrivetrainMode(CANTalon.TalonControlMode.MotionProfile);
     	
