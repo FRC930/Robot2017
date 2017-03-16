@@ -369,7 +369,7 @@ public class DriveMotionProfiler implements Runnable {
 			point.velocityOnly = false; /* set true to not do any position
 										 * servo, just velocity feedforward
 										 */
-			System.out.println("i Value: " + i);
+			/*System.out.println("i Value: " + i);*/
 			point.zeroPos = false;
 			
 			if (i == 0)
@@ -414,13 +414,14 @@ public class DriveMotionProfiler implements Runnable {
 			
 				point.velocityOnly = true;
 				point.isLastPoint = true; /* set this to true on the last point  */
-				System.out.println("Last Point");
+				System.out.println("Last Point: " + totalCnt);
 			
 			}
 			
 			OutputManager.pushMotionProfileTrajectoryRight(point);
 			
 		}
+		
 		
 		//profile = GeneratedMotionProfileLeft.Points;
 		
@@ -498,7 +499,7 @@ public class DriveMotionProfiler implements Runnable {
 			
 				point.velocityOnly = true;
 				point.isLastPoint = true; /* set this to true on the last point  */
-				System.out.println("Last Point");
+				System.out.println("Last Point: " + totalCnt);
 			
 			}
 			
