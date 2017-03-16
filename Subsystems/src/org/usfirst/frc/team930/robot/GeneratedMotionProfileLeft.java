@@ -1,7 +1,5 @@
 package org.usfirst.frc.team930.robot;
 
-import jaci.pathfinder.Trajectory;
-import jaci.pathfinder.Trajectory.Segment;
 
 public class GeneratedMotionProfileLeft {
 	public static final int kNumPointsToHopper =356; // 556

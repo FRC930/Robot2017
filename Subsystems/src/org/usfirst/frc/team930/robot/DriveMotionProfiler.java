@@ -193,7 +193,7 @@ public class DriveMotionProfiler implements Runnable {
 		//double[][] profile = GeneratedMotionProfileRight.Points;
 		Waypoint[] points1 = new Waypoint[] {
 			    new Waypoint(0, 0, 0),      // Waypoint @ x=-4, y=-1, exit angle=-45 degrees
-			    new Waypoint(5.5, -6.3, Pathfinder.d2r(-89))                        // Waypoint @ x=-2, y=-2, exit angle=0 radians
+			    new Waypoint(5.5, -6.1, Pathfinder.d2r(-89))                        // Waypoint @ x=-2, y=-2, exit angle=0 radians
 			};
 		
 		Trajectory.Config config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_HIGH, 0.01, 4.0, 4.0, 50.0);

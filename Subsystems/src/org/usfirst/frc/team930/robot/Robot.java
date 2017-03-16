@@ -36,7 +36,7 @@ public class Robot extends IterativeRobot {
     	
     	DriveMotionProfiler.init();
     	
-    	GeneratedMotionProfileLeft.pointGenerate();
+    	//GeneratedMotionProfileLeft.pointGenerate();
     	GeneratedMotionProfileRight.pointGenerate();
     	
     	//OutputManager.setDrivetrainMotionProfileMode();
