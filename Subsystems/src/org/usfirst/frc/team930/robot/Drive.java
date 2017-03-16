@@ -121,52 +121,7 @@ public class Drive implements Runnable {
 		time.start();
 		
 	}
-	public static Trajectory generatePoints(int side){
-		if(side == 0){
-		Waypoint[] points = new Waypoint[] {
-			    new Waypoint(0, 0, 0),      // Waypoint @ x=-4, y=-1, exit angle=-45 degrees
-			    new Waypoint(5.5, -6.3, Pathfinder.d2r(-89))                        // Waypoint @ x=-2, y=-2, exit angle=0 radians
-			};
-		
-		
-		Trajectory.Config config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_HIGH, 0.01, 4.0, 4.0, 50.0);
-
-		Trajectory trajectory = Pathfinder.generate(points, config);
-		trajectory2 = trajectory;
-		return null;
-		}
-		else if(side == 1){
-		double wheelbase_width = 29.25/12;
-
-		// Create the Modifier Object
-		TankModifier modifier = new TankModifier(trajectory2);
-
-		// Generate the Left and Right trajectories using the original trajectory
-		// as the centre
-		modifier.modify(wheelbase_width);
-
-		Trajectory left  = modifier.getLeftTrajectory(); 
-		 return left;// Get the Left Side
-		}
-		else if(side == 2){
-		double wheelbase_width2 = 29.25/12;
-		
-
-		// Create the Modifier Object
-		TankModifier modifier2 = new TankModifier(trajectory2);
-
-		// Generate the Left and Right trajectories using the original trajectory
-		// as the centre
-		modifier2.modify(wheelbase_width2);
-
-		Trajectory right  = modifier2.getRightTrajectory(); 
-		return right;
-		// Get the Right Side
-		}
-		else
-		return null;
-		
-	}
+	
 	
 	
 	

@@ -240,11 +240,11 @@ public class MotionProfilingHandler {
 	private void startFilling() {
 		/* since this example only has one talon, just update that one */
 		if(drivetrainSide == MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE) {
-			startFilling(GeneratedMotionProfileRight.Points, GeneratedMotionProfileRight.kNumPoints);
+		//	startFilling(GeneratedMotionProfileRight.Points, GeneratedMotionProfileRight.kNumPoints);
 			//System.out.println("Right Side");
 		}
 		else if(drivetrainSide == MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE) {
-			startFilling(GeneratedMotionProfileLeft.Points, GeneratedMotionProfileLeft.kNumPoints);
+		//	startFilling(GeneratedMotionProfileLeft.Points, GeneratedMotionProfileLeft.kNumPoints);
 			//System.out.println("Left Side");
 		}
 		
