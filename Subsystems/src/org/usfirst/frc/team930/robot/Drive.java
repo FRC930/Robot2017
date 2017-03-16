@@ -3,12 +3,18 @@ import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import jaci.pathfinder.Pathfinder;
+import jaci.pathfinder.Trajectory;
+import jaci.pathfinder.Trajectory.Segment;
+import jaci.pathfinder.Waypoint;
+import jaci.pathfinder.modifiers.TankModifier;
 
 
 public class Drive implements Runnable {
-
-	private static Timer time = new Timer();
 	
+	static Trajectory trajectory2;
+	private static Timer time = new Timer();
+	double xValue, yValue;
 	public void run(){
 		if(OutputManager.isRobotTeleop()){
 			
@@ -21,6 +27,7 @@ public class Drive implements Runnable {
 				}
 			}
 			
+
 			// Adjusting joystick sensitivity
 			double xValue = Math.pow((DSManager.getDriveXAxis()-.04)/.96, Constants.JOYSTICK_NONLINEARITY);
 			double yValue = Math.pow((DSManager.getDriveYAxis() * -1.0 -.04)/.96, Constants.JOYSTICK_NONLINEARITY);
@@ -49,6 +56,7 @@ public class Drive implements Runnable {
 			    
 			}
 			
+
 			// Deadband
 			if (Math.abs(DSManager.getDriveXAxis()) < Constants.JOYSTICK_ERROR_ALLOWANCE) {
 				xValue = Constants.X_DEFAULT_VALUE;
@@ -60,6 +68,7 @@ public class Drive implements Runnable {
 				OutputManager.setLights(OutputManager.LightPatterns.LIGHTS_DRIVE);
 			}
 			
+			
 			if (xValue > 1)
 				xValue = 1;
 			if (xValue < -1)
@@ -68,6 +77,7 @@ public class Drive implements Runnable {
 				yValue = 1;
 			if(yValue < -1)
 				yValue = -1;
+
 			
 			// Setting talons
 			OutputManager.setSpeedL(yValue + xValue);
@@ -111,5 +121,8 @@ public class Drive implements Runnable {
 		time.start();
 		
 	}
+	
+	
+	
 	
 }

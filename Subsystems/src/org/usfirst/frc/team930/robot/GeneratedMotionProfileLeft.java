@@ -1,5 +1,8 @@
 package org.usfirst.frc.team930.robot;
 
+import jaci.pathfinder.Trajectory;
+import jaci.pathfinder.Trajectory.Segment;
+
 public class GeneratedMotionProfileLeft {
 	public static final int kNumPointsToHopper =356; // 556
 	public static final int kNumPointsWait =200;
@@ -9,8 +12,27 @@ public class GeneratedMotionProfileLeft {
 	public static final int kNumPointsToBoiler =1038;
 	public static final int kNumPoints =1038; // 242
 	// Position (rotations)	Velocity (RPM)	Duration (ms)
-	public static double [][]Points = new double[][]{	
-		/*
+	//public static double [][]Points = new double[][]{	
+	//public static double [][] Points = new double[Drive.generatePoints(1).length()][3];
+		
+
+	public static void pointGenerate(){
+		
+	/*for (int r = 0; r < Drive.generatePoints(1).length(); ++r) {
+		for( int c = 0; c < 3; c++){
+			Segment segment = Drive.generatePoints(1).get(r);
+			if(c == 0){
+				Points[r][c] = segment.position;
+			}
+			else if (c == 1){
+				Points[r][c] = segment.velocity;
+			}
+			else{
+				Points[r][c] = 10;
+			}
+				
+		}
+	}		
 {0.00003,	0.3	,10},		
 {0.0001,	0.42	,10},
 {0.00032,	1.32	,10},
@@ -254,9 +276,9 @@ public class GeneratedMotionProfileLeft {
 		{0,	0,	10},
 		{0,	0,	10}
 */
-		
+	///////////////////////////////////////////////////////////	
 		// Drive to Hopper
-		{0.00003,	0.3	,10},
+		/*{0.00003,	0.3	,10},
 		{0.00004,	0.06	,10},
 		{0.00029,	1.5	,10},
 		{0.00073,	2.7	,10},
@@ -1302,7 +1324,10 @@ public class GeneratedMotionProfileLeft {
 		{0,	0,	10},
 		{0,	0,	10},
 		{0,	0,	10},
-		{0,	0,	10}
+		{0,	0,	10}*/
 		
-	};
+	}
 }
+
+
+

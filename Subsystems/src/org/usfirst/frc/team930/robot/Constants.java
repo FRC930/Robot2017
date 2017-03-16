@@ -40,7 +40,7 @@ public class Constants {
 	
 	public static final double BANG_BANG_VARIABLES = 5;
 	public static final double FULL_SHOOT_SPEED =2650.0;
-	
+
 	// ----------Spark Motor Channels-----------
 	
 	public static final int INTAKE_MOTOR_CHANNEL = 0;

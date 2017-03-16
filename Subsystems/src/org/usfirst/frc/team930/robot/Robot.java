@@ -33,7 +33,11 @@ public class Robot extends IterativeRobot {
     	
     	//OutputManager.motionProfilerLeft.reset();
     	//OutputManager.motionProfilerRight.reset();
+    	
     	DriveMotionProfiler.init();
+    	
+    	GeneratedMotionProfileLeft.pointGenerate();
+    	GeneratedMotionProfileRight.pointGenerate();
     	
     	//OutputManager.setDrivetrainMotionProfileMode();
     	
