@@ -191,7 +191,7 @@ public class DriveMotionProfiler implements Runnable {
 		int totalCntBackwards = GeneratedMotionProfileRight.kNumPointsBackwards;
 		int totalCntToBoiler = GeneratedMotionProfileRight.kNumPointsToBoiler;
 		
-		for (int i = 0; i < totalCnt; ++i) {
+		for (int i = 0; i < totalCnt-8; ++i) {
 			OutputManager.L1Master.processMotionProfileBuffer();
 			OutputManager.R1Master.processMotionProfileBuffer();
 			
@@ -266,7 +266,7 @@ public class DriveMotionProfiler implements Runnable {
 		totalCntBackwards = GeneratedMotionProfileLeft.kNumPointsBackwards;
 		totalCntToBoiler = GeneratedMotionProfileLeft.kNumPointsToBoiler;
 		
-		for (int i = 0; i < totalCnt; ++i) {
+		for (int i = 0; i < totalCnt-8; ++i) {
 			
 			OutputManager.L1Master.processMotionProfileBuffer();
 			OutputManager.R1Master.processMotionProfileBuffer();

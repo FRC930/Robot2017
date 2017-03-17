@@ -18,9 +18,19 @@ public class Main {
 		// 3 Waypoints
 		Waypoint[] points = new Waypoint[] {
 		    new Waypoint(0, 0, 0),      // Waypoint @ x=-4, y=-1, exit angle=-45 degrees
-		    new Waypoint(5.5, -6.3, Pathfinder.d2r(-89))                        // Waypoint @ x=-2, y=-2, exit angle=0 radians
+		    new Waypoint(8.0, 0, Pathfinder.d2r(0))                        // Waypoint @ x=-2, y=-2, exit angle=0 radians
 		};
-
+		
+		/* Slower */
+		// 5.5  -6.1  -89
+		// 4.3   2.5   70
+		// 7.0    0    0
+		
+		/* Faster */
+		// 4.5  -6.1  -89
+		// 3.8   2.5   89
+		// 8.0    0    0
+		
 		// Create the Trajectory Configuration
 		//
 		// Arguments:
@@ -28,11 +38,18 @@ public class Main {
 		// Sample Count:        SAMPLES_HIGH (100 000)
 //		                      SAMPLES_LOW  (10 000)
 //		                      SAMPLES_FAST (1 000)
-		// Time Step:           0.05 Seconds
-		// Max Velocity:        1.7 m/s
-		// Max Acceleration:    2.0 m/s/s
-		// Max Jerk:            60.0 m/s/s/s
-		Trajectory.Config config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_HIGH, 0.01, 4.0, 4.0, 50.0);
+		// Time Step:           0.01 Seconds
+		
+		/* Slower */
+		// Max Velocity:        4.0 m/s
+		// Max Acceleration:    4.0 m/s/s
+		// Max Jerk:            50.0 m/s/s/s
+		
+		/* Faster */
+		// Max Velocity:		8.0 m/s
+		// Max Acceleration:	8.0 m/s/s
+		// Max Jerk:			50.0 m/s/s/s
+		Trajectory.Config config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_HIGH, 0.01, 8.0, 8.0, 50.0);
 
 		// Generate the trajectory
 		Trajectory trajectory = Pathfinder.generate(points, config);
