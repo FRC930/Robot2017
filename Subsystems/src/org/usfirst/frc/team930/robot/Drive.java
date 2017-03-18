@@ -5,9 +5,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
-public class Drive implements Runnable {
-
-	private static Timer time = new Timer();
+public class Drive implements Runnable {	private static Timer time = new Timer();
 	
 	public void run(){
 		if(OutputManager.isRobotTeleop()){

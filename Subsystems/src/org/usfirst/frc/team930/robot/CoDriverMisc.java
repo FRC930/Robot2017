@@ -13,14 +13,15 @@ public class CoDriverMisc implements Runnable{
 			if(DSManager.getDriveElevatorTrigger()>0.02){
 				
 			//OutputManager.setSpeedElevator(DSManager.getDriveElevatorTrigger());
-				OutputManager.setSpeedElevator(-1);
+				OutputManager.setSpeedElevator(Constants.ELEVATOR_SPEED_FORWARDS);
 			//SmartDashboard.putNumber("Elevator Speed", OutputManager.getCommandedSpeed(OutputManager.Motors.ELEVATOR));
 
 			}
 			
+			// Eject Backwards
 			else if(DSManager.getCoDriveRawButtonEight()){
 				
-				OutputManager.setSpeedElevator(.8); 	
+				OutputManager.setSpeedElevator(Constants.ELEVATOR_SPEED_BACKWARDS); 	
 				
 			}
 			

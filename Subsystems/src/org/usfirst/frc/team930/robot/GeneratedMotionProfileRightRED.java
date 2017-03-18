@@ -1,6 +1,6 @@
 package org.usfirst.frc.team930.robot;
 
-public class GeneratedMotionProfileRight {			//Lower vel and acc kNums		//Higher
+public class GeneratedMotionProfileRightRED {			//Lower vel and acc kNums		//Higher
 	public static final int kNumPointsToHopper =352; //352 								236
 	public static final int kNumPointsWait =200;
 	//public static final int kNumPointsBackwards =251; //251 							190

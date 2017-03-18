@@ -77,4 +77,8 @@ public class Constants {
 	public static final int CLIMBER_FIRST_INTERVAL_CURRENT = 10;
 	public static final int CLIMBER_CUT_OUT_CURRENT = 35;
 	
+	
+	// -----------ELEVATOR CONSTANTS------------------
+	public static final double ELEVATOR_SPEED_FORWARDS = -1.0;
+	public static final double ELEVATOR_SPEED_BACKWARDS = 0.8;
 }

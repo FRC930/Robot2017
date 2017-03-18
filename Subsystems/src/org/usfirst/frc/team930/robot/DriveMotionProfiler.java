@@ -144,7 +144,7 @@ public class DriveMotionProfiler implements Runnable {
 		}
 		
 	}
-	public static void startFilling() {
+	public static void startFilling(int mode) {
 		/* since this example only has one talon, just update that one */
 		/*
 		drivetrainSide = OutputManager.MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE;
@@ -183,13 +183,34 @@ public class DriveMotionProfiler implements Runnable {
 		
 		OutputManager.clearMotionProfileTrajectories();
 		
-		double[][] profile = GeneratedMotionProfileRight.Points;
+		int totalCnt = 0;
+		int totalCntToHopper = 0;
+		int totalCntWait = 0;
+		int totalCntBackwards = 0;
+		int totalCntToBoiler = 0;
+		double [] [] profile  = GeneratedMotionProfileRightRED.Points;
 		
-		int totalCnt = GeneratedMotionProfileRight.kNumPoints;
-		int totalCntToHopper = GeneratedMotionProfileRight.kNumPointsToHopper;
-		int totalCntWait = GeneratedMotionProfileRight.kNumPointsWait;
-		int totalCntBackwards = GeneratedMotionProfileRight.kNumPointsBackwards;
-		int totalCntToBoiler = GeneratedMotionProfileRight.kNumPointsToBoiler;
+		if (mode == 1){
+			
+			 totalCnt = GeneratedMotionProfileRightRED.kNumPoints;
+			 totalCntToHopper = GeneratedMotionProfileRightRED.kNumPointsToHopper;
+			 totalCntWait = GeneratedMotionProfileRightRED.kNumPointsWait;
+			 totalCntBackwards = GeneratedMotionProfileRightRED.kNumPointsBackwards;
+			 totalCntToBoiler = GeneratedMotionProfileRightRED.kNumPointsToBoiler;
+			
+		}
+		
+		else if (mode == 2){
+			
+			 profile = GeneratedMotionProfileRightBLUE.Points;
+			
+			 totalCnt = GeneratedMotionProfileRightBLUE.kNumPoints;
+			 totalCntToHopper = GeneratedMotionProfileRightBLUE.kNumPointsToHopper;
+			 totalCntWait = GeneratedMotionProfileRightBLUE.kNumPointsWait;
+			 totalCntBackwards = GeneratedMotionProfileRightBLUE.kNumPointsBackwards;
+			 totalCntToBoiler = GeneratedMotionProfileRightBLUE.kNumPointsToBoiler;
+			
+		}
 		
 		for (int i = 0; i < totalCnt-8; ++i) {
 			OutputManager.L1Master.processMotionProfileBuffer();
@@ -258,13 +279,29 @@ public class DriveMotionProfiler implements Runnable {
 			
 		}
 		
-		profile = GeneratedMotionProfileLeft.Points;
+		if (mode == 1){
+			
+			 profile  = GeneratedMotionProfileLeftRED.Points;
+			 
+			 totalCnt = GeneratedMotionProfileLeftRED.kNumPoints;
+			 totalCntToHopper = GeneratedMotionProfileLeftRED.kNumPointsToHopper;
+			 totalCntWait = GeneratedMotionProfileLeftRED.kNumPointsWait;
+			 totalCntBackwards = GeneratedMotionProfileLeftRED.kNumPointsBackwards;
+			 totalCntToBoiler = GeneratedMotionProfileLeftRED.kNumPointsToBoiler;
+			
+		}
 		
-		totalCnt = GeneratedMotionProfileLeft.kNumPoints;
-		totalCntToHopper = GeneratedMotionProfileLeft.kNumPointsToHopper;
-		totalCntWait = GeneratedMotionProfileLeft.kNumPointsWait;
-		totalCntBackwards = GeneratedMotionProfileLeft.kNumPointsBackwards;
-		totalCntToBoiler = GeneratedMotionProfileLeft.kNumPointsToBoiler;
+		else if (mode == 2){
+			
+			 profile = GeneratedMotionProfileLeftBLUE.Points;
+			
+			 totalCnt = GeneratedMotionProfileLeftBLUE.kNumPoints;
+			 totalCntToHopper = GeneratedMotionProfileLeftBLUE.kNumPointsToHopper;
+			 totalCntWait = GeneratedMotionProfileLeftBLUE.kNumPointsWait;
+			 totalCntBackwards = GeneratedMotionProfileLeftBLUE.kNumPointsBackwards;
+			 totalCntToBoiler = GeneratedMotionProfileLeftBLUE.kNumPointsToBoiler;
+			
+		}
 		
 		for (int i = 0; i < totalCnt-8; ++i) {
 			

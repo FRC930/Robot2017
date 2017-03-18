@@ -4,19 +4,28 @@ package org.usfirst.frc.team930.robot;
 import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends IterativeRobot {
 
 	SubsystemHandler SH;
-
+	
+	public SendableChooser <Integer> autoChooser;
+	
+	public int chosenVal;
+	
     public void robotInit() {
     	 	
     	OutputManager.init();
     	OutputManager.teleopInit();
     	Drive.init();
     	//Loggable.init();
-    	AutonManager.init();
-    	DriveMotionProfiler.startFilling();
+    	
+    	///////////////////////////////////////
+    	//DriveMotionProfiler.startFilling();//
+    	///////////////////////////////////////
+    	
         SH = new SubsystemHandler(); // Begins the SystemHandler, which controls the speeds at which the subsystems are updated.
         SH.startSubsystems();
         
@@ -24,22 +33,35 @@ public class Robot extends IterativeRobot {
        // OutputManager.motionProfilerLeft = new MotionProfilingHandler(OutputManager.getL1(), MotionProfilingHandler.MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE);
        // OutputManager.motionProfilerRight = new MotionProfilingHandler(OutputManager.getR1(), MotionProfilingHandler.MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE);
         
+        autoChooser = new SendableChooser<Integer>();
+        autoChooser.addDefault("DEFAULT", new Integer(0));
+    	autoChooser.addObject("RED_SHOOTER", new Integer(1));
+        autoChooser.addObject("BLUE_SHOOTER", new Integer(2));
+        autoChooser.addObject("FORWARD", new Integer(3));
+        autoChooser.addObject("BACKWARD", new Integer(4));
+        
+        SmartDashboard.putData("Autonomous mode chooser", autoChooser);
+        
+        chosenVal = 0;
     }
     
     public void autonomousInit() {
 
-    	// COMMENTED THIS OUT SO AUTONOMOUS WOULD NOT RUN
+    	AutonManager.init();
     	OutputManager.autonomousInit();
-    	
+    	AutonManager.driveCode();
+
+    	// COMMENTED THIS OUT SO AUTONOMOUS WOULD NOT RUN
+    	 	
     	//OutputManager.motionProfilerLeft.reset();
     	//OutputManager.motionProfilerRight.reset();
-    	DriveMotionProfiler.init();
+    	//DriveMotionProfiler.init();
     	
     	//OutputManager.setDrivetrainMotionProfileMode();
     	
     	//OutputManager.motionProfilerLeft.control();
     	//OutputManager.motionProfilerRight.control();
-    	OutputManager.profilerRun(true);
+    	//OutputManager.profilerRun(true);
     	
 		//CANTalon.SetValueMotionProfile setOutputLeft = OutputManager.motionProfilerLeft.getSetValue();
 		//OutputManager.setLeftDrivetrainCustomMode(setOutputLeft);
@@ -54,6 +76,8 @@ public class Robot extends IterativeRobot {
 
     public void autonomousPeriodic() {
     	
+    	AutonManager.driveCode();
+    	AutonManager.shooterCode();
     	
     	/*
     	CANTalon.SetValueMotionProfile setOutputLeft = motionProfilerLeft.getSetValue();
@@ -73,23 +97,45 @@ public class Robot extends IterativeRobot {
 		 * I: 0.0003
 		 */
     }
+    
     public void teleopInit(){
+    	
     	//OutputManager.setShooterSpeedMode();
     	//OutputManager.setShooterPercentVbusMode();
     	OutputManager.setShooterSpeedMode();
     	OutputManager.setDrivetrainMode(CANTalon.TalonControlMode.PercentVbus);
+    	
     }
+    
     public void teleopPeriodic() {
+    	
         OutputManager.teleopInit();
+        
     }
 
     public void testPeriodic() {
     
     }
+    
    public void disabledInit(){
+	   
 	   	OutputManager.turnRelaysOff();
     	OutputManager.disabledInit();
     	OutputManager.setShooterSpeed(0);
+    	
     }
+   
+   public void disabledPeriodic(){
+	   
+	   if (autoChooser.getSelected().intValue() != chosenVal){
+		   AutonManager.changeMode(autoChooser.getSelected().intValue());
+		   chosenVal = autoChooser.getSelected().intValue();
+		   System.out.println(autoChooser.getSelected().intValue());
+		   if (autoChooser.getSelected().intValue() < 3 && autoChooser.getSelected().intValue() > 0 )
+			   DriveMotionProfiler.startFilling(autoChooser.getSelected().intValue());
+	   }
+	   
+   }
+   
     
 }
