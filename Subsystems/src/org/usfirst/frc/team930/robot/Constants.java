@@ -39,12 +39,13 @@ public class Constants {
 	//-----------Shooter Constants--------------
 	
 	public static final double BANG_BANG_VARIABLES = 5;
-	public static final double FULL_SHOOT_SPEED =2650.0;
+	public static final double FULL_SHOOT_SPEED =3200.0;
 	
 	// ----------Spark Motor Channels-----------
 	
 	public static final int INTAKE_MOTOR_CHANNEL = 0;
 	public static final int CLIMBER_MOTOR_CHANNEL = 3;
+	public static final int CLIMBER2_MOTOR_CHANNEL = 1;
 	public static final int ELEVATOR_MOTOR_CHANNEL = 2;
 	
 	// -----------DRIVE CODE CONSTANTS-----------
@@ -79,6 +80,6 @@ public class Constants {
 	
 	
 	// -----------ELEVATOR CONSTANTS------------------
-	public static final double ELEVATOR_SPEED_FORWARDS = -1.0;
+	public static final double ELEVATOR_SPEED_FORWARDS = -0.6;
 	public static final double ELEVATOR_SPEED_BACKWARDS = 0.8;
 }

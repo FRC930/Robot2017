@@ -75,8 +75,10 @@ public class OutputManager {
 	// 1 Intake  Spark Motor controller declaration
 	private static Spark intake;
 	
-	// 1 Climber  Spark Motor controller declaration
+	// 2 Climber  Spark Motor controller declaration
 	private static Spark climber;
+	private static Spark climber2;
+
 	
 	// Elevator 1 Spark, either combine with shooter or make own subsystem
 	private static Spark elevator;
@@ -87,8 +89,8 @@ public class OutputManager {
 	private static CANTalon.MotionProfileStatus statusL = new CANTalon.MotionProfileStatus();
 	private static CANTalon.MotionProfileStatus statusR = new CANTalon.MotionProfileStatus();
 
-	private static Relay leftRelay = new Relay(Constants.PDP_CHANNEL0);
-	private static Relay rightRelay = new Relay(Constants.PDP_CHANNEL1);
+	private static Relay leftRelay = new Relay(1);
+	private static Relay rightRelay = new Relay(0);
 	
 	//public static MotionProfilingHandler motionProfilerLeft;
 	//public static MotionProfilingHandler motionProfilerRight;
@@ -121,7 +123,7 @@ public class OutputManager {
 		R1Master.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		R1Master.configEncoderCodesPerRev(250);
 		R1Master.setVoltageRampRate(6400);
-		R1Master.reverseSensor(true);
+		R1Master.reverseSensor(false);
 		R1Master.setF(1.0);
 		R1Master.setP(10.0);
 		R1Master.setI(0.0003);
@@ -135,8 +137,8 @@ public class OutputManager {
         shooter.configNominalOutputVoltage(+0.0f, -0.0f);
         shooter.configPeakOutputVoltage(0.0f, -12.0f);
         shooter.setF(.03);
-        shooter.setP(.5);
-        shooter.setD(1);
+        shooter.setP(0.075);//0.5
+        shooter.setD(0.05);//1
         shooter.setI(0.0);
         //F1
         //P100
@@ -154,6 +156,7 @@ public class OutputManager {
 		intake = new Spark (Constants.INTAKE_MOTOR_CHANNEL);
 		
 		climber = new Spark (Constants.CLIMBER_MOTOR_CHANNEL);
+		climber2 = new Spark (Constants.CLIMBER2_MOTOR_CHANNEL);
 		
 		elevator = new Spark (Constants.ELEVATOR_MOTOR_CHANNEL);
 		
@@ -297,6 +300,7 @@ public class OutputManager {
 	public static void setClimberSpeed( double speed ){
 		
 		climber.set(speed);
+		climber2.set(speed);
 		
 	}
 	

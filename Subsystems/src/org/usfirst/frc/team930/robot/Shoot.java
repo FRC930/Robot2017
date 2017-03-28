@@ -6,7 +6,7 @@ public class Shoot implements Runnable {
 	double targetX;
 	double targetY;
 	double percentError;
-	private static double shooterSpeed = -.8;
+	private static double shooterSpeed = Constants.FULL_SHOOT_SPEED;
 	
 	public void run(){
 		
@@ -44,7 +44,8 @@ public class Shoot implements Runnable {
 	
 			if(DSManager.getCoDriveShootTrigger()){
 				
-				OutputManager.setShooterSpeed(-Constants.FULL_SHOOT_SPEED);	
+				OutputManager.setShooterSpeed(-shooterSpeed);
+				//OutputManager.setShooterSpeed(-Constants.FULL_SHOOT_SPEED);	
 				
 			}
 			
@@ -55,20 +56,20 @@ public class Shoot implements Runnable {
 				//OutputManager.setShooterSpeed(0.0);
 			}
 			if (DSManager.increaseShooterSpeed()){
-				shooterSpeed -= .025;
+				shooterSpeed -= 25.0;
 			}
 			if (DSManager.decreaseShooterSpeed()){
-				shooterSpeed += .025;
+				shooterSpeed += 25.0;
 			}
 
 			
 
 			//System.out.println("Speed of Shooter: " + OutputManager.getFeedbackSpeed(OutputManager.Motors.SHOOTER));
-			//SmartDashboard.putNumber("Commanded Speed of Shooter: ", shooterSpeed);
+			SmartDashboard.putNumber("Commanded Speed of Shooter: ", shooterSpeed);
 
 			//System.out.println("Speed of Shooter: " + OutputManager.getFeedbackSpeed(OutputManager.Motors.SHOOTER));
 
-			//SmartDashboard.putNumber("Speed of Shooter", ((OutputManager.getFeedbackSpeed(OutputManager.Motors.SHOOTER))));
+			SmartDashboard.putNumber("Speed of Shooter", ((OutputManager.getFeedbackSpeed(OutputManager.Motors.SHOOTER))));
 			//SmartDashboard.putNumber("Current of Shooter", OutputManager.getPDPChannelCurrent(Constants.PDP_CHANNEL11));
 			//SmartDashboard.putNumber("Current of Shooter2", OutputManager.getPDPChannelCurrent(Constants.PDP_CHANNEL10));
 			//Setting Lights for Shooting

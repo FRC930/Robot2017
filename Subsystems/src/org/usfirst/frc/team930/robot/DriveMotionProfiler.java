@@ -212,7 +212,31 @@ public class DriveMotionProfiler implements Runnable {
 			
 		}
 		
-		for (int i = 0; i < totalCnt-8; ++i) {
+		else if (mode == 3){
+			
+			 profile = GeneratedMotionProfileBlueRGearRight.Points;
+			
+			 totalCnt = GeneratedMotionProfileBlueRGearRight.kNumPoints;
+			 totalCntToHopper = GeneratedMotionProfileBlueRGearRight.kNumPointsToHopper;
+			 totalCntWait = GeneratedMotionProfileBlueRGearRight.kNumPointsWait;
+			 totalCntBackwards = GeneratedMotionProfileBlueRGearRight.kNumPointsBackwards;
+			 totalCntToBoiler = GeneratedMotionProfileBlueRGearRight.kNumPointsToBoiler;
+			
+		}
+
+		else if (mode == 4){
+			
+			 profile = GeneratedMotionProfileRedLGearRight.Points;
+			
+			 totalCnt = GeneratedMotionProfileRedLGearRight.kNumPoints;
+			 totalCntToHopper = GeneratedMotionProfileRedLGearRight.kNumPointsToHopper;
+			 totalCntWait = GeneratedMotionProfileRedLGearRight.kNumPointsWait;
+			 totalCntBackwards = GeneratedMotionProfileRedLGearRight.kNumPointsBackwards;
+			 totalCntToBoiler = GeneratedMotionProfileRedLGearRight.kNumPointsToBoiler;
+			
+		}
+		
+		for (int i = 0; i < totalCnt; ++i) {
 			OutputManager.L1Master.processMotionProfileBuffer();
 			OutputManager.R1Master.processMotionProfileBuffer();
 			
@@ -234,9 +258,9 @@ public class DriveMotionProfiler implements Runnable {
 				point.zeroPos = true; /* set this to true on the first point */
 			
 			if (i >= (totalCnt - 25)) point.velocityOnly = true;
-			if ((i >= (totalCntToHopper - 25)) && (i <= (totalCntToHopper))) point.velocityOnly = true;
+			/*if ((i >= (totalCntToHopper - 25)) && (i <= (totalCntToHopper))) point.velocityOnly = true;
 			if ((i >= (totalCntBackwards - 25)) && (i <= (totalCntBackwards))) point.velocityOnly = true;
-			if ((i >= (totalCntToBoiler - 25)) && (i <= (totalCntToBoiler))) point.velocityOnly = true;
+			if ((i >= (totalCntToBoiler - 25)) && (i <= (totalCntToBoiler))) point.velocityOnly = true;*/
 			
 			if (i == (totalCnt - 8)) {
 			
@@ -244,7 +268,7 @@ public class DriveMotionProfiler implements Runnable {
 				point.zeroPos = true;
 			
 			}
-			if (i == (totalCntToHopper - 8)) {
+			/*if (i == (totalCntToHopper - 8)) {
 				
 				point.zeroPos = true;
 			
@@ -263,7 +287,7 @@ public class DriveMotionProfiler implements Runnable {
 				
 				point.zeroPos = true;
 			
-			}
+			}*/
 			
 			point.isLastPoint = false;
 			
@@ -303,7 +327,31 @@ public class DriveMotionProfiler implements Runnable {
 			
 		}
 		
-		for (int i = 0; i < totalCnt-8; ++i) {
+		else if (mode == 3){
+			
+			 profile = GeneratedMotionProfileBlueRGearLeft.Points;
+			
+			 totalCnt = GeneratedMotionProfileBlueRGearLeft.kNumPoints;
+			 totalCntToHopper = GeneratedMotionProfileBlueRGearLeft.kNumPointsToHopper;
+			 totalCntWait = GeneratedMotionProfileBlueRGearLeft.kNumPointsWait;
+			 totalCntBackwards = GeneratedMotionProfileBlueRGearLeft.kNumPointsBackwards;
+			 totalCntToBoiler = GeneratedMotionProfileBlueRGearLeft.kNumPointsToBoiler;
+			
+		}
+		
+		else if (mode == 4){
+			
+			 profile = GeneratedMotionProfileRedLGearLeft.Points;
+			
+			 totalCnt = GeneratedMotionProfileRedLGearLeft.kNumPoints;
+			 totalCntToHopper = GeneratedMotionProfileRedLGearLeft.kNumPointsToHopper;
+			 totalCntWait = GeneratedMotionProfileRedLGearLeft.kNumPointsWait;
+			 totalCntBackwards = GeneratedMotionProfileRedLGearLeft.kNumPointsBackwards;
+			 totalCntToBoiler = GeneratedMotionProfileRedLGearLeft.kNumPointsToBoiler;
+			
+		}
+		
+		for (int i = 0; i < totalCnt; ++i) {
 			
 			OutputManager.L1Master.processMotionProfileBuffer();
 			OutputManager.R1Master.processMotionProfileBuffer();
@@ -326,9 +374,9 @@ public class DriveMotionProfiler implements Runnable {
 				point.zeroPos = true; /* set this to true on the first point */
 			
 			if (i >= (totalCnt - 25)) point.velocityOnly = true;
-			if ((i >= (totalCntToHopper - 25)) && (i <= (totalCntToHopper))) point.velocityOnly = true;
+			/*if ((i >= (totalCntToHopper - 25)) && (i <= (totalCntToHopper))) point.velocityOnly = true;
 			if ((i >= (totalCntBackwards - 25)) && (i <= (totalCntBackwards))) point.velocityOnly = true;
-			if ((i >= (totalCntToBoiler - 25)) && (i <= (totalCntToBoiler))) point.velocityOnly = true;
+			if ((i >= (totalCntToBoiler - 25)) && (i <= (totalCntToBoiler))) point.velocityOnly = true;*/
 			
 			if (i == (totalCnt - 8)) {
 			
@@ -336,7 +384,7 @@ public class DriveMotionProfiler implements Runnable {
 				point.zeroPos = true;
 			
 			}
-			if (i == (totalCntToHopper - 8)) {
+			/*if (i == (totalCntToHopper - 8)) {
 				
 				point.zeroPos = true;
 			
@@ -355,7 +403,7 @@ public class DriveMotionProfiler implements Runnable {
 				
 				point.zeroPos = true;
 			
-			}
+			}*/
 			
 			point.isLastPoint = false;
 			

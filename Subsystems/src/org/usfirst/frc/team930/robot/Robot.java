@@ -4,6 +4,7 @@ package org.usfirst.frc.team930.robot;
 import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -14,6 +15,8 @@ public class Robot extends IterativeRobot {
 	public SendableChooser <Integer> autoChooser;
 	
 	public int chosenVal;
+	
+	private static Timer time = new Timer();
 	
     public void robotInit() {
     	 	
@@ -78,6 +81,10 @@ public class Robot extends IterativeRobot {
     	
     	AutonManager.driveCode();
     	AutonManager.shooterCode();
+    	
+    	OutputManager.setClimberSpeed(1.0);
+    	
+    	System.out.println("Left Encoder: " + OutputManager.L1Master.getEncVelocity() + "           " + "Right Encoder: " + OutputManager.R1Master.getEncVelocity());
     	
     	/*
     	CANTalon.SetValueMotionProfile setOutputLeft = motionProfilerLeft.getSetValue();

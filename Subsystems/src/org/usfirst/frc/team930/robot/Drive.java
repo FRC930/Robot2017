@@ -5,18 +5,22 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
-public class Drive implements Runnable {	private static Timer time = new Timer();
+public class Drive implements Runnable {	
+	
+	private static Timer time = new Timer();
 	
 	public void run(){
 		if(OutputManager.isRobotTeleop()){
 			
-			if (DSManager.checkToggleRelay()){
-				if (OutputManager.getRelayState() == Relay.Value.kOn){
-					OutputManager.turnRelaysOff();
-				}
-				else if (OutputManager.getRelayState() == Relay.Value.kOff){
-					OutputManager.turnRelaysOn();
-				}
+			if (DSManager.getCoDriveRawButtonFour()){
+				
+				OutputManager.turnRelaysOn();
+				
+			}
+			else {
+				
+				OutputManager.turnRelaysOff();
+				
 			}
 			
 			// Adjusting joystick sensitivity
@@ -90,7 +94,7 @@ public class Drive implements Runnable {	private static Timer time = new Timer()
 			
 			}
 			
-			OutputManager.profilerRun(true);
+			//OutputManager.profilerRun(true);
 			
 		}
 			

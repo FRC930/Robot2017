@@ -12,6 +12,8 @@ public class AutonManager {
 		BLUE_SHOOTER,
 		FORWARD,
 		BACKWARD,
+		BLUE_RIGHT_GEAR,
+		RED_LEFT_GEAR,
 		DEFAULT
 		
 	}
@@ -43,6 +45,16 @@ public class AutonManager {
 		case BACKWARD:
 			break;
 			
+		case BLUE_RIGHT_GEAR:
+			DriveMotionProfiler.init();
+			OutputManager.profilerRun(true);
+			break;
+			
+		case RED_LEFT_GEAR:
+			DriveMotionProfiler.init();
+			OutputManager.profilerRun(true);
+			break;
+			
 		case DEFAULT:
 			break;
 			
@@ -63,12 +75,22 @@ public class AutonManager {
 			break;
 			
 		case 3:
-			Mode = mode.FORWARD;
+			Mode = mode.BLUE_RIGHT_GEAR;
 			break;
 			
 		case 4:
+			Mode = mode.RED_LEFT_GEAR;
+			break;
+			
+		case 5:
+			Mode = mode.FORWARD;
+			break;
+			
+		case 6:
 			Mode = mode.BACKWARD;
 			break;
+			
+		
 			
 		}
 		
@@ -134,6 +156,16 @@ public class AutonManager {
 			System.out.println(Mode);
 			break;
 			
+		case BLUE_RIGHT_GEAR:
+			
+			System.out.println(Mode);
+			break;
+			
+		case RED_LEFT_GEAR:
+			
+			System.out.println(Mode);
+			break;
+			
 		case DEFAULT:
 			
 			System.out.println(Mode);
@@ -148,6 +180,8 @@ public class AutonManager {
 		switch(Mode){
 		
 		case BLUE_SHOOTER:
+			
+			OutputManager.setIntakeSpeed(-1.0);
 			
 			if ( (Timer.getFPGATimestamp() - timeo) > (GeneratedMotionProfileRightBLUE.kNumPoints)/100.0 - 2.0 ){
 				
@@ -170,8 +204,18 @@ public class AutonManager {
 		case BACKWARD:
 			
 			break;
+			
+		case BLUE_RIGHT_GEAR:
+			
+			break;
+			
+		case RED_LEFT_GEAR:
+			
+			break;
 		
 		case RED_SHOOTER:
+			
+			OutputManager.setIntakeSpeed(-1.0);
 			
 			if ( (Timer.getFPGATimestamp() - timeo) > (GeneratedMotionProfileRightRED.kNumPoints)/100.0 - 2.0 ){
 				

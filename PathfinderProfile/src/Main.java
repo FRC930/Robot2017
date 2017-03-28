@@ -17,20 +17,21 @@ public class Main {
 
 		// 3 Waypoints
 		Waypoint[] points = new Waypoint[] {
-		    new Waypoint(0, 0, 0),      // Waypoint @ x=-4, y=-1, exit angle=-45 degrees
-		    new Waypoint(5.5, 6.1, Pathfinder.d2r(89))                        // Waypoint @ x=-2, y=-2, exit angle=0 radians
+		    new Waypoint(0, 3.7, 0),      // Waypoint @ x=-4, y=-1, exit angle=-45 degrees
+		    new Waypoint(-3.775, 4.7, Pathfinder.d2r(-10)),                        // Waypoint @ x=-2, y=-2, exit angle=0 radians
+		    new Waypoint(-6.9, 2.45, Pathfinder.d2r(60))
 		};
 		
 		/* Red Alliance */			/* Blue Alliance */
 		/* Slower */
-		// 5.5  -6.1  -89			//  5.5   6.1   89
-		// 4.3   2.5   70			//  4.3  -2.5  -70
-		// 7.0    0    0			// -7.0    0    0
+		// 5.7  -6.1  -89			//  5.7   6.1   89
+		// 4.3   2.5   65			//  4.3  -2.5  -65
+		// 8.0    0    0			//  8.0    0    0
 		
 		/* Faster */
 		// 4.5  -6.1  -89			// -4.5   6.1   89
 		// 3.8   2.5   89			// 3.8  -2.5  -89
-		// 8.0    0    0			// -8.0    0    0
+		// 8.0    0    0			//  8.0    0    0
 		
 		// Create the Trajectory Configuration
 		//
