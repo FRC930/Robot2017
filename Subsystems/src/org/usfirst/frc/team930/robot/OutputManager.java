@@ -123,7 +123,7 @@ public class OutputManager {
 		R1Master.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		R1Master.configEncoderCodesPerRev(250);
 		R1Master.setVoltageRampRate(6400);
-		R1Master.reverseSensor(false);
+		R1Master.reverseSensor(true);	// false for Comp. robot
 		R1Master.setF(1.0);
 		R1Master.setP(10.0);
 		R1Master.setI(0.0003);
@@ -137,8 +137,8 @@ public class OutputManager {
         shooter.configNominalOutputVoltage(+0.0f, -0.0f);
         shooter.configPeakOutputVoltage(0.0f, -12.0f);
         shooter.setF(.03);
-        shooter.setP(0.075);//0.5
-        shooter.setD(0.05);//1
+        shooter.setP(0.5);//0.5		// 0.075 for Comp. robot
+        shooter.setD(1);//1			// 0.05 for Comp. robot
         shooter.setI(0.0);
         //F1
         //P100

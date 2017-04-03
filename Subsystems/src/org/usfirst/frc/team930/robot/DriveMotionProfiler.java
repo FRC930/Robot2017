@@ -184,19 +184,19 @@ public class DriveMotionProfiler implements Runnable {
 		OutputManager.clearMotionProfileTrajectories();
 		
 		int totalCnt = 0;
-		int totalCntToHopper = 0;
-		int totalCntWait = 0;
-		int totalCntBackwards = 0;
-		int totalCntToBoiler = 0;
+		int totalCntSeg1 = 0;
+		int totalCntSeg2 = 0;
+		int totalCntSeg3 = 0;
+		int totalCntSeg4 = 0;
 		double [] [] profile  = GeneratedMotionProfileRightRED.Points;
 		
 		if (mode == 1){
 			
 			 totalCnt = GeneratedMotionProfileRightRED.kNumPoints;
-			 totalCntToHopper = GeneratedMotionProfileRightRED.kNumPointsToHopper;
-			 totalCntWait = GeneratedMotionProfileRightRED.kNumPointsWait;
-			 totalCntBackwards = GeneratedMotionProfileRightRED.kNumPointsBackwards;
-			 totalCntToBoiler = GeneratedMotionProfileRightRED.kNumPointsToBoiler;
+			 totalCntSeg1 = GeneratedMotionProfileRightRED.kNumPointsToHopper;
+			 totalCntSeg2 = GeneratedMotionProfileRightRED.kNumPointsWait;
+			 totalCntSeg3 = GeneratedMotionProfileRightRED.kNumPointsBackwards;
+			 totalCntSeg4 = GeneratedMotionProfileRightRED.kNumPointsToBoiler;
 			
 		}
 		
@@ -205,10 +205,10 @@ public class DriveMotionProfiler implements Runnable {
 			 profile = GeneratedMotionProfileRightBLUE.Points;
 			
 			 totalCnt = GeneratedMotionProfileRightBLUE.kNumPoints;
-			 totalCntToHopper = GeneratedMotionProfileRightBLUE.kNumPointsToHopper;
-			 totalCntWait = GeneratedMotionProfileRightBLUE.kNumPointsWait;
-			 totalCntBackwards = GeneratedMotionProfileRightBLUE.kNumPointsBackwards;
-			 totalCntToBoiler = GeneratedMotionProfileRightBLUE.kNumPointsToBoiler;
+			 totalCntSeg1 = GeneratedMotionProfileRightBLUE.kNumPointsToHopper;
+			 totalCntSeg2 = GeneratedMotionProfileRightBLUE.kNumPointsWait;
+			 totalCntSeg3 = GeneratedMotionProfileRightBLUE.kNumPointsBackwards;
+			 totalCntSeg4 = GeneratedMotionProfileRightBLUE.kNumPointsToBoiler;
 			
 		}
 		
@@ -217,10 +217,10 @@ public class DriveMotionProfiler implements Runnable {
 			 profile = GeneratedMotionProfileBlueRGearRight.Points;
 			
 			 totalCnt = GeneratedMotionProfileBlueRGearRight.kNumPoints;
-			 totalCntToHopper = GeneratedMotionProfileBlueRGearRight.kNumPointsToHopper;
-			 totalCntWait = GeneratedMotionProfileBlueRGearRight.kNumPointsWait;
-			 totalCntBackwards = GeneratedMotionProfileBlueRGearRight.kNumPointsBackwards;
-			 totalCntToBoiler = GeneratedMotionProfileBlueRGearRight.kNumPointsToBoiler;
+			 totalCntSeg1 = 999999;//GeneratedMotionProfileBlueRGearRight.kNumPointsToHopper;
+			 totalCntSeg2 = 999999;//GeneratedMotionProfileBlueRGearRight.kNumPointsWait;
+			 totalCntSeg3 = 999999;//GeneratedMotionProfileBlueRGearRight.kNumPointsBackwards;
+			 totalCntSeg4 = 999999;//GeneratedMotionProfileBlueRGearRight.kNumPointsToBoiler;
 			
 		}
 
@@ -229,10 +229,94 @@ public class DriveMotionProfiler implements Runnable {
 			 profile = GeneratedMotionProfileRedLGearRight.Points;
 			
 			 totalCnt = GeneratedMotionProfileRedLGearRight.kNumPoints;
-			 totalCntToHopper = GeneratedMotionProfileRedLGearRight.kNumPointsToHopper;
-			 totalCntWait = GeneratedMotionProfileRedLGearRight.kNumPointsWait;
-			 totalCntBackwards = GeneratedMotionProfileRedLGearRight.kNumPointsBackwards;
-			 totalCntToBoiler = GeneratedMotionProfileRedLGearRight.kNumPointsToBoiler;
+			 totalCntSeg1 = 999999;//GeneratedMotionProfileRedLGearRight.kNumPointsToHopper;
+			 totalCntSeg2 = 999999;//GeneratedMotionProfileRedLGearRight.kNumPointsWait;
+			 totalCntSeg3 = 999999;//GeneratedMotionProfileRedLGearRight.kNumPointsBackwards;
+			 totalCntSeg4 = 999999;//GeneratedMotionProfileRedLGearRight.kNumPointsToBoiler;
+			
+		}
+		
+		else if (mode == 5){
+			
+			 profile = GeneratedMotionProfileRedRGearRight.Points;
+			
+			 totalCnt = GeneratedMotionProfileRedRGearRight.kNumPoints;
+			 totalCntSeg1 = 999999;//GeneratedMotionProfileRedRGearRight.kNumPointsToHopper;
+			 totalCntSeg2 = 999999;//GeneratedMotionProfileRedRGearRight.kNumPointsWait;
+			 totalCntSeg3 = 999999;//GeneratedMotionProfileRedRGearRight.kNumPointsBackwards;
+			 totalCntSeg4 = 999999;//GeneratedMotionProfileRedRGearRight.kNumPointsToBoiler;
+			
+		}
+		
+		else if (mode == 6){
+			
+			 profile = GeneratedMotionProfileBlueLGearRight.Points;
+			
+			 totalCnt = GeneratedMotionProfileBlueLGearRight.kNumPoints;
+			 totalCntSeg1 = GeneratedMotionProfileBlueLGearRight.kNumPointsToHopper;
+			 totalCntSeg2 = GeneratedMotionProfileBlueLGearRight.kNumPointsWait;
+			 totalCntSeg3 = GeneratedMotionProfileBlueLGearRight.kNumPointsBackwards;
+			 totalCntSeg4 = GeneratedMotionProfileBlueLGearRight.kNumPointsToBoiler;
+			
+		}
+		
+		else if (mode == 7){
+			
+			 profile = GeneratedMotionProfileMiddleGearRight.Points;
+			
+			 totalCnt = GeneratedMotionProfileMiddleGearRight.kNumPoints;
+			 totalCntSeg1 = 999999;//GeneratedMotionProfileMiddleGearRight.kNumPointsToHopper;
+			 totalCntSeg2 = 999999;//GeneratedMotionProfileMiddleGearRight.kNumPointsWait;
+			 totalCntSeg3 = 999999;//GeneratedMotionProfileMiddleGearRight.kNumPointsBackwards;
+			 totalCntSeg4 = 999999;//GeneratedMotionProfileMiddleGearRight.kNumPointsToBoiler;
+			
+		}
+		
+		else if (mode == 8){
+			
+			 profile = GeneratedMotionProfileRedGearShootRight.Points;
+			
+			 totalCnt = GeneratedMotionProfileRedGearShootRight.kNumPoints;
+			 totalCntSeg1 = GeneratedMotionProfileRedGearShootRight.kNumPointsToAirship;
+			 totalCntSeg2 = GeneratedMotionProfileRedGearShootRight.kNumPointsWait;
+			 totalCntSeg3 = GeneratedMotionProfileRedGearShootRight.kNumPointsBackwards;
+			 totalCntSeg4 = GeneratedMotionProfileRedGearShootRight.kNumPointsToBoiler;
+			
+		}
+		
+		else if (mode == 9){
+			
+			 profile = GeneratedMotionProfileBlueGearShootRight.Points;
+			
+			 totalCnt = GeneratedMotionProfileBlueGearShootRight.kNumPoints;
+			 totalCntSeg1 = GeneratedMotionProfileBlueGearShootRight.kNumPointsToHopper;
+			 totalCntSeg2 = GeneratedMotionProfileBlueGearShootRight.kNumPointsWait;
+			 totalCntSeg3 = GeneratedMotionProfileBlueGearShootRight.kNumPointsBackwards;
+			 totalCntSeg4 = GeneratedMotionProfileBlueGearShootRight.kNumPointsToBoiler;
+			
+		}
+		
+		else if (mode == 10){
+			
+			 profile = GeneratedMotionProfileRedGearHopperRight.Points;
+			
+			 totalCnt = GeneratedMotionProfileRedGearHopperRight.kNumPoints;
+			 totalCntSeg1 = GeneratedMotionProfileRedGearHopperRight.kNumPointsToHopper;
+			 totalCntSeg2 = GeneratedMotionProfileRedGearHopperRight.kNumPointsWait;
+			 totalCntSeg3 = GeneratedMotionProfileRedGearHopperRight.kNumPointsBackwards;
+			 totalCntSeg4 = GeneratedMotionProfileRedGearHopperRight.kNumPointsToBoiler;
+			
+		}
+		
+		else if (mode == 11){
+			
+			 profile = GeneratedMotionProfileBlueGearHopperRight.Points;
+			
+			 totalCnt = GeneratedMotionProfileBlueGearHopperRight.kNumPoints;
+			 totalCntSeg1 = GeneratedMotionProfileBlueGearHopperRight.kNumPointsToHopper;
+			 totalCntSeg2 = GeneratedMotionProfileBlueGearHopperRight.kNumPointsWait;
+			 totalCntSeg3 = GeneratedMotionProfileBlueGearHopperRight.kNumPointsBackwards;
+			 totalCntSeg4 = GeneratedMotionProfileBlueGearHopperRight.kNumPointsToBoiler;
 			
 		}
 		
@@ -258,9 +342,10 @@ public class DriveMotionProfiler implements Runnable {
 				point.zeroPos = true; /* set this to true on the first point */
 			
 			if (i >= (totalCnt - 25)) point.velocityOnly = true;
-			/*if ((i >= (totalCntToHopper - 25)) && (i <= (totalCntToHopper))) point.velocityOnly = true;
-			if ((i >= (totalCntBackwards - 25)) && (i <= (totalCntBackwards))) point.velocityOnly = true;
-			if ((i >= (totalCntToBoiler - 25)) && (i <= (totalCntToBoiler))) point.velocityOnly = true;*/
+			// More points at end of first segment
+			if ((i >= (totalCntSeg1 - 25)) && (i <= (totalCntSeg1))) point.velocityOnly = true;
+			if ((i >= (totalCntSeg3 - 25)) && (i <= (totalCntSeg3))) point.velocityOnly = true;
+			if ((i >= (totalCntSeg4 - 25)) && (i <= (totalCntSeg4))) point.velocityOnly = true;
 			
 			if (i == (totalCnt - 8)) {
 			
@@ -268,26 +353,26 @@ public class DriveMotionProfiler implements Runnable {
 				point.zeroPos = true;
 			
 			}
-			/*if (i == (totalCntToHopper - 8)) {
+			if (i == (totalCntSeg1 - 8)) {
 				
 				point.zeroPos = true;
 			
 			}
-			if (i == (totalCntWait - 200)) {
+			if (i == (totalCntSeg2 - 100)) {
 				
 				point.zeroPos = true;
 			
 			}
-			if (i == (totalCntBackwards - 8)) {
+			if (i == (totalCntSeg3 - 8)) {
 				
 				point.zeroPos = true;
 			
 			}
-			if (i == (totalCntToBoiler - 8)) {
+			if (i == (totalCntSeg4 - 8)) {
 				
 				point.zeroPos = true;
 			
-			}*/
+			}
 			
 			point.isLastPoint = false;
 			
@@ -308,10 +393,10 @@ public class DriveMotionProfiler implements Runnable {
 			 profile  = GeneratedMotionProfileLeftRED.Points;
 			 
 			 totalCnt = GeneratedMotionProfileLeftRED.kNumPoints;
-			 totalCntToHopper = GeneratedMotionProfileLeftRED.kNumPointsToHopper;
-			 totalCntWait = GeneratedMotionProfileLeftRED.kNumPointsWait;
-			 totalCntBackwards = GeneratedMotionProfileLeftRED.kNumPointsBackwards;
-			 totalCntToBoiler = GeneratedMotionProfileLeftRED.kNumPointsToBoiler;
+			 totalCntSeg1 = GeneratedMotionProfileLeftRED.kNumPointsToHopper;
+			 totalCntSeg2 = GeneratedMotionProfileLeftRED.kNumPointsWait;
+			 totalCntSeg3 = GeneratedMotionProfileLeftRED.kNumPointsBackwards;
+			 totalCntSeg4 = GeneratedMotionProfileLeftRED.kNumPointsToBoiler;
 			
 		}
 		
@@ -320,10 +405,10 @@ public class DriveMotionProfiler implements Runnable {
 			 profile = GeneratedMotionProfileLeftBLUE.Points;
 			
 			 totalCnt = GeneratedMotionProfileLeftBLUE.kNumPoints;
-			 totalCntToHopper = GeneratedMotionProfileLeftBLUE.kNumPointsToHopper;
-			 totalCntWait = GeneratedMotionProfileLeftBLUE.kNumPointsWait;
-			 totalCntBackwards = GeneratedMotionProfileLeftBLUE.kNumPointsBackwards;
-			 totalCntToBoiler = GeneratedMotionProfileLeftBLUE.kNumPointsToBoiler;
+			 totalCntSeg1 = GeneratedMotionProfileLeftBLUE.kNumPointsToHopper;
+			 totalCntSeg2 = GeneratedMotionProfileLeftBLUE.kNumPointsWait;
+			 totalCntSeg3 = GeneratedMotionProfileLeftBLUE.kNumPointsBackwards;
+			 totalCntSeg4 = GeneratedMotionProfileLeftBLUE.kNumPointsToBoiler;
 			
 		}
 		
@@ -332,10 +417,10 @@ public class DriveMotionProfiler implements Runnable {
 			 profile = GeneratedMotionProfileBlueRGearLeft.Points;
 			
 			 totalCnt = GeneratedMotionProfileBlueRGearLeft.kNumPoints;
-			 totalCntToHopper = GeneratedMotionProfileBlueRGearLeft.kNumPointsToHopper;
-			 totalCntWait = GeneratedMotionProfileBlueRGearLeft.kNumPointsWait;
-			 totalCntBackwards = GeneratedMotionProfileBlueRGearLeft.kNumPointsBackwards;
-			 totalCntToBoiler = GeneratedMotionProfileBlueRGearLeft.kNumPointsToBoiler;
+			 totalCntSeg1 = 999999;//GeneratedMotionProfileBlueRGearLeft.kNumPointsToHopper;
+			 totalCntSeg2 = 999999;//GeneratedMotionProfileBlueRGearLeft.kNumPointsWait;
+			 totalCntSeg3 = 999999;//GeneratedMotionProfileBlueRGearLeft.kNumPointsBackwards;
+			 totalCntSeg4 = 999999;//GeneratedMotionProfileBlueRGearLeft.kNumPointsToBoiler;
 			
 		}
 		
@@ -344,10 +429,94 @@ public class DriveMotionProfiler implements Runnable {
 			 profile = GeneratedMotionProfileRedLGearLeft.Points;
 			
 			 totalCnt = GeneratedMotionProfileRedLGearLeft.kNumPoints;
-			 totalCntToHopper = GeneratedMotionProfileRedLGearLeft.kNumPointsToHopper;
-			 totalCntWait = GeneratedMotionProfileRedLGearLeft.kNumPointsWait;
-			 totalCntBackwards = GeneratedMotionProfileRedLGearLeft.kNumPointsBackwards;
-			 totalCntToBoiler = GeneratedMotionProfileRedLGearLeft.kNumPointsToBoiler;
+			 totalCntSeg1 = 999999;//GeneratedMotionProfileRedLGearLeft.kNumPointsToHopper;
+			 totalCntSeg2 = 999999;//GeneratedMotionProfileRedLGearLeft.kNumPointsWait;
+			 totalCntSeg3 = 999999;//GeneratedMotionProfileRedLGearLeft.kNumPointsBackwards;
+			 totalCntSeg4 = 999999;//GeneratedMotionProfileRedLGearLeft.kNumPointsToBoiler;
+			
+		}
+		
+		else if (mode == 5){
+			
+			 profile = GeneratedMotionProfileRedRGearLeft.Points;
+			
+			 totalCnt = GeneratedMotionProfileRedRGearLeft.kNumPoints;
+			 totalCntSeg1 = 999999;//GeneratedMotionProfileRedRGearLeft.kNumPointsToHopper;
+			 totalCntSeg2 = 999999;//GeneratedMotionProfileRedRGearLeft.kNumPointsWait;
+			 totalCntSeg3 = 999999;//GeneratedMotionProfileRedRGearLeft.kNumPointsBackwards;
+			 totalCntSeg4 = 999999;//GeneratedMotionProfileRedRGearLeft.kNumPointsToBoiler;
+			
+		}
+		
+		else if (mode == 6){
+			
+			 profile = GeneratedMotionProfileBlueLGearLeft.Points;
+			
+			 totalCnt = GeneratedMotionProfileBlueLGearLeft.kNumPoints;
+			 totalCntSeg1 = 999999;//GeneratedMotionProfileBlueLGearLeft.kNumPointsToHopper;
+			 totalCntSeg2 = 999999;//GeneratedMotionProfileBlueLGearLeft.kNumPointsWait;
+			 totalCntSeg3 = 999999;//GeneratedMotionProfileBlueLGearLeft.kNumPointsBackwards;
+			 totalCntSeg4 = 999999;//GeneratedMotionProfileBlueLGearLeft.kNumPointsToBoiler;
+			
+		}
+		
+		else if (mode == 7){
+			
+			 profile = GeneratedMotionProfileMiddleGearLeft.Points;
+			
+			 totalCnt = GeneratedMotionProfileMiddleGearLeft.kNumPoints;
+			 totalCntSeg1 = 999999;//GeneratedMotionProfileMiddleGearLeft.kNumPointsToHopper;
+			 totalCntSeg2 = 999999;//GeneratedMotionProfileMiddleGearLeft.kNumPointsWait;
+			 totalCntSeg3 = 999999;//GeneratedMotionProfileMiddleGearLeft.kNumPointsBackwards;
+			 totalCntSeg4 = 999999;//GeneratedMotionProfileMiddleGearLeft.kNumPointsToBoiler;
+			
+		}
+		
+		else if (mode == 8){
+			
+			 profile = GeneratedMotionProfileRedGearShootLeft.Points;
+			
+			 totalCnt = GeneratedMotionProfileRedGearShootLeft.kNumPoints;
+			 totalCntSeg1 = GeneratedMotionProfileRedGearShootLeft.kNumPointsToAirship;
+			 totalCntSeg2 = GeneratedMotionProfileRedGearShootLeft.kNumPointsWait;
+			 totalCntSeg3 = GeneratedMotionProfileRedGearShootLeft.kNumPointsBackwards;
+			 totalCntSeg4 = GeneratedMotionProfileRedGearShootLeft.kNumPointsToBoiler;
+			
+		}
+		
+		else if (mode == 9){
+			
+			 profile = GeneratedMotionProfileBlueGearShootLeft.Points;
+			
+			 totalCnt = GeneratedMotionProfileBlueGearShootLeft.kNumPoints;
+			 totalCntSeg1 = GeneratedMotionProfileBlueGearShootLeft.kNumPointsToHopper;
+			 totalCntSeg2 = GeneratedMotionProfileBlueGearShootLeft.kNumPointsWait;
+			 totalCntSeg3 = GeneratedMotionProfileBlueGearShootLeft.kNumPointsBackwards;
+			 totalCntSeg4 = GeneratedMotionProfileBlueGearShootLeft.kNumPointsToBoiler;
+			
+		}
+		
+		else if (mode == 10){
+			
+			 profile = GeneratedMotionProfileRedGearHopperLeft.Points;
+			
+			 totalCnt = GeneratedMotionProfileRedGearHopperLeft.kNumPoints;
+			 totalCntSeg1 = GeneratedMotionProfileRedGearHopperLeft.kNumPointsToHopper;
+			 totalCntSeg2 = GeneratedMotionProfileRedGearHopperLeft.kNumPointsWait;
+			 totalCntSeg3 = GeneratedMotionProfileRedGearHopperLeft.kNumPointsBackwards;
+			 totalCntSeg4 = GeneratedMotionProfileRedGearHopperLeft.kNumPointsToBoiler;
+			
+		}
+		
+		else if (mode == 11){
+			
+			 profile = GeneratedMotionProfileBlueGearHopperLeft.Points;
+			
+			 totalCnt = GeneratedMotionProfileBlueGearHopperLeft.kNumPoints;
+			 totalCntSeg1 = GeneratedMotionProfileBlueGearHopperLeft.kNumPointsToHopper;
+			 totalCntSeg2 = GeneratedMotionProfileBlueGearHopperLeft.kNumPointsWait;
+			 totalCntSeg3 = GeneratedMotionProfileBlueGearHopperLeft.kNumPointsBackwards;
+			 totalCntSeg4 = GeneratedMotionProfileBlueGearHopperLeft.kNumPointsToBoiler;
 			
 		}
 		
@@ -374,9 +543,9 @@ public class DriveMotionProfiler implements Runnable {
 				point.zeroPos = true; /* set this to true on the first point */
 			
 			if (i >= (totalCnt - 25)) point.velocityOnly = true;
-			/*if ((i >= (totalCntToHopper - 25)) && (i <= (totalCntToHopper))) point.velocityOnly = true;
-			if ((i >= (totalCntBackwards - 25)) && (i <= (totalCntBackwards))) point.velocityOnly = true;
-			if ((i >= (totalCntToBoiler - 25)) && (i <= (totalCntToBoiler))) point.velocityOnly = true;*/
+			if ((i >= (totalCntSeg1 - 25)) && (i <= (totalCntSeg1))) point.velocityOnly = true;
+			if ((i >= (totalCntSeg3 - 25)) && (i <= (totalCntSeg3))) point.velocityOnly = true;
+			if ((i >= (totalCntSeg4 - 25)) && (i <= (totalCntSeg4))) point.velocityOnly = true;
 			
 			if (i == (totalCnt - 8)) {
 			
@@ -384,26 +553,26 @@ public class DriveMotionProfiler implements Runnable {
 				point.zeroPos = true;
 			
 			}
-			/*if (i == (totalCntToHopper - 8)) {
+			if (i == (totalCntSeg1 - 8)) {
 				
 				point.zeroPos = true;
 			
 			}
-			if (i == (totalCntWait - 200)) {
+			if (i == (totalCntSeg2 - 100)) {
 				
 				point.zeroPos = true;
 			
 			}
-			if (i == (totalCntBackwards - 8)) {
+			if (i == (totalCntSeg3 - 8)) {
 				
 				point.zeroPos = true;
 			
 			}
-			if (i == (totalCntToBoiler - 8)) {
+			if (i == (totalCntSeg4 - 8)) {
 				
 				point.zeroPos = true;
 			
-			}*/
+			}
 			
 			point.isLastPoint = false;
 			

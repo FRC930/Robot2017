@@ -40,9 +40,16 @@ public class Robot extends IterativeRobot {
         autoChooser.addDefault("DEFAULT", new Integer(0));
     	autoChooser.addObject("RED_SHOOTER", new Integer(1));
         autoChooser.addObject("BLUE_SHOOTER", new Integer(2));
-        autoChooser.addObject("FORWARD", new Integer(3));
-        autoChooser.addObject("BACKWARD", new Integer(4));
+        autoChooser.addObject("RED_RIGHT_GEAR", new Integer(5));
+        autoChooser.addObject("RED_LEFT_GEAR", new Integer(4));
+        autoChooser.addObject("BLUE_LEFT_GEAR", new Integer(6));
+        autoChooser.addObject("BLUE_RIGHT_GEAR", new Integer(3));
+        autoChooser.addObject("MIDDLE_GEAR", new Integer(7));
+        autoChooser.addObject("RED_GEAR_SHOOT", new Integer(8));
+        autoChooser.addObject("FORWARD", new Integer(9));
+        autoChooser.addObject("BACKWARD", new Integer(10));
         
+        System.out.println("AutoChooser");
         SmartDashboard.putData("Autonomous mode chooser", autoChooser);
         
         chosenVal = 0;
@@ -138,7 +145,7 @@ public class Robot extends IterativeRobot {
 		   AutonManager.changeMode(autoChooser.getSelected().intValue());
 		   chosenVal = autoChooser.getSelected().intValue();
 		   System.out.println(autoChooser.getSelected().intValue());
-		   if (autoChooser.getSelected().intValue() < 3 && autoChooser.getSelected().intValue() > 0 )
+		   if (autoChooser.getSelected().intValue() < 9 && autoChooser.getSelected().intValue() > 0 )
 			   DriveMotionProfiler.startFilling(autoChooser.getSelected().intValue());
 	   }
 	   
