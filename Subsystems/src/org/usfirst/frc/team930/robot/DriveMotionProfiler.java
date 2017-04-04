@@ -278,8 +278,8 @@ public class DriveMotionProfiler implements Runnable {
 			
 			 totalCnt = GeneratedMotionProfileRedGearShootRight.kNumPoints;
 			 totalCntSeg1 = GeneratedMotionProfileRedGearShootRight.kNumPointsToAirship;
-			 totalCntSeg2 = GeneratedMotionProfileRedGearShootRight.kNumPointsWait;
-			 totalCntSeg3 = GeneratedMotionProfileRedGearShootRight.kNumPointsBackwards;
+			 totalCntSeg2 = GeneratedMotionProfileRedGearShootRight.kNumPointsBackup;
+			 totalCntSeg3 = GeneratedMotionProfileRedGearShootRight.kNumPointsPivot;
 			 totalCntSeg4 = GeneratedMotionProfileRedGearShootRight.kNumPointsToBoiler;
 			
 		}
@@ -344,6 +344,7 @@ public class DriveMotionProfiler implements Runnable {
 			if (i >= (totalCnt - 25)) point.velocityOnly = true;
 			// More points at end of first segment
 			if ((i >= (totalCntSeg1 - 25)) && (i <= (totalCntSeg1))) point.velocityOnly = true;
+			if ((i >= (totalCntSeg2 - 25)) && (i <= (totalCntSeg2))) point.velocityOnly = true;
 			if ((i >= (totalCntSeg3 - 25)) && (i <= (totalCntSeg3))) point.velocityOnly = true;
 			if ((i >= (totalCntSeg4 - 25)) && (i <= (totalCntSeg4))) point.velocityOnly = true;
 			
@@ -358,7 +359,7 @@ public class DriveMotionProfiler implements Runnable {
 				point.zeroPos = true;
 			
 			}
-			if (i == (totalCntSeg2 - 100)) {
+			if (i == (totalCntSeg2 - 8)) {
 				
 				point.zeroPos = true;
 			
@@ -478,8 +479,8 @@ public class DriveMotionProfiler implements Runnable {
 			
 			 totalCnt = GeneratedMotionProfileRedGearShootLeft.kNumPoints;
 			 totalCntSeg1 = GeneratedMotionProfileRedGearShootLeft.kNumPointsToAirship;
-			 totalCntSeg2 = GeneratedMotionProfileRedGearShootLeft.kNumPointsWait;
-			 totalCntSeg3 = GeneratedMotionProfileRedGearShootLeft.kNumPointsBackwards;
+			 totalCntSeg2 = GeneratedMotionProfileRedGearShootLeft.kNumPointsBackup;
+			 totalCntSeg3 = GeneratedMotionProfileRedGearShootLeft.kNumPointsPivot;
 			 totalCntSeg4 = GeneratedMotionProfileRedGearShootLeft.kNumPointsToBoiler;
 			
 		}
@@ -544,6 +545,7 @@ public class DriveMotionProfiler implements Runnable {
 			
 			if (i >= (totalCnt - 25)) point.velocityOnly = true;
 			if ((i >= (totalCntSeg1 - 25)) && (i <= (totalCntSeg1))) point.velocityOnly = true;
+			if ((i >= (totalCntSeg2 - 25)) && (i <= (totalCntSeg2))) point.velocityOnly = true;
 			if ((i >= (totalCntSeg3 - 25)) && (i <= (totalCntSeg3))) point.velocityOnly = true;
 			if ((i >= (totalCntSeg4 - 25)) && (i <= (totalCntSeg4))) point.velocityOnly = true;
 			
@@ -558,7 +560,7 @@ public class DriveMotionProfiler implements Runnable {
 				point.zeroPos = true;
 			
 			}
-			if (i == (totalCntSeg2 - 100)) {
+			if (i == (totalCntSeg2 - 8)) {
 				
 				point.zeroPos = true;
 			
