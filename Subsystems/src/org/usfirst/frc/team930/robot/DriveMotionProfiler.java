@@ -289,9 +289,9 @@ public class DriveMotionProfiler implements Runnable {
 			 profile = GeneratedMotionProfileBlueGearShootRight.Points;
 			
 			 totalCnt = GeneratedMotionProfileBlueGearShootRight.kNumPoints;
-			 totalCntSeg1 = GeneratedMotionProfileBlueGearShootRight.kNumPointsToHopper;
-			 totalCntSeg2 = GeneratedMotionProfileBlueGearShootRight.kNumPointsWait;
-			 totalCntSeg3 = GeneratedMotionProfileBlueGearShootRight.kNumPointsBackwards;
+			 totalCntSeg1 = GeneratedMotionProfileBlueGearShootRight.kNumPointsToAirship;
+			 totalCntSeg2 = GeneratedMotionProfileBlueGearShootRight.kNumPointsBackup;
+			 totalCntSeg3 = GeneratedMotionProfileBlueGearShootRight.kNumPointsPivot;
 			 totalCntSeg4 = GeneratedMotionProfileBlueGearShootRight.kNumPointsToBoiler;
 			
 		}
@@ -490,9 +490,9 @@ public class DriveMotionProfiler implements Runnable {
 			 profile = GeneratedMotionProfileBlueGearShootLeft.Points;
 			
 			 totalCnt = GeneratedMotionProfileBlueGearShootLeft.kNumPoints;
-			 totalCntSeg1 = GeneratedMotionProfileBlueGearShootLeft.kNumPointsToHopper;
-			 totalCntSeg2 = GeneratedMotionProfileBlueGearShootLeft.kNumPointsWait;
-			 totalCntSeg3 = GeneratedMotionProfileBlueGearShootLeft.kNumPointsBackwards;
+			 totalCntSeg1 = GeneratedMotionProfileBlueGearShootLeft.kNumPointsToAirship;
+			 totalCntSeg2 = GeneratedMotionProfileBlueGearShootLeft.kNumPointsBackup;
+			 totalCntSeg3 = GeneratedMotionProfileBlueGearShootLeft.kNumPointsPivot;
 			 totalCntSeg4 = GeneratedMotionProfileBlueGearShootLeft.kNumPointsToBoiler;
 			
 		}
