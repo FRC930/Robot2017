@@ -2,6 +2,7 @@ package org.usfirst.frc.team930.robot;
 
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
+import com.ctre.CANTalon.TalonControlMode;
 
 //import org.usfirst.frc.team930.robot.DriveMotionProfiler.MotionProfileDrivetrainSide;
 
@@ -155,10 +156,19 @@ public class OutputManager {
 		
 		gearArm = new CANTalon (Constants.GEAR_ARM_CHANNEL);
 		gearArm.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Absolute);
-		gearArm.setF(0.1);
-		gearArm.setP(0);
-		gearArm.setI(0);
+		gearArm.changeControlMode(TalonControlMode.Position);
+		//gearArm.changeControlMode(TalonControlMode.PercentVbus);
+		gearArm.configNominalOutputVoltage(0, 0);
+		gearArm.configPeakOutputVoltage(2.5, -2.5);
+		gearArm.configMaxOutputVoltage(2.5);
+		
+		gearArm.setF(0);
+		gearArm.setP(2);
+		gearArm.setI(0.001);
 		gearArm.setD(0);
+		
+		gearArm.setForwardSoftLimit(.91);
+		gearArm.setReverseSoftLimit(.565);
 		
 		gearWheels = new Spark(Constants.GEAR_WHEELS_CHANNEL);
 		
@@ -303,6 +313,11 @@ public class OutputManager {
 		
 	}
 
+	public static void setGearWheelsSpeed(double speed){
+		
+		gearWheels.set(speed);
+		
+	}
 	//Sets the Gear arm position
 	public static void setGearArmPos(double pos){
 		
@@ -330,8 +345,12 @@ public class OutputManager {
 	// Return a string value of the speed units will be in the sensor's native ticks per 100ms.
 	
 	public static void getGearArmPos(){
-		SmartDashboard.putNumber("Position", gearArm.getPulseWidthPosition());
-		SmartDashboard.putNumber("Error", gearArm.getError());
+		//SmartDashboard.putNumber("Position", gearArm.getPulseWidthPosition());
+		SmartDashboard.putNumber("Arm Position", gearArm.getPosition());
+		SmartDashboard.putNumber("ArmError", gearArm.getError());
+		SmartDashboard.putNumber("Arm CLOSEDLOOPERROR", gearArm.getClosedLoopError());
+		SmartDashboard.putNumber("Arm Voltage", gearArm.getOutputVoltage());
+		SmartDashboard.putNumber("GEAR WHEEL CURRENT", getPDPChannelCurrent(0));
 	}
 	
 	public static double getCommandedSpeed(Motors motor){

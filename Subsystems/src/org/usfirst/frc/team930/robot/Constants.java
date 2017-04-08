@@ -86,8 +86,10 @@ public class Constants {
 	public static final double ELEVATOR_SPEED_FORWARDS = -0.6;
 	public static final double ELEVATOR_SPEED_BACKWARDS = 0.8;
 	
-	// -----------GEAR ARM POSITIONS------------------
-	public static final double GEAR_ARM_UP = 50;
-	public static final double GEAR_ARM_DOWN = 0;
+	// -----------GEAR ARM/WHEELS------------------
+	public static final double GEAR_ARM_UP = 0.575;
+	public static final double GEAR_ARM_DOWN = 0.872;
 	public static final double GEAR_ARM_MIDDLE = 25;
+	public static final double GEAR_WHEELS_SPEED_IN = 0.5;
+	public static final double GEAR_WHEELS_SPEED_OUT = -0.5;
 }
