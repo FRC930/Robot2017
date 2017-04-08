@@ -287,13 +287,13 @@ public class AutonManager {
 			
 			OutputManager.setIntakeSpeed(-1.0);
 			
-			if ( (Timer.getFPGATimestamp() - timeo) > (GeneratedMotionProfileRightBLUE.kNumPoints)/100.0 - 2.0 ){
+			if ( (Timer.getFPGATimestamp() - timeo) > Constants.SHOOT_AUTO_ON ){
 				
 				OutputManager.setShooterSpeed(-Constants.FULL_SHOOT_SPEED);
 			
 			}
 			
-			if ( (Timer.getFPGATimestamp() - timeo) > (GeneratedMotionProfileRightBLUE.kNumPoints)/100.0 - 0.5){
+			if ( (Timer.getFPGATimestamp() - timeo) > Constants.ELEVATOR_AUTO_ON ){
 				
 				OutputManager.setSpeedElevator(Constants.ELEVATOR_SPEED_FORWARDS);
 				
@@ -303,40 +303,40 @@ public class AutonManager {
 
 		case RED_SHOOTER:
 			
-			/*OutputManager.setIntakeSpeed(-1.0);
+			OutputManager.setIntakeSpeed(-1.0);
 			
-			if ( (Timer.getFPGATimestamp() - timeo) > (GeneratedMotionProfileRightRED.kNumPoints)/100.0 - 2.0 ){
+			if ( (Timer.getFPGATimestamp() - timeo) > Constants.SHOOT_AUTO_ON ){
 				
 				OutputManager.setShooterSpeed(-Constants.FULL_SHOOT_SPEED);
 				
 			
 			}
 			
-			if ( (Timer.getFPGATimestamp() - timeo) > (GeneratedMotionProfileRightRED.kNumPoints)/100.0 - 0.5 ){
+			if ( (Timer.getFPGATimestamp() - timeo) > Constants.ELEVATOR_AUTO_ON ){
 				
 				OutputManager.setSpeedElevator(Constants.ELEVATOR_SPEED_FORWARDS);
 				
-			}*/
+			}
 			
 			break;
 			
 		/* CHANGE */
 		case RED_GEAR_SHOOT:
 			
-			/*OutputManager.setIntakeSpeed(-1.0);
+			OutputManager.setIntakeSpeed(-1.0);
 			
-			if ( (Timer.getFPGATimestamp() - timeo) > (GeneratedMotionProfileRightRED.kNumPoints)/100.0 - 2.0 ){
+			if ( (Timer.getFPGATimestamp() - timeo) > Constants.SHOOT_AUTO_ON ){
 				
 				OutputManager.setShooterSpeed(-Constants.FULL_SHOOT_SPEED);
 				
 			
 			}
 			
-			if ( (Timer.getFPGATimestamp() - timeo) > (GeneratedMotionProfileRightRED.kNumPoints)/100.0 - 0.5 ){
+			if ( (Timer.getFPGATimestamp() - timeo) > Constants.ELEVATOR_AUTO_ON ){
 				
 				OutputManager.setSpeedElevator(Constants.ELEVATOR_SPEED_FORWARDS);
 				
-			}*/
+			}
 			
 			break;
 			
@@ -345,14 +345,14 @@ public class AutonManager {
 			
 			OutputManager.setIntakeSpeed(-1.0);
 			
-			if ( (Timer.getFPGATimestamp() - timeo) > (GeneratedMotionProfileRightRED.kNumPoints)/100.0 - 2.0 ){
+			if ( (Timer.getFPGATimestamp() - timeo) > Constants.SHOOT_AUTO_ON ){
 				
 				OutputManager.setShooterSpeed(-Constants.FULL_SHOOT_SPEED);
 				
 			
 			}
 			
-			if ( (Timer.getFPGATimestamp() - timeo) > (GeneratedMotionProfileRightRED.kNumPoints)/100.0 - 0.5 ){
+			if ( (Timer.getFPGATimestamp() - timeo) > Constants.ELEVATOR_AUTO_ON ){
 				
 				OutputManager.setSpeedElevator(Constants.ELEVATOR_SPEED_FORWARDS);
 				

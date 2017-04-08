@@ -7,10 +7,10 @@ public class GeneratedMotionProfileRedRGearRight {
 	public static final int kNumPointsBackwards =769; 				//804 										626
 	//public static final int kNumPointsToBoiler =317; 				//317										226
 	public static final int kNumPointsToBoiler =1086; 				//1121 										852
-	public static final int kNumPoints =329;//401; 						//1121 										852
+	public static final int kNumPoints =401;//329 						//1121 										852
 	// Position (rotations)	Velocity (RPM)	Duration (ms)
 	public static double [][]Points = new double[][]{
-		/*{0.00003,	0.3	,10},
+		{0.00003,	0.3	,10},
 		{0.00006,	0.18	,10},
 		{0.00011,	0.3	,10},
 		{0.0002,	0.54	,10},
@@ -402,9 +402,9 @@ public class GeneratedMotionProfileRedRGearRight {
 		{13.03712,	1.02	,10},
 		{13.03718,	0.36	,10},
 		{13.03719,	0.06	,10},
-		{13.03719,	0	,10},*/
+		{13.03719,	0	,10},
 		
-		{0.00003,	0.3	,10},
+		/*{0.00003,	0.3	,10},
 		{0.00008,	0.36	,10},
 		{0.00011,	0.12	,10},
 		{0.00015,	0.24	,10},
@@ -724,7 +724,7 @@ public class GeneratedMotionProfileRedRGearRight {
 		{18.42977,	0.84	,10},
 		{18.4298,	0.24	,10},
 		{18.4298,	0	,10},
-		{18.4298,	0	,10},
+		{18.4298,	0	,10},*/
 
 		{0,	0,	10},
 		{0,	0,	10},

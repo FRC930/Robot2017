@@ -375,12 +375,12 @@ public class DriveMotionProfiler implements Runnable {
 				point.zeroPos = true;
 			
 			}
-			if (i == (totalCntSeg3 - 8)) {
+			if (i == (totalCntSeg3 - 1)) {
 				
 				point.zeroPos = true;
 			
 			}
-			if (i == (totalCntSeg4 - 8)) {
+			if (i == (totalCntSeg4 - 1)) {
 				
 				point.zeroPos = true;
 			
@@ -591,12 +591,12 @@ public class DriveMotionProfiler implements Runnable {
 				point.zeroPos = true;
 			
 			}
-			if (i == (totalCntSeg3 - 8)) {
+			if (i == (totalCntSeg3 - 1)) {
 				
 				point.zeroPos = true;
 			
 			}
-			if (i == (totalCntSeg4 - 8)) {
+			if (i == (totalCntSeg4 - 1)) {
 				
 				point.zeroPos = true;
 			
