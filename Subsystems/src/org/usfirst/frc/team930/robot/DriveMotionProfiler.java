@@ -188,6 +188,7 @@ public class DriveMotionProfiler implements Runnable {
 		int totalCntSeg2 = 0;
 		int totalCntSeg3 = 0;
 		int totalCntSeg4 = 0;
+		int totalCntSeg5 = 0;
 		double [] [] profile  = GeneratedMotionProfileRightRED.Points;
 		
 		if (mode == 1){
@@ -196,7 +197,8 @@ public class DriveMotionProfiler implements Runnable {
 			 totalCntSeg1 = GeneratedMotionProfileRightRED.kNumPointsToHopper;
 			 totalCntSeg2 = GeneratedMotionProfileRightRED.kNumPointsWait;
 			 totalCntSeg3 = GeneratedMotionProfileRightRED.kNumPointsBackwards;
-			 totalCntSeg4 = GeneratedMotionProfileRightRED.kNumPointsToBoiler;
+			 totalCntSeg4 = GeneratedMotionProfileRightRED.kNumPointsPivot;
+			 totalCntSeg5 = GeneratedMotionProfileRightRED.kNumPointsToBoiler;
 			
 		}
 		
@@ -207,8 +209,8 @@ public class DriveMotionProfiler implements Runnable {
 			 totalCnt = GeneratedMotionProfileRightBLUE.kNumPoints;
 			 totalCntSeg1 = GeneratedMotionProfileRightBLUE.kNumPointsToHopper;
 			 totalCntSeg2 = GeneratedMotionProfileRightBLUE.kNumPointsWait;
-			 totalCntSeg3 = GeneratedMotionProfileRightBLUE.kNumPointsBackwards;
-			 totalCntSeg4 = GeneratedMotionProfileRightBLUE.kNumPointsToBoiler;
+			 //totalCntSeg4 = GeneratedMotionProfileRightBLUE.kNumPointsPivot;
+			 totalCntSeg5 = GeneratedMotionProfileRightBLUE.kNumPointsToBoiler;
 			
 		}
 		
@@ -221,7 +223,8 @@ public class DriveMotionProfiler implements Runnable {
 			 totalCntSeg2 = 999999;//GeneratedMotionProfileBlueRGearRight.kNumPointsWait;
 			 totalCntSeg3 = 999999;//GeneratedMotionProfileBlueRGearRight.kNumPointsBackwards;
 			 totalCntSeg4 = 999999;//GeneratedMotionProfileBlueRGearRight.kNumPointsToBoiler;
-			
+			 totalCntSeg5 = 999999;//GeneratedMotionProfileBlueRGearRight.kNumPointsToBoiler;
+
 		}
 
 		else if (mode == 4){
@@ -233,7 +236,8 @@ public class DriveMotionProfiler implements Runnable {
 			 totalCntSeg2 = 999999;//GeneratedMotionProfileRedLGearRight.kNumPointsWait;
 			 totalCntSeg3 = 999999;//GeneratedMotionProfileRedLGearRight.kNumPointsBackwards;
 			 totalCntSeg4 = 999999;//GeneratedMotionProfileRedLGearRight.kNumPointsToBoiler;
-			
+			 totalCntSeg5 = 999999;//GeneratedMotionProfileRedLGearRight.kNumPointsToBoiler;
+
 		}
 		
 		else if (mode == 5){
@@ -245,7 +249,8 @@ public class DriveMotionProfiler implements Runnable {
 			 totalCntSeg2 = 999999;//GeneratedMotionProfileRedRGearRight.kNumPointsWait;
 			 totalCntSeg3 = 999999;//GeneratedMotionProfileRedRGearRight.kNumPointsBackwards;
 			 totalCntSeg4 = 999999;//GeneratedMotionProfileRedRGearRight.kNumPointsToBoiler;
-			
+			 totalCntSeg5 = 999999;//GeneratedMotionProfileRedRGearRight.kNumPointsToBoiler;
+
 		}
 		
 		else if (mode == 6){
@@ -257,7 +262,8 @@ public class DriveMotionProfiler implements Runnable {
 			 totalCntSeg2 = GeneratedMotionProfileBlueLGearRight.kNumPointsWait;
 			 totalCntSeg3 = GeneratedMotionProfileBlueLGearRight.kNumPointsBackwards;
 			 totalCntSeg4 = GeneratedMotionProfileBlueLGearRight.kNumPointsToBoiler;
-			
+			 totalCntSeg5 = 999999;//GeneratedMotionProfileBlueLGearRight.kNumPointsToBoiler;
+
 		}
 		
 		else if (mode == 7){
@@ -269,7 +275,8 @@ public class DriveMotionProfiler implements Runnable {
 			 totalCntSeg2 = 999999;//GeneratedMotionProfileMiddleGearRight.kNumPointsWait;
 			 totalCntSeg3 = 999999;//GeneratedMotionProfileMiddleGearRight.kNumPointsBackwards;
 			 totalCntSeg4 = 999999;//GeneratedMotionProfileMiddleGearRight.kNumPointsToBoiler;
-			
+			 totalCntSeg5 = 999999;//GeneratedMotionProfileMiddleGearRight.kNumPointsToBoiler;
+
 		}
 		
 		else if (mode == 8){
@@ -281,7 +288,8 @@ public class DriveMotionProfiler implements Runnable {
 			 totalCntSeg2 = GeneratedMotionProfileRedGearShootRight.kNumPointsBackup;
 			 totalCntSeg3 = GeneratedMotionProfileRedGearShootRight.kNumPointsPivot;
 			 totalCntSeg4 = GeneratedMotionProfileRedGearShootRight.kNumPointsToBoiler;
-			
+			 totalCntSeg5 = GeneratedMotionProfileRedGearShootRight.kNumPointsToBoiler;
+
 		}
 		
 		else if (mode == 9){
@@ -293,7 +301,8 @@ public class DriveMotionProfiler implements Runnable {
 			 totalCntSeg2 = GeneratedMotionProfileBlueGearShootRight.kNumPointsBackup;
 			 totalCntSeg3 = GeneratedMotionProfileBlueGearShootRight.kNumPointsPivot;
 			 totalCntSeg4 = GeneratedMotionProfileBlueGearShootRight.kNumPointsToBoiler;
-			
+			 totalCntSeg5 = 999999;//GeneratedMotionProfileBlueGearShootRight.kNumPointsToBoiler;
+
 		}
 		
 		else if (mode == 10){
@@ -305,7 +314,8 @@ public class DriveMotionProfiler implements Runnable {
 			 totalCntSeg2 = GeneratedMotionProfileRedGearHopperRight.kNumPointsWait;
 			 totalCntSeg3 = GeneratedMotionProfileRedGearHopperRight.kNumPointsBackwards;
 			 totalCntSeg4 = GeneratedMotionProfileRedGearHopperRight.kNumPointsToBoiler;
-			
+			 totalCntSeg5 = GeneratedMotionProfileRedGearHopperRight.kNumPointsToBoiler;
+
 		}
 		
 		else if (mode == 11){
@@ -317,7 +327,8 @@ public class DriveMotionProfiler implements Runnable {
 			 totalCntSeg2 = GeneratedMotionProfileBlueGearHopperRight.kNumPointsWait;
 			 totalCntSeg3 = GeneratedMotionProfileBlueGearHopperRight.kNumPointsBackwards;
 			 totalCntSeg4 = GeneratedMotionProfileBlueGearHopperRight.kNumPointsToBoiler;
-			
+			 totalCntSeg5 = GeneratedMotionProfileBlueGearHopperRight.kNumPointsToBoiler;
+
 		}
 		
 		for (int i = 0; i < totalCnt; ++i) {
@@ -336,21 +347,21 @@ public class DriveMotionProfiler implements Runnable {
 										 */
 			System.out.println("i Value: " + i);
 			point.zeroPos = false;
+			point.isLastPoint = false;
 			
 			if (i == 0)
 				
 				point.zeroPos = true; /* set this to true on the first point */
 			
 			if (i >= (totalCnt - 25)) point.velocityOnly = true;
-			// More points at end of first segment
 			if ((i >= (totalCntSeg1 - 25)) && (i <= (totalCntSeg1))) point.velocityOnly = true;
-			if ((i >= (totalCntSeg2 - 25)) && (i <= (totalCntSeg2))) point.velocityOnly = true;
+			//if ((i >= (totalCntSeg2 - 25)) && (i <= (totalCntSeg2))) point.velocityOnly = true;
 			if ((i >= (totalCntSeg3 - 25)) && (i <= (totalCntSeg3))) point.velocityOnly = true;
 			if ((i >= (totalCntSeg4 - 25)) && (i <= (totalCntSeg4))) point.velocityOnly = true;
-			
+			if ((i >= (totalCntSeg5 - 25)) && (i <= (totalCntSeg5))) point.velocityOnly = true;
+
 			if (i == (totalCnt - 8)) {
 			
-				point.isLastPoint = true;
 				point.zeroPos = true;
 			
 			}
@@ -359,7 +370,7 @@ public class DriveMotionProfiler implements Runnable {
 				point.zeroPos = true;
 			
 			}
-			if (i == (totalCntSeg2 - 8)) {
+			if (i == (totalCntSeg2 - 100)) {
 				
 				point.zeroPos = true;
 			
@@ -374,9 +385,12 @@ public class DriveMotionProfiler implements Runnable {
 				point.zeroPos = true;
 			
 			}
+			if (i == (totalCntSeg5 - 8)) {
+				
+				point.zeroPos = true;
 			
-			point.isLastPoint = false;
-			
+			}
+						
 			if ((i + 1) >= totalCnt) {
 			
 				point.velocityOnly = true;
@@ -397,8 +411,9 @@ public class DriveMotionProfiler implements Runnable {
 			 totalCntSeg1 = GeneratedMotionProfileLeftRED.kNumPointsToHopper;
 			 totalCntSeg2 = GeneratedMotionProfileLeftRED.kNumPointsWait;
 			 totalCntSeg3 = GeneratedMotionProfileLeftRED.kNumPointsBackwards;
-			 totalCntSeg4 = GeneratedMotionProfileLeftRED.kNumPointsToBoiler;
-			
+			 totalCntSeg4 = GeneratedMotionProfileLeftRED.kNumPointsPivot;
+			 totalCntSeg5 = GeneratedMotionProfileLeftRED.kNumPointsToBoiler;
+
 		}
 		
 		else if (mode == 2){
@@ -409,8 +424,9 @@ public class DriveMotionProfiler implements Runnable {
 			 totalCntSeg1 = GeneratedMotionProfileLeftBLUE.kNumPointsToHopper;
 			 totalCntSeg2 = GeneratedMotionProfileLeftBLUE.kNumPointsWait;
 			 totalCntSeg3 = GeneratedMotionProfileLeftBLUE.kNumPointsBackwards;
-			 totalCntSeg4 = GeneratedMotionProfileLeftBLUE.kNumPointsToBoiler;
-			
+			 //totalCntSeg4 = GeneratedMotionProfileLeftBLUE.kNumPointsPivot;
+			 totalCntSeg5 = GeneratedMotionProfileLeftBLUE.kNumPointsToBoiler;
+
 		}
 		
 		else if (mode == 3){
@@ -422,7 +438,8 @@ public class DriveMotionProfiler implements Runnable {
 			 totalCntSeg2 = 999999;//GeneratedMotionProfileBlueRGearLeft.kNumPointsWait;
 			 totalCntSeg3 = 999999;//GeneratedMotionProfileBlueRGearLeft.kNumPointsBackwards;
 			 totalCntSeg4 = 999999;//GeneratedMotionProfileBlueRGearLeft.kNumPointsToBoiler;
-			
+			 totalCntSeg5 = 999999;//GeneratedMotionProfileBlueRGearLeft.kNumPointsToBoiler;
+
 		}
 		
 		else if (mode == 4){
@@ -434,7 +451,8 @@ public class DriveMotionProfiler implements Runnable {
 			 totalCntSeg2 = 999999;//GeneratedMotionProfileRedLGearLeft.kNumPointsWait;
 			 totalCntSeg3 = 999999;//GeneratedMotionProfileRedLGearLeft.kNumPointsBackwards;
 			 totalCntSeg4 = 999999;//GeneratedMotionProfileRedLGearLeft.kNumPointsToBoiler;
-			
+			 totalCntSeg5 = 999999;//GeneratedMotionProfileRedLGearLeft.kNumPointsToBoiler;
+
 		}
 		
 		else if (mode == 5){
@@ -446,7 +464,8 @@ public class DriveMotionProfiler implements Runnable {
 			 totalCntSeg2 = 999999;//GeneratedMotionProfileRedRGearLeft.kNumPointsWait;
 			 totalCntSeg3 = 999999;//GeneratedMotionProfileRedRGearLeft.kNumPointsBackwards;
 			 totalCntSeg4 = 999999;//GeneratedMotionProfileRedRGearLeft.kNumPointsToBoiler;
-			
+			 totalCntSeg5 = 999999;//GeneratedMotionProfileRedRGearLeft.kNumPointsToBoiler;
+
 		}
 		
 		else if (mode == 6){
@@ -458,7 +477,8 @@ public class DriveMotionProfiler implements Runnable {
 			 totalCntSeg2 = 999999;//GeneratedMotionProfileBlueLGearLeft.kNumPointsWait;
 			 totalCntSeg3 = 999999;//GeneratedMotionProfileBlueLGearLeft.kNumPointsBackwards;
 			 totalCntSeg4 = 999999;//GeneratedMotionProfileBlueLGearLeft.kNumPointsToBoiler;
-			
+			 totalCntSeg5 = 999999;//GeneratedMotionProfileBlueLGearLeft.kNumPointsToBoiler;
+
 		}
 		
 		else if (mode == 7){
@@ -470,7 +490,8 @@ public class DriveMotionProfiler implements Runnable {
 			 totalCntSeg2 = 999999;//GeneratedMotionProfileMiddleGearLeft.kNumPointsWait;
 			 totalCntSeg3 = 999999;//GeneratedMotionProfileMiddleGearLeft.kNumPointsBackwards;
 			 totalCntSeg4 = 999999;//GeneratedMotionProfileMiddleGearLeft.kNumPointsToBoiler;
-			
+			 totalCntSeg5 = 999999;//GeneratedMotionProfileMiddleGearLeft.kNumPointsToBoiler;
+
 		}
 		
 		else if (mode == 8){
@@ -482,7 +503,8 @@ public class DriveMotionProfiler implements Runnable {
 			 totalCntSeg2 = GeneratedMotionProfileRedGearShootLeft.kNumPointsBackup;
 			 totalCntSeg3 = GeneratedMotionProfileRedGearShootLeft.kNumPointsPivot;
 			 totalCntSeg4 = GeneratedMotionProfileRedGearShootLeft.kNumPointsToBoiler;
-			
+			 totalCntSeg5 = 999999;//GeneratedMotionProfileRedGearShootLeft.kNumPointsToBoiler;
+
 		}
 		
 		else if (mode == 9){
@@ -494,7 +516,8 @@ public class DriveMotionProfiler implements Runnable {
 			 totalCntSeg2 = GeneratedMotionProfileBlueGearShootLeft.kNumPointsBackup;
 			 totalCntSeg3 = GeneratedMotionProfileBlueGearShootLeft.kNumPointsPivot;
 			 totalCntSeg4 = GeneratedMotionProfileBlueGearShootLeft.kNumPointsToBoiler;
-			
+			 totalCntSeg5 = 999999;//GeneratedMotionProfileBlueGearShootLeft.kNumPointsToBoiler;
+
 		}
 		
 		else if (mode == 10){
@@ -506,7 +529,8 @@ public class DriveMotionProfiler implements Runnable {
 			 totalCntSeg2 = GeneratedMotionProfileRedGearHopperLeft.kNumPointsWait;
 			 totalCntSeg3 = GeneratedMotionProfileRedGearHopperLeft.kNumPointsBackwards;
 			 totalCntSeg4 = GeneratedMotionProfileRedGearHopperLeft.kNumPointsToBoiler;
-			
+			 totalCntSeg5 = GeneratedMotionProfileRedGearHopperLeft.kNumPointsToBoiler;
+
 		}
 		
 		else if (mode == 11){
@@ -518,7 +542,8 @@ public class DriveMotionProfiler implements Runnable {
 			 totalCntSeg2 = GeneratedMotionProfileBlueGearHopperLeft.kNumPointsWait;
 			 totalCntSeg3 = GeneratedMotionProfileBlueGearHopperLeft.kNumPointsBackwards;
 			 totalCntSeg4 = GeneratedMotionProfileBlueGearHopperLeft.kNumPointsToBoiler;
-			
+			 totalCntSeg5 = GeneratedMotionProfileBlueGearHopperLeft.kNumPointsToBoiler;
+
 		}
 		
 		for (int i = 0; i < totalCnt; ++i) {
@@ -538,20 +563,21 @@ public class DriveMotionProfiler implements Runnable {
 										 */
 			System.out.println("i Value: " + i);
 			point.zeroPos = false;
-			
+			point.isLastPoint = false;
+
 			if (i == 0)
 				
 				point.zeroPos = true; /* set this to true on the first point */
 			
 			if (i >= (totalCnt - 25)) point.velocityOnly = true;
 			if ((i >= (totalCntSeg1 - 25)) && (i <= (totalCntSeg1))) point.velocityOnly = true;
-			if ((i >= (totalCntSeg2 - 25)) && (i <= (totalCntSeg2))) point.velocityOnly = true;
+			//if ((i >= (totalCntSeg2 - 25)) && (i <= (totalCntSeg2))) point.velocityOnly = true;
 			if ((i >= (totalCntSeg3 - 25)) && (i <= (totalCntSeg3))) point.velocityOnly = true;
 			if ((i >= (totalCntSeg4 - 25)) && (i <= (totalCntSeg4))) point.velocityOnly = true;
-			
+			if ((i >= (totalCntSeg5 - 25)) && (i <= (totalCntSeg5))) point.velocityOnly = true;
+
 			if (i == (totalCnt - 8)) {
 			
-				point.isLastPoint = true;
 				point.zeroPos = true;
 			
 			}
@@ -560,7 +586,7 @@ public class DriveMotionProfiler implements Runnable {
 				point.zeroPos = true;
 			
 			}
-			if (i == (totalCntSeg2 - 8)) {
+			if (i == (totalCntSeg2 - 100)) {
 				
 				point.zeroPos = true;
 			
@@ -575,8 +601,11 @@ public class DriveMotionProfiler implements Runnable {
 				point.zeroPos = true;
 			
 			}
+			if (i == (totalCntSeg4 - 8)) {
+				
+				point.zeroPos = true;
 			
-			point.isLastPoint = false;
+			}
 			
 			if ((i + 1) >= totalCnt) {
 			

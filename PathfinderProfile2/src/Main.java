@@ -139,14 +139,15 @@ public class Main extends JComponent{
 
         /******* GEAR + 10KPA AUTO **********/
         Waypoint[] firstPath = new Waypoint[]{
-                new Waypoint(0, 0, 0),
+                new Waypoint(-10.0, 0, 0),
                 new Waypoint(-3.775, 1.0, Pathfinder.d2r(-10)),
                 new Waypoint(-6.9, -1.25, Pathfinder.d2r(60))
         };
 
         Waypoint[] secondPath = new Waypoint[]{
                 new Waypoint(0, 0, Pathfinder.d2r(0)),  // Waypoint @ x=-4, y=-1, exit angle=-45 degreee
-                new Waypoint(-7.25, -7.75, Pathfinder.d2r(45))
+                new Waypoint(7.0, 0, Pathfinder.d2r(80)),
+                new Waypoint(9.6, 1.0, Pathfinder.d2r(99))
         };
 
 
@@ -201,8 +202,8 @@ public class Main extends JComponent{
 
             time += prevSeg.dt;
 
-            int x1 = (int) (prevSeg.x * scale)+508;
-            int x2 = (int) (seg.x * scale)+508;
+            int x1 = (int) (prevSeg.x * scale)+108;
+            int x2 = (int) (seg.x * scale)+108;
             int y1 = (int) -(prevSeg.y * scale) + 360;
             int y2 = (int) -(seg.y * scale) + 360;
 

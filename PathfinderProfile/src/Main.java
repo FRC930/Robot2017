@@ -19,7 +19,7 @@ public class Main {
 		Waypoint[] points = new Waypoint[] {
 		    new Waypoint(0, 0, 0),      // Waypoint @ x=-4, y=-1, exit angle=-45 degrees
 		    //new Waypoint(-3.775, 4.7, Pathfinder.d2r(-10)),                        // Waypoint @ x=-2, y=-2, exit angle=0 radians
-		    new Waypoint(8.1, 1.0, Pathfinder.d2r(78))
+		    new Waypoint(4.0, 0, Pathfinder.d2r(0))
 		};
 		
 		/* Red Alliance */			/* Blue Alliance */
@@ -28,6 +28,7 @@ public class Main {
 		/* Slower */
 		// 5.7  -6.1  -89			//  5.7   6.1   89
 		// 4.3   2.5   65			//  4.3  -2.5  -65
+		// 1.9    0    0			//  1.9    0    0
 		// 8.0    0    0			//  8.0    0    0
 		/* Faster */
 		// 4.5  -6.1  -89			// -4.5   6.1   89

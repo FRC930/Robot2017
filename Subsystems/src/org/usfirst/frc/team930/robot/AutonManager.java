@@ -303,7 +303,7 @@ public class AutonManager {
 
 		case RED_SHOOTER:
 			
-			OutputManager.setIntakeSpeed(-1.0);
+			/*OutputManager.setIntakeSpeed(-1.0);
 			
 			if ( (Timer.getFPGATimestamp() - timeo) > (GeneratedMotionProfileRightRED.kNumPoints)/100.0 - 2.0 ){
 				
@@ -316,7 +316,7 @@ public class AutonManager {
 				
 				OutputManager.setSpeedElevator(Constants.ELEVATOR_SPEED_FORWARDS);
 				
-			}
+			}*/
 			
 			break;
 			
