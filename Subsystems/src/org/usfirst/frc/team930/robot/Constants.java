@@ -35,6 +35,7 @@ public class Constants {
 	public static final int R3_MOTOR_CHANNEL = 6;
 	public static final int SHOOTER_MOTOR_CHANNEL = 7;
 	public static final int SHOOTER_MOTOR_CHANNEL2 = 8;
+	public static final int GEAR_ARM_CHANNEL = 9;
 	
 	//-----------Shooter Constants--------------
 	
@@ -46,6 +47,7 @@ public class Constants {
 	public static final int INTAKE_MOTOR_CHANNEL = 0;
 	public static final int CLIMBER_MOTOR_CHANNEL = 3;
 	public static final int ELEVATOR_MOTOR_CHANNEL = 2;
+	public static final int GEAR_WHEELS_CHANNEL = 4;
 	
 	// -----------DRIVE CODE CONSTANTS-----------
 	

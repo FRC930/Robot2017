@@ -78,6 +78,9 @@ public class OutputManager {
 	private static CANTalon shooter;
 	private static CANTalon shooterMotor2;
 	
+	// Gear Intake Arm Talon Motor Controller
+	private static CANTalon gearArm;
+	
 	// 1 Intake  Spark Motor controller declaration
 	private static Spark intake;
 	
@@ -86,6 +89,9 @@ public class OutputManager {
 	
 	// Elevator 1 Spark, either combine with shooter or make own subsystem
 	private static Spark elevator;
+	
+	// Gear Intake Wheels Spark Motor Controller
+	private static Spark gearWheels;
 	
 	private static boolean isRobotTeleop;
 	private static boolean isRobotAuton;
@@ -153,6 +159,14 @@ public class OutputManager {
 		shooterMotor2.enableBrakeMode(false);
 		
 		
+		gearArm = new CANTalon (Constants.GEAR_ARM_CHANNEL);
+		gearArm.enableBrakeMode(true);
+		gearArm.setF(0.05);
+		gearArm.setP(0);
+		gearArm.setI(0);
+		gearArm.setD(0);
+		
+		gearWheels = new Spark (Constants.GEAR_WHEELS_CHANNEL);
 
         //motionProfilerLeft = new MotionProfilingHandler(OutputManager.getL1(), MotionProfilingHandler.MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE);
         //motionProfilerRight = new MotionProfilingHandler(OutputManager.getR1(), MotionProfilingHandler.MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE);       
