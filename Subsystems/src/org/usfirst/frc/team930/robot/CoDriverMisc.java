@@ -6,7 +6,7 @@ public class CoDriverMisc implements Runnable{
 
 	@Override
 	public void run() {
-		
+		OutputManager.getGearArmPos();
 		if (OutputManager.isRobotTeleop()){
 
 			// ELEVATOR
@@ -77,6 +77,18 @@ public class CoDriverMisc implements Runnable{
 			if(Math.abs(DSManager.getDriveYAxis()) <= Constants.JOYSTICK_ERROR_ALLOWANCE && DSManager.getCoDriveRawButtonOne() == false && OutputManager.getPDPChannelCurrent(Constants.PDP_CHANNEL7)<5 && Math.abs(Math.pow(DSManager.getDriveXAxis(), Constants.JOYSTICK_NONLINEARITY)) > Constants.JOYSTICK_ERROR_ALLOWANCE && Math.abs(Math.pow(DSManager.getDriveYAxis() * -1.0, Constants.JOYSTICK_NONLINEARITY)) > Constants.JOYSTICK_ERROR_ALLOWANCE) {
 				
 				OutputManager.setLights(OutputManager.LightPatterns.LIGHTS_TELE);
+				
+			}
+			
+			//Sets gear arm position
+			if(DSManager.getCoDriveRawButtonFive()){
+				
+				OutputManager.setGearArmPos(Constants.GEAR_ARM_UP);
+				
+			}
+			else if(DSManager.getCoDriveRawButtonSix()){
+				
+				OutputManager.setGearArmPos(Constants.GEAR_ARM_DOWN);
 				
 			}
 			
