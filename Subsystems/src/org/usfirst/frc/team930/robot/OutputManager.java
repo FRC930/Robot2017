@@ -2,6 +2,7 @@ package org.usfirst.frc.team930.robot;
 
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
+import com.ctre.CANTalon.TalonControlMode;
 
 //import org.usfirst.frc.team930.robot.DriveMotionProfiler.MotionProfileDrivetrainSide;
 
@@ -72,6 +73,10 @@ public class OutputManager {
 	private static CANTalon shooter;
 	private static CANTalon shooterMotor2;
 	
+	private static CANTalon gearArm;
+	
+	private static Spark gearWheels;
+	
 	// 1 Intake  Spark Motor controller declaration
 	private static Spark intake;
 	
@@ -82,6 +87,7 @@ public class OutputManager {
 	
 	// Elevator 1 Spark, either combine with shooter or make own subsystem
 	private static Spark elevator;
+	private static Spark elevator2;
 	
 	private static boolean isRobotTeleop;
 	private static boolean isRobotAuton;
@@ -148,7 +154,24 @@ public class OutputManager {
 		//shooter.reverseSensor(true);
 		shooter.setVoltageRampRate(10000);
 		
-
+		gearArm = new CANTalon (Constants.GEAR_ARM_CHANNEL);
+		gearArm.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Absolute);
+		gearArm.changeControlMode(TalonControlMode.Position);
+		//gearArm.changeControlMode(TalonControlMode.PercentVbus);
+		gearArm.configNominalOutputVoltage(0, 0);
+		gearArm.configPeakOutputVoltage(2.5, -2.5);
+		gearArm.configMaxOutputVoltage(2.5);
+		
+		gearArm.setF(0);
+		gearArm.setP(2);
+		gearArm.setI(0.001);
+		gearArm.setD(0);
+		
+		gearArm.setForwardSoftLimit(.91);
+		gearArm.setReverseSoftLimit(.565);
+		
+		gearWheels = new Spark(Constants.GEAR_WHEELS_CHANNEL);
+		
         //motionProfilerLeft = new MotionProfilingHandler(OutputManager.getL1(), MotionProfilingHandler.MotionProfileDrivetrainSide.DRIVE_LEFT_SIDE);
         //motionProfilerRight = new MotionProfilingHandler(OutputManager.getR1(), MotionProfilingHandler.MotionProfileDrivetrainSide.DRIVE_RIGHT_SIDE);       
 
@@ -159,6 +182,7 @@ public class OutputManager {
 		climber2 = new Spark (Constants.CLIMBER2_MOTOR_CHANNEL);
 		
 		elevator = new Spark (Constants.ELEVATOR_MOTOR_CHANNEL);
+		elevator2 = new Spark (Constants.ELEVATOR_MOTOR_CHANNEL2);
 		
 		isRobotTeleop = false;
 		isRobotAuton = false;
@@ -288,11 +312,24 @@ public class OutputManager {
 		intake.set(speed);
 		
 	}
+
+	public static void setGearWheelsSpeed(double speed){
+		
+		gearWheels.set(speed);
+		
+	}
+	//Sets the Gear arm position
+	public static void setGearArmPos(double pos){
+		
+		gearArm.set(pos);
+		
+	}
 	
 	//Sets the Elevator Speed
 	public static void setSpeedElevator(double speed){
 		
-		 elevator.set(speed);
+		elevator.set(speed); 
+		elevator.set(speed);
 		
 	}
 	
@@ -306,6 +343,15 @@ public class OutputManager {
 	
 	// Series of Talon accessor classes, mainly used in loggable.
 	// Return a string value of the speed units will be in the sensor's native ticks per 100ms.
+	
+	public static void getGearArmPos(){
+		//SmartDashboard.putNumber("Position", gearArm.getPulseWidthPosition());
+		SmartDashboard.putNumber("Arm Position", gearArm.getPosition());
+		SmartDashboard.putNumber("ArmError", gearArm.getError());
+		SmartDashboard.putNumber("Arm CLOSEDLOOPERROR", gearArm.getClosedLoopError());
+		SmartDashboard.putNumber("Arm Voltage", gearArm.getOutputVoltage());
+		SmartDashboard.putNumber("GEAR WHEEL CURRENT", getPDPChannelCurrent(0));
+	}
 	
 	public static double getCommandedSpeed(Motors motor){
 	

@@ -35,6 +35,7 @@ public class Constants {
 	public static final int R3_MOTOR_CHANNEL = 6;
 	public static final int SHOOTER_MOTOR_CHANNEL = 7;
 	public static final int SHOOTER_MOTOR_CHANNEL2 = 8;
+	public static final int GEAR_ARM_CHANNEL = 9;
 	
 	//-----------Shooter Constants--------------
 	
@@ -48,6 +49,8 @@ public class Constants {
 	public static final int CLIMBER_MOTOR_CHANNEL = 3;
 	public static final int CLIMBER2_MOTOR_CHANNEL = 1;
 	public static final int ELEVATOR_MOTOR_CHANNEL = 2;
+	public static final int ELEVATOR_MOTOR_CHANNEL2 = 5;
+	public static final int GEAR_WHEELS_CHANNEL = 6;
 	
 	// -----------DRIVE CODE CONSTANTS-----------
 	
@@ -84,4 +87,11 @@ public class Constants {
 	public static final double ELEVATOR_SPEED_FORWARDS = -0.6;
 	public static final double ELEVATOR_SPEED_BACKWARDS = 0.8;
 	public static final double ELEVATOR_AUTO_ON = (GeneratedMotionProfileRightRED.kNumPoints)/100.0 - 1.0;
+	
+	// -----------GEAR ARM/WHEELS------------------
+	public static final double GEAR_ARM_UP = 0.575;
+	public static final double GEAR_ARM_DOWN = 0.872;
+	public static final double GEAR_ARM_MIDDLE = 25;
+	public static final double GEAR_WHEELS_SPEED_IN = 0.5;
+	public static final double GEAR_WHEELS_SPEED_OUT = -0.5;
 }

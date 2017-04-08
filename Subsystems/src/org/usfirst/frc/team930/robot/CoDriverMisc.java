@@ -3,10 +3,10 @@ package org.usfirst.frc.team930.robot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class CoDriverMisc implements Runnable{
-
+	boolean flag = false;
 	@Override
 	public void run() {
-		
+		OutputManager.getGearArmPos();
 		if (OutputManager.isRobotTeleop()){
 
 			// ELEVATOR
@@ -79,6 +79,42 @@ public class CoDriverMisc implements Runnable{
 				OutputManager.setLights(OutputManager.LightPatterns.LIGHTS_TELE);
 				
 			}
+			
+			//Sets gear arm position
+			if(DSManager.getCoDriveRawButtonSix() && !flag){
+				
+				OutputManager.setGearArmPos(Constants.GEAR_ARM_DOWN);
+				OutputManager.setGearWheelsSpeed(Constants.GEAR_WHEELS_SPEED_IN);
+				if(OutputManager.getPDPChannelCurrent(0) > 19){
+					flag = true;
+				}
+				
+			} 
+			else if(DSManager.getCoDriveRawButtonFive()){
+				OutputManager.setGearWheelsSpeed(Constants.GEAR_WHEELS_SPEED_OUT);
+				OutputManager.setGearArmPos(Constants.GEAR_ARM_DOWN);
+				
+			}
+			else if(!DSManager.getCoDriveRawButtonSix() && flag){
+				flag = false;
+			}
+			else {
+				OutputManager.setGearArmPos(Constants.GEAR_ARM_UP);
+				OutputManager.setGearWheelsSpeed(0.2);
+			}
+			/*if(DSManager.getCoDriveRawButtonTwo()){
+				
+				OutputManager.setGearWheelsSpeed(Constants.GEAR_WHEELS_SPEED_IN);
+				
+			}
+			else if(DSManager.getCoDriveRawButtonThree()){
+				
+				OutputManager.setGearWheelsSpeed(Constants.GEAR_WHEELS_SPEED_OUT);
+				
+			} */
+			
+			
+			//OutputManager.setGearArmPos(DSManager.getCoDriveYAxis2());
 			
 		}
 		
