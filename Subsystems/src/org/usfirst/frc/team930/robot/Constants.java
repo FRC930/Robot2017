@@ -90,8 +90,9 @@ public class Constants {
 	
 	// -----------GEAR ARM/WHEELS------------------
 	public static final double GEAR_ARM_UP = 0.575;
-	public static final double GEAR_ARM_DOWN = 0.872;
+	public static final double GEAR_ARM_DOWN = 0.88;//0.872
 	public static final double GEAR_ARM_MIDDLE = 25;
 	public static final double GEAR_WHEELS_SPEED_IN = 0.5;
 	public static final double GEAR_WHEELS_SPEED_OUT = -0.5;
+	public static final double WHEEL_STOP_CURRENT = 19;
 }

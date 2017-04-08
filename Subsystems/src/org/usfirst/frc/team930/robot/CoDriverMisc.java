@@ -85,7 +85,7 @@ public class CoDriverMisc implements Runnable{
 				
 				OutputManager.setGearArmPos(Constants.GEAR_ARM_DOWN);
 				OutputManager.setGearWheelsSpeed(Constants.GEAR_WHEELS_SPEED_IN);
-				if(OutputManager.getPDPChannelCurrent(0) > 19){
+				if(OutputManager.getPDPChannelCurrent(0) > Constants.WHEEL_STOP_CURRENT){
 					flag = true;
 				}
 				
