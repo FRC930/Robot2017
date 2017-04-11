@@ -88,6 +88,7 @@ public class Robot extends IterativeRobot {
     	
     	AutonManager.driveCode();
     	AutonManager.shooterCode();
+    	AutonManager.gearCode();
     	
     	OutputManager.setClimberSpeed(1.0);
     	

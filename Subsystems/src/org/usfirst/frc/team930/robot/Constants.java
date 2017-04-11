@@ -95,4 +95,9 @@ public class Constants {
 	public static final double GEAR_WHEELS_SPEED_IN = 0.5;
 	public static final double GEAR_WHEELS_SPEED_OUT = -0.5;
 	public static final double WHEEL_STOP_CURRENT = 19;
+	public static final double GEAR_AUTO_HOPPER = (GeneratedMotionProfileRedRGearLeft.kNumPoints)/100.0 - 0.5;
+	public static final double GEAR_AUTO_LOADING = (GeneratedMotionProfileRedLGearLeft.kNumPoints)/100.0 - 0.5;
+	public static final double GEAR_AUTO_MIDDLE = (GeneratedMotionProfileMiddleGearLeft.kNumPoints)/100.0 - 0.5;
+	public static final double GEAR_AUTO_SHOOT = (GeneratedMotionProfileRedGearShootLeft.kNumPoints)/100.0;
+
 }

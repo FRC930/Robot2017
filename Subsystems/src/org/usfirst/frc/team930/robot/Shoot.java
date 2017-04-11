@@ -55,12 +55,12 @@ public class Shoot implements Runnable {
 				//OutputManager.setShooterDisabledMode();
 				//OutputManager.setShooterSpeed(0.0);
 			}
-			/*if (DSManager.increaseShooterSpeed()){
+			if (DSManager.increaseShooterSpeed()){
 				shooterSpeed -= 25.0;
 			}
 			if (DSManager.decreaseShooterSpeed()){
 				shooterSpeed += 25.0;
-			}*/
+			}
 
 			
 

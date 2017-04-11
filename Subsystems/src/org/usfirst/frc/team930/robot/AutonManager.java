@@ -279,6 +279,161 @@ public class AutonManager {
 		
 	}
 	
+	public static void gearCode(){
+		
+		switch(Mode){
+		
+		case BLUE_SHOOTER:
+			
+			break;
+
+		case RED_SHOOTER:
+			
+			break;
+			
+		case RED_GEAR_SHOOT:
+			
+			if ( (Timer.getFPGATimestamp() - timeo) > Constants.GEAR_AUTO_SHOOT ){
+				
+				OutputManager.setGearWheelsSpeed(Constants.GEAR_WHEELS_SPEED_OUT);
+				OutputManager.setGearArmPos(Constants.GEAR_ARM_DOWN);
+				
+			}
+			else {
+
+				OutputManager.setGearArmPos(Constants.GEAR_ARM_UP);
+				OutputManager.setGearWheelsSpeed(0.2);
+				
+			}
+			
+			break;
+		
+		case BLUE_GEAR_SHOOT:
+			
+			if ( (Timer.getFPGATimestamp() - timeo) > Constants.GEAR_AUTO_SHOOT ){
+				
+				OutputManager.setGearWheelsSpeed(Constants.GEAR_WHEELS_SPEED_OUT);
+				OutputManager.setGearArmPos(Constants.GEAR_ARM_DOWN);
+				
+			}
+			else {
+
+				OutputManager.setGearArmPos(Constants.GEAR_ARM_UP);
+				OutputManager.setGearWheelsSpeed(0.2);
+				
+			}
+			
+			break;
+			
+		case BLUE_RIGHT_GEAR:
+			
+			
+			if ( (Timer.getFPGATimestamp() - timeo) > Constants.GEAR_AUTO_LOADING ){
+				
+				OutputManager.setGearWheelsSpeed(Constants.GEAR_WHEELS_SPEED_OUT);
+				OutputManager.setGearArmPos(Constants.GEAR_ARM_DOWN);
+				
+			}
+			else {
+
+				OutputManager.setGearArmPos(Constants.GEAR_ARM_UP);
+				OutputManager.setGearWheelsSpeed(0.2);
+				
+			}
+			
+			break;
+			
+		case RED_LEFT_GEAR:
+			
+			if ( (Timer.getFPGATimestamp() - timeo) > Constants.GEAR_AUTO_LOADING ){
+				
+				OutputManager.setGearWheelsSpeed(Constants.GEAR_WHEELS_SPEED_OUT);
+				OutputManager.setGearArmPos(Constants.GEAR_ARM_DOWN);
+				
+			}
+			else {
+				
+				OutputManager.setGearArmPos(Constants.GEAR_ARM_UP);
+				OutputManager.setGearWheelsSpeed(0.2);
+			
+			}
+				
+			break;
+			
+		case RED_RIGHT_GEAR:
+			
+			if ( (Timer.getFPGATimestamp() - timeo) > Constants.GEAR_AUTO_HOPPER ){
+				
+				OutputManager.setGearWheelsSpeed(Constants.GEAR_WHEELS_SPEED_OUT);
+				OutputManager.setGearArmPos(Constants.GEAR_ARM_DOWN);
+				
+			}
+			else {
+				
+				OutputManager.setGearArmPos(Constants.GEAR_ARM_UP);
+				OutputManager.setGearWheelsSpeed(0.2);
+				
+			}
+			
+			break;
+			
+		case BLUE_LEFT_GEAR:
+			
+			if ( (Timer.getFPGATimestamp() - timeo) > Constants.GEAR_AUTO_HOPPER ){
+				
+				OutputManager.setGearWheelsSpeed(Constants.GEAR_WHEELS_SPEED_OUT);
+				OutputManager.setGearArmPos(Constants.GEAR_ARM_DOWN);
+				
+			}
+			else {
+				
+				OutputManager.setGearArmPos(Constants.GEAR_ARM_UP);
+				OutputManager.setGearWheelsSpeed(0.2);
+				
+			}
+			
+			break;
+			
+		case MIDDLE_GEAR:
+			
+			if ( (Timer.getFPGATimestamp() - timeo) > Constants.GEAR_AUTO_MIDDLE ){
+				
+				OutputManager.setGearWheelsSpeed(Constants.GEAR_WHEELS_SPEED_OUT);
+				OutputManager.setGearArmPos(Constants.GEAR_ARM_DOWN);
+				
+			}
+			else {
+				
+				OutputManager.setGearArmPos(Constants.GEAR_ARM_UP);
+				OutputManager.setGearWheelsSpeed(0.2);
+				
+			}
+			
+			break;
+			
+		case RED_GEAR_HOPPER:
+			
+			break;
+			
+		case BLUE_GEAR_HOPPER:
+	
+			break;
+			
+		case FORWARD:
+			
+			break;
+			
+		case BACKWARD:
+			
+			break;
+				
+		case DEFAULT:
+			
+		}
+		// End Gear Switch Statement
+		
+	}
+	
 	public static void shooterCode(){
 		
 		switch(Mode){
@@ -320,7 +475,6 @@ public class AutonManager {
 			
 			break;
 			
-		/* CHANGE */
 		case RED_GEAR_SHOOT:
 			
 			OutputManager.setIntakeSpeed(-1.0);
@@ -339,8 +493,7 @@ public class AutonManager {
 			}
 			
 			break;
-			
-		/* CHANGE */
+		
 		case BLUE_GEAR_SHOOT:
 			
 			OutputManager.setIntakeSpeed(-1.0);

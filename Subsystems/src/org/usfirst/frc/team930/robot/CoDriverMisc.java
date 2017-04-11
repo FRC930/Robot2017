@@ -82,11 +82,11 @@ public class CoDriverMisc implements Runnable{
 			
 			//Sets gear arm position
 			if(DSManager.getCoDriveRawButtonSix() && !flag){
-				
 				OutputManager.setGearArmPos(Constants.GEAR_ARM_DOWN);
 				OutputManager.setGearWheelsSpeed(Constants.GEAR_WHEELS_SPEED_IN);
 				if(OutputManager.getPDPChannelCurrent(0) > Constants.WHEEL_STOP_CURRENT){
 					flag = true;
+					
 				}
 				
 			} 
@@ -115,7 +115,7 @@ public class CoDriverMisc implements Runnable{
 			
 			
 			//OutputManager.setGearArmPos(DSManager.getCoDriveYAxis2());
-			
+			SmartDashboard.putBoolean("GEAR IN", flag);
 		}
 		
 		else if (OutputManager.isRobotAuton()){
