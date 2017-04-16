@@ -129,7 +129,7 @@ public class OutputManager {
 		R1Master.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		R1Master.configEncoderCodesPerRev(250);
 		R1Master.setVoltageRampRate(6400);
-		R1Master.reverseSensor(true);	// false for Comp. robot
+		R1Master.reverseSensor(false);	// false for Comp. robot		// true for practice
 		R1Master.setF(1.0);
 		R1Master.setP(10.0);
 		R1Master.setI(0.0003);
@@ -143,8 +143,8 @@ public class OutputManager {
         shooter.configNominalOutputVoltage(+0.0f, -0.0f);
         shooter.configPeakOutputVoltage(0.0f, -12.0f);
         shooter.setF(.03);
-        shooter.setP(0.5);//0.5		// 0.075 for Comp. robot
-        shooter.setD(1);//1			// 0.05 for Comp. robot
+        shooter.setP(0.075);// 0.5 for practice			// 0.075 for Comp. robot
+        shooter.setD(0.05);// 1 for practice			// 0.05 for Comp. robot
         shooter.setI(0.0);
         //F1
         //P100
@@ -167,8 +167,8 @@ public class OutputManager {
 		gearArm.setI(0.001);
 		gearArm.setD(0);
 		
-		gearArm.setForwardSoftLimit(.91);
-		gearArm.setReverseSoftLimit(.565);
+		gearArm.setForwardSoftLimit(Constants.GEAR_FOREWARD_SOFT_LIMIT);
+		gearArm.setReverseSoftLimit(Constants.GEAR_REVERSE_SOFT_LIMIT);
 		
 		gearWheels = new Spark(Constants.GEAR_WHEELS_CHANNEL);
 		

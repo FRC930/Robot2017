@@ -84,10 +84,10 @@ public class CoDriverMisc implements Runnable{
 			if(DSManager.getCoDriveRawButtonSix() && !flag){
 				OutputManager.setGearArmPos(Constants.GEAR_ARM_DOWN);
 				OutputManager.setGearWheelsSpeed(Constants.GEAR_WHEELS_SPEED_IN);
-				if(OutputManager.getPDPChannelCurrent(0) > Constants.WHEEL_STOP_CURRENT){
+				/*if(OutputManager.getPDPChannelCurrent(0) > Constants.WHEEL_STOP_CURRENT){
 					flag = true;
 					
-				}
+				}*/
 				
 			} 
 			else if(DSManager.getCoDriveRawButtonFive()){

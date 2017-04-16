@@ -355,13 +355,20 @@ public class DriveMotionProfiler implements Runnable {
 			
 			if (i >= (totalCnt - 25)) point.velocityOnly = true;
 			if ((i >= (totalCntSeg1 - 25)) && (i <= (totalCntSeg1))) point.velocityOnly = true;
-			//if ((i >= (totalCntSeg2 - 25)) && (i <= (totalCntSeg2))) point.velocityOnly = true;
+			
+			if ((mode == 8) || (mode == 9)) {
+				if ((i >= (totalCntSeg2 - 25)) && (i <= (totalCntSeg2))) point.velocityOnly = true;
+			}
+			else {
+				//if ((i >= (totalCntSeg2 - 25)) && (i <= (totalCntSeg2))) point.velocityOnly = false;
+			}
+			
 			if ((i >= (totalCntSeg3 - 25)) && (i <= (totalCntSeg3))) point.velocityOnly = true;
 			if ((i >= (totalCntSeg4 - 25)) && (i <= (totalCntSeg4))) point.velocityOnly = true;
 			if ((i >= (totalCntSeg5 - 25)) && (i <= (totalCntSeg5))) point.velocityOnly = true;
 
 			if (i == (totalCnt - 8)) {
-			
+				
 				point.zeroPos = true;
 			
 			}
@@ -370,21 +377,53 @@ public class DriveMotionProfiler implements Runnable {
 				point.zeroPos = true;
 			
 			}
-			if (i == (totalCntSeg2 - 100)) {
-				
-				point.zeroPos = true;
 			
-			}
-			if (i == (totalCntSeg3 - 1)) {
+			if ((mode == 8) || (mode == 9)) {
+				if (i == (totalCntSeg2 - 8)) {
 				
-				point.zeroPos = true;
+					point.zeroPos = true;
 			
+				}
 			}
-			if (i == (totalCntSeg4 - 1)) {
+			else {
+				if (i == (totalCntSeg2 - 100)) {
+					
+					point.zeroPos = true;
+			
+				}
+			}
+			
+			if ((mode == 8) || (mode == 9)) {
+				if (i == (totalCntSeg3 - 8)) {
 				
-				point.zeroPos = true;
+					point.zeroPos = true;
 			
+				}
 			}
+			else {
+				if (i == (totalCntSeg3 - 1)) {
+					
+					point.zeroPos = true;
+			
+				}
+			}
+			
+			if ((mode == 8) || (mode == 9)) {
+				if (i == (totalCntSeg4 - 8)) {
+				
+					point.zeroPos = true;
+			
+				}
+			}
+			else {
+				if (i == (totalCntSeg4 - 1)) {
+					
+					point.zeroPos = true;
+			
+				}
+				
+			}
+			
 			if (i == (totalCntSeg5 - 8)) {
 				
 				point.zeroPos = true;
@@ -571,7 +610,14 @@ public class DriveMotionProfiler implements Runnable {
 			
 			if (i >= (totalCnt - 25)) point.velocityOnly = true;
 			if ((i >= (totalCntSeg1 - 25)) && (i <= (totalCntSeg1))) point.velocityOnly = true;
-			//if ((i >= (totalCntSeg2 - 25)) && (i <= (totalCntSeg2))) point.velocityOnly = true;
+			
+			if ((mode == 8) || (mode == 9)) {
+				if ((i >= (totalCntSeg2 - 25)) && (i <= (totalCntSeg2))) point.velocityOnly = true;
+			}
+			else {
+				if ((i >= (totalCntSeg2 - 25)) && (i <= (totalCntSeg2))) point.velocityOnly = false;
+			}
+			
 			if ((i >= (totalCntSeg3 - 25)) && (i <= (totalCntSeg3))) point.velocityOnly = true;
 			if ((i >= (totalCntSeg4 - 25)) && (i <= (totalCntSeg4))) point.velocityOnly = true;
 			if ((i >= (totalCntSeg5 - 25)) && (i <= (totalCntSeg5))) point.velocityOnly = true;
@@ -586,22 +632,53 @@ public class DriveMotionProfiler implements Runnable {
 				point.zeroPos = true;
 			
 			}
-			if (i == (totalCntSeg2 - 100)) {
-				
-				point.zeroPos = true;
 			
-			}
-			if (i == (totalCntSeg3 - 1)) {
+			if ((mode == 8) || (mode == 9)) {
+				if (i == (totalCntSeg2 - 8)) {
 				
-				point.zeroPos = true;
+					point.zeroPos = true;
 			
+				}
 			}
-			if (i == (totalCntSeg4 - 1)) {
+			else {
+				if (i == (totalCntSeg2 - 100)) {
+					
+					point.zeroPos = true;
+			
+				}
+			}
+			
+			if ((mode == 8) || (mode == 9)) {
+				if (i == (totalCntSeg3 - 8)) {
 				
-				point.zeroPos = true;
+					point.zeroPos = true;
 			
+				}
 			}
-			if (i == (totalCntSeg4 - 8)) {
+			else {
+				if (i == (totalCntSeg3 - 1)) {
+					
+					point.zeroPos = true;
+			
+				}
+			}
+			
+			if ((mode == 8) || (mode == 9)) {
+				if (i == (totalCntSeg4 - 8)) {
+				
+					point.zeroPos = true;
+			
+				}
+			}
+			else {
+				if (i == (totalCntSeg4 - 1)) {
+					
+					point.zeroPos = true;
+			
+				}
+			}
+			
+			if (i == (totalCntSeg5 - 8)) {
 				
 				point.zeroPos = true;
 			

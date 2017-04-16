@@ -40,8 +40,8 @@ public class Constants {
 	//-----------Shooter Constants--------------
 	
 	public static final double BANG_BANG_VARIABLES = 5;
-	public static final double FULL_SHOOT_SPEED =3200.0;
-	public static final double SHOOT_AUTO_ON = (GeneratedMotionProfileRightRED.kNumPoints)/100.0 - 1.8;
+	public static final double FULL_SHOOT_SPEED =3125.0;
+	public static final double SHOOT_AUTO_ON = (GeneratedMotionProfileRightRED.kNumPoints)/100.0 - 1.4;
 	
 	// ----------Spark Motor Channels-----------
 	
@@ -84,20 +84,25 @@ public class Constants {
 	
 	
 	// -----------ELEVATOR CONSTANTS------------------
-	public static final double ELEVATOR_SPEED_FORWARDS = -0.6;
+	public static final double ELEVATOR_SPEED_FORWARDS = -0.8;
 	public static final double ELEVATOR_SPEED_BACKWARDS = 0.8;
-	public static final double ELEVATOR_AUTO_ON = (GeneratedMotionProfileRightRED.kNumPoints)/100.0 - 1.0;
+	public static final double ELEVATOR_AUTO_ON = (GeneratedMotionProfileRightRED.kNumPoints)/100.0 - 0.6;
 	
 	// -----------GEAR ARM/WHEELS------------------
-	public static final double GEAR_ARM_UP = 0.575;
-	public static final double GEAR_ARM_DOWN = 0.88;//0.872
+	public static final double GEAR_ARM_UP = 0.63;//0.575
+	public static final double GEAR_ARM_DOWN = 0.92;//0.88
 	public static final double GEAR_ARM_MIDDLE = 25;
+	public static final double GEAR_FOREWARD_SOFT_LIMIT = 0.95;//0.91
+	public static final double GEAR_REVERSE_SOFT_LIMIT = 0.7;//0.565
 	public static final double GEAR_WHEELS_SPEED_IN = 0.5;
 	public static final double GEAR_WHEELS_SPEED_OUT = -0.5;
 	public static final double WHEEL_STOP_CURRENT = 19;
 	public static final double GEAR_AUTO_HOPPER = (GeneratedMotionProfileRedRGearLeft.kNumPoints)/100.0 - 0.5;
 	public static final double GEAR_AUTO_LOADING = (GeneratedMotionProfileRedLGearLeft.kNumPoints)/100.0 - 0.5;
 	public static final double GEAR_AUTO_MIDDLE = (GeneratedMotionProfileMiddleGearLeft.kNumPoints)/100.0 - 0.5;
-	public static final double GEAR_AUTO_SHOOT = (GeneratedMotionProfileRedGearShootLeft.kNumPoints)/100.0;
+	public static final double GEAR_AUTO_SHOOT_DOWN = (GeneratedMotionProfileRedGearShootLeft.kNumPointsToAirship)/100.0 - 0.25;
+	public static final double GEAR_AUTO_SHOOT_UP = (GeneratedMotionProfileRedGearShootLeft.kNumPointsBackup)/100.0 - 0.25;
 
+	
+	public static final double AUTO_DELAY = 0.0;
 }

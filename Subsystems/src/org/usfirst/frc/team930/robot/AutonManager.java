@@ -236,7 +236,7 @@ public class AutonManager {
 
 	    	OutputManager.setDrivetrainMode(CANTalon.TalonControlMode.PercentVbus);
 	    	
-			if (( Timer.getFPGATimestamp() - timeo) > 5) {
+			if (( Timer.getFPGATimestamp() - timeo) > 5 + Constants.AUTO_DELAY) {
 				
 				OutputManager.setSpeedL(0);
 				OutputManager.setSpeedR(0);
@@ -256,7 +256,7 @@ public class AutonManager {
 
 	    	OutputManager.setDrivetrainMode(CANTalon.TalonControlMode.PercentVbus);
 	    	
-			if (( Timer.getFPGATimestamp() - timeo) > 4) {
+			if (( Timer.getFPGATimestamp() - timeo) > 4 + Constants.AUTO_DELAY) {
 				
 				OutputManager.setSpeedL(0);
 				OutputManager.setSpeedR(0);
@@ -293,7 +293,7 @@ public class AutonManager {
 			
 		case RED_GEAR_SHOOT:
 			
-			if ( (Timer.getFPGATimestamp() - timeo) > Constants.GEAR_AUTO_SHOOT ){
+			if ( ((Timer.getFPGATimestamp() - timeo) > Constants.GEAR_AUTO_SHOOT_DOWN + Constants.AUTO_DELAY) && ((Timer.getFPGATimestamp() - timeo) < Constants.GEAR_AUTO_SHOOT_UP + Constants.AUTO_DELAY) ){
 				
 				OutputManager.setGearWheelsSpeed(Constants.GEAR_WHEELS_SPEED_OUT);
 				OutputManager.setGearArmPos(Constants.GEAR_ARM_DOWN);
@@ -310,7 +310,7 @@ public class AutonManager {
 		
 		case BLUE_GEAR_SHOOT:
 			
-			if ( (Timer.getFPGATimestamp() - timeo) > Constants.GEAR_AUTO_SHOOT ){
+			if ( ((Timer.getFPGATimestamp() - timeo) > Constants.GEAR_AUTO_SHOOT_DOWN + Constants.AUTO_DELAY) && ((Timer.getFPGATimestamp() - timeo) < Constants.GEAR_AUTO_SHOOT_UP + Constants.AUTO_DELAY) ){
 				
 				OutputManager.setGearWheelsSpeed(Constants.GEAR_WHEELS_SPEED_OUT);
 				OutputManager.setGearArmPos(Constants.GEAR_ARM_DOWN);
@@ -328,7 +328,7 @@ public class AutonManager {
 		case BLUE_RIGHT_GEAR:
 			
 			
-			if ( (Timer.getFPGATimestamp() - timeo) > Constants.GEAR_AUTO_LOADING ){
+			if ( (Timer.getFPGATimestamp() - timeo) > Constants.GEAR_AUTO_LOADING + Constants.AUTO_DELAY ){
 				
 				OutputManager.setGearWheelsSpeed(Constants.GEAR_WHEELS_SPEED_OUT);
 				OutputManager.setGearArmPos(Constants.GEAR_ARM_DOWN);
@@ -345,7 +345,7 @@ public class AutonManager {
 			
 		case RED_LEFT_GEAR:
 			
-			if ( (Timer.getFPGATimestamp() - timeo) > Constants.GEAR_AUTO_LOADING ){
+			if ( (Timer.getFPGATimestamp() - timeo) > Constants.GEAR_AUTO_LOADING + Constants.AUTO_DELAY ){
 				
 				OutputManager.setGearWheelsSpeed(Constants.GEAR_WHEELS_SPEED_OUT);
 				OutputManager.setGearArmPos(Constants.GEAR_ARM_DOWN);
@@ -362,7 +362,7 @@ public class AutonManager {
 			
 		case RED_RIGHT_GEAR:
 			
-			if ( (Timer.getFPGATimestamp() - timeo) > Constants.GEAR_AUTO_HOPPER ){
+			if ( (Timer.getFPGATimestamp() - timeo) > Constants.GEAR_AUTO_HOPPER + Constants.AUTO_DELAY ){
 				
 				OutputManager.setGearWheelsSpeed(Constants.GEAR_WHEELS_SPEED_OUT);
 				OutputManager.setGearArmPos(Constants.GEAR_ARM_DOWN);
@@ -379,7 +379,7 @@ public class AutonManager {
 			
 		case BLUE_LEFT_GEAR:
 			
-			if ( (Timer.getFPGATimestamp() - timeo) > Constants.GEAR_AUTO_HOPPER ){
+			if ( (Timer.getFPGATimestamp() - timeo) > Constants.GEAR_AUTO_HOPPER + Constants.AUTO_DELAY ){
 				
 				OutputManager.setGearWheelsSpeed(Constants.GEAR_WHEELS_SPEED_OUT);
 				OutputManager.setGearArmPos(Constants.GEAR_ARM_DOWN);
@@ -396,7 +396,7 @@ public class AutonManager {
 			
 		case MIDDLE_GEAR:
 			
-			if ( (Timer.getFPGATimestamp() - timeo) > Constants.GEAR_AUTO_MIDDLE ){
+			if ( (Timer.getFPGATimestamp() - timeo) > Constants.GEAR_AUTO_MIDDLE + Constants.AUTO_DELAY ){
 				
 				OutputManager.setGearWheelsSpeed(Constants.GEAR_WHEELS_SPEED_OUT);
 				OutputManager.setGearArmPos(Constants.GEAR_ARM_DOWN);
@@ -442,13 +442,13 @@ public class AutonManager {
 			
 			OutputManager.setIntakeSpeed(-1.0);
 			
-			if ( (Timer.getFPGATimestamp() - timeo) > Constants.SHOOT_AUTO_ON ){
+			if ( (Timer.getFPGATimestamp() - timeo) > Constants.SHOOT_AUTO_ON + Constants.AUTO_DELAY ){
 				
 				OutputManager.setShooterSpeed(-Constants.FULL_SHOOT_SPEED);
 			
 			}
 			
-			if ( (Timer.getFPGATimestamp() - timeo) > Constants.ELEVATOR_AUTO_ON ){
+			if ( (Timer.getFPGATimestamp() - timeo) > Constants.ELEVATOR_AUTO_ON + Constants.AUTO_DELAY ){
 				
 				OutputManager.setSpeedElevator(Constants.ELEVATOR_SPEED_FORWARDS);
 				
@@ -460,14 +460,14 @@ public class AutonManager {
 			
 			OutputManager.setIntakeSpeed(-1.0);
 			
-			if ( (Timer.getFPGATimestamp() - timeo) > Constants.SHOOT_AUTO_ON ){
+			if ( (Timer.getFPGATimestamp() - timeo) > Constants.SHOOT_AUTO_ON + Constants.AUTO_DELAY ){
 				
 				OutputManager.setShooterSpeed(-Constants.FULL_SHOOT_SPEED);
 				
 			
 			}
 			
-			if ( (Timer.getFPGATimestamp() - timeo) > Constants.ELEVATOR_AUTO_ON ){
+			if ( (Timer.getFPGATimestamp() - timeo) > Constants.ELEVATOR_AUTO_ON + Constants.AUTO_DELAY ){
 				
 				OutputManager.setSpeedElevator(Constants.ELEVATOR_SPEED_FORWARDS);
 				
@@ -479,14 +479,14 @@ public class AutonManager {
 			
 			OutputManager.setIntakeSpeed(-1.0);
 			
-			if ( (Timer.getFPGATimestamp() - timeo) > Constants.SHOOT_AUTO_ON ){
+			if ( (Timer.getFPGATimestamp() - timeo) > Constants.SHOOT_AUTO_ON + Constants.AUTO_DELAY ){
 				
 				OutputManager.setShooterSpeed(-Constants.FULL_SHOOT_SPEED);
 				
 			
 			}
 			
-			if ( (Timer.getFPGATimestamp() - timeo) > Constants.ELEVATOR_AUTO_ON ){
+			if ( (Timer.getFPGATimestamp() - timeo) > Constants.ELEVATOR_AUTO_ON + Constants.AUTO_DELAY ){
 				
 				OutputManager.setSpeedElevator(Constants.ELEVATOR_SPEED_FORWARDS);
 				
@@ -498,14 +498,14 @@ public class AutonManager {
 			
 			OutputManager.setIntakeSpeed(-1.0);
 			
-			if ( (Timer.getFPGATimestamp() - timeo) > Constants.SHOOT_AUTO_ON ){
+			if ( (Timer.getFPGATimestamp() - timeo) > Constants.SHOOT_AUTO_ON + Constants.AUTO_DELAY ){
 				
 				OutputManager.setShooterSpeed(-Constants.FULL_SHOOT_SPEED);
 				
 			
 			}
 			
-			if ( (Timer.getFPGATimestamp() - timeo) > Constants.ELEVATOR_AUTO_ON ){
+			if ( (Timer.getFPGATimestamp() - timeo) > Constants.ELEVATOR_AUTO_ON + Constants.AUTO_DELAY ){
 				
 				OutputManager.setSpeedElevator(Constants.ELEVATOR_SPEED_FORWARDS);
 				

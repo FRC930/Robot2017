@@ -15,8 +15,10 @@ public class Robot extends IterativeRobot {
 	public SendableChooser <Integer> autoChooser;
 	
 	public int chosenVal;
+		
+	private static Timer timeo = new Timer();
 	
-	private static Timer time = new Timer();
+	private boolean firstTimeAutoP = true;
 	
     public void robotInit() {
     	 	
@@ -46,8 +48,9 @@ public class Robot extends IterativeRobot {
         autoChooser.addObject("BLUE_RIGHT_GEAR", new Integer(3));
         autoChooser.addObject("MIDDLE_GEAR", new Integer(7));
         autoChooser.addObject("RED_GEAR_SHOOT", new Integer(8));
-        autoChooser.addObject("FORWARD", new Integer(9));
-        autoChooser.addObject("BACKWARD", new Integer(10));
+        autoChooser.addObject("BLUE_GEAR_SHOOT", new Integer(9));
+        autoChooser.addObject("FORWARD", new Integer(12));
+        autoChooser.addObject("BACKWARD", new Integer(13));
         
         System.out.println("AutoChooser");
         SmartDashboard.putData("Autonomous mode chooser", autoChooser);
@@ -57,6 +60,8 @@ public class Robot extends IterativeRobot {
     
     public void autonomousInit() {
 
+    	timeo.start();
+    	
     	AutonManager.init();
     	OutputManager.autonomousInit();
     	AutonManager.driveCode();
@@ -85,6 +90,13 @@ public class Robot extends IterativeRobot {
     }
 
     public void autonomousPeriodic() {
+    	
+    	/*if ((Timer.getFPGATimestamp() > Constants.AUTO_DELAY) && (firstTimeAutoP)) {
+    		
+    		AutonManager.init();
+    		firstTimeAutoP = false;
+    	
+    	}*/
     	
     	AutonManager.driveCode();
     	AutonManager.shooterCode();
@@ -146,7 +158,7 @@ public class Robot extends IterativeRobot {
 		   AutonManager.changeMode(autoChooser.getSelected().intValue());
 		   chosenVal = autoChooser.getSelected().intValue();
 		   System.out.println(autoChooser.getSelected().intValue());
-		   if (autoChooser.getSelected().intValue() < 9 && autoChooser.getSelected().intValue() > 0 )
+		   if (autoChooser.getSelected().intValue() < 10 && autoChooser.getSelected().intValue() > 0 )
 			   DriveMotionProfiler.startFilling(autoChooser.getSelected().intValue());
 	   }
 	   

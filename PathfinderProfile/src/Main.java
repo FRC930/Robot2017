@@ -19,7 +19,7 @@ public class Main {
 		Waypoint[] points = new Waypoint[] {
 		    new Waypoint(0, 0, 0),      // Waypoint @ x=-4, y=-1, exit angle=-45 degrees
 		    //new Waypoint(-3.775, 4.7, Pathfinder.d2r(-10)),                        // Waypoint @ x=-2, y=-2, exit angle=0 radians
-		    new Waypoint(6.2, 0, Pathfinder.d2r(0))
+		    new Waypoint(7.6, 2.5, Pathfinder.d2r(64))
 		};
 		
 		/* Red Alliance */			/* Blue Alliance */
@@ -29,7 +29,7 @@ public class Main {
 		// 5.7  -6.8  -100			//  5.7   6.1   89
 		// 4.2    0    0			//  4.0    0    0			// vel = 7.0   acc = 16.0		// 4.3   2.5   65			//  4.3  -2.5  -65
 		// 1.35   0    0			//  1.9    0    0			// vel = 4.0   acc = 16.0
-		// 5.6    0    0			//  8.0    0    0			// vel = 7.0   acc = 16.0
+		// 5.1    0    0			//  8.0    0    0			// vel = 7.0   acc = 16.0
 		/* Faster */
 		// 4.5  -6.1  -89			// -4.5   6.1   89
 		// 3.8   2.5   89			//  3.8  -2.5  -89
@@ -37,21 +37,21 @@ public class Main {
 		
 		/* Right Gear */
 		/* Slower */
-		// 8.1   1.0   78			//  8.5  -2.0  -74		// MORE X
-		
+		// 7.6   1.0   64			//  8.5  -1.0  -74		
+		// 8.1
 		/* Left Gear */
 		/* Slower */
-		// 8.1  -3.25 -64			//  8.2   1.9   64
+		// 7.6  -3.25 -64			//  7.6   3.25  64
 		
 		/* Middle Gear */
 		/* Slower */
-		// 6.0    0    0 
+		// 6.2    0    0 
 		
 		/* Gear Shoot */
 		/* Slower */
-		// 8.5   2.0   74
+		// 7.6   2.3   64
 		// 1.5    0    0		// BACKUP 1.5 ft
-		// 3.8    0    0		// PIVOT to 150 degrees
+		// 3.5    0    0		// PIVOT to 120 degrees
 		// 8.0    0    0		// DRIVE TO BOILER: vel = 7.0, acc = 8.0
 		
 		// Create the Trajectory Configuration
