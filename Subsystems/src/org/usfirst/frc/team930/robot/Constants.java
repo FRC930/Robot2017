@@ -40,9 +40,10 @@ public class Constants {
 	//-----------Shooter Constants--------------
 	
 	public static final double BANG_BANG_VARIABLES = 5;
-	public static final double FULL_SHOOT_SPEED =3125.0;
+	public static final double FULL_SHOOT_SPEED =3075.0;
+	public static final double GEAR_SHOOT_AUTO_ON = (GeneratedMotionProfileRightRED.kNumPoints)/100.0 - 1.15;
 	public static final double SHOOT_AUTO_ON = (GeneratedMotionProfileRightRED.kNumPoints)/100.0 - 1.4;
-	
+
 	// ----------Spark Motor Channels-----------
 	
 	public static final int INTAKE_MOTOR_CHANNEL = 0;
@@ -89,7 +90,7 @@ public class Constants {
 	public static final double ELEVATOR_AUTO_ON = (GeneratedMotionProfileRightRED.kNumPoints)/100.0 - 0.6;
 	
 	// -----------GEAR ARM/WHEELS------------------
-	public static final double GEAR_ARM_UP = 0.63;//0.575
+	public static final double GEAR_ARM_UP = 0.587;//0.575
 	public static final double GEAR_ARM_DOWN = 0.92;//0.88
 	public static final double GEAR_ARM_MIDDLE = 25;
 	public static final double GEAR_FOREWARD_SOFT_LIMIT = 0.95;//0.91

@@ -209,7 +209,8 @@ public class DriveMotionProfiler implements Runnable {
 			 totalCnt = GeneratedMotionProfileRightBLUE.kNumPoints;
 			 totalCntSeg1 = GeneratedMotionProfileRightBLUE.kNumPointsToHopper;
 			 totalCntSeg2 = GeneratedMotionProfileRightBLUE.kNumPointsWait;
-			 //totalCntSeg4 = GeneratedMotionProfileRightBLUE.kNumPointsPivot;
+			 totalCntSeg3 = GeneratedMotionProfileRightBLUE.kNumPointsBackwards;
+			 totalCntSeg4 = GeneratedMotionProfileRightBLUE.kNumPointsPivot;
 			 totalCntSeg5 = GeneratedMotionProfileRightBLUE.kNumPointsToBoiler;
 			
 		}
@@ -258,10 +259,10 @@ public class DriveMotionProfiler implements Runnable {
 			 profile = GeneratedMotionProfileBlueLGearRight.Points;
 			
 			 totalCnt = GeneratedMotionProfileBlueLGearRight.kNumPoints;
-			 totalCntSeg1 = GeneratedMotionProfileBlueLGearRight.kNumPointsToHopper;
-			 totalCntSeg2 = GeneratedMotionProfileBlueLGearRight.kNumPointsWait;
-			 totalCntSeg3 = GeneratedMotionProfileBlueLGearRight.kNumPointsBackwards;
-			 totalCntSeg4 = GeneratedMotionProfileBlueLGearRight.kNumPointsToBoiler;
+			 totalCntSeg1 = 999999;//GeneratedMotionProfileBlueLGearRight.kNumPointsToHopper;
+			 totalCntSeg2 = 999999;//GeneratedMotionProfileBlueLGearRight.kNumPointsWait;
+			 totalCntSeg3 = 999999;//GeneratedMotionProfileBlueLGearRight.kNumPointsBackwards;
+			 totalCntSeg4 = 999999;//GeneratedMotionProfileBlueLGearRight.kNumPointsToBoiler;
 			 totalCntSeg5 = 999999;//GeneratedMotionProfileBlueLGearRight.kNumPointsToBoiler;
 
 		}
@@ -288,7 +289,7 @@ public class DriveMotionProfiler implements Runnable {
 			 totalCntSeg2 = GeneratedMotionProfileRedGearShootRight.kNumPointsBackup;
 			 totalCntSeg3 = GeneratedMotionProfileRedGearShootRight.kNumPointsPivot;
 			 totalCntSeg4 = GeneratedMotionProfileRedGearShootRight.kNumPointsToBoiler;
-			 totalCntSeg5 = GeneratedMotionProfileRedGearShootRight.kNumPointsToBoiler;
+			 totalCntSeg5 = 999999;//GeneratedMotionProfileRedGearShootRight.kNumPointsToBoiler;
 
 		}
 		
@@ -463,7 +464,7 @@ public class DriveMotionProfiler implements Runnable {
 			 totalCntSeg1 = GeneratedMotionProfileLeftBLUE.kNumPointsToHopper;
 			 totalCntSeg2 = GeneratedMotionProfileLeftBLUE.kNumPointsWait;
 			 totalCntSeg3 = GeneratedMotionProfileLeftBLUE.kNumPointsBackwards;
-			 //totalCntSeg4 = GeneratedMotionProfileLeftBLUE.kNumPointsPivot;
+			 totalCntSeg4 = GeneratedMotionProfileLeftBLUE.kNumPointsPivot;
 			 totalCntSeg5 = GeneratedMotionProfileLeftBLUE.kNumPointsToBoiler;
 
 		}

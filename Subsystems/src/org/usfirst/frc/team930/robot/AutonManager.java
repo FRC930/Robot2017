@@ -479,7 +479,7 @@ public class AutonManager {
 			
 			OutputManager.setIntakeSpeed(-1.0);
 			
-			if ( (Timer.getFPGATimestamp() - timeo) > Constants.SHOOT_AUTO_ON + Constants.AUTO_DELAY ){
+			if ( (Timer.getFPGATimestamp() - timeo) > Constants.GEAR_SHOOT_AUTO_ON + Constants.AUTO_DELAY ){
 				
 				OutputManager.setShooterSpeed(-Constants.FULL_SHOOT_SPEED);
 				
@@ -498,7 +498,7 @@ public class AutonManager {
 			
 			OutputManager.setIntakeSpeed(-1.0);
 			
-			if ( (Timer.getFPGATimestamp() - timeo) > Constants.SHOOT_AUTO_ON + Constants.AUTO_DELAY ){
+			if ( (Timer.getFPGATimestamp() - timeo) > Constants.GEAR_SHOOT_AUTO_ON + Constants.AUTO_DELAY ){
 				
 				OutputManager.setShooterSpeed(-Constants.FULL_SHOOT_SPEED);
 				
