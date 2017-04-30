@@ -366,7 +366,8 @@ public class DriveMotionProfiler implements Runnable {
 			
 			if ((i >= (totalCntSeg3 - 25)) && (i <= (totalCntSeg3))) point.velocityOnly = true;
 			if ((i >= (totalCntSeg4 - 25)) && (i <= (totalCntSeg4))) point.velocityOnly = true;
-			if ((i >= (totalCntSeg5 - 25)) && (i <= (totalCntSeg5))) point.velocityOnly = true;
+			if ((i >= (totalCntSeg4))) point.velocityOnly = true;
+			//if ((i >= (totalCntSeg5 - 25)) && (i <= (totalCntSeg5))) point.velocityOnly = true;
 
 			if (i == (totalCnt - 8)) {
 				
@@ -621,7 +622,8 @@ public class DriveMotionProfiler implements Runnable {
 			
 			if ((i >= (totalCntSeg3 - 25)) && (i <= (totalCntSeg3))) point.velocityOnly = true;
 			if ((i >= (totalCntSeg4 - 25)) && (i <= (totalCntSeg4))) point.velocityOnly = true;
-			if ((i >= (totalCntSeg5 - 25)) && (i <= (totalCntSeg5))) point.velocityOnly = true;
+			if ((i >= (totalCntSeg4))) point.velocityOnly = true;
+			//if ((i >= (totalCntSeg5 - 25)) && (i <= (totalCntSeg5))) point.velocityOnly = true;
 
 			if (i == (totalCnt - 8)) {
 			

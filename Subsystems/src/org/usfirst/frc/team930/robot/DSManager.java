@@ -16,6 +16,7 @@ public class DSManager {
 	
 	private static boolean increaseShooterSpeedBool = false;
 	private static boolean decreaseShooterSpeedBool = false;
+	private static boolean gearBool = false;
 	
 	private static boolean toggleRelayBool = false;
 	//METHODS FOR CONTROLLER ONE
@@ -116,6 +117,12 @@ public class DSManager {
 		
 	}
 	
+	public static double getCoDriveGearAxis(){
+		
+		return stick2.getRawAxis(Constants.CODRIVE_Y_AXIS_PORT);
+		
+	}
+	
 	public static boolean getCoDriveRawButtonOne(){
 		
 		return stick2.getRawButton(Constants.RAW_BUTTON_ONE_PORT);
@@ -167,6 +174,22 @@ public class DSManager {
 	public static boolean getCoDriveShootTrigger(){
 		
 		if(stick2.getRawAxis(Constants.RAW_AXIS_TRIGGER_RIGHT) > 0.3){
+			
+			return true;
+			
+		}
+		
+		else {
+			
+			return false;
+			
+		}
+		
+	}
+	
+	public static boolean getCoDriveGearTrigger(){
+		
+		if(stick2.getRawAxis(Constants.RAW_AXIS_TRIGGER_LEFT) > 0.3){
 			
 			return true;
 			

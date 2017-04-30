@@ -19,7 +19,7 @@ public class Main {
 		Waypoint[] points = new Waypoint[] {
 		    new Waypoint(0, 0, 0),      // Waypoint @ x=-4, y=-1, exit angle=-45 degrees
 		    //new Waypoint(-3.775, 4.7, Pathfinder.d2r(-10)),                        // Waypoint @ x=-2, y=-2, exit angle=0 radians
-		    new Waypoint(8.0, -3.25, Pathfinder.d2r(-64))
+		    new Waypoint(10.8, 0, Pathfinder.d2r(0))
 		};
 		
 		/* Red Alliance */			/* Blue Alliance */
@@ -73,7 +73,7 @@ public class Main {
 		// Max Velocity:		8.0 m/s
 		// Max Acceleration:	8.0 m/s/s
 		// Max Jerk:			50.0 m/s/s/s
-		Trajectory.Config config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_HIGH, 0.01, 4.0, 4.0, 50.0);
+		Trajectory.Config config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_HIGH, 0.01, 7.0, 16.0, 50.0);
 
 		// Generate the trajectory
 		Trajectory trajectory = Pathfinder.generate(points, config);

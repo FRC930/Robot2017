@@ -73,7 +73,7 @@ public class OutputManager {
 	private static CANTalon shooter;
 	private static CANTalon shooterMotor2;
 	
-	private static CANTalon gearArm;
+	static CANTalon gearArm;
 	
 	private static Spark gearWheels;
 	
@@ -278,6 +278,12 @@ public class OutputManager {
 		shooter.set(speed);
 		//shooterMotor2.set(speed);
 
+		
+	}
+	
+	public static void setGearSpeed( double speed ){
+		
+		gearArm.set(speed);
 		
 	}
 	

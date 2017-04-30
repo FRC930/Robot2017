@@ -66,6 +66,7 @@ public class Constants {
 	public static final int JOYSTICK_TWO_PORT = 2;
 	public static final int DRIVE_X_AXIS_PORT = 4;
 	public static final int DRIVE_Y_AXIS_PORT = 1;
+	public static final int CODRIVE_Y_AXIS_PORT = 5;
 	public static final int RAW_BUTTON_ONE_PORT = 1;
 	public static final int RAW_BUTTON_TWO_PORT = 2;
 	public static final int RAW_BUTTON_THREE_PORT = 3;
@@ -103,7 +104,7 @@ public class Constants {
 	public static final double GEAR_AUTO_MIDDLE = (GeneratedMotionProfileMiddleGearLeft.kNumPoints)/100.0 - 0.5;
 	public static final double GEAR_AUTO_SHOOT_DOWN = (GeneratedMotionProfileRedGearShootLeft.kNumPointsToAirship)/100.0 - 0.25;
 	public static final double GEAR_AUTO_SHOOT_UP = (GeneratedMotionProfileRedGearShootLeft.kNumPointsBackup)/100.0 - 0.25;
-
+	public static final double GEAR_MAX_SPEED = 0.15;
 	
 	public static final double AUTO_DELAY = 0.0;
 }
