@@ -91,8 +91,8 @@ public class Constants {
 	public static final double ELEVATOR_AUTO_ON = (GeneratedMotionProfileRightRED.kNumPoints)/100.0 - 0.6;
 	
 	// -----------GEAR ARM/WHEELS------------------
-	public static final double GEAR_ARM_UP = 0.587;//0.575
-	public static final double GEAR_ARM_DOWN = 0.92;//0.88
+	public static final double GEAR_ARM_UP = 0.5;//0.575
+	public static final double GEAR_ARM_DOWN = 0.862;//0.88
 	public static final double GEAR_ARM_MIDDLE = 25;
 	public static final double GEAR_FOREWARD_SOFT_LIMIT = 0.95;//0.91
 	public static final double GEAR_REVERSE_SOFT_LIMIT = 0.7;//0.565

@@ -5,8 +5,10 @@ import com.ctre.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class CoDriverMisc implements Runnable{
+	
 	boolean flag = false;
 	boolean gearBool = false;
+	
 	@Override
 	public void run() {
 		OutputManager.getGearArmPos();

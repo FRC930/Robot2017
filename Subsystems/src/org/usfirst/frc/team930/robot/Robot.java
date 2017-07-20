@@ -3,6 +3,7 @@ package org.usfirst.frc.team930.robot;
 
 import com.ctre.CANTalon;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -21,6 +22,8 @@ public class Robot extends IterativeRobot {
 	private boolean firstTimeAutoP = true;
 	
     public void robotInit() {
+    	
+    	CameraServer.getInstance().startAutomaticCapture();
     	 	
     	OutputManager.init();
     	OutputManager.teleopInit();

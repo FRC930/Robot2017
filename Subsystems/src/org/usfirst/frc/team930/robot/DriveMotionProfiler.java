@@ -351,7 +351,6 @@ public class DriveMotionProfiler implements Runnable {
 			point.isLastPoint = false;
 			
 			if (i == 0)
-				
 				point.zeroPos = true; /* set this to true on the first point */
 			
 			if (i >= (totalCnt - 25)) point.velocityOnly = true;
